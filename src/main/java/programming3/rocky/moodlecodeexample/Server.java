@@ -1,9 +1,7 @@
-package programming3.rocky.moodle;
+package programming3.rocky.moodlecodeexample;
 
 import com.sun.net.httpserver.*;
 import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
 import java.io.*;
 
 /**

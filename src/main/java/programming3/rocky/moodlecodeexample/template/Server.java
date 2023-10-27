@@ -1,4 +1,4 @@
-package programming3.rocky.moodle.template;
+package programming3.rocky.moodlecodeexample.template;
 
 import com.sun.net.httpserver.*;
 

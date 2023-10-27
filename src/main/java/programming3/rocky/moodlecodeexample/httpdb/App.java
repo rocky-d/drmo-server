@@ -1,4 +1,4 @@
-package programming3.rocky.moodle.httpdb;
+package programming3.rocky.moodlecodeexample.httpdb;
 
 import java.lang.String;
 

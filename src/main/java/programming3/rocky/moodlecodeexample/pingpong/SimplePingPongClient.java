@@ -1,4 +1,4 @@
-package programming3.rocky.moodle.pingpong;
+package programming3.rocky.moodlecodeexample.pingpong;
 
 import java.io.*;
 import java.net.Socket;
