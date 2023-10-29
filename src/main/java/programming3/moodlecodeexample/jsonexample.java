@@ -1,4 +1,4 @@
-package programming3.rocky.moodlecodeexample;
+package programming3.moodlecodeexample;
 
 import java.io.BufferedWriter;
 import java.io.FileReader;

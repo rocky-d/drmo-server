@@ -1,4 +1,4 @@
-package programming3.rocky.moodlecodeexample.template;
+package programming3.moodlecodeexample.template;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

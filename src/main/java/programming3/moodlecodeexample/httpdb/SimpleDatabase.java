@@ -1,4 +1,4 @@
-package programming3.rocky.moodlecodeexample.httpdb;
+package programming3.moodlecodeexample.httpdb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
