@@ -1,6 +1,8 @@
 package programming3.rocky.moodlecodeexample.template;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public class Coordinate {
     
