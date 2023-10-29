@@ -1,4 +1,4 @@
-package programming3.moodlecodeexample;
+package programming3.moodle;
 
 import com.sun.net.httpserver.*;
 import java.net.InetSocketAddress;

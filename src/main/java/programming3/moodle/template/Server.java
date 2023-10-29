@@ -1,4 +1,4 @@
-package programming3.moodlecodeexample.template;
+package programming3.moodle.template;
 
 import com.sun.net.httpserver.*;
 

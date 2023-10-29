@@ -1,4 +1,4 @@
-package programming3.moodlecodeexample.httpdb;
+package programming3.moodle.httpdb;
 
 import java.lang.String;
 
