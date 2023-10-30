@@ -106,7 +106,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
                     break;
             }
         } catch (IOException ioException) {
-            // TODO: log
+            // TODO: status code, log
             ioException.printStackTrace();
         } finally {
             httpExchange.close();
