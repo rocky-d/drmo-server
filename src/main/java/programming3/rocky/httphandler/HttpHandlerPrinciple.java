@@ -27,5 +27,6 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
                 handleNonSupportedRequest(httpExchange);
                 break;
         }
+        httpExchange.close();
     }
 }
