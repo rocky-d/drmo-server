@@ -1,7 +1,5 @@
 package programming3.rocky.entity;
 
-import programming3.rocky.entity.enumdata.Danger;
-
 public class Coordinate {
     private long id;
     private double longitude;
@@ -75,4 +73,6 @@ public class Coordinate {
     public void setUsrName(String usrName) {
         this.usrName = usrName;
     }
+
+    public enum Danger {DEER, REINDEER, MOOSE, OTHER}
 }
