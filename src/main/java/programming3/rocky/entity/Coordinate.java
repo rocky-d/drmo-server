@@ -19,4 +19,60 @@ public class Coordinate {
         this.danger = danger;
         this.usrName = usrName;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(double datetime) {
+        this.datetime = datetime;
+    }
+
+    public Danger getDanger() {
+        return danger;
+    }
+
+    public void setDanger(Danger danger) {
+        this.danger = danger;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUsrName() {
+        return usrName;
+    }
+
+    public void setUsrName(String usrName) {
+        this.usrName = usrName;
+    }
 }
