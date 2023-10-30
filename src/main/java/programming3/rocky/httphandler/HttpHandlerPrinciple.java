@@ -11,7 +11,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     public abstract void handlePOSTRequest(HttpExchange httpExchange);
 
     public void handleNonSupportedRequest(HttpExchange httpExchange) {
-
+        // TODO
     }
 
     @Override

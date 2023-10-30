@@ -7,12 +7,12 @@ import java.io.IOException;
 public class CommentHttpHandler extends HttpHandlerPrinciple {
     @Override
     public void handleGETRequest(HttpExchange httpExchange) {
-
+        // TODO
     }
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) {
-
+        // TODO
     }
 
     @Override
