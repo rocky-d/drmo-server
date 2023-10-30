@@ -8,6 +8,16 @@ import java.io.IOException;
 public class CoordinatesHttpHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
+        switch (httpExchange.getRequestMethod().toUpperCase()) {
+            case "GET":
 
+                break;
+            case "POST":
+
+                break;
+            default:
+
+                break;
+        }
     }
 }
