@@ -71,39 +71,45 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
-        switch (httpExchange.getRequestMethod().toUpperCase()) {
-            case "GET":
-                handleGETRequest(httpExchange);
-                break;
-            case "HEAD":
-                handleHEADRequest(httpExchange);
-                break;
-            case "POST":
-                handlePOSTRequest(httpExchange);
-                break;
-            case "PUT":
-                handlePUTRequest(httpExchange);
-                break;
-            case "DELETE":
-                handleDELETERequest(httpExchange);
-                break;
-            case "CONNECT":
-                handleCONNECTRequest(httpExchange);
-                break;
-            case "OPTIONS":
-                handleOPTIONSRequest(httpExchange);
-                break;
-            case "TRACE":
-                handleTRACERequest(httpExchange);
-                break;
-            case "PATCH":
-                handlePATCHRequest(httpExchange);
-                break;
-            default:
-                handleUnknownRequest(httpExchange);
-                break;
+    public void handle(HttpExchange httpExchange) {
+        try {
+            switch (httpExchange.getRequestMethod().toUpperCase()) {
+                case "GET":
+                    handleGETRequest(httpExchange);
+                    break;
+                case "HEAD":
+                    handleHEADRequest(httpExchange);
+                    break;
+                case "POST":
+                    handlePOSTRequest(httpExchange);
+                    break;
+                case "PUT":
+                    handlePUTRequest(httpExchange);
+                    break;
+                case "DELETE":
+                    handleDELETERequest(httpExchange);
+                    break;
+                case "CONNECT":
+                    handleCONNECTRequest(httpExchange);
+                    break;
+                case "OPTIONS":
+                    handleOPTIONSRequest(httpExchange);
+                    break;
+                case "TRACE":
+                    handleTRACERequest(httpExchange);
+                    break;
+                case "PATCH":
+                    handlePATCHRequest(httpExchange);
+                    break;
+                default:
+                    handleUnknownRequest(httpExchange);
+                    break;
+            }
+        } catch (IOException ioException) {
+            // TODO: log
+            ioException.printStackTrace();
+        } finally {
+            httpExchange.close();
         }
-        httpExchange.close();
     }
 }
