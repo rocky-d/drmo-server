@@ -1,11 +1,10 @@
 package programming3.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 
-public class RegistrationHttpHandler implements HttpHandlerPrinciple {
+public class RegistrationHttpHandler extends HttpHandlerPrinciple {
     @Override
     public void handleGETRequest(HttpExchange httpExchange) {
 
@@ -18,11 +17,11 @@ public class RegistrationHttpHandler implements HttpHandlerPrinciple {
 
     @Override
     public void handleNonSupportedRequest(HttpExchange httpExchange) {
-
+        super.handleNonSupportedRequest(httpExchange);
     }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        HttpHandlerPrinciple.super.handle(httpExchange);
+        super.handle(httpExchange);
     }
 }

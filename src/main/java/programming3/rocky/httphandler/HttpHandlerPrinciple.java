@@ -5,15 +5,17 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 
-public interface HttpHandlerPrinciple extends HttpHandler {
-    void handleGETRequest(HttpExchange httpExchange);
+public abstract class HttpHandlerPrinciple implements HttpHandler {
+    public abstract void handleGETRequest(HttpExchange httpExchange);
 
-    void handlePOSTRequest(HttpExchange httpExchange);
+    public abstract void handlePOSTRequest(HttpExchange httpExchange);
 
-    void handleNonSupportedRequest(HttpExchange httpExchange);
+    public void handleNonSupportedRequest(HttpExchange httpExchange) {
+
+    }
 
     @Override
-    default void handle(HttpExchange httpExchange) throws IOException {
+    public void handle(HttpExchange httpExchange) throws IOException {
         switch (httpExchange.getRequestMethod().toUpperCase()) {
             case "GET":
                 handleGETRequest(httpExchange);

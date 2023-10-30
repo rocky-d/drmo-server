@@ -4,7 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
 
-public class CoordinatesHttpHandler implements HttpHandlerPrinciple {
+public class CoordinatesHttpHandler extends HttpHandlerPrinciple {
     @Override
     public void handleGETRequest(HttpExchange httpExchange) {
 
@@ -17,11 +17,11 @@ public class CoordinatesHttpHandler implements HttpHandlerPrinciple {
 
     @Override
     public void handleNonSupportedRequest(HttpExchange httpExchange) {
-
+        super.handleNonSupportedRequest(httpExchange);
     }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        HttpHandlerPrinciple.super.handle(httpExchange);
+        super.handle(httpExchange);
     }
 }
