@@ -1,8 +1,8 @@
 package programming3.rocky.entity;
 
-public class Coordinate {
-    enum Danger {DEER, REINDEER, MOOSE, OTHER}
+import programming3.rocky.entity.enumdata.Danger;
 
+public class Coordinate {
     private long id;
     private double longitude;
     private double latitude;
