@@ -2,13 +2,13 @@ package programming3.rocky.entity;
 
 public class User {
     private String name;
-    private int password;
+    private int hashedpassword;
     private String email;
     private String phone;
 
-    public User(String name, int password) {
+    public User(String name, int hashedpassword) {
         this.name = name;
-        this.password = password;
+        this.hashedpassword = hashedpassword;
     }
 
     public String getName() {
@@ -19,12 +19,12 @@ public class User {
         this.name = name;
     }
 
-    public int getPassword() {
-        return password;
+    public int getHashedpassword() {
+        return hashedpassword;
     }
 
-    public void setPassword(int password) {
-        this.password = password;
+    public void setHashedpassword(int hashedpassword) {
+        this.hashedpassword = hashedpassword;
     }
 
     public String getEmail() {
