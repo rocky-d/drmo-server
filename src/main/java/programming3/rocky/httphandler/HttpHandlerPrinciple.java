@@ -32,18 +32,9 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
         respondInternalServerError(httpExchange);
     }
 
-//    public final void handleJSONException(JSONException jsonException, HttpExchange httpExchange) {
-//        jsonException.printStackTrace();
-//        respondInternalServerError(httpExchange);
-//    }
-
     public final String readRequestBodyString(InputStream requestBody) {
         return new BufferedReader(new InputStreamReader(requestBody, UTF_8)).lines().collect(Collectors.joining("\n"));
     }
-
-//    public final JSONObject readRequestBodyJSONObject(InputStream requestBody) throws JSONException {
-//        return new JSONObject(readRequestBodyString(requestBody));
-//    }
 
     public final void writeResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
         responseBody.write(outputBytes);
@@ -137,8 +128,6 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
             }
         } catch (IOException ioException) {
             handleIOException(ioException, httpExchange);
-//        } catch (JSONException jsonException) {
-//            handleJSONException(jsonException, httpExchange);
         } finally {
             httpExchange.close();
         }
