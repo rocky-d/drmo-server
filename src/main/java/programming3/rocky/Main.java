@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello world!");
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(1989), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
 
         server.createContext("/comment", new CommentHttpHandler());
         server.createContext("/coordinates", new CoordinatesHttpHandler());
