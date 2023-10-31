@@ -137,10 +137,8 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
                     break;
             }
         } catch (IOException ioException) {
-            // TODO: status code, log
             handleIOException(ioException, httpExchange);
         } catch (JSONException jsonException) {
-            // TODO: status code, log
             handleJSONException(jsonException, httpExchange);
         } finally {
             httpExchange.close();
