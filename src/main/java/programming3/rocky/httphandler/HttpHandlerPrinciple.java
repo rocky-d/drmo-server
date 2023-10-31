@@ -9,13 +9,13 @@ import java.io.OutputStream;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public abstract class HttpHandlerPrinciple implements HttpHandler {
-    public void writeResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
+    public final void writeResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
         responseBody.write(outputBytes);
         responseBody.flush();
         responseBody.close();
     }
 
-    public void writeResponseBody(OutputStream responseBody, String outputString) throws IOException {
+    public final void writeResponseBody(OutputStream responseBody, String outputString) throws IOException {
         writeResponseBody(responseBody, outputString.getBytes(UTF_8));
     }
 
@@ -71,7 +71,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) {
+    public final void handle(HttpExchange httpExchange) {
         try {
             switch (httpExchange.getRequestMethod().toUpperCase()) {
                 case "GET":
