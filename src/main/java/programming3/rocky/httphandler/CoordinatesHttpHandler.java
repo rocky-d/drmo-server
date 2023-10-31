@@ -1,4 +1,6 @@
 package programming3.rocky.httphandler;
 
-public class CoordinatesHttpHandler extends HttpHandlerPrinciple {
+import com.sun.net.httpserver.HttpHandler;
+
+public class CoordinatesHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
 }

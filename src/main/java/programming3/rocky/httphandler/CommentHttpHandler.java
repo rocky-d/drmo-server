@@ -1,4 +1,6 @@
 package programming3.rocky.httphandler;
 
-public class CommentHttpHandler extends HttpHandlerPrinciple {
+import com.sun.net.httpserver.HttpHandler;
+
+public class CommentHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
 }

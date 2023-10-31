@@ -1,4 +1,6 @@
 package programming3.rocky.httphandler;
 
-public class RegistrationHttpHandler extends HttpHandlerPrinciple {
+import com.sun.net.httpserver.HttpHandler;
+
+public class RegistrationHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
 }
