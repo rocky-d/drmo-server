@@ -11,6 +11,27 @@ import java.util.stream.Collectors;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public abstract class HttpHandlerPrinciple implements HttpHandler {
+    public final void respondInternalServerError(HttpExchange httpExchange) {
+        httpExchange.getResponseHeaders().clear();
+        byte[] responseBodyBytes = "Internal Server Error".getBytes(UTF_8);
+        try {
+            httpExchange.sendResponseHeaders(500, responseBodyBytes.length);
+            writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public final void handleIOException(IOException ioException, HttpExchange httpExchange) {
+        ioException.printStackTrace();
+        respondInternalServerError(httpExchange);
+    }
+
+    public final void handleJSONException(JSONException jsonException, HttpExchange httpExchange) {
+        jsonException.printStackTrace();
+        respondInternalServerError(httpExchange);
+    }
+
     public final String readRequestBodyString(InputStream requestBody) {
         return new BufferedReader(new InputStreamReader(requestBody, UTF_8)).lines().collect(Collectors.joining("\n"));
     }
@@ -78,27 +99,6 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
         byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
         httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
         writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
-    }
-
-    public final void respondInternalServerError(HttpExchange httpExchange) {
-        httpExchange.getResponseHeaders().clear();
-        byte[] responseBodyBytes = "Internal Server Error".getBytes(UTF_8);
-        try {
-            httpExchange.sendResponseHeaders(500, responseBodyBytes.length);
-            writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final void handleIOException(IOException ioException, HttpExchange httpExchange) {
-        ioException.printStackTrace();
-        respondInternalServerError(httpExchange);
-    }
-
-    public final void handleJSONException(JSONException jsonException, HttpExchange httpExchange) {
-        jsonException.printStackTrace();
-        respondInternalServerError(httpExchange);
     }
 
     @Override
