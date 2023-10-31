@@ -2,8 +2,6 @@ package programming3.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.*;
 import java.util.stream.Collectors;
@@ -22,23 +20,30 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
         }
     }
 
+    public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
+        httpExchange.getResponseHeaders().add("Allow", "HEAD");
+        byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
+        httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
+        writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+    }
+
     public final void handleIOException(IOException ioException, HttpExchange httpExchange) {
         ioException.printStackTrace();
         respondInternalServerError(httpExchange);
     }
 
-    public final void handleJSONException(JSONException jsonException, HttpExchange httpExchange) {
-        jsonException.printStackTrace();
-        respondInternalServerError(httpExchange);
-    }
+//    public final void handleJSONException(JSONException jsonException, HttpExchange httpExchange) {
+//        jsonException.printStackTrace();
+//        respondInternalServerError(httpExchange);
+//    }
 
     public final String readRequestBodyString(InputStream requestBody) {
         return new BufferedReader(new InputStreamReader(requestBody, UTF_8)).lines().collect(Collectors.joining("\n"));
     }
 
-    public final JSONObject readRequestBodyJSONObject(InputStream requestBody) throws JSONException {
-        return new JSONObject(readRequestBodyString(requestBody));
-    }
+//    public final JSONObject readRequestBodyJSONObject(InputStream requestBody) throws JSONException {
+//        return new JSONObject(readRequestBodyString(requestBody));
+//    }
 
     public final void writeResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
         responseBody.write(outputBytes);
@@ -88,17 +93,11 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     }
 
     public void handleUnsupportedRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add("Allow", "HEAD");
-        byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
-        httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
-        writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+        respondMethodNotAllowed(httpExchange);
     }
 
     public void handleUnknownRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add("Allow", "HEAD");
-        byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
-        httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
-        writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+        respondMethodNotAllowed(httpExchange);
     }
 
     @Override
@@ -138,8 +137,8 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
             }
         } catch (IOException ioException) {
             handleIOException(ioException, httpExchange);
-        } catch (JSONException jsonException) {
-            handleJSONException(jsonException, httpExchange);
+//        } catch (JSONException jsonException) {
+//            handleJSONException(jsonException, httpExchange);
         } finally {
             httpExchange.close();
         }
