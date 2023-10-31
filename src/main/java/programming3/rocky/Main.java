@@ -18,7 +18,7 @@ public class Main {
         server.createContext("/comment", new CommentHttpHandler());
         server.createContext("/coordinates", new CoordinatesHttpHandler());
         server.createContext("/registration", new RegistrationHttpHandler());
-        server.createContext("/warning", new WarningHttpHandler());
+//        server.createContext("/warning", new WarningHttpHandler());
 
         server.setExecutor(null);  // creates a default executor
 
