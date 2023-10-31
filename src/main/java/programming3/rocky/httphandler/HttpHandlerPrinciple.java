@@ -2,13 +2,23 @@ package programming3.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public abstract class HttpHandlerPrinciple implements HttpHandler {
+    public final String readRequestBodyString(InputStream requestBody) {
+        return new BufferedReader(new InputStreamReader(requestBody, UTF_8)).lines().collect(Collectors.joining("\n"));
+    }
+
+    public final JSONObject readRequestBodyJSONObject(InputStream requestBody) throws JSONException {
+        return new JSONObject(readRequestBodyString(requestBody));
+    }
+
     public final void writeResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
         responseBody.write(outputBytes);
         responseBody.flush();
@@ -58,16 +68,37 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
 
     public void handleUnsupportedRequest(HttpExchange httpExchange) throws IOException {
         httpExchange.getResponseHeaders().add("Allow", "HEAD");
-        byte[] text = "Method Not Allowed".getBytes(UTF_8);
-        httpExchange.sendResponseHeaders(405, text.length);
-        writeResponseBody(httpExchange.getResponseBody(), text);
+        byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
+        httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
+        writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
     public void handleUnknownRequest(HttpExchange httpExchange) throws IOException {
         httpExchange.getResponseHeaders().add("Allow", "HEAD");
-        byte[] text = "Method Not Allowed".getBytes(UTF_8);
-        httpExchange.sendResponseHeaders(405, text.length);
-        writeResponseBody(httpExchange.getResponseBody(), text);
+        byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
+        httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
+        writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+    }
+
+    public final void respondInternalServerError(HttpExchange httpExchange) {
+        httpExchange.getResponseHeaders().clear();
+        byte[] responseBodyBytes = "Internal Server Error".getBytes(UTF_8);
+        try {
+            httpExchange.sendResponseHeaders(500, responseBodyBytes.length);
+            writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public final void handleIOException(IOException ioException, HttpExchange httpExchange) {
+        ioException.printStackTrace();
+        respondInternalServerError(httpExchange);
+    }
+
+    public final void handleJSONException(JSONException jsonException, HttpExchange httpExchange) {
+        jsonException.printStackTrace();
+        respondInternalServerError(httpExchange);
     }
 
     @Override
@@ -107,7 +138,10 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
             }
         } catch (IOException ioException) {
             // TODO: status code, log
-            ioException.printStackTrace();
+            handleIOException(ioException, httpExchange);
+        } catch (JSONException jsonException) {
+            // TODO: status code, log
+            handleJSONException(jsonException, httpExchange);
         } finally {
             httpExchange.close();
         }
