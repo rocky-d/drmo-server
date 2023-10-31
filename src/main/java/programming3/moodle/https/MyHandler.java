@@ -1,4 +1,4 @@
-package com.example;
+package programming3.moodle.https;
 
 import com.sun.net.httpserver.*;
 
