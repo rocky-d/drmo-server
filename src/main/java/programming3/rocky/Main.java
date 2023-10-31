@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpServer;
 import programming3.rocky.httphandler.CommentHttpHandler;
 import programming3.rocky.httphandler.CoordinatesHttpHandler;
 import programming3.rocky.httphandler.RegistrationHttpHandler;
-import programming3.rocky.httphandler.WarningHttpHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
