@@ -14,7 +14,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
         byte[] responseBodyBytes = "Internal Server Error".getBytes(UTF_8);
         try {
             httpExchange.sendResponseHeaders(500, responseBodyBytes.length);
-            writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+            outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -24,7 +24,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
         httpExchange.getResponseHeaders().add("Allow", "HEAD");
         byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
         httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
-        writeResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+        outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
     public final void handleIOException(IOException ioException, HttpExchange httpExchange) {
@@ -36,14 +36,14 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
         return new BufferedReader(new InputStreamReader(requestBody, UTF_8)).lines().collect(Collectors.joining("\n"));
     }
 
-    public final void writeResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
+    public final void outputResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
         responseBody.write(outputBytes);
         responseBody.flush();
         responseBody.close();
     }
 
-    public final void writeResponseBody(OutputStream responseBody, String outputString) throws IOException {
-        writeResponseBody(responseBody, outputString.getBytes(UTF_8));
+    public final void outputResponseBody(OutputStream responseBody, String outputString) throws IOException {
+        outputResponseBody(responseBody, outputString.getBytes(UTF_8));
     }
 
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
