@@ -1,5 +1,11 @@
 package programming3.rocky.entity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.time.Instant;
+import java.util.StringJoiner;
+
 public class Coordinate {
     private long id;
     private double longitude;
@@ -9,13 +15,24 @@ public class Coordinate {
     private String description;
     private String usrName;
 
-    public Coordinate(long id, double longitude, double latitude, String datetime, Danger danger, String usrName) {
+    public Coordinate(long id, double longitude, double latitude, String datetime, Danger danger, String usrName, String description) {
         this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
         this.datetime = datetime;
         this.danger = danger;
         this.usrName = usrName;
+        this.description = description;
+    }
+
+    public Coordinate(JSONObject jsonObject) throws JSONException {
+        id = Instant.now().toEpochMilli();
+        longitude = jsonObject.getDouble("longitude");
+        latitude = jsonObject.getDouble("latitude");
+        datetime = jsonObject.getString("sent");
+        danger = Danger.valueOf(jsonObject.getString("dangertype").toUpperCase());
+        usrName = jsonObject.getString("username");
+        description = jsonObject.has("description") ? jsonObject.getString("description") : null;
     }
 
     public long getId() {

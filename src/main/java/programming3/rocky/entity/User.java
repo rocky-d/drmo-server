@@ -1,14 +1,28 @@
 package programming3.rocky.entity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.StringJoiner;
+
 public class User {
     private String name;
     private int hashedpassword;
     private String email;
     private String phone;
 
-    public User(String name, int hashedpassword) {
+    public User(String name, int hashedpassword, String email, String phone) {
         this.name = name;
         this.hashedpassword = hashedpassword;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public User(JSONObject jsonObject) throws JSONException {
+        name = jsonObject.getString("username");
+        hashedpassword = jsonObject.getString("password").hashCode();
+        email = jsonObject.has("email") ? jsonObject.getString("email") : null;
+        phone = jsonObject.has("phone") ? jsonObject.getString("phone") : null;
     }
 
     public String getName() {
