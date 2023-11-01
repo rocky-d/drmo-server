@@ -1,5 +1,7 @@
 package programming3.rocky.entity;
 
+import java.util.StringJoiner;
+
 public class Comment {
     private long id;
     private String content;
@@ -33,5 +35,14 @@ public class Comment {
 
     public void setCdtId(long cdtId) {
         this.cdtId = cdtId;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Comment.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("content='" + content + "'")
+                .add("cdtId=" + cdtId)
+                .toString();
     }
 }

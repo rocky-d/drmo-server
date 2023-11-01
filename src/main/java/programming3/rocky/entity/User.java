@@ -42,4 +42,14 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+                .add("name='" + name + "'")
+                .add("hashedpassword=" + hashedpassword)
+                .add("email='" + email + "'")
+                .add("phone='" + phone + "'")
+                .toString();
+    }
 }

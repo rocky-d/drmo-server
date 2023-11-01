@@ -74,5 +74,18 @@ public class Coordinate {
         this.usrName = usrName;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Coordinate.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("longitude=" + longitude)
+                .add("latitude=" + latitude)
+                .add("datetime='" + datetime + "'")
+                .add("danger=" + danger)
+                .add("description='" + description + "'")
+                .add("usrName='" + usrName + "'")
+                .toString();
+    }
+
     public enum Danger {DEER, REINDEER, MOOSE, OTHER}
 }
