@@ -32,7 +32,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
         respondInternalServerError(httpExchange);
     }
 
-    public final String readRequestBodyString(InputStream requestBody) {
+    public final String inputRequestBodyString(InputStream requestBody) {
         return new BufferedReader(new InputStreamReader(requestBody, UTF_8)).lines().collect(Collectors.joining("\n"));
     }
 
