@@ -129,15 +129,14 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
     }
 
     @Override
-    public synchronized void insertSQLite() throws Exception {
+    public synchronized void insertSQLite(Connection connectionSQLite) throws Exception {
         // TODO
 
 //        Class.forName("org.sqlite.JDBC");
 
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:coursework.sqlite.db");
-        connection.setAutoCommit(false);
+
         System.out.println("jdbc:sqlite:coursework.sqlite.db opened");
-        Statement statement = connection.createStatement();
+        Statement statement = connectionSQLite.createStatement();
 
         Instant instant = Instant.parse(datetime);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
@@ -159,22 +158,21 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
         statement.executeUpdate(query);
 
         statement.close();
-        connection.commit();
-        connection.close();
+        connectionSQLite.commit();
     }
 
     @Override
-    public synchronized void deleteSQLite() throws Exception {
+    public synchronized void deleteSQLite(Connection connectionSQLite) throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void updateSQLite() throws Exception {
+    public synchronized void updateSQLite(Connection connectionSQLite) throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void selectSQLite() throws Exception {
+    public synchronized void selectSQLite(Connection connectionSQLite) throws Exception {
         // TODO
     }
 

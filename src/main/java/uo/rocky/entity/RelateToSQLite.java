@@ -1,5 +1,7 @@
 package uo.rocky.entity;
 
+import java.sql.Connection;
+
 public interface RelateToSQLite {
     static String escapeSingleQuotes(String string) {
         return null == string ? "NULL" : string.replace("'", "''");
@@ -13,11 +15,11 @@ public interface RelateToSQLite {
         return escapeDoubleQuotes(escapeSingleQuotes(string));
     }
 
-    void insertSQLite() throws Exception;  // TODO: redefine exception
+    void insertSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
 
-    void deleteSQLite() throws Exception;  // TODO: redefine exception
+    void deleteSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
 
-    void updateSQLite() throws Exception;  // TODO: redefine exception
+    void updateSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
 
-    void selectSQLite() throws Exception;  // TODO: redefine exception
+    void selectSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
 }
