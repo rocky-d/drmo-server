@@ -132,7 +132,7 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
     public synchronized void insertSQLite() throws Exception {
         // TODO
 
-        Class.forName("org.sqlite.JDBC");
+//        Class.forName("org.sqlite.JDBC");
 
         Connection connection = DriverManager.getConnection("jdbc:sqlite:coursework.sqlite.db");
         connection.setAutoCommit(false);
@@ -146,10 +146,16 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
 
-        String query = String.format(
-                "INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGERTYPE, CDT_DESCRIPTION, CDT_USR_NAME) "
-                        + "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')",
-                id, longitude, latitude, formattedDateTime, dangertype, description, usrName);
+        String query = String.format("INSERT INTO coordinate " +
+                        "(CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_DATETIME,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME) " +
+                        "VALUES (%s,%s,%s,'%s','%S'," + (null == description ? "%S" : "'%s'") + ",'%s')",
+                id,
+                longitude,
+                latitude,
+                formattedDateTime,
+                dangertype,
+                RelateToSQLite.escapeQuotes(description),
+                RelateToSQLite.escapeQuotes(usrName));
         System.out.println(query);
         statement.executeUpdate(query);
 
