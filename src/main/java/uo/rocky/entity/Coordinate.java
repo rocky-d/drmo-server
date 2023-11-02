@@ -164,17 +164,17 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
     }
 
     @Override
-    public void deleteSQLite() throws Exception {
+    public synchronized void deleteSQLite() throws Exception {
         // TODO
     }
 
     @Override
-    public void updateSQLite() throws Exception {
+    public synchronized void updateSQLite() throws Exception {
         // TODO
     }
 
     @Override
-    public void selectSQLite() throws Exception {
+    public synchronized void selectSQLite() throws Exception {
         // TODO
     }
 
