@@ -58,7 +58,8 @@ public final class Comment implements WithJSON, WithSQLite {
 
     @Override
     public String toJSONString() {
-        return null;
+        return new StringJoiner(",", "{", "}")
+                .toString();  // TODO
     }
 
     @Override
@@ -68,21 +69,21 @@ public final class Comment implements WithJSON, WithSQLite {
 
     @Override
     public void insertWithSQLite() throws Exception {
-
+        // TODO
     }
 
     @Override
     public void deleteWithSQLite() throws Exception {
-
+        // TODO
     }
 
     @Override
     public void updateWithSQLite() throws Exception {
-
+        // TODO
     }
 
     @Override
     public void selectWithSQLite() throws Exception {
-
+        // TODO
     }
 }

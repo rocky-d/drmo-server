@@ -17,7 +17,7 @@ public final class Coordinate implements WithJSON, WithSQLite {
     private long id;
     private double longitude;
     private double latitude;
-    private String datetime;  // TODO
+    private String datetime;  // TODO: refactor datatype
     private Dangertype dangertype;
     private String description;
     private String usrName;
@@ -113,7 +113,7 @@ public final class Coordinate implements WithJSON, WithSQLite {
 
     @Override
     public String toJSONString() {
-        return new StringJoiner(",", "{","}")
+        return new StringJoiner(",", "{", "}")
                 .add("\"id\"=\"" + id + "\"")
                 .add("\"longitude\"=\"" + longitude + "\"")
                 .add("\"latitude\"=\"" + latitude + "\"")
@@ -131,6 +131,8 @@ public final class Coordinate implements WithJSON, WithSQLite {
 
     @Override
     public synchronized void insertWithSQLite() throws ClassNotFoundException, SQLException {
+        // TODO
+
         Class.forName("org.sqlite.JDBC");
 
         Connection connection = DriverManager.getConnection("jdbc:sqlite:coursework.sqlite.db");
@@ -159,17 +161,17 @@ public final class Coordinate implements WithJSON, WithSQLite {
 
     @Override
     public void deleteWithSQLite() {
-
+        // TODO
     }
 
     @Override
     public void updateWithSQLite() {
-
+        // TODO
     }
 
     @Override
     public void selectWithSQLite() {
-
+        // TODO
     }
 
     public enum Dangertype {
