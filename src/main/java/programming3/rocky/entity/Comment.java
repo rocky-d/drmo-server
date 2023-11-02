@@ -2,12 +2,11 @@ package programming3.rocky.entity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONString;
 
 import java.time.Instant;
 import java.util.StringJoiner;
 
-public final class Comment implements JSONString, WithSQLite {
+public final class Comment implements WithJSON, WithSQLite {
     private long id;
     private String content;
     private long cdtId;
@@ -60,6 +59,11 @@ public final class Comment implements JSONString, WithSQLite {
     @Override
     public String toJSONString() {
         return null;
+    }
+
+    @Override
+    public JSONObject toJSONObject() throws JSONException {
+        return WithJSON.super.toJSONObject();
     }
 
     @Override

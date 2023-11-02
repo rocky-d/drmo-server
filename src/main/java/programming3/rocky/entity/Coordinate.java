@@ -14,11 +14,11 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.StringJoiner;
 
-public final class Coordinate implements JSONString {
+public final class Coordinate implements WithJSON, WithSQLite {
     private long id;
     private double longitude;
     private double latitude;
-    private String datetime;
+    private String datetime;  // TODO
     private Dangertype dangertype;
     private String description;
     private String usrName;
@@ -125,11 +125,13 @@ public final class Coordinate implements JSONString {
                 .toString();
     }
 
-    public JSONObject toJSONObject() {
-        return new JSONObject(toJSONString());
+    @Override
+    public JSONObject toJSONObject() throws JSONException {
+        return WithJSON.super.toJSONObject();
     }
 
-    public void uploadSQLite() throws ClassNotFoundException, SQLException {
+    @Override
+    public synchronized void insertWithSQLite() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
 
         Connection connection = DriverManager.getConnection("jdbc:sqlite:coursework.sqlite.db");
@@ -144,13 +146,31 @@ public final class Coordinate implements JSONString {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
 
-        String query = String.format("INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGERTYPE, CDT_DESCRIPTION, CDT_USR_NAME) " + "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')", id, longitude, latitude, formattedDateTime, dangertype, description, usrName);
+        String query = String.format(
+                "INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGERTYPE, CDT_DESCRIPTION, CDT_USR_NAME) "
+                        + "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')",
+                id, longitude, latitude, formattedDateTime, dangertype, description, usrName);
         System.out.println(query);
         statement.executeUpdate(query);
 
         statement.close();
         connection.commit();
         connection.close();
+    }
+
+    @Override
+    public void deleteWithSQLite() {
+
+    }
+
+    @Override
+    public void updateWithSQLite() {
+
+    }
+
+    @Override
+    public void selectWithSQLite() {
+
     }
 
     public enum Dangertype {
