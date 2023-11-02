@@ -2,18 +2,19 @@ package programming3.rocky.entity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import org.json.JSONString;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.StringJoiner;
 
-public final class Coordinate {
+public final class Coordinate implements JSONString {
     private long id;
     private double longitude;
     private double latitude;
@@ -111,6 +112,15 @@ public final class Coordinate {
                 .toString();
     }
 
+    @Override
+    public String toJSONString() {
+        return null;
+    }
+
+    public JSONObject toJSONObject() {
+        return new JSONObject(toJSONString());
+    }
+
     public void uploadSQLite() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
 
@@ -126,9 +136,7 @@ public final class Coordinate {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
 
-        String query = String.format(
-                "INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGER, CDT_DESCRIPTION, CDT_USR_NAME) " +
-                "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')", id, longitude, latitude, formattedDateTime, danger, description, usrName);
+        String query = String.format("INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGER, CDT_DESCRIPTION, CDT_USR_NAME) " + "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')", id, longitude, latitude, formattedDateTime, danger, description, usrName);
         System.out.println(query);
         statement.executeUpdate(query);
 
