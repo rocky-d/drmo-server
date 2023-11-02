@@ -1,8 +1,16 @@
 package uo.rocky.entity;
 
 public interface RelateToSQLite {
-    static String escapeQuotes(String string) {
+    static String escapeSingleQuotes(String string) {
         return null == string ? "NULL" : string.replace("'", "''");
+    }
+
+    static String escapeDoubleQuotes(String string) {
+        return null == string ? "NULL" : string.replace("\"", "\"\"");
+    }
+
+    static String escapeQuotes(String string) {
+        return escapeDoubleQuotes(escapeSingleQuotes(string));
     }
 
     void insertSQLite() throws Exception;  // TODO: redefine exception
