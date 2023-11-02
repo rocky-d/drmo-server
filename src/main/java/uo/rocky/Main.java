@@ -15,14 +15,14 @@ public final class Main {
     public static void main(String[] args) throws IOException, SQLException {
         System.out.println("Hello world!");
 
-        Connection connectionSQLite = DriverManager.getConnection("jdbc:sqlite:deer.sqlite.db");
-        connectionSQLite.setAutoCommit(false);
+        Connection connection = DriverManager.getConnection("jdbc:sqlite:deer.sqlite.db");
+        connection.setAutoCommit(false);
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
 
-        server.createContext("/comment", new CommentHttpHandler(connectionSQLite));
-        server.createContext("/coordinates", new CoordinatesHttpHandler(connectionSQLite));
-        server.createContext("/registration", new RegistrationHttpHandler(connectionSQLite));
+        server.createContext("/comment", new CommentHttpHandler(connection));
+        server.createContext("/coordinates", new CoordinatesHttpHandler(connection));
+        server.createContext("/registration", new RegistrationHttpHandler(connection));
 //        server.createContext("/warning", new WarningHttpHandler());
 
         server.setExecutor(null);  // creates a default executor

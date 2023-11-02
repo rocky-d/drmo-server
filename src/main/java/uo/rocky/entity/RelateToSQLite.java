@@ -15,11 +15,11 @@ public interface RelateToSQLite {
         return escapeDoubleQuotes(escapeSingleQuotes(string));
     }
 
-    void insertSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
+    void insertSQLite(Connection connection) throws Exception;  // TODO: redefine exception
 
-    void deleteSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
+    void deleteSQLite(Connection connection) throws Exception;  // TODO: redefine exception
 
-    void updateSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
+    void updateSQLite(Connection connection) throws Exception;  // TODO: redefine exception
 
-    void selectSQLite(Connection connectionSQLite) throws Exception;  // TODO: redefine exception
+    void selectSQLite(Connection connection) throws Exception;  // TODO: redefine exception
 }

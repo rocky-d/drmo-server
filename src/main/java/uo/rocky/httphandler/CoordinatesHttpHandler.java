@@ -12,8 +12,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
     private static final String ALLOW = "HEAD, POST";
     private static final String CONTENT_TYPE = "application/json; charset=utf-8";
 
-    public CoordinatesHttpHandler(Connection connectionSQLite) {
-        super(connectionSQLite);
+    public CoordinatesHttpHandler(Connection connection) {
+        super(connection);
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
         Coordinate coordinate = new Coordinate(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(coordinate);
         try {
-            coordinate.insertSQLite(connectionSQLite);
+            coordinate.insertSQLite(connection);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

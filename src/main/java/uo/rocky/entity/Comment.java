@@ -69,22 +69,22 @@ public final class Comment implements RelateToJSON, RelateToSQLite {
     }
 
     @Override
-    public synchronized void insertSQLite(Connection connectionSQLite) throws Exception {
+    public synchronized void insertSQLite(Connection connection) throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void deleteSQLite(Connection connectionSQLite) throws Exception {
+    public synchronized void deleteSQLite(Connection connection) throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void updateSQLite(Connection connectionSQLite) throws Exception {
+    public synchronized void updateSQLite(Connection connection) throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void selectSQLite(Connection connectionSQLite) throws Exception {
+    public synchronized void selectSQLite(Connection connection) throws Exception {
         // TODO
     }
 }

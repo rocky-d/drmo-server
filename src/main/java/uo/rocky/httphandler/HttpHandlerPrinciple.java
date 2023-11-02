@@ -12,10 +12,10 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public abstract class HttpHandlerPrinciple implements HttpHandler {
     private static final String ALLOW = "HEAD";
     private static final String CONTENT_TYPE = "text/plain; charset=utf-8";
-    protected final Connection connectionSQLite;
+    protected final Connection connection;
 
-    protected HttpHandlerPrinciple(Connection connectionSQLite) {
-        this.connectionSQLite = connectionSQLite;
+    protected HttpHandlerPrinciple(Connection connection) {
+        this.connection = connection;
     }
 
     public final void respondInternalServerError(HttpExchange httpExchange) {
