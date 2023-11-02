@@ -2,7 +2,14 @@ package programming3.rocky.entity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Instant;
 import java.util.StringJoiner;
 
@@ -102,6 +109,32 @@ public final class Coordinate {
                 .add("description='" + description + "'")
                 .add("usrName='" + usrName + "'")
                 .toString();
+    }
+
+    public void uploadSQLite() throws ClassNotFoundException, SQLException {
+        Class.forName("org.sqlite.JDBC");
+
+        Connection connection = DriverManager.getConnection("jdbc:sqlite:coursework.sqlite.db");
+        connection.setAutoCommit(false);
+        System.out.println("jdbc:sqlite:coursework.sqlite.db opened");
+        Statement statement = connection.createStatement();
+
+        Instant instant = Instant.parse(datetime);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+        // 转换为SQLite数据库中datetime字段的格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        String formattedDateTime = localDateTime.format(formatter);
+
+        String query = String.format(
+                "INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGER, CDT_DESCRIPTION, CDT_USR_NAME) " +
+                "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')", id, longitude, latitude, formattedDateTime, danger, description, usrName);
+        System.out.println(query);
+        statement.executeUpdate(query);
+
+        statement.close();
+        connection.commit();
+        connection.close();
     }
 
     public enum Danger {DEER, REINDEER, MOOSE, OTHER}
