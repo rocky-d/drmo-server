@@ -8,7 +8,8 @@ import uo.rocky.entity.Coordinate;
 import java.io.IOException;
 
 public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
-    public static final String ALLOW = "HEAD, POST";
+    private static final String ALLOW = "HEAD, POST";
+    private static final String CONTENT_TYPE = "application/json; charset=utf-8";
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
@@ -24,7 +25,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
         }
 
         httpExchange.getResponseHeaders().add("Allow", ALLOW);
-        httpExchange.getResponseHeaders().add("Content-Type", "application/json; charset=utf-8");
+        httpExchange.getResponseHeaders().add("Content-Type", CONTENT_TYPE);
 
         httpExchange.sendResponseHeaders(200, 0);
 
