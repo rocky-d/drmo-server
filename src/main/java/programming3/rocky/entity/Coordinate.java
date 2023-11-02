@@ -137,5 +137,7 @@ public final class Coordinate {
         connection.close();
     }
 
-    public enum Danger {DEER, REINDEER, MOOSE, OTHER}
+    public enum Danger {
+        DEER, REINDEER, MOOSE, OTHER;
+    }
 }
