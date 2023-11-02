@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.time.Instant;
 import java.util.StringJoiner;
 
-public final class Comment implements WithJSON, WithSQLite {
+public final class Comment implements RelateToJSON, RelateToSQLite {
     private long id;
     private String content;
     private long cdtId;
@@ -64,7 +64,7 @@ public final class Comment implements WithJSON, WithSQLite {
 
     @Override
     public JSONObject toJSONObject() throws JSONException {
-        return WithJSON.super.toJSONObject();
+        return RelateToJSON.super.toJSONObject();
     }
 
     @Override

@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.util.StringJoiner;
 
-public final class User implements WithJSON, WithSQLite {
+public final class User implements RelateToJSON, RelateToSQLite {
     private String name;
     private int hashedpassword;
     private String email;
@@ -75,7 +75,7 @@ public final class User implements WithJSON, WithSQLite {
 
     @Override
     public JSONObject toJSONObject() throws JSONException {
-        return WithJSON.super.toJSONObject();
+        return RelateToJSON.super.toJSONObject();
     }
 
     @Override

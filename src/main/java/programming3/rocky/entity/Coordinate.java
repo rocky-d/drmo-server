@@ -13,7 +13,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.StringJoiner;
 
-public final class Coordinate implements WithJSON, WithSQLite {
+public final class Coordinate implements RelateToJSON, RelateToSQLite {
     private long id;
     private double longitude;
     private double latitude;
@@ -126,7 +126,7 @@ public final class Coordinate implements WithJSON, WithSQLite {
 
     @Override
     public JSONObject toJSONObject() throws JSONException {
-        return WithJSON.super.toJSONObject();
+        return RelateToJSON.super.toJSONObject();
     }
 
     @Override
