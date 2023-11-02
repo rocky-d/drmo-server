@@ -8,7 +8,7 @@ import programming3.rocky.httphandler.RegistrationHttpHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-public class Main {
+public final class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello world!");
 
