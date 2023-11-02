@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.util.StringJoiner;
 
-public class User {
+public final class User {
     private String name;
     private int hashedpassword;
     private String email;

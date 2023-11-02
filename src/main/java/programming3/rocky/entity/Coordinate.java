@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.time.Instant;
 import java.util.StringJoiner;
 
-public class Coordinate {
+public final class Coordinate {
     private long id;
     private double longitude;
     private double latitude;

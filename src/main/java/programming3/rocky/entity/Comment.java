@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.time.Instant;
 import java.util.StringJoiner;
 
-public class Comment {
+public final class Comment {
     private long id;
     private String content;
     private long cdtId;
