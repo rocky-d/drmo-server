@@ -19,16 +19,16 @@ public final class Coordinate implements JSONString {
     private double longitude;
     private double latitude;
     private String datetime;
-    private Danger danger;
+    private Dangertype dangertype;
     private String description;
     private String usrName;
 
-    public Coordinate(long id, double longitude, double latitude, String datetime, Danger danger, String usrName, String description) {
+    public Coordinate(long id, double longitude, double latitude, String datetime, Dangertype dangertype, String usrName, String description) {
         this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
         this.datetime = datetime;
-        this.danger = danger;
+        this.dangertype = dangertype;
         this.usrName = usrName;
         this.description = description;
     }
@@ -38,7 +38,7 @@ public final class Coordinate implements JSONString {
         longitude = jsonObject.getDouble("longitude");
         latitude = jsonObject.getDouble("latitude");
         datetime = jsonObject.getString("sent");
-        danger = Danger.valueOf(jsonObject.getString("dangertype").toUpperCase());
+        dangertype = Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase());
         usrName = jsonObject.getString("username");
         description = jsonObject.has("description") ? jsonObject.getString("description") : null;
     }
@@ -75,12 +75,12 @@ public final class Coordinate implements JSONString {
         this.datetime = datetime;
     }
 
-    public Danger getDanger() {
-        return danger;
+    public Dangertype getDangertype() {
+        return dangertype;
     }
 
-    public void setDanger(Danger danger) {
-        this.danger = danger;
+    public void setDangertype(Dangertype dangertype) {
+        this.dangertype = dangertype;
     }
 
     public String getDescription() {
@@ -106,7 +106,7 @@ public final class Coordinate implements JSONString {
                 .add("longitude=" + longitude)
                 .add("latitude=" + latitude)
                 .add("datetime='" + datetime + "'")
-                .add("danger=" + danger)
+                .add("dangertype=" + dangertype)
                 .add("description='" + description + "'")
                 .add("usrName='" + usrName + "'")
                 .toString();
@@ -114,7 +114,15 @@ public final class Coordinate implements JSONString {
 
     @Override
     public String toJSONString() {
-        return null;
+        return new StringJoiner(",", "{","}")
+                .add("\"id\"=\"" + id + "\"")
+                .add("\"longitude\"=\"" + longitude + "\"")
+                .add("\"latitude\"=\"" + latitude + "\"")
+                .add("\"datetime\"=\"" + datetime + "\"")
+                .add("\"dangertype\"=\"" + dangertype + "\"")
+                .add("\"description\"=\"" + description + "\"")
+                .add("\"username\"=\"" + usrName + "\"")
+                .toString();
     }
 
     public JSONObject toJSONObject() {
@@ -136,7 +144,7 @@ public final class Coordinate implements JSONString {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
 
-        String query = String.format("INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGER, CDT_DESCRIPTION, CDT_USR_NAME) " + "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')", id, longitude, latitude, formattedDateTime, danger, description, usrName);
+        String query = String.format("INSERT INTO coordinate (CDT_ID, CDT_LONGITUDE, CDT_LATITUDE, CDT_DATETIME, CDT_DANGERTYPE, CDT_DESCRIPTION, CDT_USR_NAME) " + "VALUES (%s, %s, %s, '%s', '%s', %s, '%s')", id, longitude, latitude, formattedDateTime, dangertype, description, usrName);
         System.out.println(query);
         statement.executeUpdate(query);
 
@@ -145,7 +153,7 @@ public final class Coordinate implements JSONString {
         connection.close();
     }
 
-    public enum Danger {
+    public enum Dangertype {
         DEER, REINDEER, MOOSE, OTHER;
     }
 }
