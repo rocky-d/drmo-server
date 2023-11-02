@@ -16,8 +16,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
         Coordinate coordinate = new Coordinate(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(coordinate);
         try {
-            coordinate.uploadSQLite();
-        } catch (ClassNotFoundException | SQLException e) {
+            coordinate.insertWithSQLite();
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }

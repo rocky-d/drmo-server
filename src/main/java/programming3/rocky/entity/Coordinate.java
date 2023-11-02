@@ -130,7 +130,7 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
     }
 
     @Override
-    public synchronized void insertWithSQLite() throws ClassNotFoundException, SQLException {
+    public synchronized void insertWithSQLite() throws Exception {
         // TODO
 
         Class.forName("org.sqlite.JDBC");
@@ -160,17 +160,17 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
     }
 
     @Override
-    public void deleteWithSQLite() {
+    public void deleteWithSQLite() throws Exception {
         // TODO
     }
 
     @Override
-    public void updateWithSQLite() {
+    public void updateWithSQLite() throws Exception {
         // TODO
     }
 
     @Override
-    public void selectWithSQLite() {
+    public void selectWithSQLite() throws Exception {
         // TODO
     }
 
