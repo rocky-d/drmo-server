@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public abstract class HttpHandlerPrinciple implements HttpHandler {
+    private static final String ALLOW = "HEAD";
+
     public final void respondInternalServerError(HttpExchange httpExchange) {
         httpExchange.getResponseHeaders().clear();
         byte[] responseBodyBytes = "Internal Server Error".getBytes(UTF_8);
@@ -21,7 +23,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     }
 
     public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add("Allow", "HEAD");
+        httpExchange.getResponseHeaders().add("Allow", ALLOW);
         byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
         httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
@@ -51,7 +53,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     }
 
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add("Allow", "HEAD");
+        httpExchange.getResponseHeaders().add("Allow", ALLOW);
         httpExchange.sendResponseHeaders(200, -1);
     }
 
