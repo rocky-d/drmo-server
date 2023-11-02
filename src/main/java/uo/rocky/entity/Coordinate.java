@@ -142,7 +142,6 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
         Instant instant = Instant.parse(datetime);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 
-        // 转换为SQLite数据库中datetime字段的格式
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
 
