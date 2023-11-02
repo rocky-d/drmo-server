@@ -2,10 +2,11 @@ package programming3.rocky.entity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONString;
 
 import java.util.StringJoiner;
 
-public final class User {
+public final class User implements JSONString, WithSQLite {
     private String name;
     private int hashedpassword;
     private String email;
@@ -65,5 +66,30 @@ public final class User {
                 .add("email='" + email + "'")
                 .add("phone='" + phone + "'")
                 .toString();
+    }
+
+    @Override
+    public String toJSONString() {
+        return null;
+    }
+
+    @Override
+    public void insertWithSQLite() throws Exception {
+
+    }
+
+    @Override
+    public void deleteWithSQLite() throws Exception {
+
+    }
+
+    @Override
+    public void updateWithSQLite() throws Exception {
+
+    }
+
+    @Override
+    public void selectWithSQLite() throws Exception {
+
     }
 }

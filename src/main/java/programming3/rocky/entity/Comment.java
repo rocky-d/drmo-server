@@ -2,11 +2,12 @@ package programming3.rocky.entity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONString;
 
 import java.time.Instant;
 import java.util.StringJoiner;
 
-public final class Comment {
+public final class Comment implements JSONString, WithSQLite {
     private long id;
     private String content;
     private long cdtId;
@@ -54,5 +55,30 @@ public final class Comment {
                 .add("content='" + content + "'")
                 .add("cdtId=" + cdtId)
                 .toString();
+    }
+
+    @Override
+    public String toJSONString() {
+        return null;
+    }
+
+    @Override
+    public void insertWithSQLite() throws Exception {
+
+    }
+
+    @Override
+    public void deleteWithSQLite() throws Exception {
+
+    }
+
+    @Override
+    public void updateWithSQLite() throws Exception {
+
+    }
+
+    @Override
+    public void selectWithSQLite() throws Exception {
+
     }
 }
