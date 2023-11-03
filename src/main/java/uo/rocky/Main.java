@@ -15,8 +15,9 @@ public final class Main {
     public static void main(String[] args) throws IOException, SQLException {
         System.out.println("Hello world!");
 
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:deer.sqlite.db");
+        Connection connection = DriverManager.getConnection("jdbc:sqlite:deer.sqlite.db");  // TODO: connection.close()
         connection.setAutoCommit(false);
+        System.out.println("jdbc:sqlite:coursework.sqlite.db opened");
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
 

@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -131,19 +130,12 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
     @Override
     public synchronized void insertSQLite(Connection connection) throws Exception {
         // TODO
-
 //        Class.forName("org.sqlite.JDBC");
-
-
-        System.out.println("jdbc:sqlite:coursework.sqlite.db opened");
-        Statement statement = connection.createStatement();
 
         Instant instant = Instant.parse(datetime);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
-
         String query = String.format("INSERT INTO coordinate" +
                         " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_DATETIME,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
                         " VALUES (%s,%s,%s,'%s','%S'," + (null == description ? "%S" : "'%s'") + ",'%s')",
@@ -155,8 +147,10 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
                 RelateToSQLite.escapeSingleQuotes(description),
                 RelateToSQLite.escapeSingleQuotes(usrName));
         System.out.println(query);
-        statement.executeUpdate(query);
 
+
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(query);
         statement.close();
         connection.commit();
     }
