@@ -6,15 +6,10 @@ import org.json.JSONObject;
 import uo.rocky.entity.Coordinate;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
     private static final String ALLOW = "HEAD, POST";
     private static final String CONTENT_TYPE = "application/json; charset=utf-8";
-
-    public CoordinatesHttpHandler(Connection connection) {
-        super(connection);
-    }
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
@@ -23,7 +18,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
         Coordinate coordinate = new Coordinate(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(coordinate);
         try {
-            coordinate.insertSQLite(connection);
+            coordinate.insertSQLite();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

@@ -3,7 +3,6 @@ package uo.rocky.entity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Connection;
 import java.util.StringJoiner;
 
 public final class User implements RelatesToJSON, RelatesToSQLite {
@@ -80,22 +79,22 @@ public final class User implements RelatesToJSON, RelatesToSQLite {
     }
 
     @Override
-    public synchronized void insertSQLite(Connection connection) throws Exception {
+    public synchronized void insertSQLite() throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void deleteSQLite(Connection connection) throws Exception {
+    public synchronized void deleteSQLite() throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void updateSQLite(Connection connection) throws Exception {
+    public synchronized void updateSQLite() throws Exception {
         // TODO
     }
 
     @Override
-    public synchronized void selectSQLite(Connection connection) throws Exception {
+    public synchronized void selectSQLite() throws Exception {
         // TODO
     }
 }

@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
-import java.sql.Connection;
 import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -12,11 +11,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public abstract class HttpHandlerPrinciple implements HttpHandler {
     private static final String ALLOW = "HEAD";
     private static final String CONTENT_TYPE = "text/plain; charset=utf-8";
-    protected final Connection connection;
-
-    protected HttpHandlerPrinciple(Connection connection) {
-        this.connection = connection;
-    }
 
     public final void respondInternalServerError(HttpExchange httpExchange) {
         httpExchange.getResponseHeaders().clear();
