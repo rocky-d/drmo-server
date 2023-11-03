@@ -21,9 +21,9 @@ public final class Main {
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
 
-        server.createContext("/comment", new CommentHttpHandler(connection));
-        server.createContext("/coordinates", new CoordinatesHttpHandler(connection));
-        server.createContext("/registration", new RegistrationHttpHandler(connection));
+        server.createContext("/comment", new CommentHttpHandler());
+        server.createContext("/coordinates", new CoordinatesHttpHandler());
+        server.createContext("/registration", new RegistrationHttpHandler());
 //        server.createContext("/warning", new WarningHttpHandler());
 
         server.setExecutor(null);  // creates a default executor
