@@ -21,9 +21,9 @@ public final class Main {
         System.out.println(SQLiteURL + " opened!");  // TODO: close()
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
-        server.createContext("/comment", new CommentHttpHandler());
-        server.createContext("/coordinates", new CoordinatesHttpHandler());
-        server.createContext("/registration", new RegistrationHttpHandler());
+        server.createContext(CommentHttpHandler.CONTEXT, new CommentHttpHandler());
+        server.createContext(CoordinatesHttpHandler.CONTEXT, new CoordinatesHttpHandler());
+        server.createContext(RegistrationHttpHandler.CONTEXT, new RegistrationHttpHandler());
 //        server.createContext("/warning", new WarningHttpHandler());
 
         server.setExecutor(null);  // creates a default executor
