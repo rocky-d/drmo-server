@@ -116,7 +116,7 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
                 .add("\"latitude\"=\"" + latitude + "\"")
                 .add("\"datetime\"=\"" + datetime + "\"")
                 .add("\"dangertype\"=\"" + dangertype + "\"")
-                .add("\"description\"=\"" + description + "\"")
+                .add(String.format("\"description\"=%s", null == description ? "null" : "\"" + description + "\""))
                 .add("\"username\"=\"" + usrName + "\"")
                 .toString();
     }

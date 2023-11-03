@@ -70,7 +70,11 @@ public final class User implements RelatesToJSON, RelatesToSQLite {
     @Override
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
-                .toString();  // TODO
+                .add("\"name\"=\"" + name + "\"")
+                .add("\"hashedpassword\"=\"" + hashedpassword + "\"")
+                .add(String.format("\"email\"=%s", null == email ? "null" : "\"" + email + "\""))
+                .add(String.format("\"phone\"=%s", null == phone ? "null" : "\"" + phone + "\""))
+                .toString();
     }
 
     @Override

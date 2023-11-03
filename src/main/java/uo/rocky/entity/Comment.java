@@ -59,7 +59,10 @@ public final class Comment implements RelatesToJSON, RelatesToSQLite {
     @Override
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
-                .toString();  // TODO
+                .add("\"commentId\"=\"" + id + "\"")
+                .add("\"comment\"=\"" + content + "\"")
+                .add("\"id\"=\"" + cdtId + "\"")
+                .toString();
     }
 
     @Override
