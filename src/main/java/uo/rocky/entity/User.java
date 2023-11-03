@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.sql.Connection;
 import java.util.StringJoiner;
 
-public final class User implements RelateToJSON, RelateToSQLite {
+public final class User implements RelatesToJSON, RelatesToSQLite {
     private String name;
     private int hashedpassword;
     private String email;
@@ -76,7 +76,7 @@ public final class User implements RelateToJSON, RelateToSQLite {
 
     @Override
     public JSONObject toJSONObject() throws JSONException {
-        return RelateToJSON.super.toJSONObject();
+        return RelatesToJSON.super.toJSONObject();
     }
 
     @Override

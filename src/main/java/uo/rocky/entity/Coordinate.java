@@ -11,7 +11,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.StringJoiner;
 
-public final class Coordinate implements RelateToJSON, RelateToSQLite {
+public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
     private long id;
     private double longitude;
     private double latitude;
@@ -124,7 +124,7 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
 
     @Override
     public JSONObject toJSONObject() throws JSONException {
-        return RelateToJSON.super.toJSONObject();
+        return RelatesToJSON.super.toJSONObject();
     }
 
     @Override
@@ -144,8 +144,8 @@ public final class Coordinate implements RelateToJSON, RelateToSQLite {
                 latitude,
                 formattedDateTime,
                 dangertype,
-                RelateToSQLite.escapeSingleQuotes(description),
-                RelateToSQLite.escapeSingleQuotes(usrName));
+                RelatesToSQLite.escapeSingleQuotes(description),
+                RelatesToSQLite.escapeSingleQuotes(usrName));
         System.out.println(query);
 
 

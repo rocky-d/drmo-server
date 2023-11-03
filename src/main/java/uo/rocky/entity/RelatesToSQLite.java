@@ -2,7 +2,7 @@ package uo.rocky.entity;
 
 import java.sql.Connection;
 
-public interface RelateToSQLite {
+public interface RelatesToSQLite {
     static String escapeSingleQuotes(String string) {
         return null == string ? "NULL" : string.replace("'", "''");
     }

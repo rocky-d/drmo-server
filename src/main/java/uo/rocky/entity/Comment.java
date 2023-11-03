@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.time.Instant;
 import java.util.StringJoiner;
 
-public final class Comment implements RelateToJSON, RelateToSQLite {
+public final class Comment implements RelatesToJSON, RelatesToSQLite {
     private long id;
     private String content;
     private long cdtId;
@@ -65,7 +65,7 @@ public final class Comment implements RelateToJSON, RelateToSQLite {
 
     @Override
     public JSONObject toJSONObject() throws JSONException {
-        return RelateToJSON.super.toJSONObject();
+        return RelatesToJSON.super.toJSONObject();
     }
 
     @Override
