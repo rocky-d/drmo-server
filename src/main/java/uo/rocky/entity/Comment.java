@@ -9,17 +9,20 @@ import java.util.StringJoiner;
 public final class Comment implements RelatesToJSON, RelatesToSQLite {
     private long id;
     private String content;
+    private String datetime;  // TODO: refactor datatype
     private long cdtId;
 
-    public Comment(long id, String content, long cdtId) {
+    public Comment(long id, String content, String datetime, long cdtId) {
         this.id = id;
         this.content = content;
+        this.datetime = datetime;
         this.cdtId = cdtId;
     }
 
     public Comment(JSONObject jsonObject) throws JSONException {
         id = Instant.now().toEpochMilli();
         content = jsonObject.getString("comment");
+        datetime = jsonObject.getString("sent");
         cdtId = jsonObject.getLong("id");
     }
 
@@ -39,6 +42,14 @@ public final class Comment implements RelatesToJSON, RelatesToSQLite {
         this.content = content;
     }
 
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
     public long getCdtId() {
         return cdtId;
     }
@@ -52,6 +63,7 @@ public final class Comment implements RelatesToJSON, RelatesToSQLite {
         return new StringJoiner(", ", Comment.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("content='" + content + "'")
+                .add("datetime='" + datetime + "'")
                 .add("cdtId=" + cdtId)
                 .toString();
     }
@@ -61,6 +73,7 @@ public final class Comment implements RelatesToJSON, RelatesToSQLite {
         return new StringJoiner(",", "{", "}")
                 .add("\"commentid\"=\"" + id + "\"")
                 .add("\"comment\"=\"" + content + "\"")
+                .add("\"sent\"=\"" + datetime + "\"")
                 .add("\"id\"=\"" + cdtId + "\"")
                 .toString();
     }
