@@ -148,10 +148,10 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
         System.out.println(query);
 
 
-        Statement statement = connection.createStatement();
+        Statement statement = EntitySQLiteConnection.getConnection().createStatement();
         statement.executeUpdate(query);
         statement.close();
-        connection.commit();
+        EntitySQLiteConnection.getConnection().commit();
     }
 
     @Override
