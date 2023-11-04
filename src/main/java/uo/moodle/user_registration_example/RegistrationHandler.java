@@ -1,4 +1,4 @@
-package uo.moodle.user_registration_example.main.java.com.server;
+package uo.moodle.user_registration_example;
 
 import java.io.BufferedReader;
 import java.io.IOException;
