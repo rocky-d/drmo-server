@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.StringJoiner;
 
-public final class Comment implements RelatesToJSON, RelatesToSQLite {
+public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite {
     private long id;
     private String content;
     private String datetime;  // TODO: refactor datatype
@@ -102,7 +102,7 @@ public final class Comment implements RelatesToJSON, RelatesToSQLite {
     }
 
     @Override
-    public synchronized boolean selectSQLite(List<RelatesToSQLite> results) throws Exception {
+    public synchronized boolean selectSQLite(List<EntityRelatesToSQLite> results) throws Exception {
         // TODO
         return true;
     }

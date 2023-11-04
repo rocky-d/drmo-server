@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.StringJoiner;
 
-public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
+public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQLite {
     private long id;
     private double longitude;
     private double latitude;
@@ -143,8 +143,8 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
                 latitude,
                 formattedDateTime,
                 dangertype,
-                RelatesToSQLite.escapeSingleQuotes(description),
-                RelatesToSQLite.escapeSingleQuotes(usrName));
+                EntityRelatesToSQLite.escapeSingleQuotes(description),
+                EntityRelatesToSQLite.escapeSingleQuotes(usrName));
         System.out.println(query);
 
 
@@ -152,6 +152,7 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
         statement.executeUpdate(query);
         statement.close();
         EntitySQLiteConnection.getConnection().commit();
+
         return true;
     }
 
@@ -168,7 +169,7 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
     }
 
     @Override
-    public synchronized boolean selectSQLite(List<RelatesToSQLite> results) throws Exception {
+    public synchronized boolean selectSQLite(List<EntityRelatesToSQLite> results) throws Exception {
         // TODO
         return true;
     }
