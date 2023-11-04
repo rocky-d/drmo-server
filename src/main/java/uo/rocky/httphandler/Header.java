@@ -20,10 +20,6 @@ public enum Header {
         this.STANDARD_NAME = STANDARD_NAME;
     }
 
-    public String getSTANDARD_NAME() {
-        return STANDARD_NAME;
-    }
-
     @Override
     public String toString() {
         return STANDARD_NAME;
