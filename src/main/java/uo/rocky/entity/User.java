@@ -1,5 +1,6 @@
 package uo.rocky.entity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.StringJoiner;
@@ -17,7 +18,7 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
         this.phone = phone;
     }
 
-    public static User valueOf(JSONObject jsonObject) {
+    public static User valueOf(JSONObject jsonObject) throws JSONException {
         return new User(
                 jsonObject.getString("username"),
                 jsonObject.getString("password").hashCode(),

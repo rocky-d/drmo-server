@@ -1,5 +1,6 @@
 package uo.rocky.entity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Statement;
@@ -28,7 +29,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         this.description = description;
     }
 
-    public static Coordinate valueOf(JSONObject jsonObject) {
+    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException {
         return new Coordinate(
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),

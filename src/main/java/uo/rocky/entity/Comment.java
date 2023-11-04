@@ -19,7 +19,7 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
         this.cdtId = cdtId;
     }
 
-    public static Comment valueOf(JSONObject jsonObject) {
+    public static Comment valueOf(JSONObject jsonObject) throws JSONException {
         return new Comment(
                 Instant.now().toEpochMilli(),
                 jsonObject.getString("comment"),
