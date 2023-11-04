@@ -90,7 +90,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 resultSet = statement.executeQuery(query);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Coordinate());
+//                    results.add(new Coordinate());
                 }
                 resultSet.close();
                 statement.close();
@@ -116,7 +116,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 resultSet = statement.executeQuery(query);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Coordinate());
+//                    results.add(new Coordinate());
                 }
                 resultSet.close();
                 statement.close();
