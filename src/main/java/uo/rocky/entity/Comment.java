@@ -112,6 +112,6 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
 
     public static synchronized Comment[] selectSQLite(Map<String, String> params) throws Exception {
         // TODO
-        return new Comment[]{};
+        return null;
     }
 }

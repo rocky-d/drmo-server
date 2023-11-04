@@ -4,11 +4,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -51,6 +54,82 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
 
     public static void setConnection(Connection connection) {
         Coordinate.connection = connection;
+    }
+
+    public static synchronized List<Coordinate> selectSQLite(Map<String, String> params) throws Exception {
+        String query;
+        Statement statement;
+        ResultSet resultSet;
+        List<Coordinate> results;
+        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
+            case "ID":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new Coordinate(
+                            resultSet.getLong("CDT_ID"),
+                            resultSet.getDouble("CDT_LONGITUDE"),
+                            resultSet.getDouble("CDT_LATITUDE"),
+                            resultSet.getString("CDT_DATETIME"),
+                            Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
+                            resultSet.getString("CDT_DESCRIPTION"),
+                            resultSet.getString("CDT_USR_NAME")
+                            ));
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "LOCATION":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new Coordinate());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "TIME":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new Coordinate());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "USER":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new Coordinate());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "QUERY KEY NOT FOUND":
+                results = null;
+                break;
+            default:
+                results = null;
+                break;
+        }
+        return results;
     }
 
     public long getId() {
@@ -175,11 +254,6 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
     public synchronized boolean updateSQLite() throws Exception {
         // TODO
         return true;
-    }
-
-    public static synchronized Coordinate[] selectSQLite(Map<String, String> params) throws Exception {
-        // TODO
-        return new Coordinate[]{};
     }
 
     public enum Dangertype {

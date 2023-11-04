@@ -111,6 +111,6 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
 
     public static synchronized User[] selectSQLite(Map<String, String> params) throws Exception {
         // TODO
-        return new User[]{};
+        return null;
     }
 }
