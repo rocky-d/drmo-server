@@ -12,7 +12,7 @@ public final class CommentHttpHandler extends HttpHandlerPrinciple implements Ht
 
     @Override
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add("Allow", GET_ALLOW);
+        httpExchange.getResponseHeaders().add(Header.ALLOW.call(), GET_ALLOW);
         httpExchange.sendResponseHeaders(200, -1);
     }
 }

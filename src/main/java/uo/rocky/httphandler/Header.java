@@ -1,5 +1,7 @@
 package uo.rocky.httphandler;
 
+import java.util.StringJoiner;
+
 public enum Header {
     ALLOW("Allow"),
     CONTENT_ENCODING("Content-Encoding"),
@@ -14,14 +16,20 @@ public enum Header {
     SET_COOKIE("Set-Cookie"),
     WWW_AUTHENTICATE("WWW-Authenticate");
 
-    private final String STANDARD_NAME;
+    private final String call;
 
-    Header(final String STANDARD_NAME) {
-        this.STANDARD_NAME = STANDARD_NAME;
+    Header(final String call) {
+        this.call = call;
+    }
+
+    public final String call() {
+        return call;
     }
 
     @Override
     public String toString() {
-        return STANDARD_NAME;
+        return new StringJoiner(", ", Header.class.getSimpleName() + "[", "]")
+                .add("call='" + call + "'")
+                .toString();
     }
 }
