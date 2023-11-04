@@ -26,14 +26,14 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
     private String description;
     private String usrName;
 
-    public Coordinate(long id, double longitude, double latitude, String datetime, Dangertype dangertype, String usrName, String description) {
+    public Coordinate(long id, double longitude, double latitude, String datetime, Dangertype dangertype, String description, String usrName) {
         this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
         this.datetime = datetime;
         this.dangertype = dangertype;
-        this.usrName = usrName;
         this.description = description;
+        this.usrName = usrName;
     }
 
     public static Coordinate valueOf(JSONObject jsonObject) throws JSONException {
@@ -43,8 +43,8 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 jsonObject.getDouble("latitude"),
                 jsonObject.getString("sent"),
                 Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: throws Exception
-                jsonObject.getString("username"),
-                jsonObject.has("description") ? jsonObject.getString("description") : null
+                jsonObject.has("description") ? jsonObject.getString("description") : null,
+                jsonObject.getString("username")
         );
     }
 
@@ -54,82 +54,6 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
 
     public static void setConnection(Connection connection) {
         Coordinate.connection = connection;
-    }
-
-    public static synchronized List<Coordinate> selectSQLite(Map<String, String> params) throws Exception {
-        String query;
-        Statement statement;
-        ResultSet resultSet;
-        List<Coordinate> results;
-        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
-            case "ID":
-                query = "";
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(new Coordinate(
-                            resultSet.getLong("CDT_ID"),
-                            resultSet.getDouble("CDT_LONGITUDE"),
-                            resultSet.getDouble("CDT_LATITUDE"),
-                            resultSet.getString("CDT_DATETIME"),
-                            Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
-                            resultSet.getString("CDT_DESCRIPTION"),
-                            resultSet.getString("CDT_USR_NAME")
-                            ));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
-                break;
-            case "LOCATION":
-                query = "";
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-//                    results.add(new Coordinate());
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
-                break;
-            case "TIME":
-                query = "";
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(new Coordinate());
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
-                break;
-            case "USER":
-                query = "";
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-//                    results.add(new Coordinate());
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
-                break;
-            case "QUERY KEY NOT FOUND":
-                results = null;
-                break;
-            default:
-                results = null;
-                break;
-        }
-        return results;
     }
 
     public long getId() {
@@ -225,7 +149,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         String formattedDateTime = localDateTime.format(formatter);
         String query = String.format("INSERT INTO coordinate" +
                         " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_DATETIME,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
-                        " VALUES (%s,%s,%s,'%s','%S'," + (null == description ? "%S" : "'%s'") + ",'%s')",
+                        " VALUES (%s,%s,%s,'%s','%S'," + (null == description ? "%S" : "'%s'") + ",'%s');",
                 id,
                 longitude,
                 latitude,
@@ -254,6 +178,83 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
     public synchronized boolean updateSQLite() throws Exception {
         // TODO
         return true;
+    }
+
+    public static synchronized List<Coordinate> selectSQLite(Map<String, String> params) throws Exception {
+        String query;
+        Statement statement;
+        ResultSet resultSet;
+        List<Coordinate> results;
+        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
+            case "ID":
+                query = "SELECT * FROM coordinate WHERE CDT_ID = " + params.get("ID") + ";";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new Coordinate(
+                            resultSet.getLong("CDT_ID"),
+                            resultSet.getDouble("CDT_LONGITUDE"),
+                            resultSet.getDouble("CDT_LATITUDE"),
+                            resultSet.getString("CDT_DATETIME"),
+                            null == resultSet.getString("CDT_DANGERTYPE") ?
+                                    null : Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
+                            resultSet.getString("CDT_DESCRIPTION"),
+                            resultSet.getString("CDT_USR_NAME")
+                    ));
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "LOCATION":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+//                    results.add(new Coordinate());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "TIME":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+//                    results.add(new Coordinate());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "USER":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+//                    results.add(new Coordinate());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "QUERY KEY NOT FOUND":
+                results = null;
+                break;
+            default:
+                results = null;
+                break;
+        }
+        return results;
     }
 
     public enum Dangertype {
