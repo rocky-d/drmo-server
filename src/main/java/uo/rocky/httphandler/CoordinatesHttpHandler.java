@@ -6,7 +6,12 @@ import org.json.JSONObject;
 import uo.rocky.entity.Coordinate;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
     public static final String CONTEXT = "/coordinates";
@@ -31,12 +36,16 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
         try {
             List<Coordinate> coordinates = Coordinate.selectSQLite(paramsMap);
             System.out.println(coordinates);
+
+            httpExchange.getResponseHeaders().add("Allow", ALLOW);
+            httpExchange.getResponseHeaders().add("Content-Type", CONTENT_TYPE);
+            httpExchange.sendResponseHeaders(200, coordinates.get(0).toJSONString().getBytes(UTF_8).length);
+
+            outputResponseBody(httpExchange.getResponseBody(), coordinates.get(0).toJSONString());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
-        super.handleGETRequest(httpExchange);
     }
 
     @Override
@@ -60,8 +69,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
 
         httpExchange.getResponseHeaders().add("Allow", ALLOW);
         httpExchange.getResponseHeaders().add("Content-Type", CONTENT_TYPE);
-
-        httpExchange.sendResponseHeaders(200, 0);
+        httpExchange.sendResponseHeaders(200, "".getBytes(UTF_8).length);
 
         outputResponseBody(httpExchange.getResponseBody(), "");
     }
