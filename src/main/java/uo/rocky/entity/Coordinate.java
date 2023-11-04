@@ -29,7 +29,7 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
         this.description = description;
     }
 
-    public Coordinate(JSONObject jsonObject) throws JSONException {
+    private Coordinate(JSONObject jsonObject) throws JSONException {
         id = Instant.now().toEpochMilli();
         longitude = jsonObject.getDouble("longitude");
         latitude = jsonObject.getDouble("latitude");
@@ -37,6 +37,10 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
         dangertype = Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase());
         usrName = jsonObject.getString("username");
         description = jsonObject.has("description") ? jsonObject.getString("description") : null;
+    }
+
+    public static Coordinate valueOf(JSONObject jsonObject) {
+        return new Coordinate(jsonObject);
     }
 
     public long getId() {

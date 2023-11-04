@@ -19,11 +19,15 @@ public final class Comment implements RelatesToJSON, RelatesToSQLite {
         this.cdtId = cdtId;
     }
 
-    public Comment(JSONObject jsonObject) throws JSONException {
+    private Comment(JSONObject jsonObject) throws JSONException {
         id = Instant.now().toEpochMilli();
         content = jsonObject.getString("comment");
         datetime = jsonObject.getString("sent");
         cdtId = jsonObject.getLong("id");
+    }
+
+    public static Comment valueOf(JSONObject jsonObject) {
+        return new Comment(jsonObject);
     }
 
     public long getId() {

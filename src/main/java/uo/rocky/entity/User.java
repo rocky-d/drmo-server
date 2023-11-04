@@ -18,11 +18,15 @@ public final class User implements RelatesToJSON, RelatesToSQLite {
         this.phone = phone;
     }
 
-    public User(JSONObject jsonObject) throws JSONException {
+    private User(JSONObject jsonObject) throws JSONException {
         name = jsonObject.getString("username");
         hashedpassword = jsonObject.getString("password").hashCode();
         email = jsonObject.has("email") ? jsonObject.getString("email") : null;
         phone = jsonObject.has("phone") ? jsonObject.getString("phone") : null;
+    }
+
+    public static User valueOf(JSONObject jsonObject) {
+        return new User(jsonObject);
     }
 
     public String getName() {
