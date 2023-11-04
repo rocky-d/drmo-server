@@ -78,11 +78,6 @@ public final class User implements RelatesToJSON, RelatesToSQLite {
     }
 
     @Override
-    public JSONObject toJSONObject() throws JSONException {
-        return RelatesToJSON.super.toJSONObject();
-    }
-
-    @Override
     public synchronized void insertSQLite() throws Exception {
         // TODO
     }
