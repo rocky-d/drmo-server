@@ -3,6 +3,7 @@ package uo.rocky.entity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Connection;
 import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -11,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.StringJoiner;
 
 public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQLite {
+    private static Connection connection = null;
+
     private long id;
     private double longitude;
     private double latitude;
@@ -39,6 +42,14 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 jsonObject.getString("username"),
                 jsonObject.has("description") ? jsonObject.getString("description") : null
         );
+    }
+
+    public static Connection getConnection() {
+        return connection;
+    }
+
+    public static void setConnection(Connection connection) {
+        Coordinate.connection = connection;
     }
 
     public long getId() {

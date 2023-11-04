@@ -3,10 +3,13 @@ package uo.rocky.entity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Connection;
 import java.time.Instant;
 import java.util.StringJoiner;
 
 public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite {
+    private static Connection connection = null;
+
     private long id;
     private String content;
     private String datetime;  // TODO: refactor datatype
@@ -26,6 +29,14 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
                 jsonObject.getString("sent"),
                 jsonObject.getLong("id")
         );
+    }
+
+    public static Connection getConnection() {
+        return connection;
+    }
+
+    public static void setConnection(Connection connection) {
+        Comment.connection = connection;
     }
 
     public long getId() {

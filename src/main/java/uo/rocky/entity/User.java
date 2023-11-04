@@ -3,9 +3,12 @@ package uo.rocky.entity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Connection;
 import java.util.StringJoiner;
 
 public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
+    private static Connection connection = null;
+
     private String name;
     private int hashedpassword;
     private String email;
@@ -25,6 +28,14 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
                 jsonObject.has("email") ? jsonObject.getString("email") : null,
                 jsonObject.has("phone") ? jsonObject.getString("phone") : null
         );
+    }
+
+    public static Connection getConnection() {
+        return connection;
+    }
+
+    public static void setConnection(Connection connection) {
+        User.connection = connection;
     }
 
     public String getName() {

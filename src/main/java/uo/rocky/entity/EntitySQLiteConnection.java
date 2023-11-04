@@ -3,7 +3,7 @@ package uo.rocky.entity;
 import java.sql.Connection;
 
 public final class EntitySQLiteConnection {
-    private static Connection connection;
+    private static Connection connection = null;
 
     public static Connection getConnection() {
         return connection;
