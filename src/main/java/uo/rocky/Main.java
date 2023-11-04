@@ -22,10 +22,10 @@ public final class Main {
         System.out.println(SQLiteURL + " connected!");  // TODO: close()
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
-        server.createContext(CommentHttpHandler.CONTEXT, new CommentHttpHandler());
-        server.createContext(CoordinatesHttpHandler.CONTEXT, new CoordinatesHttpHandler());
-        server.createContext(RegistrationHttpHandler.CONTEXT, new RegistrationHttpHandler());
-//        server.createContext(WarningHttpHandler.CONTEXT, new WarningHttpHandler());
+        server.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
+        server.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
+        server.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
+//        server.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
 
         server.setExecutor(null);  // creates a default executor
         server.start();

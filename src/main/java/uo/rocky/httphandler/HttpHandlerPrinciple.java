@@ -9,12 +9,12 @@ import java.util.stream.Collectors;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public abstract class HttpHandlerPrinciple implements HttpHandler {
-    private static final String ALLOW = "HEAD";
-    private static final String CONTENT_TYPE = "text/plain; charset=utf-8";
+    private static final String GET_ALLOW = "HEAD";
+    private static final String GET_CONTENT_TYPE = "text/plain; charset=utf-8";
 
     public final void respondInternalServerError(HttpExchange httpExchange) {
         httpExchange.getResponseHeaders().clear();
-        httpExchange.getResponseHeaders().add("Content-Type", CONTENT_TYPE);
+        httpExchange.getResponseHeaders().add("Content-Type", GET_CONTENT_TYPE);
         byte[] responseBodyBytes = "Internal Server Error".getBytes(UTF_8);
         try {
             httpExchange.sendResponseHeaders(500, responseBodyBytes.length);
@@ -25,8 +25,8 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     }
 
     public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add("Allow", ALLOW);
-        httpExchange.getResponseHeaders().add("Content-Type", CONTENT_TYPE);
+        httpExchange.getResponseHeaders().add("Allow", GET_ALLOW);
+        httpExchange.getResponseHeaders().add("Content-Type", GET_CONTENT_TYPE);
         byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
         httpExchange.sendResponseHeaders(405, responseBodyBytes.length);
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
@@ -56,7 +56,7 @@ public abstract class HttpHandlerPrinciple implements HttpHandler {
     }
 
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add("Allow", ALLOW);
+        httpExchange.getResponseHeaders().add("Allow", GET_ALLOW);
         httpExchange.sendResponseHeaders(200, -1);
     }
 
