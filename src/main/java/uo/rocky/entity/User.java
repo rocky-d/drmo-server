@@ -108,8 +108,7 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
         return true;
     }
 
-    @Override
-    public synchronized User[] selectSQLite() throws Exception {
+    public static synchronized User[] selectSQLite() throws Exception {
         // TODO
         return new User[]{};
     }
