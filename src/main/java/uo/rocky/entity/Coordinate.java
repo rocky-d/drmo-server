@@ -35,7 +35,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 jsonObject.getDouble("longitude"),
                 jsonObject.getDouble("latitude"),
                 jsonObject.getString("sent"),
-                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),
+                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: throws Exception
                 jsonObject.getString("username"),
                 jsonObject.has("description") ? jsonObject.getString("description") : null
         );
