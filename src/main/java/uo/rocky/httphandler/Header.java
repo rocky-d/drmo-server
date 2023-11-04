@@ -29,7 +29,9 @@ public enum Header {
     @Override
     public String toString() {
         return new StringJoiner(", ", Header.class.getSimpleName() + "[", "]")
-                .add("call='" + call + "'")
+                .add("name='" + name() + "'")
+                .add("ordinal=" + ordinal())
+                .add("call='" + call() + "'")
                 .toString();
     }
 }
