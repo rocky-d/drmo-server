@@ -8,7 +8,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.StringJoiner;
 
 public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQLite {
@@ -169,7 +168,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
     }
 
     @Override
-    public synchronized boolean selectSQLite(List<EntityRelatesToSQLite> results) throws Exception {
+    public synchronized boolean selectSQLite(EntityRelatesToSQLite[] results) throws Exception {
         // TODO
         return true;
     }

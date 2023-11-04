@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.StringJoiner;
 
 public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite {
@@ -102,7 +101,7 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
     }
 
     @Override
-    public synchronized boolean selectSQLite(List<EntityRelatesToSQLite> results) throws Exception {
+    public synchronized boolean selectSQLite(EntityRelatesToSQLite[] results) throws Exception {
         // TODO
         return true;
     }
