@@ -1,6 +1,5 @@
 package uo.rocky.entity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Statement;
@@ -29,18 +28,16 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         this.description = description;
     }
 
-    private Coordinate(JSONObject jsonObject) throws JSONException {
-        id = Instant.now().toEpochMilli();
-        longitude = jsonObject.getDouble("longitude");
-        latitude = jsonObject.getDouble("latitude");
-        datetime = jsonObject.getString("sent");
-        dangertype = Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase());
-        usrName = jsonObject.getString("username");
-        description = jsonObject.has("description") ? jsonObject.getString("description") : null;
-    }
-
     public static Coordinate valueOf(JSONObject jsonObject) {
-        return new Coordinate(jsonObject);
+        return new Coordinate(
+                Instant.now().toEpochMilli(),
+                jsonObject.getDouble("longitude"),
+                jsonObject.getDouble("latitude"),
+                jsonObject.getString("sent"),
+                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),
+                jsonObject.getString("username"),
+                jsonObject.has("description") ? jsonObject.getString("description") : null
+        );
     }
 
     public long getId() {

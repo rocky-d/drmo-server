@@ -19,15 +19,13 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
         this.cdtId = cdtId;
     }
 
-    private Comment(JSONObject jsonObject) throws JSONException {
-        id = Instant.now().toEpochMilli();
-        content = jsonObject.getString("comment");
-        datetime = jsonObject.getString("sent");
-        cdtId = jsonObject.getLong("id");
-    }
-
     public static Comment valueOf(JSONObject jsonObject) {
-        return new Comment(jsonObject);
+        return new Comment(
+                Instant.now().toEpochMilli(),
+                jsonObject.getString("comment"),
+                jsonObject.getString("sent"),
+                jsonObject.getLong("id")
+        );
     }
 
     public long getId() {
