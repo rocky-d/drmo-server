@@ -1,10 +1,7 @@
 package uo.rocky;
 
 import com.sun.net.httpserver.HttpServer;
-import uo.rocky.entity.Comment;
-import uo.rocky.entity.Coordinate;
 import uo.rocky.entity.EntitySQLiteConnection;
-import uo.rocky.entity.User;
 import uo.rocky.httphandler.CommentHttpHandler;
 import uo.rocky.httphandler.CoordinatesHttpHandler;
 import uo.rocky.httphandler.RegistrationHttpHandler;
