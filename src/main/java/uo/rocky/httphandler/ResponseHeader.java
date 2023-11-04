@@ -2,7 +2,7 @@ package uo.rocky.httphandler;
 
 import java.util.StringJoiner;
 
-public enum Header {
+public enum ResponseHeader {
     ALLOW("Allow"),
     CONTENT_ENCODING("Content-Encoding"),
     CONTENT_LENGTH("Content-Length"),
@@ -18,7 +18,7 @@ public enum Header {
 
     private final String call;
 
-    Header(final String call) {
+    ResponseHeader(final String call) {
         this.call = call;
     }
 
@@ -28,7 +28,7 @@ public enum Header {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Header.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", ResponseHeader.class.getSimpleName() + "[", "]")
                 .add("name='" + name() + "'")
                 .add("ordinal=" + ordinal())
                 .add("call='" + call() + "'")

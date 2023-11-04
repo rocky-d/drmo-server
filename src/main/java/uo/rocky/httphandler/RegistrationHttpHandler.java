@@ -12,7 +12,7 @@ public final class RegistrationHttpHandler extends HttpHandlerPrinciple implemen
 
     @Override
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add(Header.ALLOW.call(), GET_ALLOW);
+        httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.sendResponseHeaders(200, -1);
     }
 }

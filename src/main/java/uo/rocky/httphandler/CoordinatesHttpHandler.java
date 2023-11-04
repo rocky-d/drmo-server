@@ -37,8 +37,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
             List<Coordinate> coordinates = Coordinate.selectSQLite(paramsMap);
             System.out.println(coordinates);
 
-            httpExchange.getResponseHeaders().add(Header.ALLOW.call(), GET_ALLOW);
-            httpExchange.getResponseHeaders().add(Header.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
+            httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
+            httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(200, coordinates.get(0).toJSONString().getBytes(UTF_8).length);
 
             outputResponseBody(httpExchange.getResponseBody(), coordinates.get(0).toJSONString());
@@ -50,7 +50,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
 
     @Override
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getResponseHeaders().add(Header.ALLOW.call(), GET_ALLOW);
+        httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.sendResponseHeaders(200, -1);
     }
 
@@ -67,8 +67,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
             throw new RuntimeException(e);
         }
 
-        httpExchange.getResponseHeaders().add(Header.ALLOW.call(), GET_ALLOW);
-        httpExchange.getResponseHeaders().add(Header.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
+        httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
+        httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
         httpExchange.sendResponseHeaders(200, "".getBytes(UTF_8).length);
 
         outputResponseBody(httpExchange.getResponseBody(), "");
