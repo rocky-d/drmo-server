@@ -156,10 +156,10 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         System.out.println(query);
 
 
-        Statement statement = EntitySQLiteConnection.getConnection().createStatement();
+        Statement statement = connection.createStatement();
         statement.executeUpdate(query);
         statement.close();
-        EntitySQLiteConnection.getConnection().commit();
+        connection.commit();
 
         return true;
     }

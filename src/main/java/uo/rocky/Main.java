@@ -1,7 +1,10 @@
 package uo.rocky;
 
 import com.sun.net.httpserver.HttpServer;
+import uo.rocky.entity.Comment;
+import uo.rocky.entity.Coordinate;
 import uo.rocky.entity.EntitySQLiteConnection;
+import uo.rocky.entity.User;
 import uo.rocky.httphandler.CommentHttpHandler;
 import uo.rocky.httphandler.CoordinatesHttpHandler;
 import uo.rocky.httphandler.RegistrationHttpHandler;
@@ -18,6 +21,9 @@ public final class Main {
         String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
         EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLiteURL));
         EntitySQLiteConnection.getConnection().setAutoCommit(false);
+        Comment.setConnection(EntitySQLiteConnection.getConnection());
+        Coordinate.setConnection(EntitySQLiteConnection.getConnection());
+        User.setConnection(EntitySQLiteConnection.getConnection());
         System.out.println(SQLiteURL + " connected!");  // TODO: close()
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
