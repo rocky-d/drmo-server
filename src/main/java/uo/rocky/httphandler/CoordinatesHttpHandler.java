@@ -15,7 +15,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
     public static final String CONTEXT = "/coordinates";
-    private static final String ALLOW = "HEAD, POST";
+    private static final String ALLOW = "GET, HEAD, POST";
     private static final String CONTENT_TYPE = "application/json; charset=utf-8";
 
     @Override
