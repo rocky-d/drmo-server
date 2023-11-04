@@ -21,9 +21,7 @@ public final class Main {
         String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
         EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLiteURL));
         EntitySQLiteConnection.getConnection().setAutoCommit(false);
-        Comment.setConnection(EntitySQLiteConnection.getConnection());
-        Coordinate.setConnection(EntitySQLiteConnection.getConnection());
-        User.setConnection(EntitySQLiteConnection.getConnection());
+        EntitySQLiteConnection.setConnectionForAllEntities(EntitySQLiteConnection.getConnection());
         System.out.println(SQLiteURL + " connected!");  // TODO: close()
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
