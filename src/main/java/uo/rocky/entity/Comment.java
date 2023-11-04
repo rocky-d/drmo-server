@@ -77,8 +77,8 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
     public String toString() {
         return new StringJoiner(", ", Comment.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
-                .add("content='" + content + "'")
-                .add("datetime='" + datetime + "'")
+                .add("content=" + (null == content ? null : "'" + content + "'"))
+                .add("datetime=" + (null == datetime ? null : "'" + datetime + "'"))
                 .add("cdtId=" + cdtId)
                 .toString();
     }
@@ -87,8 +87,8 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
                 .add("\"commentid\"=\"" + id + "\"")
-                .add("\"comment\"=\"" + content + "\"")
-                .add("\"sent\"=\"" + datetime + "\"")
+                .add("\"comment\"=" + (null == content ? null : "\"" + content + "\""))
+                .add("\"sent\"=" + (null == datetime ? null : "\"" + datetime + "\""))
                 .add("\"id\"=\"" + cdtId + "\"")
                 .toString();
     }

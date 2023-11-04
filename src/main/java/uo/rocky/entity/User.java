@@ -75,20 +75,20 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
     @Override
     public String toString() {
         return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
-                .add("name='" + name + "'")
+                .add("name=" + (null == name ? "null" : "'" + name + "'"))
                 .add("hashedpassword=" + hashedpassword)
-                .add("email='" + email + "'")
-                .add("phone='" + phone + "'")
+                .add("email=" + (null == email ? "null" : "'" + email + "'"))
+                .add("phone=" + (null == phone ? "null" : "'" + phone + "'"))
                 .toString();
     }
 
     @Override
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
-                .add("\"name\"=\"" + name + "\"")
+                .add("\"username\"=" + (null == name ? "null" : "\"" + name + "\""))
                 .add("\"hashedpassword\"=\"" + hashedpassword + "\"")
-                .add(String.format("\"email\"=%s", null == email ? "null" : "\"" + email + "\""))
-                .add(String.format("\"phone\"=%s", null == phone ? "null" : "\"" + phone + "\""))
+                .add("\"email\"=" + (null == email ? "null" : "\"" + email + "\""))
+                .add("\"phone\"=" + (null == phone ? "null" : "\"" + phone + "\""))
                 .toString();
     }
 

@@ -118,10 +118,10 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 .add("id=" + id)
                 .add("longitude=" + longitude)
                 .add("latitude=" + latitude)
-                .add("datetime='" + datetime + "'")
-                .add("dangertype=" + dangertype)
-                .add("description='" + description + "'")
-                .add("usrName='" + usrName + "'")
+                .add("datetime=" + (null == datetime ? "null" : "'" + datetime + "'"))
+                .add("dangertype=" + (null == dangertype ? "null" : dangertype))
+                .add("description=" + (null == description ? "null" : "'" + description + "'"))
+                .add("usrName=" + (null == usrName ? "null" : "'" + usrName + "'"))
                 .toString();
     }
 
@@ -131,10 +131,10 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 .add("\"id\"=\"" + id + "\"")
                 .add("\"longitude\"=\"" + longitude + "\"")
                 .add("\"latitude\"=\"" + latitude + "\"")
-                .add("\"sent\"=\"" + datetime + "\"")
-                .add("\"dangertype\"=\"" + dangertype + "\"")
-                .add(String.format("\"description\"=%s", null == description ? "null" : "\"" + description + "\""))
-                .add("\"username\"=\"" + usrName + "\"")
+                .add("\"sent\"=" + (null == datetime ? "null" : "\"" + datetime + "\""))
+                .add("\"dangertype\"=" + (null == dangertype ? "null" : "\"" + dangertype + "\""))
+                .add("\"description\"=" + (null == description ? "null" : "\"" + description + "\""))
+                .add("\"username\"=" + (null == usrName ? "null" : "\"" + usrName + "\""))
                 .toString();
     }
 
