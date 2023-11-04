@@ -177,9 +177,9 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
     }
 
     @Override
-    public synchronized boolean selectSQLite(EntityRelatesToSQLite[] results) throws Exception {
+    public synchronized Coordinate[] selectSQLite() throws Exception {
         // TODO
-        return true;
+        return new Coordinate[]{};
     }
 
     public enum Dangertype {

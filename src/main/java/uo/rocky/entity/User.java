@@ -109,8 +109,8 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
     }
 
     @Override
-    public synchronized boolean selectSQLite(EntityRelatesToSQLite[] results) throws Exception {
+    public synchronized User[] selectSQLite() throws Exception {
         // TODO
-        return true;
+        return new User[]{};
     }
 }

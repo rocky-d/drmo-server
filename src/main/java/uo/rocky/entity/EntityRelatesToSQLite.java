@@ -19,5 +19,5 @@ public interface EntityRelatesToSQLite {
 
     boolean updateSQLite() throws Exception;  // TODO: redefine exception
 
-    boolean selectSQLite(EntityRelatesToSQLite[] results) throws Exception;  // TODO: redefine exception
+    EntityRelatesToSQLite[] selectSQLite() throws Exception;  // TODO: redefine exception
 }

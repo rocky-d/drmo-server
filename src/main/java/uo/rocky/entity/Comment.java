@@ -110,8 +110,8 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
     }
 
     @Override
-    public synchronized boolean selectSQLite(EntityRelatesToSQLite[] results) throws Exception {
+    public synchronized Comment[] selectSQLite() throws Exception {
         // TODO
-        return true;
+        return new Comment[]{};
     }
 }
