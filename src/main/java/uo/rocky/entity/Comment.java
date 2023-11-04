@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.sql.Connection;
 import java.time.Instant;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite {
@@ -109,7 +110,7 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
         return true;
     }
 
-    public static synchronized Comment[] selectSQLite(String[] params) throws Exception {
+    public static synchronized Comment[] selectSQLite(Map<String, String> params) throws Exception {
         // TODO
         return new Comment[]{};
     }

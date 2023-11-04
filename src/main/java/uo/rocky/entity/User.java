@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
@@ -108,7 +109,7 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
         return true;
     }
 
-    public static synchronized User[] selectSQLite(String[] params) throws Exception {
+    public static synchronized User[] selectSQLite(Map<String, String> params) throws Exception {
         // TODO
         return new User[]{};
     }

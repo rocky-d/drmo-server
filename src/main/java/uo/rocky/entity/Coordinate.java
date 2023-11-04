@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQLite {
@@ -176,7 +177,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         return true;
     }
 
-    public static synchronized Coordinate[] selectSQLite(String[] params) throws Exception {
+    public static synchronized Coordinate[] selectSQLite(Map<String, String> params) throws Exception {
         // TODO
         return new Coordinate[]{};
     }
