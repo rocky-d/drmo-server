@@ -8,6 +8,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.StringJoiner;
 
 public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
@@ -126,7 +127,7 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
     }
 
     @Override
-    public synchronized void insertSQLite() throws Exception {
+    public synchronized boolean insertSQLite() throws Exception {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -151,21 +152,25 @@ public final class Coordinate implements RelatesToJSON, RelatesToSQLite {
         statement.executeUpdate(query);
         statement.close();
         EntitySQLiteConnection.getConnection().commit();
+        return true;
     }
 
     @Override
-    public synchronized void deleteSQLite() throws Exception {
+    public synchronized boolean deleteSQLite() throws Exception {
         // TODO
+        return true;
     }
 
     @Override
-    public synchronized void updateSQLite() throws Exception {
+    public synchronized boolean updateSQLite() throws Exception {
         // TODO
+        return true;
     }
 
     @Override
-    public synchronized void selectSQLite() throws Exception {
+    public synchronized boolean selectSQLite(List<RelatesToSQLite> results) throws Exception {
         // TODO
+        return true;
     }
 
     public enum Dangertype {
