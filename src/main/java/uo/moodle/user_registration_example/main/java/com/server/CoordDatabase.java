@@ -58,19 +58,19 @@ public class CoordDatabase{
     public boolean setUser(JSONObject user) throws SQLException {
 
         //your code here
-
+        return false;
     }
 
     public boolean checkIfUserExists(String givenUserName) throws SQLException{
 
           //your code here
-        
+        return false;
     }
     
     public boolean authenticateUser(String givenUserName, String givenPassword) throws SQLException {
 
             //your code here
-
+        return false;
     }
 
 }
