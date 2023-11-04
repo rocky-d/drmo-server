@@ -1,4 +1,4 @@
-package uo.moodle.user_registration_example.test.java.com.viikko1;
+package uo.moodle.user_registration_example;
 
 import org.junit.jupiter.api.Test;
 
