@@ -18,13 +18,13 @@ public final class Main {
         String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
         EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLiteURL));
         EntitySQLiteConnection.getConnection().setAutoCommit(false);
-        System.out.println(SQLiteURL + " opened!");  // TODO: close()
+        System.out.println(SQLiteURL + " connected!");  // TODO: close()
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
         server.createContext(CommentHttpHandler.CONTEXT, new CommentHttpHandler());
         server.createContext(CoordinatesHttpHandler.CONTEXT, new CoordinatesHttpHandler());
         server.createContext(RegistrationHttpHandler.CONTEXT, new RegistrationHttpHandler());
-//        server.createContext("/warning", new WarningHttpHandler());
+//        server.createContext(WarningHttpHandler.CONTEXT, new WarningHttpHandler());
 
         server.setExecutor(null);  // creates a default executor
         server.start();
