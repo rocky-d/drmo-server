@@ -1,7 +1,5 @@
 package uo.rocky.entity;
 
-import java.util.List;
-
 public interface EntityRelatesToSQLite {
     static String escapeSingleQuotes(String string) {
         return null == string ? "NULL" : string.replace("'", "''");
@@ -21,5 +19,5 @@ public interface EntityRelatesToSQLite {
 
     boolean updateSQLite() throws Exception;  // TODO: redefine exception
 
-    boolean selectSQLite(List<EntityRelatesToSQLite> results) throws Exception;  // TODO: redefine exception
+    boolean selectSQLite(EntityRelatesToSQLite[] results) throws Exception;  // TODO: redefine exception
 }
