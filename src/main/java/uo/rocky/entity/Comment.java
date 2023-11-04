@@ -109,7 +109,7 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
         return true;
     }
 
-    public static synchronized Comment[] selectSQLite() throws Exception {
+    public static synchronized Comment[] selectSQLite(String[] params) throws Exception {
         // TODO
         return new Comment[]{};
     }

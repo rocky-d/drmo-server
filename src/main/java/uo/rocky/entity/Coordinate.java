@@ -176,7 +176,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         return true;
     }
 
-    public static synchronized Coordinate[] selectSQLite() throws Exception {
+    public static synchronized Coordinate[] selectSQLite(String[] params) throws Exception {
         // TODO
         return new Coordinate[]{};
     }
