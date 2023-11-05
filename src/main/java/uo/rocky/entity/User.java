@@ -4,7 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -42,8 +44,42 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
     }
 
     public static synchronized List<User> selectSQLite(Map<String, String> params) throws Exception {
-        // TODO
-        return null;
+        String query;
+        Statement statement;
+        ResultSet resultSet;
+        List<User> results;
+        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
+            case "USERNAME":
+                query = "SELECT * FROM user WHERE USR_NAME = " + params.get("USERNAME") + ";";
+                System.out.println(query);
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new User(
+                            resultSet.getString("USR_NAME"),
+                            resultSet.getInt("USR_HASHEDPASSWORD"),
+                            resultSet.getString("USR_EMAIL"),
+                            resultSet.getString("USR_PHONE")
+                    ));
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "EMAIL":
+                break;
+            case "PHONE":
+                break;
+            case "QUERY KEY NOT FOUND":
+                results = null;
+                break;
+            default:
+                results = null;
+                break;
+        }
+        return results;
     }
 
     public String getName() {
@@ -109,7 +145,8 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
                 EntityRelatesToSQLite.escapeSingleQuotes(name),
                 hashedpassword,
                 EntityRelatesToSQLite.escapeSingleQuotes(email),
-                EntityRelatesToSQLite.escapeSingleQuotes(phone));
+                EntityRelatesToSQLite.escapeSingleQuotes(phone)
+        );
         System.out.println(query);
 
         Statement statement = connection.createStatement();

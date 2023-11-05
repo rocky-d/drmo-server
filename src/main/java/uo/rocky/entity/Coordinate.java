@@ -234,7 +234,8 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 formattedDateTime,
                 dangertype,
                 EntityRelatesToSQLite.escapeSingleQuotes(description),
-                EntityRelatesToSQLite.escapeSingleQuotes(usrName));
+                EntityRelatesToSQLite.escapeSingleQuotes(usrName)
+        );
         System.out.println(query);
 
         Statement statement = connection.createStatement();
