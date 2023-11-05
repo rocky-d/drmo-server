@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -38,6 +39,11 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
 
     public static void setConnection(Connection connection) {
         User.connection = connection;
+    }
+
+    public static synchronized List<User> selectSQLite(Map<String, String> params) throws Exception {
+        // TODO
+        return null;
     }
 
     public String getName() {
@@ -95,6 +101,22 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
     @Override
     public synchronized boolean insertSQLite() throws Exception {
         // TODO
+//        Class.forName("org.sqlite.JDBC");
+
+        String query = String.format("INSERT INTO user" +
+                        " (USR_NAME,USR_HASHEDPASSWORD,USR_EMAIL,USR_PHONE)" +
+                        " VALUES ('%s',%s," + (null == email ? "%S" : "'%s'") + "," + (null == phone ? "%S" : "'%s'") + ");",
+                EntityRelatesToSQLite.escapeSingleQuotes(name),
+                hashedpassword,
+                EntityRelatesToSQLite.escapeSingleQuotes(email),
+                EntityRelatesToSQLite.escapeSingleQuotes(phone));
+        System.out.println(query);
+
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(query);
+        statement.close();
+        connection.commit();
+
         return true;
     }
 
@@ -108,10 +130,5 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
     public synchronized boolean updateSQLite() throws Exception {
         // TODO
         return true;
-    }
-
-    public static synchronized List<User> selectSQLite(Map<String, String> params) throws Exception {
-        // TODO
-        return null;
     }
 }

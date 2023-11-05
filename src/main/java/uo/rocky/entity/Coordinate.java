@@ -159,7 +159,6 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 EntityRelatesToSQLite.escapeSingleQuotes(usrName));
         System.out.println(query);
 
-
         Statement statement = connection.createStatement();
         statement.executeUpdate(query);
         statement.close();
@@ -188,6 +187,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
             case "ID":
                 query = "SELECT * FROM coordinate WHERE CDT_ID = " + params.get("ID") + ";";
+                System.out.println(query);
 
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(query);
