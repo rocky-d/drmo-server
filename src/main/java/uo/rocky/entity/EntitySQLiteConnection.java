@@ -32,6 +32,7 @@ public final class EntitySQLiteConnection {
         switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
             case "COMMENTID":
                 query = "";
+                System.out.println(query);
 
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(query);
@@ -50,6 +51,7 @@ public final class EntitySQLiteConnection {
                 break;
             case "TIME":
                 query = "";
+                System.out.println(query);
 
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(query);
@@ -68,6 +70,7 @@ public final class EntitySQLiteConnection {
                 break;
             case "ID":
                 query = "";
+                System.out.println(query);
 
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(query);
@@ -125,6 +128,7 @@ public final class EntitySQLiteConnection {
                 break;
             case "LOCATION":
                 query = "";
+                System.out.println(query);
 
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(query);
@@ -147,6 +151,7 @@ public final class EntitySQLiteConnection {
                 break;
             case "TIME":
                 query = "";
+                System.out.println(query);
 
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(query);
@@ -169,6 +174,7 @@ public final class EntitySQLiteConnection {
                 break;
             case "USER":
                 query = "";
+                System.out.println(query);
 
                 statement = connection.createStatement();
                 resultSet = statement.executeQuery(query);
