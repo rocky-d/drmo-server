@@ -8,8 +8,8 @@ import uo.rocky.entity.Coordinate;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -31,17 +31,21 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
                 paramsMap.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
                 // TODO
+                System.out.println("煞笔吧，一个参数的位置写两个等号。。。");
             }
         }
         try {
-            List<Coordinate> coordinates = Coordinate.selectSQLite(paramsMap);
-            System.out.println(coordinates);
+            StringJoiner results = new StringJoiner(",", "[", "]");
+            for (Coordinate coordinate : Coordinate.selectSQLite(paramsMap)) {
+                results.add(coordinate.toJSONString());
+            }
+            System.out.println(results);
 
             httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-            httpExchange.sendResponseHeaders(200, coordinates.get(0).toJSONString().getBytes(UTF_8).length);
+            httpExchange.sendResponseHeaders(200, results.toString().getBytes(UTF_8).length);
 
-            outputResponseBody(httpExchange.getResponseBody(), coordinates.get(0).toJSONString());
+            outputResponseBody(httpExchange.getResponseBody(), results.toString());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
