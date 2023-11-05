@@ -44,78 +44,7 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
     }
 
     public static synchronized List<User> selectSQLite(Map<String, String> params) throws Exception {
-        String query;
-        Statement statement;
-        ResultSet resultSet;
-        List<User> results;
-        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
-            case "USERNAME":
-                query = "SELECT * FROM user WHERE USR_NAME = '" +
-                        EntityRelatesToSQLite.escapeSingleQuotes(params.get("USERNAME")) +
-                        "';";
-                System.out.println(query);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
-                break;
-            case "EMAIL":
-                query = "";
-                System.out.println(query);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
-                break;
-            case "PHONE":
-                query = "";
-                System.out.println(query);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(query);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
-                break;
-            case "QUERY KEY NOT FOUND":
-                results = null;
-                break;
-            default:
-                results = null;
-                break;
-        }
-        return results;
+        return EntitySQLiteConnection.selectUser(params);
     }
 
     public String getName() {
