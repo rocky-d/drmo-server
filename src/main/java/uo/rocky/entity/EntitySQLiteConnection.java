@@ -30,7 +30,7 @@ public final class EntitySQLiteConnection {
         ResultSet resultSet;
         List<Comment> results;
         switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
-            case "id":
+            case "COMMENTID":
                 query = "";
 
                 statement = connection.createStatement();
@@ -48,7 +48,25 @@ public final class EntitySQLiteConnection {
                 statement.close();
                 connection.commit();
                 break;
-            case "comment":
+            case "TIME":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new Comment(
+                            resultSet.getLong("CMT_ID"),
+                            resultSet.getString("CMT_CONTENT"),
+                            resultSet.getString("CMT_DATETIME"),
+                            resultSet.getLong("CMT_CDT_ID")
+                    ));
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "ID":
                 query = "";
 
                 statement = connection.createStatement();
