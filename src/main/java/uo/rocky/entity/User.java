@@ -50,7 +50,9 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
         List<User> results;
         switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
             case "USERNAME":
-                query = "SELECT * FROM user WHERE USR_NAME = " + params.get("USERNAME") + ";";
+                query = "SELECT * FROM user WHERE USR_NAME = '" +
+                        EntityRelatesToSQLite.escapeSingleQuotes(params.get("USERNAME")) +
+                        "';";
                 System.out.println(query);
 
                 statement = connection.createStatement();
