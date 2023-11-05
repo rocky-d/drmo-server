@@ -7,7 +7,7 @@ import uo.rocky.entity.User;
 
 import java.io.IOException;
 
-public final class RegistrationHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
+public final class RegistrationHttpHandler extends HttpHandlerBase implements HttpHandler {
     public static final String GET_CONTEXT = "/registration";
     private static final String GET_ALLOW = "HEAD, POST";
     private static final String GET_CONTENT_TYPE = "application/json; charset=utf-8";

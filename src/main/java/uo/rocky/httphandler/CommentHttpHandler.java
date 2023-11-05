@@ -5,7 +5,7 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 
-public final class CommentHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
+public final class CommentHttpHandler extends HttpHandlerBase implements HttpHandler {
     public static final String GET_CONTEXT = "/comment";
     private static final String GET_ALLOW = "HEAD";
     private static final String GET_CONTENT_TYPE = "application/json; charset=utf-8";

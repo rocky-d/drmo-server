@@ -13,7 +13,7 @@ import java.util.StringJoiner;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implements HttpHandler {
+public final class CoordinatesHttpHandler extends HttpHandlerBase implements HttpHandler {
     public static final String GET_CONTEXT = "/coordinates";
     private static final String GET_ALLOW = "GET, HEAD, POST";
     private static final String GET_CONTENT_TYPE = "application/json; charset=utf-8";
