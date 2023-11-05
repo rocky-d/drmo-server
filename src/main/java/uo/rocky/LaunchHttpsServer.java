@@ -31,7 +31,8 @@ public class LaunchHttpsServer {
 
 
         final String USERNAME = "rocky", PASSWORD = "891213";
-        final char[] JKS_PASSWORD_CHARS = "891213".toCharArray();
+        final String JKS_PATH = "keystore00.jks";
+        final char[] JKS_PASSWORD = "891213".toCharArray();
         final int PORT = 8001;
 
         final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(PORT), 0);
@@ -47,10 +48,10 @@ public class LaunchHttpsServer {
 //        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication."));
 
         KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(Files.newInputStream(Paths.get("keystore00.jks")), JKS_PASSWORD_CHARS);
+        keyStore.load(Files.newInputStream(Paths.get(JKS_PATH)), JKS_PASSWORD);
 
         KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-        keyManagerFactory.init(keyStore, JKS_PASSWORD_CHARS);
+        keyManagerFactory.init(keyStore, JKS_PASSWORD);
 
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
         trustManagerFactory.init(keyStore);
