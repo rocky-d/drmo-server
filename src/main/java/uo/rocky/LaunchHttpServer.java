@@ -1,5 +1,6 @@
 package uo.rocky;
 
+import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpServer;
 import uo.rocky.entity.EntitySQLiteConnection;
 import uo.rocky.httphandler.CommentHttpHandler;
@@ -15,20 +16,24 @@ public class LaunchHttpServer {
     public static void main(String[] args) throws SQLException, IOException {
         System.out.println("Hello world!");
 
-        String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
-        EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLiteURL));
+
+        final String SQLITE_URL = "jdbc:sqlite:deer.sqlite.db";
+        EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
         EntitySQLiteConnection.getConnection().setAutoCommit(false);
         EntitySQLiteConnection.setConnectionForAllEntities(EntitySQLiteConnection.getConnection());
-        System.out.println(SQLiteURL + " connected!");  // TODO: close()
+        System.out.println(SQLITE_URL + " connected!");  // TODO: close()
 
-        int portNumber = 8001;
-        HttpServer server = HttpServer.create(new InetSocketAddress(portNumber), 0);
-        server.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
-        server.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
-        server.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
-//        server.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
-        server.setExecutor(null);  // creates a default executor
-        server.start();
+
+        final int PORT = 8001;
+
+        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(PORT), 0);
+        final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
+        final HttpContext coordinatesContext = httpServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
+        final HttpContext registrationContext = httpServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
+//        final HttpContext warningContext = httpServer.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
+
+        httpServer.setExecutor(null);  // creates a default executor
+        httpServer.start();
         System.out.println("Server started!");
     }
 }

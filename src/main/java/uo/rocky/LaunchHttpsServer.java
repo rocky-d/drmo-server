@@ -1,8 +1,13 @@
 package uo.rocky;
 
-import com.sun.net.httpserver.*;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpsConfigurator;
+import com.sun.net.httpserver.HttpsParameters;
+import com.sun.net.httpserver.HttpsServer;
 import uo.rocky.entity.EntitySQLiteConnection;
+import uo.rocky.httphandler.CommentHttpHandler;
 import uo.rocky.httphandler.CoordinatesHttpHandler;
+import uo.rocky.httphandler.RegistrationHttpHandler;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -17,31 +22,35 @@ public class LaunchHttpsServer {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello world!");
 
+
         String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
         EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLiteURL));
         EntitySQLiteConnection.getConnection().setAutoCommit(false);
         EntitySQLiteConnection.setConnectionForAllEntities(EntitySQLiteConnection.getConnection());
         System.out.println(SQLiteURL + " connected!");  // TODO: close()
 
-        String username = "rocky", password = "891213";
-        char[] passwordChars = password.toCharArray();
-        int portNumber = 8001;
 
-        HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(portNumber), 0);
+        final String USERNAME = "rocky", PASSWORD = "891213";
+        final char[] JKS_PASSWORD_CHARS = "891213".toCharArray();
+        final int PORT = 8001;
 
-        HttpContext httpContext = httpsServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
-        httpContext.setAuthenticator(new BasicAuthenticator("This is a realm.") {
-            @Override
-            public boolean checkCredentials(String var1, String var2) {
-                return username.equals(var1) && password.equals(var2);
-            }
-        });
+        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(PORT), 0);
+
+        final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
+        final HttpContext coordinatesContext = httpsServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
+        final HttpContext registrationContext = httpsServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
+//        final HttpContext warningContext = httpsServer.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
+
+        commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication."));
+        coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication."));
+//        registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication."));
+//        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication."));
 
         KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(Files.newInputStream(Paths.get("keystore00.jks")), passwordChars);
+        keyStore.load(Files.newInputStream(Paths.get("keystore00.jks")), JKS_PASSWORD_CHARS);
 
         KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-        keyManagerFactory.init(keyStore, passwordChars);
+        keyManagerFactory.init(keyStore, JKS_PASSWORD_CHARS);
 
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
         trustManagerFactory.init(keyStore);
