@@ -14,18 +14,16 @@ public class UserAuthenticator extends BasicAuthenticator {
 
     @Override
     public boolean checkCredentials(String username, String password) {
-        return true;
-
-//        Map<String, String> paramsMap = new HashMap<>();
-//        paramsMap.put("QUERY", "username");
-//        paramsMap.put("USERNAME", username);
-//        try {
-//            List<User> users = User.selectSQLite(paramsMap);
-//            assert null != users;
-//            return 1 == users.size() && password.hashCode() == users.get(0).getHashedpassword();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            throw new RuntimeException(e);
-//        }
+        Map<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("QUERY", "username");
+        paramsMap.put("USERNAME", username);
+        try {
+            List<User> users = User.selectSQLite(paramsMap);
+            assert null != users;
+            return 1 == users.size() && password.hashCode() == users.get(0).getHashedpassword();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }
