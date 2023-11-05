@@ -25,8 +25,45 @@ public final class EntitySQLiteConnection {
     }
 
     public static synchronized List<Comment> selectComment(Map<String, String> params) throws Exception {
-        // TODO
-        return null;
+        String query;
+        Statement statement;
+        ResultSet resultSet;
+        List<Comment> results;
+        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
+            case "id":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+//                    results.add(new Comment());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "comment":
+                query = "";
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+//                    results.add(new Comment());
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "QUERY KEY NOT FOUND":
+                results = null;
+                break;
+            default:
+                results = null;
+                break;
+        }
+        return results;
     }
 
     public static synchronized List<Coordinate> selectCoordinate(Map<String, String> params) throws Exception {
