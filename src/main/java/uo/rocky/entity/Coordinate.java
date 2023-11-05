@@ -92,7 +92,16 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 resultSet = statement.executeQuery(query);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-//                    results.add(new Coordinate());
+                    results.add(new Coordinate(
+                            resultSet.getLong("CDT_ID"),
+                            resultSet.getDouble("CDT_LONGITUDE"),
+                            resultSet.getDouble("CDT_LATITUDE"),
+                            resultSet.getString("CDT_DATETIME"),
+                            null == resultSet.getString("CDT_DANGERTYPE") ?
+                                    null : Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
+                            resultSet.getString("CDT_DESCRIPTION"),
+                            resultSet.getString("CDT_USR_NAME")
+                    ));
                 }
                 resultSet.close();
                 statement.close();
@@ -105,7 +114,16 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 resultSet = statement.executeQuery(query);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-//                    results.add(new Coordinate());
+                    results.add(new Coordinate(
+                            resultSet.getLong("CDT_ID"),
+                            resultSet.getDouble("CDT_LONGITUDE"),
+                            resultSet.getDouble("CDT_LATITUDE"),
+                            resultSet.getString("CDT_DATETIME"),
+                            null == resultSet.getString("CDT_DANGERTYPE") ?
+                                    null : Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
+                            resultSet.getString("CDT_DESCRIPTION"),
+                            resultSet.getString("CDT_USR_NAME")
+                    ));
                 }
                 resultSet.close();
                 statement.close();
@@ -118,7 +136,16 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
                 resultSet = statement.executeQuery(query);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-//                    results.add(new Coordinate());
+                    results.add(new Coordinate(
+                            resultSet.getLong("CDT_ID"),
+                            resultSet.getDouble("CDT_LONGITUDE"),
+                            resultSet.getDouble("CDT_LATITUDE"),
+                            resultSet.getString("CDT_DATETIME"),
+                            null == resultSet.getString("CDT_DANGERTYPE") ?
+                                    null : Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
+                            resultSet.getString("CDT_DESCRIPTION"),
+                            resultSet.getString("CDT_USR_NAME")
+                    ));
                 }
                 resultSet.close();
                 statement.close();

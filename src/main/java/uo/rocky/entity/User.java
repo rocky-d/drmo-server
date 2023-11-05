@@ -69,8 +69,42 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
                 connection.commit();
                 break;
             case "EMAIL":
+                query = "";
+                System.out.println(query);
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new User(
+                            resultSet.getString("USR_NAME"),
+                            resultSet.getInt("USR_HASHEDPASSWORD"),
+                            resultSet.getString("USR_EMAIL"),
+                            resultSet.getString("USR_PHONE")
+                    ));
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
                 break;
             case "PHONE":
+                query = "";
+                System.out.println(query);
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new User(
+                            resultSet.getString("USR_NAME"),
+                            resultSet.getInt("USR_HASHEDPASSWORD"),
+                            resultSet.getString("USR_EMAIL"),
+                            resultSet.getString("USR_PHONE")
+                    ));
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
                 break;
             case "QUERY KEY NOT FOUND":
                 results = null;
