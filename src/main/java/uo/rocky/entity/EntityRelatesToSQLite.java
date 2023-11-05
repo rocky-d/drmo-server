@@ -9,9 +9,9 @@ public interface EntityRelatesToSQLite {
         return null == string ? "NULL" : string.replace("\"", "\"\"");
     }
 
-    static String escapeQuotes(String string) {
-        return escapeDoubleQuotes(escapeSingleQuotes(string));
-    }
+//    static String escapeQuotes(String string) {
+//        return escapeDoubleQuotes(escapeSingleQuotes(string));
+//    }
 
     boolean insertSQLite() throws Exception;  // TODO: redefine exception
 
