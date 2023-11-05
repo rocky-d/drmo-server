@@ -11,8 +11,8 @@ import java.net.InetSocketAddress;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public final class Main {
-    public static void main(String[] args) throws IOException, SQLException {
+public class LaunchHttpServer {
+    public static void main(String[] args) throws SQLException, IOException {
         System.out.println("Hello world!");
 
         String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
