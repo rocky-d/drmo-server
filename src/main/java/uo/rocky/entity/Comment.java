@@ -41,6 +41,11 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
         Comment.connection = connection;
     }
 
+    public static synchronized List<Comment> selectSQLite(Map<String, String> params) throws Exception {
+        // TODO
+        return null;
+    }
+
     public long getId() {
         return id;
     }
@@ -109,10 +114,5 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
     public synchronized boolean updateSQLite() throws Exception {
         // TODO
         return true;
-    }
-
-    public static synchronized List<Comment> selectSQLite(Map<String, String> params) throws Exception {
-        // TODO
-        return null;
     }
 }
