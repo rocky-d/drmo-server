@@ -24,7 +24,7 @@ public final class EntitySQLiteConnection {
         User.setConnection(connection);
     }
 
-    public static synchronized List<Comment> selectComment(Map<String, String> params) throws Exception {
+    static synchronized List<Comment> selectComment(Map<String, String> params) throws Exception {
         String query;
         Statement statement;
         ResultSet resultSet;
@@ -97,7 +97,7 @@ public final class EntitySQLiteConnection {
         return results;
     }
 
-    public static synchronized List<Coordinate> selectCoordinate(Map<String, String> params) throws Exception {
+    static synchronized List<Coordinate> selectCoordinate(Map<String, String> params) throws Exception {
         String query;
         Statement statement;
         ResultSet resultSet;
@@ -205,7 +205,7 @@ public final class EntitySQLiteConnection {
         return results;
     }
 
-    public static synchronized List<User> selectUser(Map<String, String> params) throws Exception {
+    static synchronized List<User> selectUser(Map<String, String> params) throws Exception {
         String query;
         Statement statement;
         ResultSet resultSet;
