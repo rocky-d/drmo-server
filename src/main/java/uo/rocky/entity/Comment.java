@@ -4,7 +4,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.Statement;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -100,6 +104,27 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
     @Override
     public synchronized boolean insertSQLite() throws Exception {
         // TODO
+//        Class.forName("org.sqlite.JDBC");
+
+        Instant instant = Instant.parse(datetime);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        String formattedDateTime = localDateTime.format(formatter);
+        String query = String.format("INSERT INTO comment" +
+                        " (CMT_ID,CMT_CONTENT,CMT_DATETIME,CMT_CDT_ID)" +
+                        " VALUES (%s,'%s','%s',%s);",
+                id,
+                EntityRelatesToSQLite.escapeSingleQuotes(content),
+                formattedDateTime,  // TODO
+                cdtId
+        );
+        System.out.println(query);
+
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(query);
+        statement.close();
+        connection.commit();
+
         return true;
     }
 
