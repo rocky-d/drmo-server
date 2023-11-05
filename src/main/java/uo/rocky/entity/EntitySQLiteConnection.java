@@ -37,7 +37,12 @@ public final class EntitySQLiteConnection {
                 resultSet = statement.executeQuery(query);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-//                    results.add(new Comment());
+                    results.add(new Comment(
+                            resultSet.getLong("CMT_ID"),
+                            resultSet.getString("CMT_CONTENT"),
+                            resultSet.getString("CMT_DATETIME"),
+                            resultSet.getLong("CMT_CDT_ID")
+                    ));
                 }
                 resultSet.close();
                 statement.close();
@@ -50,7 +55,12 @@ public final class EntitySQLiteConnection {
                 resultSet = statement.executeQuery(query);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-//                    results.add(new Comment());
+                    results.add(new Comment(
+                            resultSet.getLong("CMT_ID"),
+                            resultSet.getString("CMT_CONTENT"),
+                            resultSet.getString("CMT_DATETIME"),
+                            resultSet.getLong("CMT_CDT_ID")
+                    ));
                 }
                 resultSet.close();
                 statement.close();
