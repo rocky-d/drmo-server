@@ -41,7 +41,6 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
             }
             System.out.println(results);
 
-            httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(200, results.toString().getBytes(UTF_8).length);
 
@@ -71,10 +70,6 @@ public final class CoordinatesHttpHandler extends HttpHandlerPrinciple implement
             throw new RuntimeException(e);
         }
 
-        httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
-        httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-        httpExchange.sendResponseHeaders(200, "".getBytes(UTF_8).length);
-
-        outputResponseBody(httpExchange.getResponseBody(), "");
+        httpExchange.sendResponseHeaders(200, -1);
     }
 }
