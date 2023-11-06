@@ -31,7 +31,7 @@ public final class CommentHttpHandler extends HttpHandlerBase implements HttpHan
                 paramsMap.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
                 // TODO
-                System.out.println("煞笔吧，一个参数的位置写两个等号。。。");
+                System.out.println("有sb在参数的地方写的不是一个等号。。。");
             }
         }
         try {
