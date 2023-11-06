@@ -15,7 +15,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     public final void respondInternalServerError(HttpExchange httpExchange) {
         httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-        byte[] responseBodyBytes = "Internal Server Error".getBytes(UTF_8);
+        byte[] responseBodyBytes = StatusCode.INTERNAL_SERVER_ERROR.prompt().getBytes(UTF_8);
         try {
             httpExchange.sendResponseHeaders(StatusCode.INTERNAL_SERVER_ERROR.code(), responseBodyBytes.length);
             outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
@@ -27,7 +27,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-        byte[] responseBodyBytes = "Method Not Allowed".getBytes(UTF_8);
+        byte[] responseBodyBytes = StatusCode.METHOD_NOT_ALLOWED.prompt().getBytes(UTF_8);
         httpExchange.sendResponseHeaders(StatusCode.METHOD_NOT_ALLOWED.code(), responseBodyBytes.length);
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
