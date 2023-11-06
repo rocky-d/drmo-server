@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class EntitySQLiteConnection {
+    private static final String QUERY_KEY_NOT_FOUND = "I DON'T BELIEVE SOMEONE WILL USE THIS STRING AS A KEY.";
     private static Connection connection = null;
 
     public static Connection getConnection() {
@@ -30,7 +31,7 @@ public final class EntitySQLiteConnection {
         Statement statement;
         ResultSet resultSet;
         List<Comment> results;
-        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
+        switch (params.getOrDefault("QUERY", QUERY_KEY_NOT_FOUND).toUpperCase()) {
             case "COMMENTID":
                 query = ";";
                 System.out.println(query);
@@ -88,7 +89,7 @@ public final class EntitySQLiteConnection {
                 statement.close();
                 connection.commit();
                 break;
-            case "QUERY KEY NOT FOUND":
+            case QUERY_KEY_NOT_FOUND:
                 results = null;
                 break;
             default:
@@ -103,7 +104,7 @@ public final class EntitySQLiteConnection {
         Statement statement;
         ResultSet resultSet;
         List<Coordinate> results;
-        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
+        switch (params.getOrDefault("QUERY", QUERY_KEY_NOT_FOUND).toUpperCase()) {
             case "ID":
                 query = "SELECT * FROM coordinate WHERE CDT_ID = " + params.get("ID") + ";";
                 System.out.println(query);
@@ -196,7 +197,7 @@ public final class EntitySQLiteConnection {
                 statement.close();
                 connection.commit();
                 break;
-            case "QUERY KEY NOT FOUND":
+            case QUERY_KEY_NOT_FOUND:
                 results = null;
                 break;
             default:
@@ -211,7 +212,7 @@ public final class EntitySQLiteConnection {
         Statement statement;
         ResultSet resultSet;
         List<User> results;
-        switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
+        switch (params.getOrDefault("QUERY", QUERY_KEY_NOT_FOUND).toUpperCase()) {
             case "USERNAME":
                 query = "SELECT * FROM user WHERE USR_NAME = '" +
                         EntityRelatesToSQLite.escapeSingleQuotes(params.get("USERNAME")) +
@@ -271,7 +272,7 @@ public final class EntitySQLiteConnection {
                 statement.close();
                 connection.commit();
                 break;
-            case "QUERY KEY NOT FOUND":
+            case QUERY_KEY_NOT_FOUND:
                 results = null;
                 break;
             default:
