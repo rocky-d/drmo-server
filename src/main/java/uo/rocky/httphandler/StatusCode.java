@@ -7,14 +7,14 @@ public enum StatusCode {
     METHOD_NOT_ALLOWED(405),
     INTERNAL_SERVER_ERROR(500);
 
-    private final int code;
+    private final int call;
 
-    StatusCode(int code) {
-        this.code = code;
+    StatusCode(int call) {
+        this.call = call;
     }
 
-    public final int code() {
-        return code;
+    public final int call() {
+        return call;
     }
 
     @Override
@@ -22,7 +22,7 @@ public enum StatusCode {
         return new StringJoiner(", ", StatusCode.class.getSimpleName() + "[", "]")
                 .add("name='" + name() + "'")
                 .add("ordinal=" + ordinal())
-                .add("code=" + code())
+                .add("call=" + call())
                 .toString();
     }
 }
