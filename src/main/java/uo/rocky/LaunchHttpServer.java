@@ -24,8 +24,9 @@ public class LaunchHttpServer {
 
 
         final int PORT = 8001;
+        final String HOST = "0.0.0.0";
 
-        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getByName("0.0.0.0"), PORT), 0);
+        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
 
         final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
         final HttpContext coordinatesContext = httpServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());

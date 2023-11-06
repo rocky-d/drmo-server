@@ -33,8 +33,9 @@ public class LaunchHttpsServer {
         final String JKS_PATH = "keystore00.jks";
         final char[] JKS_PASSWORD = "891213".toCharArray();
         final int PORT = 8001;
+        final String HOST = "0.0.0.0";
 
-        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName("0.0.0.0"), PORT), 0);
+        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
 
         final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
         commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication."));
