@@ -95,8 +95,8 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
                 .add("\"commentid\"=\"" + id + "\"")
-                .add("\"comment\"=" + (null == content ? null : "\"" + content + "\""))
-                .add("\"sent\"=" + (null == datetime ? null : "\"" + datetime + "\""))
+                .add("\"comment\"=" + EntityRelatesToJSON.escapeDoubleQuotes(content))
+                .add("\"sent\"=" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
                 .add("\"id\"=\"" + cdtId + "\"")
                 .toString();
     }

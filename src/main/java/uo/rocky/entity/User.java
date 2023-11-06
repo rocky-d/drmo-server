@@ -90,10 +90,10 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
     @Override
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
-                .add("\"username\"=" + (null == name ? "null" : "\"" + name + "\""))
+                .add("\"username\"=" + EntityRelatesToJSON.escapeDoubleQuotes(name))
                 .add("\"hashedpassword\"=\"" + hashedpassword + "\"")
-                .add("\"email\"=" + (null == email ? "null" : "\"" + email + "\""))
-                .add("\"phone\"=" + (null == phone ? "null" : "\"" + phone + "\""))
+                .add("\"email\"=" + EntityRelatesToJSON.escapeDoubleQuotes(email))
+                .add("\"phone\"=" + EntityRelatesToJSON.escapeDoubleQuotes(phone))
                 .toString();
     }
 

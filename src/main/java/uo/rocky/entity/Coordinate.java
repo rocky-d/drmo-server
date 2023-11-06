@@ -133,10 +133,10 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
                 .add("\"id\"=\"" + id + "\"")
                 .add("\"longitude\"=\"" + longitude + "\"")
                 .add("\"latitude\"=\"" + latitude + "\"")
-                .add("\"sent\"=" + (null == datetime ? "null" : "\"" + datetime + "\""))
-                .add("\"dangertype\"=" + (null == dangertype ? "null" : "\"" + dangertype + "\""))
-                .add("\"description\"=" + (null == description ? "null" : "\"" + description + "\""))
-                .add("\"username\"=" + (null == usrName ? "null" : "\"" + usrName + "\""))
+                .add("\"sent\"=" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                .add("\"dangertype\"=" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
+                .add("\"description\"=" + EntityRelatesToJSON.escapeDoubleQuotes(description))
+                .add("\"username\"=" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
                 .toString();
     }
 

@@ -5,10 +5,6 @@ public interface EntityRelatesToSQLite {
         return null == string ? "NULL" : string.replace("'", "''");
     }
 
-    static String escapeDoubleQuotes(String string) {
-        return null == string ? "NULL" : string.replace("\"", "\"\"");
-    }
-
     boolean insertSQLite() throws Exception;  // TODO: redefine exception
 
     boolean deleteSQLite() throws Exception;  // TODO: redefine exception

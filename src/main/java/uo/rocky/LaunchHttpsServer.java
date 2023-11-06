@@ -58,6 +58,7 @@ public class LaunchHttpsServer {
             @Override
             public void configure(HttpsParameters httpsParameters) {
                 InetSocketAddress inetSocketAddress = httpsParameters.getClientAddress();
+                System.out.println(inetSocketAddress);
                 httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
             }
         });
