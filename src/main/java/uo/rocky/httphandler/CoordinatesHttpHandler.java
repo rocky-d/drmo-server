@@ -36,7 +36,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase implements Htt
         }
         try {
             StringJoiner results = new StringJoiner(",", "[", "]");
-            for (Coordinate coordinate : Coordinate.selectSQLite(paramsMap)) {
+            for (Coordinate coordinate : Coordinate.selectCoordinate(paramsMap)) {
                 results.add(coordinate.toJSONString());
             }
             System.out.println(results);
