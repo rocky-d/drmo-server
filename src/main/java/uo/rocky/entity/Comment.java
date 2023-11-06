@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite {
+public final class Comment extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQLite {
     private static Connection connection = null;
 
     private long id;

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
+public final class User extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQLite {
     private static Connection connection = null;
 
     private String name;
