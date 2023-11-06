@@ -2,6 +2,7 @@ package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.json.JSONObject;
 import uo.rocky.entity.Comment;
 
 import java.io.IOException;
@@ -53,6 +54,22 @@ public final class CommentHttpHandler extends HttpHandlerBase implements HttpHan
     @Override
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
+        httpExchange.sendResponseHeaders(200, -1);
+    }
+
+    @Override
+    public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
+        httpExchange.getRequestHeaders();
+
+        Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
+        System.out.println(comment);
+        try {
+            System.out.println(comment.insertSQLite() ? "Insert succeed!" : "Insert failed!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
         httpExchange.sendResponseHeaders(200, -1);
     }
 }
