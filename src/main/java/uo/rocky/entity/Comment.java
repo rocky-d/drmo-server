@@ -45,6 +45,18 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
         Comment.connection = connection;
     }
 
+    public static synchronized boolean insertComment(Comment comment) throws Exception {
+        return comment.insertSQLite();
+    }
+
+    public static synchronized boolean deleteComment() throws Exception {
+        return false;
+    }
+
+    public static synchronized boolean updateComment() throws Exception {
+        return false;
+    }
+
     public static synchronized List<Comment> selectComment(Map<String, String> params) throws Exception {
         return EntitySQLiteConnection.selectComment(params);
     }

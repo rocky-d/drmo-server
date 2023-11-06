@@ -54,6 +54,18 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
         Coordinate.connection = connection;
     }
 
+    public static synchronized boolean insertCoordinate(Coordinate coordinate) throws Exception {
+        return coordinate.insertSQLite();
+    }
+
+    public static synchronized boolean deleteCoordinate() throws Exception {
+        return false;
+    }
+
+    public static synchronized boolean updateCoordinate() throws Exception {
+        return false;
+    }
+
     public static synchronized List<Coordinate> selectCoordinate(Map<String, String> params) throws Exception {
         return EntitySQLiteConnection.selectCoordinate(params);
     }
