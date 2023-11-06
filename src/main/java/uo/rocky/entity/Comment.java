@@ -95,7 +95,7 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Comment.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", Comment.class.getSimpleName() + "{", "}")
                 .add("id=" + id)
                 .add("content=" + (null == content ? null : "'" + content + "'"))
                 .add("datetime=" + (null == datetime ? null : "'" + datetime + "'"))

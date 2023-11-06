@@ -91,7 +91,7 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", User.class.getSimpleName() + "{", "}")
                 .add("name=" + (null == name ? "null" : "'" + name + "'"))
                 .add("hashedpassword=" + hashedpassword)
                 .add("email=" + (null == email ? "null" : "'" + email + "'"))

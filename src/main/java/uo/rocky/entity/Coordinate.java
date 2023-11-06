@@ -128,7 +128,7 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Coordinate.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", Coordinate.class.getSimpleName() + "{", "}")
                 .add("id=" + id)
                 .add("longitude=" + longitude)
                 .add("latitude=" + latitude)
