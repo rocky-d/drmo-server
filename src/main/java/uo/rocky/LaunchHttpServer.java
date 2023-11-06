@@ -20,7 +20,7 @@ public class LaunchHttpServer {
 
         final String SQLITE_URL = "jdbc:sqlite:deer.sqlite.db";
         EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLITE_URL), false);
-        System.out.println(SQLITE_URL + " connected!");  // TODO: close()
+        System.out.println(SQLITE_URL + " connected");  // TODO: close()
 
 
         final int PORT = 8001;
@@ -35,6 +35,6 @@ public class LaunchHttpServer {
 
         httpServer.setExecutor(null);  // creates a default executor
         httpServer.start();
-        System.out.println("Server started!");
+        System.out.println("Server started on port " + PORT);
     }
 }

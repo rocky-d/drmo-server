@@ -26,7 +26,7 @@ public class LaunchHttpsServer {
 
         String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
         EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLiteURL), false);
-        System.out.println(SQLiteURL + " connected!");  // TODO: close()
+        System.out.println(SQLiteURL + " connected");  // TODO: close()
 
 
         final String USERNAME = "rocky", PASSWORD = "891213";
@@ -38,13 +38,13 @@ public class LaunchHttpsServer {
         final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
 
         final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
-        commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication."));
+        commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
         final HttpContext coordinatesContext = httpsServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
-        coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication."));
+        coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
         final HttpContext registrationContext = httpsServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
-//        registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication."));
+//        registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
 //        final HttpContext warningContext = httpsServer.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
-//        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication."));
+//        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication"));
 
         KeyStore keyStore = KeyStore.getInstance("JKS");
         keyStore.load(Files.newInputStream(Paths.get(JKS_PATH)), JKS_PASSWORD);
@@ -58,13 +58,13 @@ public class LaunchHttpsServer {
             @Override
             public void configure(HttpsParameters httpsParameters) {
                 InetSocketAddress inetSocketAddress = httpsParameters.getClientAddress();
-                System.out.println(inetSocketAddress);
+                System.out.println("Remote: " + inetSocketAddress);
                 httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
             }
         });
 
         httpsServer.setExecutor(null);
         httpsServer.start();
-        System.out.println("Server started!");
+        System.out.println("Server started on port " + PORT);
     }
 }
