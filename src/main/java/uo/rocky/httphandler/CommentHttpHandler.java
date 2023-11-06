@@ -42,7 +42,7 @@ public final class CommentHttpHandler extends HttpHandlerBase implements HttpHan
             System.out.println(results);
 
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-            httpExchange.sendResponseHeaders(200, results.toString().getBytes(UTF_8).length);
+            httpExchange.sendResponseHeaders(StatusCode.OK.call(), results.toString().getBytes(UTF_8).length);
 
             outputResponseBody(httpExchange.getResponseBody(), results.toString());
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public final class CommentHttpHandler extends HttpHandlerBase implements HttpHan
     @Override
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
-        httpExchange.sendResponseHeaders(200, -1);
+        httpExchange.sendResponseHeaders(StatusCode.OK.call(), -1);
     }
 
     @Override
@@ -70,6 +70,6 @@ public final class CommentHttpHandler extends HttpHandlerBase implements HttpHan
             throw new RuntimeException(e);
         }
 
-        httpExchange.sendResponseHeaders(200, -1);
+        httpExchange.sendResponseHeaders(StatusCode.OK.call(), -1);
     }
 }
