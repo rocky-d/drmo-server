@@ -56,9 +56,9 @@ public class LaunchHttpsServer {
         sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
         httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
             @Override
-            public void configure(HttpsParameters params) {
-                InetSocketAddress remote = params.getClientAddress();
-                params.setSSLParameters(getSSLContext().getDefaultSSLParameters());
+            public void configure(HttpsParameters httpsParameters) {
+                InetSocketAddress remote = httpsParameters.getClientAddress();
+                httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
             }
         });
 
