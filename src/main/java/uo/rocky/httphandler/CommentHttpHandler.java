@@ -36,7 +36,7 @@ public final class CommentHttpHandler extends HttpHandlerBase implements HttpHan
         }
         try {
             StringJoiner results = new StringJoiner(",", "[", "]");
-            for (Comment comment : Comment.selectSQLite(paramsMap)) {
+            for (Comment comment : Comment.selectComment(paramsMap)) {
                 results.add(comment.toJSONString());
             }
             System.out.println(results);
