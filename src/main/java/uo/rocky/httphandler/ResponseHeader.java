@@ -28,7 +28,7 @@ public enum ResponseHeader {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", ResponseHeader.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", ResponseHeader.class.getSimpleName() + "{", "}")
                 .add("name='" + name() + "'")
                 .add("ordinal=" + ordinal())
                 .add("call='" + call() + "'")
