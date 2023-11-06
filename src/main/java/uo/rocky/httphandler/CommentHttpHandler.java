@@ -64,7 +64,7 @@ public final class CommentHttpHandler extends HttpHandlerBase implements HttpHan
         Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(comment);
         try {
-            System.out.println(comment.insertSQLite() ? "Insert succeed!" : "Insert failed!");
+            System.out.println(comment.insertSQL() ? "Insert succeed!" : "Insert failed!");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

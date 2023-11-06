@@ -5,11 +5,11 @@ public interface EntityRelatesToSQLite {
         return null == string ? "NULL" : "'" + string.replace("'", "''") + "'";
     }
 
-    boolean insertSQLite() throws Exception;  // TODO: redefine exception
+    boolean insertSQL() throws Exception;  // TODO: redefine exception
 
-    boolean deleteSQLite() throws Exception;  // TODO: redefine exception
+    boolean deleteSQL() throws Exception;  // TODO: redefine exception
 
-    boolean updateSQLite() throws Exception;  // TODO: redefine exception
+    boolean updateSQL() throws Exception;  // TODO: redefine exception
 
 //    List<EntityRelatesToSQLite> selectSQLite() throws Exception;  // TODO: redefine exception
 }

@@ -55,7 +55,7 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
     }
 
     public static synchronized boolean insertCoordinate(Coordinate coordinate) throws Exception {
-        return coordinate.insertSQLite();
+        return coordinate.insertSQL();
     }
 
     public static synchronized boolean deleteCoordinate() throws Exception {
@@ -153,7 +153,7 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
     }
 
     @Override
-    public synchronized boolean insertSQLite() throws Exception {
+    public synchronized boolean insertSQL() throws Exception {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -184,13 +184,13 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
     }
 
     @Override
-    public synchronized boolean deleteSQLite() throws Exception {
+    public synchronized boolean deleteSQL() throws Exception {
         // TODO
         return true;
     }
 
     @Override
-    public synchronized boolean updateSQLite() throws Exception {
+    public synchronized boolean updateSQL() throws Exception {
         // TODO
         return true;
     }

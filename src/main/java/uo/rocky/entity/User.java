@@ -42,7 +42,7 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
     }
 
     public static synchronized boolean insertUser(User user) throws Exception {
-        return user.insertSQLite();
+        return user.insertSQL();
     }
 
     public static synchronized boolean deleteUser() throws Exception {
@@ -110,7 +110,7 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
     }
 
     @Override
-    public synchronized boolean insertSQLite() throws Exception {
+    public synchronized boolean insertSQL() throws Exception {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -133,13 +133,13 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
     }
 
     @Override
-    public synchronized boolean deleteSQLite() throws Exception {
+    public synchronized boolean deleteSQL() throws Exception {
         // TODO
         return true;
     }
 
     @Override
-    public synchronized boolean updateSQLite() throws Exception {
+    public synchronized boolean updateSQL() throws Exception {
         // TODO
         return true;
     }

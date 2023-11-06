@@ -64,7 +64,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase implements Ht
         User user = User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(user);
         try {
-            System.out.println(user.insertSQLite() ? "Insert succeed!" : "Insert failed!");
+            System.out.println(user.insertSQL() ? "Insert succeed!" : "Insert failed!");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

@@ -64,7 +64,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase implements Htt
         Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(coordinate);
         try {
-            System.out.println(coordinate.insertSQLite() ? "Insert succeed!" : "Insert failed!");
+            System.out.println(coordinate.insertSQL() ? "Insert succeed!" : "Insert failed!");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

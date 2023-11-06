@@ -46,7 +46,7 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
     }
 
     public static synchronized boolean insertComment(Comment comment) throws Exception {
-        return comment.insertSQLite();
+        return comment.insertSQL();
     }
 
     public static synchronized boolean deleteComment() throws Exception {
@@ -114,7 +114,7 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
     }
 
     @Override
-    public synchronized boolean insertSQLite() throws Exception {
+    public synchronized boolean insertSQL() throws Exception {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -142,13 +142,13 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
     }
 
     @Override
-    public synchronized boolean deleteSQLite() throws Exception {
+    public synchronized boolean deleteSQL() throws Exception {
         // TODO
         return true;
     }
 
     @Override
-    public synchronized boolean updateSQLite() throws Exception {
+    public synchronized boolean updateSQL() throws Exception {
         // TODO
         return true;
     }
