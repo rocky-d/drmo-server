@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public final class User extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQLite {
+public final class User extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQL {
     private static Connection connection = null;
 
     private String name;
@@ -117,10 +117,10 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
         String query = String.format("INSERT INTO user" +
                         " (USR_NAME,USR_HASHEDPASSWORD,USR_EMAIL,USR_PHONE)" +
                         " VALUES (%s,%s,%s,%s);",
-                EntityRelatesToSQLite.escapeSingleQuotes(name),
+                EntityRelatesToSQL.escapeSingleQuotes(name),
                 hashedpassword,
-                EntityRelatesToSQLite.escapeSingleQuotes(email),
-                EntityRelatesToSQLite.escapeSingleQuotes(phone)
+                EntityRelatesToSQL.escapeSingleQuotes(email),
+                EntityRelatesToSQL.escapeSingleQuotes(phone)
         );
         System.out.println(query);
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public final class Comment extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQLite {
+public final class Comment extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQL {
     private static Connection connection = null;
 
     private long id;
@@ -127,8 +127,8 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
                         " (CMT_ID,CMT_CONTENT,CMT_DATETIME,CMT_CDT_ID)" +
                         " VALUES (%s,%s,%s,%s);",
                 id,
-                EntityRelatesToSQLite.escapeSingleQuotes(content),
-                EntityRelatesToSQLite.escapeSingleQuotes(formattedDateTime),  // TODO
+                EntityRelatesToSQL.escapeSingleQuotes(content),
+                EntityRelatesToSQL.escapeSingleQuotes(formattedDateTime),  // TODO
                 cdtId
         );
         System.out.println(query);

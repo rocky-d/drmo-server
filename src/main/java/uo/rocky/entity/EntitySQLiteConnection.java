@@ -253,7 +253,7 @@ public final class EntitySQLiteConnection {
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "USERNAME":
                 query = "SELECT * FROM user WHERE USR_NAME = " +
-                        EntityRelatesToSQLite.escapeSingleQuotes(params.get("USERNAME")) +
+                        EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) +
                         ";";
                 System.out.println(query);
 

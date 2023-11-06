@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public final class Coordinate extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQLite {
+public final class Coordinate extends EntityBase implements EntityRelatesToJSON, EntityRelatesToSQL {
     private static Connection connection = null;
 
     private long id;
@@ -168,10 +168,10 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
                 id,
                 longitude,
                 latitude,
-                EntityRelatesToSQLite.escapeSingleQuotes(formattedDateTime),
-                EntityRelatesToSQLite.escapeSingleQuotes(dangertype.name()),
-                EntityRelatesToSQLite.escapeSingleQuotes(description),
-                EntityRelatesToSQLite.escapeSingleQuotes(usrName)
+                EntityRelatesToSQL.escapeSingleQuotes(formattedDateTime),
+                EntityRelatesToSQL.escapeSingleQuotes(dangertype.name()),
+                EntityRelatesToSQL.escapeSingleQuotes(description),
+                EntityRelatesToSQL.escapeSingleQuotes(usrName)
         );
         System.out.println(query);
 
