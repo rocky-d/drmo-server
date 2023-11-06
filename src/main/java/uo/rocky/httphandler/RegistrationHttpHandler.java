@@ -36,7 +36,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase implements Ht
         }
         try {
             StringJoiner results = new StringJoiner(",", "[", "]");
-            for (User user : User.selectSQLite(paramsMap)) {
+            for (User user : User.selectUser(paramsMap)) {
                 results.add(user.toJSONString());
             }
             System.out.println(results);

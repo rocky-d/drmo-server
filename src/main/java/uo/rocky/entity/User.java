@@ -41,7 +41,7 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
         User.connection = connection;
     }
 
-    public static synchronized List<User> selectSQLite(Map<String, String> params) throws Exception {
+    public static synchronized List<User> selectUser(Map<String, String> params) throws Exception {
         return EntitySQLiteConnection.selectUser(params);
     }
 
