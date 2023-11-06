@@ -21,8 +21,8 @@ public final class RegistrationHttpHandler extends HttpHandlerBase implements Ht
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
         String uri = httpExchange.getRequestURI().toString();
-        String[] params = uri.substring(uri.indexOf('?') + 1).split("&");
-        System.out.println(Arrays.toString(params));
+        String[] params = -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&");
+        System.out.println("params: " + Arrays.toString(params));
         Map<String, String> paramsMap = new HashMap<>();
 
         for (String param : params) {
