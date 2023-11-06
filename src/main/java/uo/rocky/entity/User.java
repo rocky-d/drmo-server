@@ -104,7 +104,7 @@ public final class User extends EntityBase implements EntityRelatesToJSON, Entit
 
         String query = String.format("INSERT INTO user" +
                         " (USR_NAME,USR_HASHEDPASSWORD,USR_EMAIL,USR_PHONE)" +
-                        " VALUES ('%s',%s," + (null == email ? "%S" : "'%s'") + "," + (null == phone ? "%S" : "'%s'") + ");",
+                        " VALUES (%s,%s,%s,%s);",
                 EntityRelatesToSQLite.escapeSingleQuotes(name),
                 hashedpassword,
                 EntityRelatesToSQLite.escapeSingleQuotes(email),

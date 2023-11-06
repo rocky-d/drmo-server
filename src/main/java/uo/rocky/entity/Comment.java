@@ -113,10 +113,10 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
 
         String query = String.format("INSERT INTO comment" +
                         " (CMT_ID,CMT_CONTENT,CMT_DATETIME,CMT_CDT_ID)" +
-                        " VALUES (%s,'%s','%s',%s);",
+                        " VALUES (%s,%s,%s,%s);",
                 id,
                 EntityRelatesToSQLite.escapeSingleQuotes(content),
-                formattedDateTime,  // TODO
+                EntityRelatesToSQLite.escapeSingleQuotes(formattedDateTime),  // TODO
                 cdtId
         );
         System.out.println(query);

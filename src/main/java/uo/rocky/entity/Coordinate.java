@@ -152,12 +152,12 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
 
         String query = String.format("INSERT INTO coordinate" +
                         " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_DATETIME,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
-                        " VALUES (%s,%s,%s,'%s','%S'," + (null == description ? "%S" : "'%s'") + ",'%s');",
+                        " VALUES (%s,%s,%s,%s,%s,%s,%s);",
                 id,
                 longitude,
                 latitude,
-                formattedDateTime,
-                dangertype,
+                EntityRelatesToSQLite.escapeSingleQuotes(formattedDateTime),
+                EntityRelatesToSQLite.escapeSingleQuotes(dangertype.name()),
                 EntityRelatesToSQLite.escapeSingleQuotes(description),
                 EntityRelatesToSQLite.escapeSingleQuotes(usrName)
         );
