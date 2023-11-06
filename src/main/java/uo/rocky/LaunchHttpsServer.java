@@ -12,6 +12,7 @@ import uo.rocky.httphandler.RegistrationHttpHandler;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -33,7 +34,7 @@ public class LaunchHttpsServer {
         final char[] JKS_PASSWORD = "891213".toCharArray();
         final int PORT = 8001;
 
-        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(PORT), 0);
+        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName("0.0.0.0"), PORT), 0);
 
         final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
         commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication."));
