@@ -2,6 +2,7 @@ package uo.rocky.entity;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,8 @@ public final class EntitySQLiteConnection {
         return connection;
     }
 
-    public static void setConnection(Connection connection) {
+    public static void setConnection(Connection connection, boolean autoCommit) throws SQLException {
+        connection.setAutoCommit(autoCommit);
         EntitySQLiteConnection.connection = connection;
         setConnectionForAllEntities(connection);
     }
