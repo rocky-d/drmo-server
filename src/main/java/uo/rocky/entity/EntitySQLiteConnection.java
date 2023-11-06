@@ -32,7 +32,7 @@ public final class EntitySQLiteConnection {
         List<Comment> results;
         switch (params.getOrDefault("QUERY", "QUERY KEY NOT FOUND").toUpperCase()) {
             case "COMMENTID":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -51,7 +51,7 @@ public final class EntitySQLiteConnection {
                 connection.commit();
                 break;
             case "TIME":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -70,7 +70,7 @@ public final class EntitySQLiteConnection {
                 connection.commit();
                 break;
             case "ID":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -128,7 +128,7 @@ public final class EntitySQLiteConnection {
                 connection.commit();
                 break;
             case "LOCATION":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -151,7 +151,7 @@ public final class EntitySQLiteConnection {
                 connection.commit();
                 break;
             case "TIME":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -174,7 +174,7 @@ public final class EntitySQLiteConnection {
                 connection.commit();
                 break;
             case "USER":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -234,7 +234,7 @@ public final class EntitySQLiteConnection {
                 connection.commit();
                 break;
             case "EMAIL":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -253,7 +253,7 @@ public final class EntitySQLiteConnection {
                 connection.commit();
                 break;
             case "PHONE":
-                query = "";
+                query = ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
