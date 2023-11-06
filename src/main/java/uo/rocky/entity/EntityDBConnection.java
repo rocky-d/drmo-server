@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public final class EntitySQLiteConnection {
+public final class EntityDBConnection {
     private static final String NO_QUERT_KEY = "ALL";
     private static Connection connection = null;
 
@@ -18,7 +18,7 @@ public final class EntitySQLiteConnection {
 
     public static void setConnection(Connection connection, boolean autoCommit) throws SQLException {
         connection.setAutoCommit(autoCommit);
-        EntitySQLiteConnection.connection = connection;
+        EntityDBConnection.connection = connection;
         setConnectionForAllEntities(connection);
     }
 

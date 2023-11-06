@@ -58,7 +58,7 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
     }
 
     public static synchronized List<Comment> selectComment(Map<String, String> params) throws Exception {
-        return EntitySQLiteConnection.selectComment(params);
+        return EntityDBConnection.selectComment(params);
     }
 
     public long getId() {

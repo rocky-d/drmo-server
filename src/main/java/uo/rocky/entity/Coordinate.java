@@ -67,7 +67,7 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
     }
 
     public static synchronized List<Coordinate> selectCoordinate(Map<String, String> params) throws Exception {
-        return EntitySQLiteConnection.selectCoordinate(params);
+        return EntityDBConnection.selectCoordinate(params);
     }
 
     public long getId() {

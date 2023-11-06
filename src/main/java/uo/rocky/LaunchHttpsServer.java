@@ -4,7 +4,7 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpsConfigurator;
 import com.sun.net.httpserver.HttpsParameters;
 import com.sun.net.httpserver.HttpsServer;
-import uo.rocky.entity.EntitySQLiteConnection;
+import uo.rocky.entity.EntityDBConnection;
 import uo.rocky.httphandler.CommentHttpHandler;
 import uo.rocky.httphandler.CoordinatesHttpHandler;
 import uo.rocky.httphandler.RegistrationHttpHandler;
@@ -25,7 +25,7 @@ public class LaunchHttpsServer {
 
 
         String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
-        EntitySQLiteConnection.setConnection(DriverManager.getConnection(SQLiteURL), false);
+        EntityDBConnection.setConnection(DriverManager.getConnection(SQLiteURL), false);
         System.out.println(SQLiteURL + " connected");  // TODO: close()
 
 
