@@ -33,11 +33,11 @@ public final class User implements EntityRelatesToJSON, EntityRelatesToSQLite {
         );
     }
 
-    public static Connection getConnection() {
+    static Connection getConnection() {
         return connection;
     }
 
-    public static void setConnection(Connection connection) {
+    static void setConnection(Connection connection) {
         User.connection = connection;
     }
 

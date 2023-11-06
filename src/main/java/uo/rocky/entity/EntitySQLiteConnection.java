@@ -16,9 +16,10 @@ public final class EntitySQLiteConnection {
 
     public static void setConnection(Connection connection) {
         EntitySQLiteConnection.connection = connection;
+        setConnectionForAllEntities(connection);
     }
 
-    public static void setConnectionForAllEntities(Connection connection) {
+    private static void setConnectionForAllEntities(Connection connection) {
         Comment.setConnection(connection);
         Coordinate.setConnection(connection);
         User.setConnection(connection);

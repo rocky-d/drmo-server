@@ -37,11 +37,11 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
         );
     }
 
-    public static Connection getConnection() {
+    static Connection getConnection() {
         return connection;
     }
 
-    public static void setConnection(Connection connection) {
+    static void setConnection(Connection connection) {
         Comment.connection = connection;
     }
 
@@ -110,6 +110,7 @@ public final class Comment implements EntityRelatesToJSON, EntityRelatesToSQLite
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
+
         String query = String.format("INSERT INTO comment" +
                         " (CMT_ID,CMT_CONTENT,CMT_DATETIME,CMT_CDT_ID)" +
                         " VALUES (%s,'%s','%s',%s);",

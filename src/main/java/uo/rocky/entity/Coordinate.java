@@ -46,11 +46,11 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         );
     }
 
-    public static Connection getConnection() {
+    static Connection getConnection() {
         return connection;
     }
 
-    public static void setConnection(Connection connection) {
+    static void setConnection(Connection connection) {
         Coordinate.connection = connection;
     }
 
@@ -149,6 +149,7 @@ public final class Coordinate implements EntityRelatesToJSON, EntityRelatesToSQL
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
+
         String query = String.format("INSERT INTO coordinate" +
                         " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_DATETIME,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
                         " VALUES (%s,%s,%s,'%s','%S'," + (null == description ? "%S" : "'%s'") + ",'%s');",
