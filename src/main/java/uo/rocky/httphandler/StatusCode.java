@@ -22,14 +22,14 @@ public enum StatusCode {
     SERVICE_UNAVAILABLE(503),
     HTTP_VERSION_NOT_SUPPORTED(505);
 
-    private final int call;
+    private final int code;
 
-    StatusCode(int call) {
-        this.call = call;
+    StatusCode(int code) {
+        this.code = code;
     }
 
-    public final int call() {
-        return call;
+    public final int code() {
+        return code;
     }
 
     @Override
@@ -37,7 +37,7 @@ public enum StatusCode {
         return new StringJoiner(", ", StatusCode.class.getSimpleName() + "{", "}")
                 .add("name='" + name() + "'")
                 .add("ordinal=" + ordinal())
-                .add("call=" + call())
+                .add("code=" + code())
                 .toString();
     }
 }
