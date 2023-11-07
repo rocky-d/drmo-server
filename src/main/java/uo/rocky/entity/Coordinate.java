@@ -73,11 +73,11 @@ public final class Coordinate extends EntityBase {
     }
 
     public static synchronized String selectCoordinateOrderedString(Map<String, String> params) throws Exception {
-        return selectCoordinateList(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntityDBConnection.selectCoordinate(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectCoordinateJSONArray(Map<String, String> params) throws Exception {
-        return selectCoordinateList(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntityDBConnection.selectCoordinate(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {

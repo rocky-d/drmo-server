@@ -64,11 +64,11 @@ public final class Comment extends EntityBase {
     }
 
     public static synchronized String selectCommentOrderedString(Map<String, String> params) throws Exception {
-        return selectCommentList(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntityDBConnection.selectComment(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws Exception {
-        return selectCommentList(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntityDBConnection.selectComment(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {
