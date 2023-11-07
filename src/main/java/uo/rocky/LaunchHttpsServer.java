@@ -29,7 +29,6 @@ public class LaunchHttpsServer {
         System.out.println(SQLiteURL + " connected");  // TODO: close()
 
 
-        final String USERNAME = "rocky", PASSWORD = "891213";
         final String JKS_PATH = "keystore00.jks";
         final char[] JKS_PASSWORD = "891213".toCharArray();
         final int PORT = 8001;
