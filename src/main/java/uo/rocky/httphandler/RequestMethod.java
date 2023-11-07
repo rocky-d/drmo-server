@@ -1,5 +1,7 @@
 package uo.rocky.httphandler;
 
+import java.util.StringJoiner;
+
 public enum RequestMethod {
     GET,
     HEAD,
@@ -10,4 +12,12 @@ public enum RequestMethod {
     OPTIONS,
     TRACE,
     PATCH;
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", RequestMethod.class.getSimpleName() + "{", "}")
+                .add("name='" + name() + "'")
+                .add("ordinal=" + ordinal())
+                .toString();
+    }
 }
