@@ -36,17 +36,13 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             }
         }
         try {
-            JSONArray results = User.selectUserJSONArray(paramsMap);
-//            StringJoiner results = new StringJoiner(",", "[", "]");
-//            for (User user : User.selectUserList(paramsMap)) {
-//                results.add(user.toJSONString());
-//            }
+            String results = User.selectUserOrderedString(paramsMap);
             System.out.println(results);
 
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-            httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.toString().getBytes(UTF_8).length);
+            httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
 
-            outputResponseBody(httpExchange.getResponseBody(), results.toString());
+            outputResponseBody(httpExchange.getResponseBody(), results);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
