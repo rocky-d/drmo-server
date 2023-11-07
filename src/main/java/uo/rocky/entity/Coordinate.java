@@ -206,6 +206,17 @@ public final class Coordinate extends EntityBase {
     }
 
     public enum Dangertype {
-        DEER, REINDEER, MOOSE, OTHER;
+        DEER,
+        REINDEER,
+        MOOSE,
+        OTHER;
+
+        @Override
+        public String toString() {
+            return new StringJoiner(", ", Dangertype.class.getSimpleName() + "{", "}")
+                    .add("name='" + name() + "'")
+                    .add("ordinal=" + ordinal())
+                    .toString();
+        }
     }
 }
