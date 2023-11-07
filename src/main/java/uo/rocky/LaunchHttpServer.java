@@ -19,7 +19,7 @@ public class LaunchHttpServer {
 
 
         final String SQLITE_URL = "jdbc:sqlite:deer.sqlite.db";
-        EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL), false);
+        EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
         System.out.println(SQLITE_URL + " connected");  // TODO: close()
 
 
