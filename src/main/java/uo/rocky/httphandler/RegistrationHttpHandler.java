@@ -55,12 +55,12 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             User user = User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
             System.out.println(user);
             System.out.println(user.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
+            httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (JSONException jsonException) {
             respondBadRequest(httpExchange, jsonException.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
     }
 }
