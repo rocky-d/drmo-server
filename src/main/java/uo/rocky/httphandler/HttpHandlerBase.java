@@ -33,6 +33,14 @@ public abstract class HttpHandlerBase implements HttpHandler {
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
+    public final void respondBadRequest(HttpExchange httpExchange, String message) throws IOException {
+        httpExchange.getResponseHeaders().clear();
+        httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
+        byte[] responseBodyBytes = (StatusCode.BAD_REQUEST.prompt() + "\n" + message).getBytes(UTF_8);
+        httpExchange.sendResponseHeaders(StatusCode.BAD_REQUEST.code(), responseBodyBytes.length);
+        outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+    }
+
     public final void handleIOException(IOException ioException, HttpExchange httpExchange) {
         ioException.printStackTrace();
         respondInternalServerError(httpExchange);
