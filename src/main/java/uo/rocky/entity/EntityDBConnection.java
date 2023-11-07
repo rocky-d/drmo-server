@@ -16,8 +16,8 @@ public final class EntityDBConnection {
         return connection;
     }
 
-    public static void setConnection(Connection connection, boolean autoCommit) throws SQLException {
-        connection.setAutoCommit(autoCommit);
+    public static void setConnection(Connection connection) throws SQLException {
+        connection.setAutoCommit(false);
         EntityDBConnection.connection = connection;
         setConnectionForAllEntities(connection);
     }
