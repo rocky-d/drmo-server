@@ -1,8 +1,6 @@
 package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import uo.rocky.entity.User;
 
@@ -10,7 +8,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringJoiner;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 

@@ -3,13 +3,11 @@ package uo.rocky.httphandler;
 import com.sun.net.httpserver.HttpExchange;
 import org.json.JSONObject;
 import uo.rocky.entity.Comment;
-import uo.rocky.entity.Coordinate;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringJoiner;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
