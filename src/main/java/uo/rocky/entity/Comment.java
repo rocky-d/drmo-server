@@ -60,15 +60,15 @@ public final class Comment extends EntityBase {
     }
 
     public static synchronized List<Comment> selectCommentList(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectComment(params);
+        return EntityDBConnection.selectComments(params);
     }
 
     public static synchronized String selectCommentOrderedString(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectComment(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectComment(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {

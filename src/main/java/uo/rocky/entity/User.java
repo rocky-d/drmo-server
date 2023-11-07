@@ -56,15 +56,15 @@ public final class User extends EntityBase {
     }
 
     public static synchronized List<User> selectUserList(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectUser(params);
+        return EntityDBConnection.selectUsers(params);
     }
 
     public static synchronized String selectUserOrderedString(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectUser(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntityDBConnection.selectUsers(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectUserJSONArray(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectUser(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntityDBConnection.selectUsers(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public String getName() {

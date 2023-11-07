@@ -69,15 +69,15 @@ public final class Coordinate extends EntityBase {
     }
 
     public static synchronized List<Coordinate> selectCoordinateList(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectCoordinate(params);
+        return EntityDBConnection.selectCoordinates(params);
     }
 
     public static synchronized String selectCoordinateOrderedString(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectCoordinate(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectCoordinateJSONArray(Map<String, String> params) throws Exception {
-        return EntityDBConnection.selectCoordinate(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {
