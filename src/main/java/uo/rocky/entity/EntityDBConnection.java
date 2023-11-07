@@ -35,7 +35,7 @@ public final class EntityDBConnection {
         List<Comment> results;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "COMMENTID":
-                query = ";";
+                query = "SELECT * FROM comment WHERE CMT_ID = " + params.get("COMMENTID") + ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -73,7 +73,7 @@ public final class EntityDBConnection {
                 connection.commit();
                 break;
             case "ID":
-                query = ";";
+                query = "SELECT * FROM comment WHERE CMT_CDT_ID = " + params.get("ID") + ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -193,7 +193,8 @@ public final class EntityDBConnection {
                 connection.commit();
                 break;
             case "USER":
-                query = ";";
+                query = "SELECT * FROM coordinate WHERE CDT_USR_NAME = " +
+                        EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -253,8 +254,26 @@ public final class EntityDBConnection {
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "USERNAME":
                 query = "SELECT * FROM user WHERE USR_NAME = " +
-                        EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) +
-                        ";";
+                        EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
+                System.out.println(query);
+
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+                results = new ArrayList<>();
+                while (resultSet.next()) {
+                    results.add(new User(
+                            resultSet.getString("USR_NAME"),
+                            resultSet.getInt("USR_HASHEDPASSWORD"),
+                            resultSet.getString("USR_EMAIL"),
+                            resultSet.getString("USR_PHONE")
+                    ));
+                }
+                resultSet.close();
+                statement.close();
+                connection.commit();
+                break;
+            case "HASHEDPASSWORD":
+                query = "SELECT * FROM user WHERE USR_HASHEDPASSWORD = " + params.get("HASHEDPASSWORD") + ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -273,7 +292,8 @@ public final class EntityDBConnection {
                 connection.commit();
                 break;
             case "EMAIL":
-                query = ";";
+                query = "SELECT * FROM user WHERE USR_EMAIL = " +
+                        EntityRelatesToSQL.escapeSingleQuotes(params.get("EMAIL")) + ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
@@ -292,7 +312,8 @@ public final class EntityDBConnection {
                 connection.commit();
                 break;
             case "PHONE":
-                query = ";";
+                query = "SELECT * FROM user WHERE USR_PHONE = " +
+                        EntityRelatesToSQL.escapeSingleQuotes(params.get("PHONE")) + ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();

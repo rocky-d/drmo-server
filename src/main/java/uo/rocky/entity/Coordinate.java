@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class Coordinate extends EntityBase {
     private static Connection connection = null;
@@ -159,6 +160,19 @@ public final class Coordinate extends EntityBase {
                 .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
                 .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
                 .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
+                .toString();
+    }
+
+    public String toJSONStringWithComments() throws Exception {
+        return new StringJoiner(",", "{", "}")
+                .add("\"id\":\"" + id + "\"")
+                .add("\"longitude\":\"" + longitude + "\"")
+                .add("\"latitude\":\"" + latitude + "\"")
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
+                .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
+                .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
+                .add("\"comments\":" + Comment.selectCommentJSONString(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))))
                 .toString();
     }
 
