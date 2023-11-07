@@ -29,18 +29,17 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             }
         }
 
+        String results;
         try {
-            String results = User.selectUserOrderedString(paramsMap);
+            results = User.selectUserOrderedString(paramsMap);
             System.out.println(results);
-
-            httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-            httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
-
-            outputResponseBody(httpExchange.getResponseBody(), results);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+        httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
+        httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
+        outputResponseBody(httpExchange.getResponseBody(), results);
     }
 
     @Override
