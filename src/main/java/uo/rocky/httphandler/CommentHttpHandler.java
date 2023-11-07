@@ -50,8 +50,6 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getRequestHeaders();
-
         Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(comment);
         try {
@@ -60,7 +58,6 @@ public final class CommentHttpHandler extends HttpHandlerBase {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
         httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
     }
 }

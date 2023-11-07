@@ -50,8 +50,6 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getRequestHeaders();
-
         User user = User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(user);
         try {
@@ -60,7 +58,6 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
         httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
     }
 }

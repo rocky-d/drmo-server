@@ -50,8 +50,6 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        httpExchange.getRequestHeaders();
-
         Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
         System.out.println(coordinate);
         try {
@@ -60,7 +58,6 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
         httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
     }
 }
