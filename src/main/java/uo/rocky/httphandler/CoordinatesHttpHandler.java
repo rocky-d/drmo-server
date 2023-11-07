@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import uo.rocky.entity.Coordinate;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,10 +18,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
         String uri = httpExchange.getRequestURI().toString();
-        String[] params = -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&");
-        System.out.println("params: " + Arrays.toString(params));
         Map<String, String> paramsMap = new HashMap<>();
-
         for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
             String[] tempStrings = param.split("=");
             if (2 == tempStrings.length) {
