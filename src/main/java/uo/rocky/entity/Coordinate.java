@@ -198,7 +198,7 @@ public final class Coordinate extends EntityBase {
         }
     }
 
-    public JSONObject toJSONObjectWithComments() throws JSONException {
+    public JSONObject toJSONObjectWithComments() {
         return new JSONObject(toJSONStringWithComments());
     }
 
