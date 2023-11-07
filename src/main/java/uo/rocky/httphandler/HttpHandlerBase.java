@@ -25,6 +25,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     }
 
     public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
+        httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
         byte[] responseBodyBytes = StatusCode.METHOD_NOT_ALLOWED.prompt().getBytes(UTF_8);
