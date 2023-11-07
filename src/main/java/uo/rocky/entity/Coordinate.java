@@ -81,6 +81,14 @@ public final class Coordinate extends EntityBase {
         return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
+    public static synchronized String selectCoordinateWithCommentsJSONString(Map<String, String> params) throws Exception {
+        return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONStringWithComments).collect(Collectors.joining(",", "[", "]"));
+    }
+
+    public static synchronized JSONArray selectCoordinateWithCommentsJSONArray(Map<String, String> params) throws Exception {
+        return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONObjectWithComments).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+    }
+
     public long getId() {
         return id;
     }
@@ -163,17 +171,35 @@ public final class Coordinate extends EntityBase {
                 .toString();
     }
 
-    public String toJSONStringWithComments() throws Exception {
-        return new StringJoiner(",", "{", "}")
-                .add("\"id\":\"" + id + "\"")
-                .add("\"longitude\":\"" + longitude + "\"")
-                .add("\"latitude\":\"" + latitude + "\"")
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
-                .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
-                .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
-                .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
-                .add("\"comments\":" + Comment.selectCommentJSONString(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))))
-                .toString();
+    public String toJSONStringWithComments() {
+        try {
+            return new StringJoiner(",", "{", "}")
+                    .add("\"id\":\"" + id + "\"")
+                    .add("\"longitude\":\"" + longitude + "\"")
+                    .add("\"latitude\":\"" + latitude + "\"")
+                    .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                    .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
+                    .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
+                    .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
+                    .add("\"comments\":" + Comment.selectCommentJSONString(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))))
+                    .toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new StringJoiner(",", "{", "}")
+                    .add("\"id\":\"" + id + "\"")
+                    .add("\"longitude\":\"" + longitude + "\"")
+                    .add("\"latitude\":\"" + latitude + "\"")
+                    .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                    .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
+                    .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
+                    .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
+                    .add("\"comments\":\"An exception occurs when selecting the comment data.\"" )
+                    .toString();
+        }
+    }
+
+    public JSONObject toJSONObjectWithComments() throws JSONException {
+        return new JSONObject(toJSONStringWithComments());
     }
 
     @Override
