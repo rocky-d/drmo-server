@@ -37,13 +37,13 @@ public final class Coordinate extends EntityBase {
         this.usrName = usrName;
     }
 
-    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException {
+    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException, IllegalArgumentException {
         return new Coordinate(
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
                 jsonObject.getDouble("latitude"),
                 jsonObject.getString("sent"),
-                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: throws Exception
+                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),
                 jsonObject.has("description") ? jsonObject.getString("description") : null,
                 jsonObject.getString("username")
         );

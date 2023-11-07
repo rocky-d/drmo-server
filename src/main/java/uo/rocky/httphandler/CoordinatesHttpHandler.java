@@ -56,8 +56,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             System.out.println(coordinate);
             System.out.println(coordinate.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
-        } catch (JSONException jsonException) {
-            respondBadRequest(httpExchange, jsonException.getMessage());
+        } catch (JSONException | IllegalArgumentException valueOfException) {
+            respondBadRequest(httpExchange, valueOfException.getMessage());
         } catch (Exception e) {
             respondInternalServerError(httpExchange);
             e.printStackTrace();
