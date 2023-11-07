@@ -147,7 +147,8 @@ public final class EntityDBConnection {
                 connection.commit();
                 break;
             case "LOCATION":
-                query = ";";
+                query = "SELECT * FROM coordinate WHERE " + params.get("DOWNLONGITUDE") + " <= CDT_LONGITUDE AND CDT_LONGITUDE <= " + params.get("UPLONGITUDE") +
+                        " AND " + params.get("DOWNLATITUDE") + " <= CDT_LATITUDE AND CDT_LATITUDE <= " + params.get("UPLATITUDE") + ";";
                 System.out.println(query);
 
                 statement = connection.createStatement();
