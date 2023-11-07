@@ -1,5 +1,6 @@
 package uo.rocky.entity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,6 +60,10 @@ public final class Comment extends EntityBase {
 
     public static synchronized List<Comment> selectComment(Map<String, String> params) throws Exception {
         return EntityDBConnection.selectComment(params);
+    }
+
+    public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws Exception {
+        return selectComment(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {
