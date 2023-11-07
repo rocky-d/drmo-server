@@ -23,15 +23,16 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         System.out.println("params: " + Arrays.toString(params));
         Map<String, String> paramsMap = new HashMap<>();
 
-        for (String param : params) {
+        for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
             String[] tempStrings = param.split("=");
             if (2 == tempStrings.length) {
                 paramsMap.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
                 // TODO
-                System.out.println("有sb在参数的地方写的不是一个等号。。。");
+                System.out.println("It's not two strings with one equal sign in between...");
             }
         }
+
         try {
             String results = Coordinate.selectCoordinateOrderedString(paramsMap);
             System.out.println(results);
