@@ -1,6 +1,7 @@
 package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.json.JSONException;
 import org.json.JSONObject;
 import uo.rocky.entity.Coordinate;
 
@@ -50,10 +51,12 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
-        System.out.println(coordinate);
         try {
-            System.out.println(coordinate.insertSQL() ? "Insert succeed!" : "Insert failed!");
+            Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
+            System.out.println(coordinate);
+            System.out.println(coordinate.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
+        } catch (JSONException jsonException) {
+            respondBadRequest(httpExchange, jsonException.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

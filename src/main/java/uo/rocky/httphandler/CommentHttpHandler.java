@@ -1,6 +1,7 @@
 package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.json.JSONException;
 import org.json.JSONObject;
 import uo.rocky.entity.Comment;
 
@@ -50,10 +51,12 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
-        System.out.println(comment);
         try {
-            System.out.println(comment.insertSQL() ? "Insert succeed!" : "Insert failed!");
+            Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
+            System.out.println(comment);
+            System.out.println(comment.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
+        } catch (JSONException jsonException) {
+            respondBadRequest(httpExchange, jsonException.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

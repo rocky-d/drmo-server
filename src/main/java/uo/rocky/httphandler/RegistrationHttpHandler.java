@@ -1,6 +1,7 @@
 package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.json.JSONException;
 import org.json.JSONObject;
 import uo.rocky.entity.User;
 
@@ -50,10 +51,12 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        User user = User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
-        System.out.println(user);
         try {
-            System.out.println(user.insertSQL() ? "Insert succeed!" : "Insert failed!");
+            User user = User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody())));
+            System.out.println(user);
+            System.out.println(user.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
+        } catch (JSONException jsonException) {
+            respondBadRequest(httpExchange, jsonException.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
