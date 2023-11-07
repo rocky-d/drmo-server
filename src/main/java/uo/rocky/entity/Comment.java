@@ -63,7 +63,7 @@ public final class Comment extends EntityBase {
         return EntityDBConnection.selectComments(params);
     }
 
-    public static synchronized String selectCommentOrderedString(Map<String, String> params) throws Exception {
+    public static synchronized String selectCommentJSONString(Map<String, String> params) throws Exception {
         return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 

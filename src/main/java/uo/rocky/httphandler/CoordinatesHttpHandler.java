@@ -32,7 +32,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
 
         String results;
         try {
-            results = Coordinate.selectCoordinateOrderedString(paramsMap);
+            results = Coordinate.selectCoordinateJSONString(paramsMap);
             System.out.println(results);
         } catch (Exception e) {
             e.printStackTrace();

@@ -32,7 +32,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
 
         String results;
         try {
-            results = User.selectUserOrderedString(paramsMap);
+            results = User.selectUserJSONString(paramsMap);
             System.out.println(results);
         } catch (Exception e) {
             e.printStackTrace();

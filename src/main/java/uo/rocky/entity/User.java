@@ -59,7 +59,7 @@ public final class User extends EntityBase {
         return EntityDBConnection.selectUsers(params);
     }
 
-    public static synchronized String selectUserOrderedString(Map<String, String> params) throws Exception {
+    public static synchronized String selectUserJSONString(Map<String, String> params) throws Exception {
         return EntityDBConnection.selectUsers(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 

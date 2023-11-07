@@ -32,7 +32,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
         String results;
         try {
-            results = Comment.selectCommentOrderedString(paramsMap);
+            results = Comment.selectCommentJSONString(paramsMap);
             System.out.println(results);
         } catch (Exception e) {
             e.printStackTrace();
