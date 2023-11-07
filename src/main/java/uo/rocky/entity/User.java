@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public final class User extends EntityBase {
     private static Connection connection = null;
@@ -54,12 +55,16 @@ public final class User extends EntityBase {
         return false;
     }
 
-    public static synchronized List<User> selectUser(Map<String, String> params) throws Exception {
+    public static synchronized List<User> selectUserList(Map<String, String> params) throws Exception {
         return EntityDBConnection.selectUser(params);
     }
 
+    public static synchronized String selectUserOrderedString(Map<String, String> params) throws Exception {
+        return User.selectUserList(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
+    }
+
     public static synchronized JSONArray selectUserJSONArray(Map<String, String> params) throws Exception {
-        return selectUser(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return selectUserList(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public String getName() {

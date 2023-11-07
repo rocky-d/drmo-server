@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public final class Comment extends EntityBase {
     private static Connection connection = null;
@@ -58,12 +59,16 @@ public final class Comment extends EntityBase {
         return false;
     }
 
-    public static synchronized List<Comment> selectComment(Map<String, String> params) throws Exception {
+    public static synchronized List<Comment> selectCommentList(Map<String, String> params) throws Exception {
         return EntityDBConnection.selectComment(params);
     }
 
+    public static synchronized String selectCommentOrderedString(Map<String, String> params) throws Exception {
+        return Comment.selectCommentList(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
+    }
+
     public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws Exception {
-        return selectComment(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return selectCommentList(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {

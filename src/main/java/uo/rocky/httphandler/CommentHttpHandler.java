@@ -1,7 +1,6 @@
 package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import org.json.JSONObject;
 import uo.rocky.entity.Comment;
 
@@ -36,7 +35,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
         }
         try {
             StringJoiner results = new StringJoiner(",", "[", "]");
-            for (Comment comment : Comment.selectComment(paramsMap)) {
+            for (Comment comment : Comment.selectCommentList(paramsMap)) {
                 results.add(comment.toJSONString());
             }
             System.out.println(results);

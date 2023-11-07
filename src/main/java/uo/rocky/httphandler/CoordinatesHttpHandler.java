@@ -1,7 +1,6 @@
 package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import org.json.JSONObject;
 import uo.rocky.entity.Coordinate;
 
@@ -36,7 +35,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         }
         try {
             StringJoiner results = new StringJoiner(",", "[", "]");
-            for (Coordinate coordinate : Coordinate.selectCoordinate(paramsMap)) {
+            for (Coordinate coordinate : Coordinate.selectCoordinateList(paramsMap)) {
                 results.add(coordinate.toJSONString());
             }
             System.out.println(results);

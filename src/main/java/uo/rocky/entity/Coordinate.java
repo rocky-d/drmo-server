@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public final class Coordinate extends EntityBase {
     private static Connection connection = null;
@@ -67,12 +68,16 @@ public final class Coordinate extends EntityBase {
         return false;
     }
 
-    public static synchronized List<Coordinate> selectCoordinate(Map<String, String> params) throws Exception {
+    public static synchronized List<Coordinate> selectCoordinateList(Map<String, String> params) throws Exception {
         return EntityDBConnection.selectCoordinate(params);
     }
 
+    public static synchronized String selectCoordinateOrderedString(Map<String, String> params) throws Exception {
+        return Coordinate.selectCoordinateList(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
+    }
+
     public static synchronized JSONArray selectCoordinateJSONArray(Map<String, String> params) throws Exception {
-        return selectCoordinate(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return selectCoordinateList(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {
