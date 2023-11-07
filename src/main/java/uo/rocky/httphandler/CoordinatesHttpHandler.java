@@ -37,6 +37,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results);
         } catch (Exception e) {
+            respondInternalServerError(httpExchange);
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -58,6 +59,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         } catch (JSONException jsonException) {
             respondBadRequest(httpExchange, jsonException.getMessage());
         } catch (Exception e) {
+            respondInternalServerError(httpExchange);
             e.printStackTrace();
             throw new RuntimeException(e);
         }
