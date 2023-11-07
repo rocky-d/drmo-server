@@ -60,7 +60,7 @@ public final class User extends EntityBase {
     }
 
     public static synchronized String selectUserOrderedString(Map<String, String> params) throws Exception {
-        return User.selectUserList(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return selectUserList(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectUserJSONArray(Map<String, String> params) throws Exception {

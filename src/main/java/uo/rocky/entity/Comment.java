@@ -64,7 +64,7 @@ public final class Comment extends EntityBase {
     }
 
     public static synchronized String selectCommentOrderedString(Map<String, String> params) throws Exception {
-        return Comment.selectCommentList(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return selectCommentList(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws Exception {

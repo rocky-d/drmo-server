@@ -73,7 +73,7 @@ public final class Coordinate extends EntityBase {
     }
 
     public static synchronized String selectCoordinateOrderedString(Map<String, String> params) throws Exception {
-        return Coordinate.selectCoordinateList(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return selectCoordinateList(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static synchronized JSONArray selectCoordinateJSONArray(Map<String, String> params) throws Exception {
