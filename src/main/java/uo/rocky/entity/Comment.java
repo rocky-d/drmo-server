@@ -138,7 +138,7 @@ public final class Comment extends EntityBase {
                         " VALUES (%s,%s,%s,%s);",
                 id,
                 EntityRelatesToSQL.escapeSingleQuotes(content),
-                EntityRelatesToSQL.escapeSingleQuotes(formattedDateTime),  // TODO
+                EntityRelatesToSQL.escapeSingleQuotes(formattedDateTime),
                 cdtId
         );
         System.out.println(query);
