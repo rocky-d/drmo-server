@@ -106,10 +106,10 @@ public final class Comment extends EntityBase implements EntityRelatesToJSON, En
     @Override
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
-                .add("\"commentid\"=\"" + id + "\"")
-                .add("\"comment\"=" + EntityRelatesToJSON.escapeDoubleQuotes(content))
-                .add("\"sent\"=" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
-                .add("\"id\"=\"" + cdtId + "\"")
+                .add("\"commentid\":\"" + id + "\"")
+                .add("\"comment\":" + EntityRelatesToJSON.escapeDoubleQuotes(content))
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                .add("\"id\":\"" + cdtId + "\"")
                 .toString();
     }
 

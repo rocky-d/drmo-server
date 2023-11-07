@@ -142,13 +142,13 @@ public final class Coordinate extends EntityBase implements EntityRelatesToJSON,
     @Override
     public String toJSONString() {
         return new StringJoiner(",", "{", "}")
-                .add("\"id\"=\"" + id + "\"")
-                .add("\"longitude\"=\"" + longitude + "\"")
-                .add("\"latitude\"=\"" + latitude + "\"")
-                .add("\"sent\"=" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
-                .add("\"dangertype\"=" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
-                .add("\"description\"=" + EntityRelatesToJSON.escapeDoubleQuotes(description))
-                .add("\"username\"=" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
+                .add("\"id\":\"" + id + "\"")
+                .add("\"longitude\":\"" + longitude + "\"")
+                .add("\"latitude\":\"" + latitude + "\"")
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
+                .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
+                .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
                 .toString();
     }
 
