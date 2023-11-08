@@ -162,7 +162,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     }
 
     public final void handleIOException(HttpExchange httpExchange, IOException ioException) {
-        ioException.printStackTrace();
+        // TODO
         respondInternalServerError(httpExchange, ioException);
     }
 }
