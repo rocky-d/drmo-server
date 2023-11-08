@@ -39,7 +39,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
         } catch (IOException ioException) {
             throw ioException;
         } catch (Exception exception) {
-            respondInternalServerError(httpExchange);
+            respondInternalServerError(httpExchange, exception);
             exception.printStackTrace();
             throw new RuntimeException(exception);
         }
@@ -63,7 +63,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
         } catch (JSONException valueOfException) {
             respondBadRequest(httpExchange, valueOfException.getMessage());
         } catch (Exception exception) {
-            respondInternalServerError(httpExchange);
+            respondInternalServerError(httpExchange, exception);
             exception.printStackTrace();
             throw new RuntimeException(exception);
         }

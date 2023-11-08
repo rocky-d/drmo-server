@@ -12,7 +12,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     private static final String GET_ALLOW = "HEAD";
     private static final String GET_CONTENT_TYPE = "text/plain; charset=utf-8";
 
-    public final void respondInternalServerError(HttpExchange httpExchange) {
+    public final void respondInternalServerError(HttpExchange httpExchange, Exception exception) {
         httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
         byte[] responseBodyBytes = StatusCode.INTERNAL_SERVER_ERROR.prompt().getBytes(UTF_8);
@@ -42,9 +42,9 @@ public abstract class HttpHandlerBase implements HttpHandler {
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
-    public final void handleIOException(IOException ioException, HttpExchange httpExchange) {
+    public final void handleIOException(HttpExchange httpExchange, IOException ioException) {
         ioException.printStackTrace();
-        respondInternalServerError(httpExchange);
+        respondInternalServerError(httpExchange, ioException);
     }
 
     public final String inputRequestBody(InputStream requestBody) {
@@ -142,7 +142,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
                     break;
             }
         } catch (IOException ioException) {
-            handleIOException(ioException, httpExchange);
+            handleIOException(httpExchange, ioException);
         } finally {
             httpExchange.close();
         }
