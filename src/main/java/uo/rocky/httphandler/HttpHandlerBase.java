@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -47,8 +48,8 @@ public abstract class HttpHandlerBase implements HttpHandler {
         respondInternalServerError(httpExchange, ioException);
     }
 
-    public final String inputRequestBody(InputStream requestBody) {
-        return new BufferedReader(new InputStreamReader(requestBody, UTF_8)).lines().collect(Collectors.joining("\n"));
+    public final String inputRequestBody(InputStream requestBody, Charset charset) {
+        return new BufferedReader(new InputStreamReader(requestBody, charset)).lines().collect(Collectors.joining("\n"));
     }
 
     public final void outputResponseBody(OutputStream responseBody, byte[] outputBytes) throws IOException {
@@ -57,8 +58,8 @@ public abstract class HttpHandlerBase implements HttpHandler {
         responseBody.close();
     }
 
-    public final void outputResponseBody(OutputStream responseBody, String outputString) throws IOException {
-        outputResponseBody(responseBody, outputString.getBytes(UTF_8));
+    public final void outputResponseBody(OutputStream responseBody, String outputString, Charset charset) throws IOException {
+        outputResponseBody(responseBody, outputString.getBytes(charset));
     }
 
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
