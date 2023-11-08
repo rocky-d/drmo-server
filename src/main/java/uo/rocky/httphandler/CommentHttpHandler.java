@@ -36,6 +36,8 @@ public final class CommentHttpHandler extends HttpHandlerBase {
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results);
+        } catch (IOException ioException) {
+            throw ioException;
         } catch (Exception e) {
             respondInternalServerError(httpExchange);
             e.printStackTrace();
@@ -58,6 +60,8 @@ public final class CommentHttpHandler extends HttpHandlerBase {
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (JSONException valueOfException) {
             respondBadRequest(httpExchange, valueOfException.getMessage());
+        } catch (IOException ioException) {
+            throw ioException;
         } catch (Exception e) {
             respondInternalServerError(httpExchange);
             e.printStackTrace();
