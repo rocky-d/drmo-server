@@ -19,9 +19,9 @@ public abstract class HttpHandlerBase implements HttpHandler {
         try {
             httpExchange.sendResponseHeaders(StatusCode.INTERNAL_SERVER_ERROR.code(), responseBodyBytes.length);
             outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+            throw new RuntimeException(ioException);
         }
     }
 

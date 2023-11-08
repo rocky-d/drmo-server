@@ -58,10 +58,10 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             System.out.println(user);
             System.out.println(user.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
-        } catch (JSONException valueOfException) {
-            respondBadRequest(httpExchange, valueOfException.getMessage());
         } catch (IOException ioException) {
             throw ioException;
+        } catch (JSONException valueOfException) {
+            respondBadRequest(httpExchange, valueOfException.getMessage());
         } catch (Exception e) {
             respondInternalServerError(httpExchange);
             e.printStackTrace();

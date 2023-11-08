@@ -58,10 +58,10 @@ public final class CommentHttpHandler extends HttpHandlerBase {
             System.out.println(comment);
             System.out.println(comment.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
-        } catch (JSONException valueOfException) {
-            respondBadRequest(httpExchange, valueOfException.getMessage());
         } catch (IOException ioException) {
             throw ioException;
+        } catch (JSONException valueOfException) {
+            respondBadRequest(httpExchange, valueOfException.getMessage());
         } catch (Exception e) {
             respondInternalServerError(httpExchange);
             e.printStackTrace();
