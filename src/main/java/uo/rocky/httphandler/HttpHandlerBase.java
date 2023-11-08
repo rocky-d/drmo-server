@@ -49,7 +49,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
         Map<String, String> queryParameters = new HashMap<>();
         String uri = httpExchange.getRequestURI().toString();
         for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
-            String[] tempStrings = param.split("=");
+            String[] tempStrings = param.split("=", 2);
             if (2 == tempStrings.length) {
                 queryParameters.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
