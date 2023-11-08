@@ -6,8 +6,6 @@ import org.json.JSONObject;
 import uo.rocky.entity.User;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
