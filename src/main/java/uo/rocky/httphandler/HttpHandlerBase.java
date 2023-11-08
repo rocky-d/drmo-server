@@ -45,19 +45,19 @@ public abstract class HttpHandlerBase implements HttpHandler {
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
-    public final Map<String, String> parseQueryParameters(HttpExchange httpExchange) {
-        Map<String, String> params = new HashMap<>();
+    public final Map<String, String> parseQueryParameters(HttpExchange httpExchange) {  // TODO
+        Map<String, String> queryParameters = new HashMap<>();
         String uri = httpExchange.getRequestURI().toString();
         for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
             String[] tempStrings = param.split("=");
             if (2 == tempStrings.length) {
-                params.put(tempStrings[0].toUpperCase(), tempStrings[1]);
+                queryParameters.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
                 // TODO
                 System.out.println("It's not two strings with one equal sign in between...");
             }
         }
-        return params;
+        return queryParameters;
     }
 
     public final String inputRequestBody(InputStream requestBody, Charset charset) {
@@ -111,17 +111,12 @@ public abstract class HttpHandlerBase implements HttpHandler {
         handleUnsupportedRequest(httpExchange);
     }
 
+    public void handleUnknownRequest(HttpExchange httpExchange) throws IOException {
+        handleUnsupportedRequest(httpExchange);
+    }
+
     public final void handleUnsupportedRequest(HttpExchange httpExchange) throws IOException {
         respondMethodNotAllowed(httpExchange);
-    }
-
-    public final void handleUnknownRequest(HttpExchange httpExchange) throws IOException {
-        respondMethodNotAllowed(httpExchange);
-    }
-
-    public final void handleIOException(HttpExchange httpExchange, IOException ioException) {
-        ioException.printStackTrace();
-        respondInternalServerError(httpExchange, ioException);
     }
 
     @Override
@@ -164,5 +159,10 @@ public abstract class HttpHandlerBase implements HttpHandler {
         } finally {
             httpExchange.close();
         }
+    }
+
+    public final void handleIOException(HttpExchange httpExchange, IOException ioException) {
+        ioException.printStackTrace();
+        respondInternalServerError(httpExchange, ioException);
     }
 }
