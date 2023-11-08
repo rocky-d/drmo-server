@@ -45,7 +45,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
-    public final Map<String, String> parseQueryParameters(HttpExchange httpExchange) {  // TODO
+    public final Map<String, String> parseQueryParameters(HttpExchange httpExchange) {  // TODO: handle request body
         Map<String, String> queryParameters = new HashMap<>();
         String uri = httpExchange.getRequestURI().toString();
         for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
