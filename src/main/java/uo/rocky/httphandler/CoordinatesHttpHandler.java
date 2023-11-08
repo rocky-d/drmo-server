@@ -38,10 +38,10 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             outputResponseBody(httpExchange.getResponseBody(), results);
         } catch (IOException ioException) {
             throw ioException;
-        } catch (Exception e) {
+        } catch (Exception exception) {
             respondInternalServerError(httpExchange);
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            exception.printStackTrace();
+            throw new RuntimeException(exception);
         }
     }
 
@@ -62,10 +62,10 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             throw ioException;
         } catch (JSONException | IllegalArgumentException valueOfException) {
             respondBadRequest(httpExchange, valueOfException.getMessage());
-        } catch (Exception e) {
+        } catch (Exception exception) {
             respondInternalServerError(httpExchange);
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            exception.printStackTrace();
+            throw new RuntimeException(exception);
         }
     }
 }
