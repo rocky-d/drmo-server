@@ -12,7 +12,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     private static final String GET_ALLOW = "HEAD";
     private static final String GET_CONTENT_TYPE = "text/plain; charset=utf-8";
 
-    public final void respondInternalServerError(HttpExchange httpExchange, Exception exception) {
+    public final void respondInternalServerError(HttpExchange httpExchange, Exception exception) {  // TODO
         httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
         byte[] responseBodyBytes = StatusCode.INTERNAL_SERVER_ERROR.prompt().getBytes(UTF_8);
@@ -25,20 +25,20 @@ public abstract class HttpHandlerBase implements HttpHandler {
         }
     }
 
+    public final void respondBadRequest(HttpExchange httpExchange, String message) throws IOException {
+        httpExchange.getResponseHeaders().clear();
+        httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
+        byte[] responseBodyBytes = (StatusCode.BAD_REQUEST.prompt() + "\n" + message).getBytes(UTF_8);
+        httpExchange.sendResponseHeaders(StatusCode.BAD_REQUEST.code(), responseBodyBytes.length);
+        outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
+    }
+
     public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
         httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
         byte[] responseBodyBytes = StatusCode.METHOD_NOT_ALLOWED.prompt().getBytes(UTF_8);
         httpExchange.sendResponseHeaders(StatusCode.METHOD_NOT_ALLOWED.code(), responseBodyBytes.length);
-        outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
-    }
-
-    public final void respondBadRequest(HttpExchange httpExchange, String message) throws IOException {
-        httpExchange.getResponseHeaders().clear();
-        httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-        byte[] responseBodyBytes = (StatusCode.BAD_REQUEST.prompt() + "\n" + message).getBytes(UTF_8);
-        httpExchange.sendResponseHeaders(StatusCode.BAD_REQUEST.code(), responseBodyBytes.length);
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
