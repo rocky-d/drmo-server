@@ -20,10 +20,10 @@ public class UserAuthenticator extends BasicAuthenticator {
         try {
             List<User> users = User.selectUserList(paramsMap);
             return null != users && 1 == users.size() && password.hashCode() == users.get(0).getHashedpassword();
-        } catch (Exception e) {
+        } catch (Exception exception) {
             // TODO
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            exception.printStackTrace();
+            throw new RuntimeException(exception);
         }
     }
 }
