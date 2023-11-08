@@ -18,20 +18,8 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
-        String uri = httpExchange.getRequestURI().toString();
-        Map<String, String> params = new HashMap<>();
-        for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
-            String[] tempStrings = param.split("=");
-            if (2 == tempStrings.length) {
-                params.put(tempStrings[0].toUpperCase(), tempStrings[1]);
-            } else {
-                // TODO
-                System.out.println("It's not two strings with one equal sign in between...");
-            }
-        }
-
         try {
-            String results = User.selectUserJSONString(params);
+            String results = User.selectUserJSONString(parseParameters(httpExchange));
             System.out.println(results);
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);

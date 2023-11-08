@@ -5,6 +5,8 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -43,9 +45,19 @@ public abstract class HttpHandlerBase implements HttpHandler {
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
-    public final void handleIOException(HttpExchange httpExchange, IOException ioException) {
-        ioException.printStackTrace();
-        respondInternalServerError(httpExchange, ioException);
+    public final Map<String, String> parseParameters(HttpExchange httpExchange) {
+        Map<String, String> params = new HashMap<>();
+        String uri = httpExchange.getRequestURI().toString();
+        for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
+            String[] tempStrings = param.split("=");
+            if (2 == tempStrings.length) {
+                params.put(tempStrings[0].toUpperCase(), tempStrings[1]);
+            } else {
+                // TODO
+                System.out.println("It's not two strings with one equal sign in between...");
+            }
+        }
+        return params;
     }
 
     public final String inputRequestBody(InputStream requestBody, Charset charset) {
@@ -99,12 +111,17 @@ public abstract class HttpHandlerBase implements HttpHandler {
         handleUnsupportedRequest(httpExchange);
     }
 
-    public void handleUnsupportedRequest(HttpExchange httpExchange) throws IOException {
+    public final void handleUnsupportedRequest(HttpExchange httpExchange) throws IOException {
         respondMethodNotAllowed(httpExchange);
     }
 
-    public void handleUnknownRequest(HttpExchange httpExchange) throws IOException {
+    public final void handleUnknownRequest(HttpExchange httpExchange) throws IOException {
         respondMethodNotAllowed(httpExchange);
+    }
+
+    public final void handleIOException(HttpExchange httpExchange, IOException ioException) {
+        ioException.printStackTrace();
+        respondInternalServerError(httpExchange, ioException);
     }
 
     @Override
