@@ -14,7 +14,7 @@ public enum RequestMethod {
     PATCH;
 
     @Override
-    public String toString() {
+    public final String toString() {
         return new StringJoiner(", ", RequestMethod.class.getSimpleName() + "{", "}")
                 .add("name='" + name() + "'")
                 .add("ordinal=" + ordinal())

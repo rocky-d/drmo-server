@@ -45,7 +45,7 @@ public enum StatusCode {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return new StringJoiner(", ", StatusCode.class.getSimpleName() + "{", "}")
                 .add("name='" + name() + "'")
                 .add("ordinal=" + ordinal())

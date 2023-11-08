@@ -246,7 +246,7 @@ public final class Coordinate extends EntityBase {
         OTHER;
 
         @Override
-        public String toString() {
+        public final String toString() {
             return new StringJoiner(", ", Dangertype.class.getSimpleName() + "{", "}")
                     .add("name='" + name() + "'")
                     .add("ordinal=" + ordinal())
