@@ -23,6 +23,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
+        } catch (NullPointerException nullPointerException) {
+            respondBadRequest(httpExchange, nullPointerException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
             sqlException.printStackTrace();
