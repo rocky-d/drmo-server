@@ -17,7 +17,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
         try {
-            String results = User.selectUserJSONString(parseParameters(httpExchange));
+            String results = User.selectUserJSONString(parseQueryParameters(httpExchange));
             System.out.println(results);
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);

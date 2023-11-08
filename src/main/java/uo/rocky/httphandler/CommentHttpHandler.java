@@ -17,7 +17,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
         try {
-            String results = Comment.selectCommentJSONString(parseParameters(httpExchange));
+            String results = Comment.selectCommentJSONString(parseQueryParameters(httpExchange));
             System.out.println(results);
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);

@@ -17,7 +17,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
         try {
-            String results = Coordinate.selectCoordinateWithCommentsJSONString(parseParameters(httpExchange));
+            String results = Coordinate.selectCoordinateWithCommentsJSONString(parseQueryParameters(httpExchange));
             System.out.println(results);
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
