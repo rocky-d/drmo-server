@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import uo.rocky.entity.Coordinate;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -22,12 +23,10 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
-        } catch (IOException ioException) {
-            throw ioException;
-        } catch (Exception exception) {
-            respondInternalServerError(httpExchange, exception);
-            exception.printStackTrace();
-            throw new RuntimeException(exception);
+        } catch (SQLException sqlException) {
+            respondInternalServerError(httpExchange, sqlException);
+            sqlException.printStackTrace();
+            throw new RuntimeException(sqlException);
         }
     }
 
@@ -44,14 +43,12 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             System.out.println(coordinate);
             System.out.println(coordinate.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
-        } catch (IOException ioException) {
-            throw ioException;
         } catch (JSONException | IllegalArgumentException valueOfException) {
             respondBadRequest(httpExchange, valueOfException.getMessage());
-        } catch (Exception exception) {
-            respondInternalServerError(httpExchange, exception);
-            exception.printStackTrace();
-            throw new RuntimeException(exception);
+        } catch (SQLException sqlException) {
+            respondInternalServerError(httpExchange, sqlException);
+            sqlException.printStackTrace();
+            throw new RuntimeException(sqlException);
         }
     }
 }
