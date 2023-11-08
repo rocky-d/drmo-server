@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -47,27 +48,27 @@ public final class Comment extends EntityBase {
         Comment.connection = connection;
     }
 
-    public static synchronized boolean insertComment(Comment comment) throws Exception {
+    public static synchronized boolean insertComment(Comment comment) throws SQLException {
         return comment.insertSQL();
     }
 
-    public static synchronized boolean deleteComment() throws Exception {
+    public static synchronized boolean deleteComment() throws SQLException {
         return false;
     }
 
-    public static synchronized boolean updateComment() throws Exception {
+    public static synchronized boolean updateComment() throws SQLException {
         return false;
     }
 
-    public static synchronized List<Comment> selectCommentList(Map<String, String> params) throws Exception {
+    public static synchronized List<Comment> selectCommentList(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectComments(params);
     }
 
-    public static synchronized String selectCommentJSONString(Map<String, String> params) throws Exception {
+    public static synchronized String selectCommentJSONString(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
-    public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws Exception {
+    public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
@@ -124,7 +125,7 @@ public final class Comment extends EntityBase {
     }
 
     @Override
-    public synchronized boolean insertSQL() throws Exception {
+    public synchronized boolean insertSQL() throws SQLException {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -152,13 +153,13 @@ public final class Comment extends EntityBase {
     }
 
     @Override
-    public synchronized boolean deleteSQL() throws Exception {
+    public synchronized boolean deleteSQL() throws SQLException {
         // TODO
         return true;
     }
 
     @Override
-    public synchronized boolean updateSQL() throws Exception {
+    public synchronized boolean updateSQL() throws SQLException {
         // TODO
         return true;
     }

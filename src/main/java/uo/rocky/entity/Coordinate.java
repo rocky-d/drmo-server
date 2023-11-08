@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -57,31 +58,31 @@ public final class Coordinate extends EntityBase {
         Coordinate.connection = connection;
     }
 
-    public static synchronized boolean insertCoordinate(Coordinate coordinate) throws Exception {
+    public static synchronized boolean insertCoordinate(Coordinate coordinate) throws SQLException {
         return coordinate.insertSQL();
     }
 
-    public static synchronized boolean deleteCoordinate() throws Exception {
+    public static synchronized boolean deleteCoordinate() throws SQLException {
         return false;
     }
 
-    public static synchronized boolean updateCoordinate() throws Exception {
+    public static synchronized boolean updateCoordinate() throws SQLException {
         return false;
     }
 
-    public static synchronized List<Coordinate> selectCoordinateList(Map<String, String> params) throws Exception {
+    public static synchronized List<Coordinate> selectCoordinateList(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectCoordinates(params);
     }
 
-    public static synchronized String selectCoordinateJSONString(Map<String, String> params) throws Exception {
+    public static synchronized String selectCoordinateJSONString(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
-    public static synchronized JSONArray selectCoordinateJSONArray(Map<String, String> params) throws Exception {
+    public static synchronized JSONArray selectCoordinateJSONArray(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
-    public static synchronized String selectCoordinateWithCommentsJSONString(Map<String, String> params) throws Exception {
+    public static synchronized String selectCoordinateWithCommentsJSONString(Map<String, String> params) throws SQLException {
         StringJoiner joiner = new StringJoiner(",", "[", "]");
         for (Coordinate coordinate : EntityDBConnection.selectCoordinates(params)) {
             joiner.add(coordinate.toJSONStringWithComments());
@@ -89,7 +90,7 @@ public final class Coordinate extends EntityBase {
         return joiner.toString();
     }
 
-    public static synchronized JSONArray selectCoordinateWithCommentsJSONArray(Map<String, String> params) throws Exception {
+    public static synchronized JSONArray selectCoordinateWithCommentsJSONArray(Map<String, String> params) throws SQLException {
         JSONArray jsonArray = new JSONArray();
         for (Coordinate coordinate : EntityDBConnection.selectCoordinates(params)) {
             jsonArray.put(coordinate.toJSONObjectWithComments());
@@ -179,7 +180,7 @@ public final class Coordinate extends EntityBase {
                 .toString();
     }
 
-    public String toJSONStringWithComments() throws Exception {
+    public String toJSONStringWithComments() throws SQLException {
         return new StringJoiner(",", "{", "}")
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")
@@ -192,12 +193,12 @@ public final class Coordinate extends EntityBase {
                 .toString();
     }
 
-    public JSONObject toJSONObjectWithComments() throws Exception {
+    public JSONObject toJSONObjectWithComments() throws SQLException {
         return new JSONObject(toJSONStringWithComments());
     }
 
     @Override
-    public synchronized boolean insertSQL() throws Exception {
+    public synchronized boolean insertSQL() throws SQLException {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -228,13 +229,13 @@ public final class Coordinate extends EntityBase {
     }
 
     @Override
-    public synchronized boolean deleteSQL() throws Exception {
+    public synchronized boolean deleteSQL() throws SQLException {
         // TODO
         return true;
     }
 
     @Override
-    public synchronized boolean updateSQL() throws Exception {
+    public synchronized boolean updateSQL() throws SQLException {
         // TODO
         return true;
     }

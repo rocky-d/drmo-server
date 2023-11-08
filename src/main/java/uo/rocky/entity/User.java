@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
@@ -43,27 +44,27 @@ public final class User extends EntityBase {
         User.connection = connection;
     }
 
-    public static synchronized boolean insertUser(User user) throws Exception {
+    public static synchronized boolean insertUser(User user) throws SQLException {
         return user.insertSQL();
     }
 
-    public static synchronized boolean deleteUser() throws Exception {
+    public static synchronized boolean deleteUser() throws SQLException {
         return false;
     }
 
-    public static synchronized boolean updateUser() throws Exception {
+    public static synchronized boolean updateUser() throws SQLException {
         return false;
     }
 
-    public static synchronized List<User> selectUserList(Map<String, String> params) throws Exception {
+    public static synchronized List<User> selectUserList(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectUsers(params);
     }
 
-    public static synchronized String selectUserJSONString(Map<String, String> params) throws Exception {
+    public static synchronized String selectUserJSONString(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectUsers(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
-    public static synchronized JSONArray selectUserJSONArray(Map<String, String> params) throws Exception {
+    public static synchronized JSONArray selectUserJSONArray(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectUsers(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
@@ -120,7 +121,7 @@ public final class User extends EntityBase {
     }
 
     @Override
-    public synchronized boolean insertSQL() throws Exception {
+    public synchronized boolean insertSQL() throws SQLException {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -143,13 +144,13 @@ public final class User extends EntityBase {
     }
 
     @Override
-    public synchronized boolean deleteSQL() throws Exception {
+    public synchronized boolean deleteSQL() throws SQLException {
         // TODO
         return true;
     }
 
     @Override
-    public synchronized boolean updateSQL() throws Exception {
+    public synchronized boolean updateSQL() throws SQLException {
         // TODO
         return true;
     }
