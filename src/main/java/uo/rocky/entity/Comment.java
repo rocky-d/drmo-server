@@ -134,7 +134,7 @@ public final class Comment extends EntityBase {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
 
-        String query = String.format("INSERT INTO comment" +
+        String sql = String.format("INSERT INTO comment" +
                         " (CMT_ID,CMT_CONTENT,CMT_DATETIME,CMT_CDT_ID)" +
                         " VALUES (%s,%s,%s,%s);",
                 id,
@@ -142,10 +142,10 @@ public final class Comment extends EntityBase {
                 EntityRelatesToSQL.escapeSingleQuotes(formattedDateTime),
                 cdtId
         );
-        System.out.println(query);
+        System.out.println(sql);
 
         Statement statement = connection.createStatement();
-        statement.executeUpdate(query);
+        statement.executeUpdate(sql);
         statement.close();
         connection.commit();
 

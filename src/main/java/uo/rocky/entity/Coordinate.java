@@ -207,7 +207,7 @@ public final class Coordinate extends EntityBase {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         String formattedDateTime = localDateTime.format(formatter);
 
-        String query = String.format("INSERT INTO coordinate" +
+        String sql = String.format("INSERT INTO coordinate" +
                         " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_DATETIME,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
                         " VALUES (%s,%s,%s,%s,%s,%s,%s);",
                 id,
@@ -218,10 +218,10 @@ public final class Coordinate extends EntityBase {
                 EntityRelatesToSQL.escapeSingleQuotes(description),
                 EntityRelatesToSQL.escapeSingleQuotes(usrName)
         );
-        System.out.println(query);
+        System.out.println(sql);
 
         Statement statement = connection.createStatement();
-        statement.executeUpdate(query);
+        statement.executeUpdate(sql);
         statement.close();
         connection.commit();
 

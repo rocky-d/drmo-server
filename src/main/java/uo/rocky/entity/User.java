@@ -125,7 +125,7 @@ public final class User extends EntityBase {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
-        String query = String.format("INSERT INTO user" +
+        String sql = String.format("INSERT INTO user" +
                         " (USR_NAME,USR_HASHEDPASSWORD,USR_EMAIL,USR_PHONE)" +
                         " VALUES (%s,%s,%s,%s);",
                 EntityRelatesToSQL.escapeSingleQuotes(name),
@@ -133,10 +133,10 @@ public final class User extends EntityBase {
                 EntityRelatesToSQL.escapeSingleQuotes(email),
                 EntityRelatesToSQL.escapeSingleQuotes(phone)
         );
-        System.out.println(query);
+        System.out.println(sql);
 
         Statement statement = connection.createStatement();
-        statement.executeUpdate(query);
+        statement.executeUpdate(sql);
         statement.close();
         connection.commit();
 
