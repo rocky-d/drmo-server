@@ -33,17 +33,17 @@ public final class EntityDBConnection {
 
     private static void createTablesIfNotExists() throws SQLException {
         Statement statement = connection.createStatement();
-        String createTableSQL;
+        String sql;
 
-        createTableSQL = "CREATE TABLE IF NOT EXISTS user (\n" +
+        sql = "CREATE TABLE IF NOT EXISTS user (\n" +
                 "    USR_NAME TEXT PRIMARY KEY NOT NULL UNIQUE,\n" +
                 "    USR_HASHEDPASSWORD INTEGER NOT NULL,\n" +
                 "    USR_EMAIL TEXT,\n" +
                 "    USR_PHONE TEXT\n" +
                 ");\n";
-        statement.addBatch(createTableSQL);
+        statement.addBatch(sql);
 
-        createTableSQL = "CREATE TABLE IF NOT EXISTS coordinate (\n" +
+        sql = "CREATE TABLE IF NOT EXISTS coordinate (\n" +
                 "    CDT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
                 "    CDT_LONGITUDE REAL NOT NULL,\n" +
                 "    CDT_LATITUDE REAL NOT NULL,\n" +
@@ -53,16 +53,16 @@ public final class EntityDBConnection {
                 "    CDT_USR_NAME TEXT NOT NULL,\n" +
                 "    FOREIGN KEY (CDT_USR_NAME) REFERENCES user(USR_NAME)\n" +
                 ");\n";
-        statement.addBatch(createTableSQL);
+        statement.addBatch(sql);
 
-        createTableSQL = "CREATE TABLE IF NOT EXISTS comment (\n" +
+        sql = "CREATE TABLE IF NOT EXISTS comment (\n" +
                 "    CMT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
                 "    CMT_CONTENT TEXT NOT NULL,\n" +
                 "    CMT_DATETIME NUMERIC NOT NULL,\n" +
                 "    CMT_CDT_ID INTEGER NOT NULL,\n" +
                 "    FOREIGN KEY (CMT_CDT_ID) REFERENCES coordinate(CDT_ID)\n" +
                 ");\n";
-        statement.addBatch(createTableSQL);
+        statement.addBatch(sql);
 
         statement.executeBatch();
         statement.close();
