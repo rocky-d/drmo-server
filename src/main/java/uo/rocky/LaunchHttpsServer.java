@@ -24,9 +24,9 @@ public class LaunchHttpsServer {
         System.out.println("Hello world!");
 
 
-        String SQLiteURL = "jdbc:sqlite:deer.sqlite.db";
-        EntityDBConnection.setConnection(DriverManager.getConnection(SQLiteURL));
-        System.out.println(SQLiteURL + " connected");  // TODO: close()
+        final String SQLITE_URL = "jdbc:sqlite:deer.sqlite.db";
+        EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
+        System.out.println(SQLITE_URL + " connected");  // TODO: close()
 
 
         final String JKS_PATH = "keystore00.jks";
