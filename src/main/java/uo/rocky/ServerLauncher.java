@@ -22,6 +22,7 @@ public final class ServerLauncher {
         final int PORT = 8001;
         final String HOST = "0.0.0.0";
 
+
         final HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
 
         final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
@@ -39,6 +40,7 @@ public final class ServerLauncher {
         final String HOST = "0.0.0.0";
         final String JKS_PATH = "keystore00.jks";
         final char[] JKS_PASSWORD = "891213".toCharArray();
+
 
         final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
 
