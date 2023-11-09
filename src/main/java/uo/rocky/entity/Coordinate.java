@@ -246,6 +246,9 @@ public final class Coordinate extends EntityBase {
         MOOSE,
         OTHER;
 
+        Dangertype() {
+        }
+
         @Override
         public final String toString() {
             return new StringJoiner(", ", Dangertype.class.getSimpleName() + "{", "}")

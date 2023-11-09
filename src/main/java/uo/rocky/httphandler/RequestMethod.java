@@ -13,6 +13,9 @@ public enum RequestMethod {
     TRACE,
     PATCH;
 
+    RequestMethod() {
+    }
+
     @Override
     public final String toString() {
         return new StringJoiner(", ", RequestMethod.class.getSimpleName() + "{", "}")
