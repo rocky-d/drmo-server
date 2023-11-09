@@ -7,9 +7,9 @@ public interface EntityRelatesToSQL {
         return null == string ? "NULL" : "'" + string.replace("'", "''") + "'";
     }
 
-    boolean insertSQL() throws SQLException;  // TODO: redefine exception
+    boolean insertSQL() throws SQLException;
 
-    boolean deleteSQL() throws SQLException;  // TODO: redefine exception
+    boolean deleteSQL() throws SQLException;
 
-    boolean updateSQL() throws SQLException;  // TODO: redefine exception
+    boolean updateSQL() throws SQLException;
 }
