@@ -83,11 +83,11 @@ public final class Coordinate extends EntityBase {
     }
 
     public static synchronized String selectCoordinateWithCommentsJSONString(Map<String, String> params) throws SQLException {
-        StringJoiner joiner = new StringJoiner(",", "[", "]");
+        StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
         for (Coordinate coordinate : EntityDBConnection.selectCoordinates(params)) {
-            joiner.add(coordinate.toJSONStringWithComments());
+            stringJoiner.add(coordinate.toJSONStringWithComments());
         }
-        return joiner.toString();
+        return stringJoiner.toString();
     }
 
     public static synchronized JSONArray selectCoordinateWithCommentsJSONArray(Map<String, String> params) throws SQLException {
