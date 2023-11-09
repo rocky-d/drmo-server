@@ -23,7 +23,7 @@ public class UserAuthenticator extends BasicAuthenticator {
             return null != users && 1 == users.size() && password.hashCode() == users.get(0).getHashedpassword();
         } catch (SQLException sqlException) {
             // TODO
-            sqlException.printStackTrace();
+            System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
             throw new RuntimeException(sqlException);
         }
     }

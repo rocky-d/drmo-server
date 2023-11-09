@@ -27,7 +27,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             respondBadRequest(httpExchange, nullPointerException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
-            sqlException.printStackTrace();
+            System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
             throw new RuntimeException(sqlException);
         }
     }
@@ -49,7 +49,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             respondBadRequest(httpExchange, valueOfException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
-            sqlException.printStackTrace();
+            System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
             throw new RuntimeException(sqlException);
         }
     }

@@ -23,7 +23,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
             httpExchange.sendResponseHeaders(StatusCode.INTERNAL_SERVER_ERROR.code(), responseBodyBytes.length);
             outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            System.out.println(ioException.getClass().getSimpleName() + ioException.getMessage());
             throw new RuntimeException(ioException);
         }
     }
