@@ -13,7 +13,7 @@ import java.net.InetSocketAddress;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class LaunchHttpServer {
+public final class LaunchHttpServer {
     public static void main(String[] args) throws SQLException, IOException {
         System.out.println("Hello world!");
 

@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.security.KeyStore;
 import java.sql.DriverManager;
 
-public class LaunchHttpsServer {
+public final class LaunchHttpsServer {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello world!");
 

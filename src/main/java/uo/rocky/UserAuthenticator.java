@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserAuthenticator extends BasicAuthenticator {
+public final class UserAuthenticator extends BasicAuthenticator {
     public UserAuthenticator(String realm) {
         super(realm);
     }
