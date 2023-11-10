@@ -57,7 +57,7 @@ public final class Coordinate extends EntityBase {
                 resultSet.getDouble("CDT_LONGITUDE"),
                 resultSet.getDouble("CDT_LATITUDE"),
                 resultSet.getString("CDT_DATETIME"),
-                Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
+                Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),
                 resultSet.getString("CDT_DESCRIPTION"),
                 resultSet.getString("CDT_USR_NAME")
         );
