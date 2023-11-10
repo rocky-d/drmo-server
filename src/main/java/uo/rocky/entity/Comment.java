@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Instant;
@@ -37,6 +38,15 @@ public final class Comment extends EntityBase {
                 jsonObject.getString("comment"),
                 jsonObject.getString("sent"),
                 jsonObject.getLong("id")
+        );
+    }
+
+    public static Comment valueOf(ResultSet resultSet) throws SQLException {
+        return new Comment(
+                resultSet.getLong("CMT_ID"),
+                resultSet.getString("CMT_CONTENT"),
+                resultSet.getString("CMT_DATETIME"),
+                resultSet.getLong("CMT_CDT_ID")
         );
     }
 

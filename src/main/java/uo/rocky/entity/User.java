@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -33,6 +34,15 @@ public final class User extends EntityBase {
                 jsonObject.getString("password").hashCode(),
                 jsonObject.has("email") ? jsonObject.getString("email") : null,
                 jsonObject.has("phone") ? jsonObject.getString("phone") : null
+        );
+    }
+
+    public static User valueOf(ResultSet resultSet) throws SQLException {
+        return new User(
+                resultSet.getString("USR_NAME"),
+                resultSet.getInt("USR_HASHEDPASSWORD"),
+                resultSet.getString("USR_EMAIL"),
+                resultSet.getString("USR_PHONE")
         );
     }
 

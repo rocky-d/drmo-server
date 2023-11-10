@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Instant;
@@ -47,6 +48,18 @@ public final class Coordinate extends EntityBase {
                 Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),
                 jsonObject.has("description") ? jsonObject.getString("description") : null,
                 jsonObject.getString("username")
+        );
+    }
+
+    public static Coordinate valueOf(ResultSet resultSet) throws SQLException, IllegalArgumentException {
+        return new Coordinate(
+                resultSet.getLong("CDT_ID"),
+                resultSet.getDouble("CDT_LONGITUDE"),
+                resultSet.getDouble("CDT_LATITUDE"),
+                resultSet.getString("CDT_DATETIME"),
+                Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
+                resultSet.getString("CDT_DESCRIPTION"),
+                resultSet.getString("CDT_USR_NAME")
         );
     }
 
