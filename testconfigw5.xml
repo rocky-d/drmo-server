@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<testconfig>
+   <servercertificate>./localhost.cer</servercertificate>
+   <serveraddress>https://localhost:8001</serveraddress>
+   <user id="01">
+      <username>matti</username>
+      <password>salasana</password>
+      <email>matti@matti.com</email>
+   </user>
+</testconfig>
