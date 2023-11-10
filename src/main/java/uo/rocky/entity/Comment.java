@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -135,7 +136,7 @@ public final class Comment extends EntityBase {
     }
 
     @Override
-    public synchronized boolean insertSQL() throws SQLException {
+    public synchronized boolean insertSQL() throws SQLException, DateTimeException {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
