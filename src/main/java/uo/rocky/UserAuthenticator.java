@@ -15,11 +15,11 @@ public final class UserAuthenticator extends BasicAuthenticator {
 
     @Override
     public boolean checkCredentials(String username, String password) {
-        Map<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("QUERY", "username");
-        paramsMap.put("USERNAME", username);
+        Map<String, String> queryParameters = new HashMap<>();
+        queryParameters.put("QUERY", "username");
+        queryParameters.put("USERNAME", username);
         try {
-            List<User> users = User.selectUserList(paramsMap);
+            List<User> users = User.selectUserList(queryParameters);
             return null != users && 1 == users.size() && password.hashCode() == users.get(0).getHashedpassword();
         } catch (SQLException sqlException) {
             // TODO
