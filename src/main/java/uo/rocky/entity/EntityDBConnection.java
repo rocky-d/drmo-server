@@ -83,12 +83,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Comment(
-                            resultSet.getLong("CMT_ID"),
-                            resultSet.getString("CMT_CONTENT"),
-                            resultSet.getString("CMT_DATETIME"),
-                            resultSet.getLong("CMT_CDT_ID")
-                    ));
+                    results.add(Comment.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -102,12 +97,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Comment(
-                            resultSet.getLong("CMT_ID"),
-                            resultSet.getString("CMT_CONTENT"),
-                            resultSet.getString("CMT_DATETIME"),
-                            resultSet.getLong("CMT_CDT_ID")
-                    ));
+                    results.add(Comment.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -121,12 +111,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Comment(
-                            resultSet.getLong("CMT_ID"),
-                            resultSet.getString("CMT_CONTENT"),
-                            resultSet.getString("CMT_DATETIME"),
-                            resultSet.getLong("CMT_CDT_ID")
-                    ));
+                    results.add(Comment.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -140,12 +125,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Comment(
-                            resultSet.getLong("CMT_ID"),
-                            resultSet.getString("CMT_CONTENT"),
-                            resultSet.getString("CMT_DATETIME"),
-                            resultSet.getLong("CMT_CDT_ID")
-                    ));
+                    results.add(Comment.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -172,16 +152,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Coordinate(
-                            resultSet.getLong("CDT_ID"),
-                            resultSet.getDouble("CDT_LONGITUDE"),
-                            resultSet.getDouble("CDT_LATITUDE"),
-                            resultSet.getString("CDT_DATETIME"),
-                            null == resultSet.getString("CDT_DANGERTYPE") ?
-                                    null : Coordinate.Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
-                            resultSet.getString("CDT_DESCRIPTION"),
-                            resultSet.getString("CDT_USR_NAME")
-                    ));
+                    results.add(Coordinate.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -196,16 +167,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Coordinate(
-                            resultSet.getLong("CDT_ID"),
-                            resultSet.getDouble("CDT_LONGITUDE"),
-                            resultSet.getDouble("CDT_LATITUDE"),
-                            resultSet.getString("CDT_DATETIME"),
-                            null == resultSet.getString("CDT_DANGERTYPE") ?
-                                    null : Coordinate.Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
-                            resultSet.getString("CDT_DESCRIPTION"),
-                            resultSet.getString("CDT_USR_NAME")
-                    ));
+                    results.add(Coordinate.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -219,16 +181,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Coordinate(
-                            resultSet.getLong("CDT_ID"),
-                            resultSet.getDouble("CDT_LONGITUDE"),
-                            resultSet.getDouble("CDT_LATITUDE"),
-                            resultSet.getString("CDT_DATETIME"),
-                            null == resultSet.getString("CDT_DANGERTYPE") ?
-                                    null : Coordinate.Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
-                            resultSet.getString("CDT_DESCRIPTION"),
-                            resultSet.getString("CDT_USR_NAME")
-                    ));
+                    results.add(Coordinate.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -243,16 +196,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Coordinate(
-                            resultSet.getLong("CDT_ID"),
-                            resultSet.getDouble("CDT_LONGITUDE"),
-                            resultSet.getDouble("CDT_LATITUDE"),
-                            resultSet.getString("CDT_DATETIME"),
-                            null == resultSet.getString("CDT_DANGERTYPE") ?
-                                    null : Coordinate.Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
-                            resultSet.getString("CDT_DESCRIPTION"),
-                            resultSet.getString("CDT_USR_NAME")
-                    ));
+                    results.add(Coordinate.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -266,16 +210,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new Coordinate(
-                            resultSet.getLong("CDT_ID"),
-                            resultSet.getDouble("CDT_LONGITUDE"),
-                            resultSet.getDouble("CDT_LATITUDE"),
-                            resultSet.getString("CDT_DATETIME"),
-                            null == resultSet.getString("CDT_DANGERTYPE") ?
-                                    null : Coordinate.Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE")),
-                            resultSet.getString("CDT_DESCRIPTION"),
-                            resultSet.getString("CDT_USR_NAME")
-                    ));
+                    results.add(Coordinate.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -303,12 +238,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
+                    results.add(User.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -322,12 +252,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
+                    results.add(User.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -342,12 +267,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
+                    results.add(User.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -362,12 +282,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
+                    results.add(User.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
@@ -381,12 +296,7 @@ public final class EntityDBConnection {
                 resultSet = statement.executeQuery(sql);
                 results = new ArrayList<>();
                 while (resultSet.next()) {
-                    results.add(new User(
-                            resultSet.getString("USR_NAME"),
-                            resultSet.getInt("USR_HASHEDPASSWORD"),
-                            resultSet.getString("USR_EMAIL"),
-                            resultSet.getString("USR_PHONE")
-                    ));
+                    results.add(User.valueOf(resultSet));
                 }
                 resultSet.close();
                 statement.close();
