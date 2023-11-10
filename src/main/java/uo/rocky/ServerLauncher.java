@@ -82,6 +82,7 @@ public final class ServerLauncher {
         EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
         System.out.println(SQLITE_URL + " connected");  // TODO: close()
 
-        launchHttpsServer();
+        launchHttpServer();
+//        launchHttpsServer();
     }
 }
