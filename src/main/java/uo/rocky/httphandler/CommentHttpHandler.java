@@ -7,6 +7,7 @@ import uo.rocky.entity.Comment;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.DateTimeException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -47,6 +48,8 @@ public final class CommentHttpHandler extends HttpHandlerBase {
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (JSONException valueOfException) {
             respondBadRequest(httpExchange, valueOfException.getMessage());
+        } catch (DateTimeException dateTimeException) {
+            respondBadRequest(httpExchange, dateTimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
             System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());

@@ -156,6 +156,8 @@ public abstract class HttpHandlerBase implements HttpHandler {
             }
         } catch (IOException ioException) {
             handleIOException(httpExchange, ioException);
+        } catch (Exception unknownException) {
+            handleUnknownException(httpExchange, unknownException);
         } finally {
             httpExchange.close();
         }
@@ -164,5 +166,10 @@ public abstract class HttpHandlerBase implements HttpHandler {
     public final void handleIOException(HttpExchange httpExchange, IOException ioException) {
         // TODO
         respondInternalServerError(httpExchange, ioException);
+    }
+
+    public final void handleUnknownException(HttpExchange httpExchange, Exception unknownException) {
+        // TODO
+        respondInternalServerError(httpExchange, unknownException);
     }
 }
