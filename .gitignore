@@ -41,6 +41,6 @@ build/
 *.db
 *.sqlite
 *.jks
+.idea/
 draft/
-/.idea/
 /archive/
