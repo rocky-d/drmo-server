@@ -1,7 +1,6 @@
 package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
-import org.json.JSONException;
 import org.json.JSONObject;
 import uo.rocky.entity.User;
 
@@ -23,8 +22,8 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
-        } catch (NullPointerException nullPointerException) {
-            respondBadRequest(httpExchange, nullPointerException.getMessage());
+        } catch (RuntimeException runtimeException) {
+            respondBadRequest(httpExchange, runtimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
             System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
@@ -45,8 +44,8 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             System.out.println(user);
             System.out.println(user.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
-        } catch (JSONException valueOfException) {
-            respondBadRequest(httpExchange, valueOfException.getMessage());
+        } catch (RuntimeException runtimeException) {
+            respondBadRequest(httpExchange, runtimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
             System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
