@@ -129,7 +129,7 @@ public final class Comment extends EntityBase {
         return new StringJoiner(",", "{", "}")
                 .add("\"commentid\":\"" + id + "\"")
                 .add("\"comment\":" + EntityRelatesToJSON.escapeDoubleQuotes(content))
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(LOCALDATETIME_FORMATTER_T.format(localdatetime) + datetimeoffset))  // TODO: localdatetime.toString()
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(LOCALDATETIME_FORMATTER_T.format(localdatetime) + datetimeoffset))
                 .add("\"id\":\"" + cdtId + "\"")
                 .toString();
     }
