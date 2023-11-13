@@ -47,7 +47,8 @@ public final class EntityDBConnection {
                 "    CDT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
                 "    CDT_LONGITUDE REAL NOT NULL,\n" +
                 "    CDT_LATITUDE REAL NOT NULL,\n" +
-                "    CDT_DATETIME NUMERIC NOT NULL,\n" +
+                "    CDT_LOCALDATETIME NUMERIC NOT NULL,\n" +
+                "    CDT_DATETIMEOFFSET TEXT NOT NULL,\n" +
                 "    CDT_DANGERTYPE TEXT NOT NULL,\n" +
                 "    CDT_DESCRIPTION TEXT,\n" +
                 "    CDT_USR_NAME TEXT NOT NULL,\n" +
