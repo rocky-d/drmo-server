@@ -26,8 +26,6 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             respondBadRequest(httpExchange, runtimeException.getClass().getSimpleName() + ": " + runtimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
-            System.out.println(sqlException.getClass().getSimpleName() + ": " + sqlException.getMessage());
-            throw new RuntimeException(sqlException);
         }
     }
 
@@ -48,8 +46,6 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             respondBadRequest(httpExchange, runtimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
-            System.out.println(sqlException.getClass().getSimpleName() + ": " + sqlException.getMessage());
-            throw new RuntimeException(sqlException);
         }
     }
 }
