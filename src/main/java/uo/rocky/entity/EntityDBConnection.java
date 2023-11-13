@@ -81,6 +81,7 @@ public final class EntityDBConnection {
                 sql = null;
                 break;
         }
+
         List<Comment> results;
         if (null == sql) {
             results = null;
@@ -121,6 +122,7 @@ public final class EntityDBConnection {
                 sql = null;
                 break;
         }
+
         List<Coordinate> results;
         if (null == sql) {
             results = null;
@@ -161,6 +163,7 @@ public final class EntityDBConnection {
                 sql = null;
                 break;
         }
+
         List<User> results;
         if (null == sql) {
             results = null;
