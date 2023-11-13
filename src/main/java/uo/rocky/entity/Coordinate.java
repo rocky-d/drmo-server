@@ -43,7 +43,7 @@ public final class Coordinate extends EntityBase {
                 jsonObject.getDouble("latitude"),
                 LocalDateTime.parse(jsonObject.getString("sent").substring(0, 23), LOCALDATETIME_FORMATTER_T),
                 23 < jsonObject.getString("sent").length() ? jsonObject.getString("sent").substring(23) : "",
-                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
+                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),
                 jsonObject.has("description") ? jsonObject.getString("description") : null,
                 jsonObject.getString("username")
         );
@@ -56,7 +56,7 @@ public final class Coordinate extends EntityBase {
                 resultSet.getDouble("CDT_LATITUDE"),
                 LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), LOCALDATETIME_FORMATTER_SPACE),
                 resultSet.getString("CDT_DATETIMEOFFSET"),
-                Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
+                Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),
                 resultSet.getString("CDT_DESCRIPTION"),
                 resultSet.getString("CDT_USR_NAME")
         );
