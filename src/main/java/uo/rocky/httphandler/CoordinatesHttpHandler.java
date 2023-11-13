@@ -43,7 +43,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             System.out.println(coordinate.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (RuntimeException runtimeException) {
-            respondBadRequest(httpExchange, runtimeException.getMessage());
+            respondBadRequest(httpExchange, runtimeException.getClass().getSimpleName() + ": " + runtimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
         }
