@@ -18,6 +18,8 @@ import java.security.KeyStore;
 import java.sql.DriverManager;
 
 public final class ServerLauncher {
+    public static final String SQLITE_URL = "jdbc:sqlite:deer.sqlite.db";
+
     public static final int PORT = 8001;
     public static final String HOST = "0.0.0.0";
 
@@ -75,7 +77,6 @@ public final class ServerLauncher {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello world!");
 
-        final String SQLITE_URL = "jdbc:sqlite:deer.sqlite.db";
         EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
         System.out.println(SQLITE_URL + " connected");  // TODO: close()
 
