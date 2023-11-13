@@ -31,7 +31,7 @@ public final class ServerLauncher {
         final HttpContext registrationContext = httpServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
 //        final HttpContext warningContext = httpServer.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
 
-        httpServer.setExecutor(null);  // creates a default executor
+        httpServer.setExecutor(null);
         httpServer.start();
     }
 
