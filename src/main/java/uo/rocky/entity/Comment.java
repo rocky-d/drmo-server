@@ -19,8 +19,6 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public final class Comment extends EntityBase {
-    private static Connection connection = null;
-
     private long id;
     private String content;
     private String datetime;  // TODO: refactor datatype
@@ -49,14 +47,6 @@ public final class Comment extends EntityBase {
                 resultSet.getString("CMT_DATETIME"),
                 resultSet.getLong("CMT_CDT_ID")
         );
-    }
-
-    static Connection getConnection() {
-        return connection;
-    }
-
-    static void setConnection(Connection connection) {
-        Comment.connection = connection;
     }
 
     public static synchronized boolean insertComment(Comment comment) throws SQLException {
@@ -155,10 +145,10 @@ public final class Comment extends EntityBase {
         );
         System.out.println(sql);
 
-        Statement statement = connection.createStatement();
+        Statement statement = getConnection().createStatement();
         statement.executeUpdate(sql);
         statement.close();
-        connection.commit();
+        getConnection().commit();
 
         return true;
     }

@@ -4,14 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +18,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class Coordinate extends EntityBase {
-    private static final DateTimeFormatter LOCALDATETIME_FORMATTER_T = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
-    private static final DateTimeFormatter LOCALDATETIME_FORMATTER_SPACE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-
-    private static Connection connection = null;
-
     private long id;
     private double longitude;
     private double latitude;
@@ -50,7 +43,7 @@ public final class Coordinate extends EntityBase {
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
                 jsonObject.getDouble("latitude"),
-                LocalDateTime.parse(jsonObject.getString("sent").substring(0, 23), LOCALDATETIME_FORMATTER_T),  // TODO
+                LocalDateTime.parse(jsonObject.getString("sent").substring(0, 23), EntityBase.LOCALDATETIME_FORMATTER_T),  // TODO
                 23 < jsonObject.getString("sent").length() ? jsonObject.getString("sent").substring(23) : "",
                 Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
                 jsonObject.has("description") ? jsonObject.getString("description") : null,
@@ -63,20 +56,12 @@ public final class Coordinate extends EntityBase {
                 resultSet.getLong("CDT_ID"),
                 resultSet.getDouble("CDT_LONGITUDE"),
                 resultSet.getDouble("CDT_LATITUDE"),
-                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), LOCALDATETIME_FORMATTER_SPACE),  // TODO
+                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), EntityBase.LOCALDATETIME_FORMATTER_SPACE),  // TODO
                 resultSet.getString("CDT_DATETIMEOFFSET"),
                 Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
                 resultSet.getString("CDT_DESCRIPTION"),
                 resultSet.getString("CDT_USR_NAME")
         );
-    }
-
-    static Connection getConnection() {
-        return connection;
-    }
-
-    static void setConnection(Connection connection) {
-        Coordinate.connection = connection;
     }
 
     public static synchronized boolean insertCoordinate(Coordinate coordinate) throws SQLException {
@@ -246,10 +231,10 @@ public final class Coordinate extends EntityBase {
         );
         System.out.println(sql);
 
-        Statement statement = connection.createStatement();
+        Statement statement = getConnection().createStatement();
         statement.executeUpdate(sql);
         statement.close();
-        connection.commit();
+        getConnection().commit();
 
         return true;
     }

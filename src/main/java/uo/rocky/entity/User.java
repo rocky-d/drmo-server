@@ -14,8 +14,6 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public final class User extends EntityBase {
-    private static Connection connection = null;
-
     private String name;
     private int hashedpassword;
     private String email;
@@ -44,14 +42,6 @@ public final class User extends EntityBase {
                 resultSet.getString("USR_EMAIL"),
                 resultSet.getString("USR_PHONE")
         );
-    }
-
-    static Connection getConnection() {
-        return connection;
-    }
-
-    static void setConnection(Connection connection) {
-        User.connection = connection;
     }
 
     public static synchronized boolean insertUser(User user) throws SQLException {
@@ -145,10 +135,10 @@ public final class User extends EntityBase {
         );
         System.out.println(sql);
 
-        Statement statement = connection.createStatement();
+        Statement statement = getConnection().createStatement();
         statement.executeUpdate(sql);
         statement.close();
-        connection.commit();
+        getConnection().commit();
 
         return true;
     }
