@@ -76,14 +76,10 @@ public final class ServerLauncher {
         System.out.println("Hello world!");
 
         EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
-        System.out.println(SQLITE_URL + " connected");  // TODO: close()
+        System.out.println(SQLITE_URL + " connected");
 
-        try {
-            launchHttpServer();
-//            launchHttpsServer();
-            System.out.println("Server started on port " + PORT);
-        } finally {
-            EntityDBConnection.closeConnection();
-        }
+        launchHttpServer();
+//        launchHttpsServer();
+        System.out.println("Server started on port " + PORT);
     }
 }

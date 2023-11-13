@@ -13,7 +13,7 @@ public final class EntityDBConnection {
     private static Connection connection = null;
 
     public static void closeConnection() throws SQLException {
-        if (!connection.isClosed()) {
+        if (null != connection && !connection.isClosed()) {
             connection.close();
         }
     }
