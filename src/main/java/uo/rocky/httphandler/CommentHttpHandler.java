@@ -23,10 +23,10 @@ public final class CommentHttpHandler extends HttpHandlerBase {
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
         } catch (RuntimeException runtimeException) {
-            respondBadRequest(httpExchange, runtimeException.getMessage());
+            respondBadRequest(httpExchange, runtimeException.getClass().getSimpleName() + ": " + runtimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
-            System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
+            System.out.println(sqlException.getClass().getSimpleName() + ": " + sqlException.getMessage());
             throw new RuntimeException(sqlException);
         }
     }
@@ -48,7 +48,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
             respondBadRequest(httpExchange, runtimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
-            System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
+            System.out.println(sqlException.getClass().getSimpleName() + ": " + sqlException.getMessage());
             throw new RuntimeException(sqlException);
         }
     }
