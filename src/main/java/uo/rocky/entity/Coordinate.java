@@ -1,16 +1,13 @@
 package uo.rocky.entity;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -38,7 +35,7 @@ public final class Coordinate extends EntityBase {
         this.usrName = usrName;
     }
 
-    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException, IndexOutOfBoundsException, DateTimeParseException, IllegalArgumentException {
+    public static Coordinate valueOf(JSONObject jsonObject) {
         return new Coordinate(
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
@@ -51,7 +48,7 @@ public final class Coordinate extends EntityBase {
         );
     }
 
-    public static Coordinate valueOf(ResultSet resultSet) throws SQLException, DateTimeParseException, IllegalArgumentException {
+    public static Coordinate valueOf(ResultSet resultSet) throws SQLException {
         return new Coordinate(
                 resultSet.getLong("CDT_ID"),
                 resultSet.getDouble("CDT_LONGITUDE"),
@@ -183,7 +180,7 @@ public final class Coordinate extends EntityBase {
     }
 
     @Override
-    public String toJSONString() throws DateTimeException {
+    public String toJSONString() {
         return new StringJoiner(",", "{", "}")
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")
@@ -195,7 +192,7 @@ public final class Coordinate extends EntityBase {
                 .toString();
     }
 
-    public String toJSONStringWithComments() throws SQLException, DateTimeException {
+    public String toJSONStringWithComments() throws SQLException {
         return new StringJoiner(",", "{", "}")
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")

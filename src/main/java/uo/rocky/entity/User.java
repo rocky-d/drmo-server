@@ -1,7 +1,6 @@
 package uo.rocky.entity;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.ResultSet;
@@ -25,7 +24,7 @@ public final class User extends EntityBase {
         this.phone = phone;
     }
 
-    public static User valueOf(JSONObject jsonObject) throws JSONException {
+    public static User valueOf(JSONObject jsonObject) {
         return new User(
                 jsonObject.getString("username"),
                 jsonObject.getString("password").hashCode(),

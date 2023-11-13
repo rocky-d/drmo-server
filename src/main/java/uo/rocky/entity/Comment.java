@@ -1,16 +1,13 @@
 package uo.rocky.entity;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -31,7 +28,7 @@ public final class Comment extends EntityBase {
         this.cdtId = cdtId;
     }
 
-    public static Comment valueOf(JSONObject jsonObject) throws JSONException, IndexOutOfBoundsException, DateTimeParseException {
+    public static Comment valueOf(JSONObject jsonObject) {
         return new Comment(
                 Instant.now().toEpochMilli(),
                 jsonObject.getString("comment"),
@@ -41,7 +38,7 @@ public final class Comment extends EntityBase {
         );
     }
 
-    public static Comment valueOf(ResultSet resultSet) throws SQLException, DateTimeParseException {
+    public static Comment valueOf(ResultSet resultSet) throws SQLException {
         return new Comment(
                 resultSet.getLong("CMT_ID"),
                 resultSet.getString("CMT_CONTENT"),
@@ -127,7 +124,7 @@ public final class Comment extends EntityBase {
     }
 
     @Override
-    public String toJSONString() throws DateTimeException {
+    public String toJSONString() {
         return new StringJoiner(",", "{", "}")
                 .add("\"commentid\":\"" + id + "\"")
                 .add("\"comment\":" + EntityRelatesToJSON.escapeDoubleQuotes(content))
