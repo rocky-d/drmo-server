@@ -12,6 +12,7 @@ import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -19,7 +20,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class Coordinate extends EntityBase {
-    private static final DateTimeFormatter LOCALDATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyy-MM-dd'T'HH:mm:ss.SSS");
+    private static final DateTimeFormatter LOCALDATETIME_FORMATTER_T = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    private static final DateTimeFormatter LOCALDATETIME_FORMATTER_SPACE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     private static Connection connection = null;
 
@@ -43,12 +45,12 @@ public final class Coordinate extends EntityBase {
         this.usrName = usrName;
     }
 
-    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException, IllegalArgumentException {
+    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException, DateTimeParseException, IllegalArgumentException {
         return new Coordinate(
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
                 jsonObject.getDouble("latitude"),
-                LocalDateTime.parse(jsonObject.getString("sent")),  // TODO
+                LocalDateTime.parse(jsonObject.getString("sent").substring(0, 23), LOCALDATETIME_FORMATTER_T),  // TODO
                 23 < jsonObject.getString("sent").length() ? jsonObject.getString("sent").substring(23) : "",
                 Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
                 jsonObject.has("description") ? jsonObject.getString("description") : null,
@@ -56,14 +58,14 @@ public final class Coordinate extends EntityBase {
         );
     }
 
-    public static Coordinate valueOf(ResultSet resultSet) throws SQLException, IllegalArgumentException {
+    public static Coordinate valueOf(ResultSet resultSet) throws SQLException, DateTimeParseException, IllegalArgumentException {
         return new Coordinate(
                 resultSet.getLong("CDT_ID"),
                 resultSet.getDouble("CDT_LONGITUDE"),
                 resultSet.getDouble("CDT_LATITUDE"),
-                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME")),  // TODO
+                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), LOCALDATETIME_FORMATTER_SPACE),  // TODO
                 resultSet.getString("CDT_DATETIMEOFFSET"),
-                Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),
+                Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
                 resultSet.getString("CDT_DESCRIPTION"),
                 resultSet.getString("CDT_USR_NAME")
         );
@@ -196,24 +198,24 @@ public final class Coordinate extends EntityBase {
     }
 
     @Override
-    public String toJSONString() {
+    public String toJSONString() throws DateTimeException {
         return new StringJoiner(",", "{", "}")
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")
                 .add("\"latitude\":\"" + latitude + "\"")
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER) + datetimeoffset))  // TODO: localdatetime.toString()
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_T) + datetimeoffset))  // TODO: localdatetime.toString()
                 .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
                 .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
                 .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
                 .toString();
     }
 
-    public String toJSONStringWithComments() throws SQLException {
+    public String toJSONStringWithComments() throws SQLException, DateTimeException {
         return new StringJoiner(",", "{", "}")
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")
                 .add("\"latitude\":\"" + latitude + "\"")
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER) + datetimeoffset))
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_T) + datetimeoffset))
                 .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
                 .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
                 .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
@@ -236,7 +238,7 @@ public final class Coordinate extends EntityBase {
                 id,
                 longitude,
                 latitude,
-                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"))),  // TODO
+                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_SPACE)),  // TODO
                 EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 EntityRelatesToSQL.escapeSingleQuotes(dangertype.name()),
                 EntityRelatesToSQL.escapeSingleQuotes(description),
