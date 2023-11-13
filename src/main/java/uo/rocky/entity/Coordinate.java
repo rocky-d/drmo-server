@@ -11,7 +11,6 @@ import java.sql.Statement;
 import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
@@ -20,21 +19,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class Coordinate extends EntityBase {
+    private static final DateTimeFormatter LOCALDATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyy-MM-dd'T'HH:mm:ss.SSS");
+
     private static Connection connection = null;
 
     private long id;
     private double longitude;
     private double latitude;
-    private String datetime;  // TODO: refactor datatype
+    private LocalDateTime localdatetime;  // TODO: refactor datatype
+    private String datetimeoffset;
     private Dangertype dangertype;
     private String description;
     private String usrName;
 
-    public Coordinate(long id, double longitude, double latitude, String datetime, Dangertype dangertype, String description, String usrName) {
+    public Coordinate(long id, double longitude, double latitude, LocalDateTime localdatetime, String datetimeoffset, Dangertype dangertype, String description, String usrName) {
         this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.datetime = datetime;
+        this.localdatetime = localdatetime;
+        this.datetimeoffset = datetimeoffset;
         this.dangertype = dangertype;
         this.description = description;
         this.usrName = usrName;
@@ -45,8 +48,9 @@ public final class Coordinate extends EntityBase {
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
                 jsonObject.getDouble("latitude"),
-                jsonObject.getString("sent"),
-                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),
+                LocalDateTime.parse(jsonObject.getString("sent")),  // TODO
+                23 < jsonObject.getString("sent").length() ? jsonObject.getString("sent").substring(23) : "",
+                Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
                 jsonObject.has("description") ? jsonObject.getString("description") : null,
                 jsonObject.getString("username")
         );
@@ -57,7 +61,8 @@ public final class Coordinate extends EntityBase {
                 resultSet.getLong("CDT_ID"),
                 resultSet.getDouble("CDT_LONGITUDE"),
                 resultSet.getDouble("CDT_LATITUDE"),
-                resultSet.getString("CDT_DATETIME"),
+                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME")),  // TODO
+                resultSet.getString("CDT_DATETIMEOFFSET"),
                 Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),
                 resultSet.getString("CDT_DESCRIPTION"),
                 resultSet.getString("CDT_USR_NAME")
@@ -136,12 +141,20 @@ public final class Coordinate extends EntityBase {
         this.latitude = latitude;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public LocalDateTime getLocaldatetime() {
+        return localdatetime;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setLocaldatetime(LocalDateTime localdatetime) {
+        this.localdatetime = localdatetime;
+    }
+
+    public String getDatetimeoffset() {
+        return datetimeoffset;
+    }
+
+    public void setDatetimeoffset(String datetimeoffset) {
+        this.datetimeoffset = datetimeoffset;
     }
 
     public Dangertype getDangertype() {
@@ -174,7 +187,8 @@ public final class Coordinate extends EntityBase {
                 .add("id=" + id)
                 .add("longitude=" + longitude)
                 .add("latitude=" + latitude)
-                .add("datetime=" + (null == datetime ? "null" : "'" + datetime + "'"))
+                .add("localdatetime=" + (null == localdatetime ? "null" : "'" + localdatetime + "'"))
+                .add("datetimeoffset=" + (null == datetimeoffset ? "null" : "'" + datetimeoffset + "'"))
                 .add("dangertype=" + (null == dangertype ? "null" : dangertype))
                 .add("description=" + (null == description ? "null" : "'" + description + "'"))
                 .add("usrName=" + (null == usrName ? "null" : "'" + usrName + "'"))
@@ -187,7 +201,7 @@ public final class Coordinate extends EntityBase {
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")
                 .add("\"latitude\":\"" + latitude + "\"")
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER) + datetimeoffset))  // TODO: localdatetime.toString()
                 .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
                 .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
                 .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
@@ -199,7 +213,7 @@ public final class Coordinate extends EntityBase {
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")
                 .add("\"latitude\":\"" + latitude + "\"")
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER) + datetimeoffset))
                 .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
                 .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
                 .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
@@ -216,18 +230,14 @@ public final class Coordinate extends EntityBase {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
-        Instant instant = Instant.parse(datetime);
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-        String formattedDateTime = localDateTime.format(formatter);
-
         String sql = String.format("INSERT INTO coordinate" +
-                        " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_DATETIME,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
-                        " VALUES (%s,%s,%s,%s,%s,%s,%s);",
+                        " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_LOCALDATETIME,CDT_DATETIMEOFFSET,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
+                        " VALUES (%s,%s,%s,%s,%s,%s,%s,%s);",
                 id,
                 longitude,
                 latitude,
-                EntityRelatesToSQL.escapeSingleQuotes(formattedDateTime),
+                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"))),
+                EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 EntityRelatesToSQL.escapeSingleQuotes(dangertype.name()),
                 EntityRelatesToSQL.escapeSingleQuotes(description),
                 EntityRelatesToSQL.escapeSingleQuotes(usrName)
