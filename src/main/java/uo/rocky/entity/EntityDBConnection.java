@@ -26,9 +26,7 @@ public final class EntityDBConnection {
     }
 
     private static void setConnectionForAllEntities() {
-        Comment.setConnection(connection);
-        Coordinate.setConnection(connection);
-        User.setConnection(connection);
+        EntityBase.setConnection(connection);
     }
 
     private static void createTablesIfNotExists() throws SQLException {
