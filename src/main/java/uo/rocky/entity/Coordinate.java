@@ -38,7 +38,7 @@ public final class Coordinate extends EntityBase {
         this.usrName = usrName;
     }
 
-    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException, DateTimeParseException, IllegalArgumentException {
+    public static Coordinate valueOf(JSONObject jsonObject) throws JSONException, IndexOutOfBoundsException, DateTimeParseException, IllegalArgumentException {
         return new Coordinate(
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
