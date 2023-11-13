@@ -18,11 +18,10 @@ import java.security.KeyStore;
 import java.sql.DriverManager;
 
 public final class ServerLauncher {
+    public static final int PORT = 8001;
+    public static final String HOST = "0.0.0.0";
+
     public static void launchHttpServer() throws IOException {
-        final int PORT = 8001;
-        final String HOST = "0.0.0.0";
-
-
         final HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
 
         final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
@@ -36,8 +35,6 @@ public final class ServerLauncher {
     }
 
     public static void launchHttpsServer() throws Exception {
-        final int PORT = 8001;
-        final String HOST = "0.0.0.0";
         final String JKS_PATH = "keystore00.jks";
         final char[] JKS_PASSWORD = "891213".toCharArray();
 
