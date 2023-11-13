@@ -7,7 +7,7 @@ import uo.rocky.entity.Coordinate;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.DateTimeException;
+import java.time.format.DateTimeParseException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -46,10 +46,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
             System.out.println(coordinate);
             System.out.println(coordinate.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
-        } catch (JSONException | IllegalArgumentException valueOfException) {
+        } catch (JSONException | IndexOutOfBoundsException | DateTimeParseException | IllegalArgumentException valueOfException) {
             respondBadRequest(httpExchange, valueOfException.getMessage());
-        } catch (DateTimeException dateTimeException) {
-            respondBadRequest(httpExchange, dateTimeException.getMessage());
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
             System.out.println(sqlException.getClass().getSimpleName() + sqlException.getMessage());
