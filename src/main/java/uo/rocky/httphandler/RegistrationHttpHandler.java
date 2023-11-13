@@ -23,7 +23,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
         } catch (RuntimeException runtimeException) {
-            respondBadRequest(httpExchange, runtimeException.getClass().getSimpleName() + ": " + runtimeException.getMessage());
+            respondBadRequest(httpExchange, runtimeException);
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
         }
@@ -43,7 +43,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
             System.out.println(user.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (RuntimeException runtimeException) {
-            respondBadRequest(httpExchange, runtimeException.getClass().getSimpleName() + ": " + runtimeException.getMessage());
+            respondBadRequest(httpExchange, runtimeException);
         } catch (SQLException sqlException) {
             respondInternalServerError(httpExchange, sqlException);
         }
