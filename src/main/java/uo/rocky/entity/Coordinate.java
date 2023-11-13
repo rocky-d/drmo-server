@@ -21,7 +21,7 @@ public final class Coordinate extends EntityBase {
     private long id;
     private double longitude;
     private double latitude;
-    private LocalDateTime localdatetime;  // TODO: refactor datatype
+    private LocalDateTime localdatetime;
     private String datetimeoffset;
     private Dangertype dangertype;
     private String description;
@@ -43,7 +43,7 @@ public final class Coordinate extends EntityBase {
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
                 jsonObject.getDouble("latitude"),
-                LocalDateTime.parse(jsonObject.getString("sent").substring(0, 23), EntityBase.LOCALDATETIME_FORMATTER_T),  // TODO
+                LocalDateTime.parse(jsonObject.getString("sent").substring(0, 23), LOCALDATETIME_FORMATTER_T),
                 23 < jsonObject.getString("sent").length() ? jsonObject.getString("sent").substring(23) : "",
                 Dangertype.valueOf(jsonObject.getString("dangertype").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
                 jsonObject.has("description") ? jsonObject.getString("description") : null,
@@ -56,7 +56,7 @@ public final class Coordinate extends EntityBase {
                 resultSet.getLong("CDT_ID"),
                 resultSet.getDouble("CDT_LONGITUDE"),
                 resultSet.getDouble("CDT_LATITUDE"),
-                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), EntityBase.LOCALDATETIME_FORMATTER_SPACE),  // TODO
+                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), LOCALDATETIME_FORMATTER_SPACE),
                 resultSet.getString("CDT_DATETIMEOFFSET"),
                 Dangertype.valueOf(resultSet.getString("CDT_DANGERTYPE").toUpperCase()),  // TODO: try jsonObject.getEnum("dangertype")
                 resultSet.getString("CDT_DESCRIPTION"),
@@ -223,7 +223,7 @@ public final class Coordinate extends EntityBase {
                 id,
                 longitude,
                 latitude,
-                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_SPACE)),  // TODO
+                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_SPACE)),
                 EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 EntityRelatesToSQL.escapeSingleQuotes(dangertype.name()),
                 EntityRelatesToSQL.escapeSingleQuotes(description),

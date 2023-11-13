@@ -4,15 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -21,13 +18,15 @@ import java.util.stream.Collectors;
 public final class Comment extends EntityBase {
     private long id;
     private String content;
-    private String datetime;  // TODO: refactor datatype
+    private LocalDateTime localdatetime;
+    private String datetimeoffset;
     private long cdtId;
 
-    public Comment(long id, String content, String datetime, long cdtId) {
+    public Comment(long id, String content, LocalDateTime localdatetime, String datetimeoffset, long cdtId) {
         this.id = id;
         this.content = content;
-        this.datetime = datetime;
+        this.localdatetime = localdatetime;
+        this.datetimeoffset = datetimeoffset;
         this.cdtId = cdtId;
     }
 
@@ -35,7 +34,8 @@ public final class Comment extends EntityBase {
         return new Comment(
                 Instant.now().toEpochMilli(),
                 jsonObject.getString("comment"),
-                jsonObject.getString("sent"),
+                LocalDateTime.parse(jsonObject.getString("sent").substring(0, 23), LOCALDATETIME_FORMATTER_T),
+                23 < jsonObject.getString("sent").length() ? jsonObject.getString("sent").substring(23) : "",
                 jsonObject.getLong("id")
         );
     }
@@ -44,7 +44,8 @@ public final class Comment extends EntityBase {
         return new Comment(
                 resultSet.getLong("CMT_ID"),
                 resultSet.getString("CMT_CONTENT"),
-                resultSet.getString("CMT_DATETIME"),
+                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), LOCALDATETIME_FORMATTER_SPACE),
+                resultSet.getString("CDT_DATETIMEOFFSET"),
                 resultSet.getLong("CMT_CDT_ID")
         );
     }
@@ -89,12 +90,20 @@ public final class Comment extends EntityBase {
         this.content = content;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public LocalDateTime getLocaldatetime() {
+        return localdatetime;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setLocaldatetime(LocalDateTime localdatetime) {
+        this.localdatetime = localdatetime;
+    }
+
+    public String getDatetimeoffset() {
+        return datetimeoffset;
+    }
+
+    public void setDatetimeoffset(String datetimeoffset) {
+        this.datetimeoffset = datetimeoffset;
     }
 
     public long getCdtId() {
@@ -110,7 +119,8 @@ public final class Comment extends EntityBase {
         return new StringJoiner(", ", Comment.class.getSimpleName() + "{", "}")
                 .add("id=" + id)
                 .add("content=" + (null == content ? null : "'" + content + "'"))
-                .add("datetime=" + (null == datetime ? null : "'" + datetime + "'"))
+                .add("localdatetime=" + (null == localdatetime ? "null" : "'" + localdatetime + "'"))
+                .add("datetimeoffset=" + (null == datetimeoffset ? "null" : "'" + datetimeoffset + "'"))
                 .add("cdtId=" + cdtId)
                 .toString();
     }
@@ -120,7 +130,7 @@ public final class Comment extends EntityBase {
         return new StringJoiner(",", "{", "}")
                 .add("\"commentid\":\"" + id + "\"")
                 .add("\"comment\":" + EntityRelatesToJSON.escapeDoubleQuotes(content))
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(datetime))
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_T) + datetimeoffset))  // TODO: localdatetime.toString()
                 .add("\"id\":\"" + cdtId + "\"")
                 .toString();
     }
@@ -130,17 +140,13 @@ public final class Comment extends EntityBase {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
-        Instant instant = Instant.parse(datetime);
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
-        String formattedDateTime = localDateTime.format(formatter);
-
         String sql = String.format("INSERT INTO comment" +
-                        " (CMT_ID,CMT_CONTENT,CMT_DATETIME,CMT_CDT_ID)" +
-                        " VALUES (%s,%s,%s,%s);",
+                        " (CMT_ID,CMT_CONTENT,CMT_LOCALDATETIME,CMT_DATETIMEOFFSET,CMT_CDT_ID)" +
+                        " VALUES (%s,%s,%s,%s,%s);",
                 id,
                 EntityRelatesToSQL.escapeSingleQuotes(content),
-                EntityRelatesToSQL.escapeSingleQuotes(formattedDateTime),
+                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_SPACE)),
+                EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 cdtId
         );
         System.out.println(sql);

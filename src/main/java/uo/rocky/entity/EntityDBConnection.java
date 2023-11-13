@@ -57,7 +57,8 @@ public final class EntityDBConnection {
         sql = "CREATE TABLE IF NOT EXISTS comment (\n" +
                 "    CMT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
                 "    CMT_CONTENT TEXT NOT NULL,\n" +
-                "    CMT_DATETIME NUMERIC NOT NULL,\n" +
+                "    CMT_LOCALDATETIME NUMERIC NOT NULL,\n" +
+                "    CMT_DATETIMEOFFSET TEXT NOT NULL,\n" +
                 "    CMT_CDT_ID INTEGER NOT NULL,\n" +
                 "    FOREIGN KEY (CMT_CDT_ID) REFERENCES coordinate(CDT_ID)\n" +
                 ");\n";
