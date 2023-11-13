@@ -121,7 +121,6 @@ public final class User extends EntityBase {
 
     @Override
     public synchronized boolean insertSQL() throws SQLException {
-        // TODO
 //        Class.forName("org.sqlite.JDBC");
 
         String sql = String.format("INSERT INTO user" +
@@ -144,13 +143,11 @@ public final class User extends EntityBase {
 
     @Override
     public synchronized boolean deleteSQL() throws SQLException {
-        // TODO
-        return true;
+        return false;
     }
 
     @Override
     public synchronized boolean updateSQL() throws SQLException {
-        // TODO
-        return true;
+        return false;
     }
 }
