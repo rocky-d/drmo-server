@@ -23,8 +23,8 @@ public final class EntityDBConnection {
     }
 
     private static void createTablesIfNotExists() throws SQLException {
-        Statement statement = connection.createStatement();
         String sql;
+        Statement statement = connection.createStatement();
 
         sql = "CREATE TABLE IF NOT EXISTS user (\n" +
                 "    USR_NAME TEXT PRIMARY KEY NOT NULL UNIQUE,\n" +
