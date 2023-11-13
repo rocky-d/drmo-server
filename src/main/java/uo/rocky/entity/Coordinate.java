@@ -236,7 +236,7 @@ public final class Coordinate extends EntityBase {
                 id,
                 longitude,
                 latitude,
-                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"))),
+                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"))),  // TODO
                 EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 EntityRelatesToSQL.escapeSingleQuotes(dangertype.name()),
                 EntityRelatesToSQL.escapeSingleQuotes(description),
