@@ -106,15 +106,13 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM coordinate WHERE CDT_ID = " + params.get("ID") + ";";
                 break;
             case "LOCATION":
-                sql = "SELECT * FROM coordinate WHERE " + params.get("DOWNLONGITUDE") + " <= CDT_LONGITUDE AND CDT_LONGITUDE <= " + params.get("UPLONGITUDE") +
-                        " AND " + params.get("DOWNLATITUDE") + " <= CDT_LATITUDE AND CDT_LATITUDE <= " + params.get("UPLATITUDE") + ";";
+                sql = "SELECT * FROM coordinate WHERE " + params.get("DOWNLONGITUDE") + " <= CDT_LONGITUDE AND CDT_LONGITUDE <= " + params.get("UPLONGITUDE") + " AND " + params.get("DOWNLATITUDE") + " <= CDT_LATITUDE AND CDT_LATITUDE <= " + params.get("UPLATITUDE") + ";";
                 break;
             case "TIME":
                 sql = ";";
                 break;
             case "USER":
-                sql = "SELECT * FROM coordinate WHERE CDT_USR_NAME = " +
-                        EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
+                sql = "SELECT * FROM coordinate WHERE CDT_USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
                 break;
             case NO_QUERT_KEY:
                 sql = "SELECT * FROM coordinate;";
@@ -145,19 +143,16 @@ public final class EntityDBConnection {
         String sql;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "USERNAME":
-                sql = "SELECT * FROM user WHERE USR_NAME = " +
-                        EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
+                sql = "SELECT * FROM user WHERE USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
                 break;
             case "HASHEDPASSWORD":
                 sql = "SELECT * FROM user WHERE USR_HASHEDPASSWORD = " + params.get("HASHEDPASSWORD") + ";";
                 break;
             case "EMAIL":
-                sql = "SELECT * FROM user WHERE USR_EMAIL = " +
-                        EntityRelatesToSQL.escapeSingleQuotes(params.get("EMAIL")) + ";";
+                sql = "SELECT * FROM user WHERE USR_EMAIL = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("EMAIL")) + ";";
                 break;
             case "PHONE":
-                sql = "SELECT * FROM user WHERE USR_PHONE = " +
-                        EntityRelatesToSQL.escapeSingleQuotes(params.get("PHONE")) + ";";
+                sql = "SELECT * FROM user WHERE USR_PHONE = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("PHONE")) + ";";
                 break;
             case NO_QUERT_KEY:
                 sql = "SELECT * FROM user;";
