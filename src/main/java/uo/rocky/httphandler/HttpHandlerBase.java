@@ -56,7 +56,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
                 queryParameters.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
                 // TODO
-                System.out.println("It's not two strings with one equal sign in between...");
+                System.out.println("'" + param + "' is not two strings with one equal sign in between...");
             }
         }
         return queryParameters;
