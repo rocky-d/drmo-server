@@ -29,6 +29,7 @@ public final class Comment extends EntityBase {
     }
 
     public static Comment valueOf(JSONObject jsonObject) {
+        Instant.parse(jsonObject.getString("sent"));
         return new Comment(
                 Instant.now().toEpochMilli(),
                 jsonObject.getString("comment"),

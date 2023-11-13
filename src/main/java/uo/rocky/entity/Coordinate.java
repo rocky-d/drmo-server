@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -36,6 +38,7 @@ public final class Coordinate extends EntityBase {
     }
 
     public static Coordinate valueOf(JSONObject jsonObject) {
+        Instant.parse(jsonObject.getString("sent"));
         return new Coordinate(
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
