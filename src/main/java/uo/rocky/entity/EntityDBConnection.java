@@ -17,16 +17,9 @@ public final class EntityDBConnection {
     }
 
     public static void setConnection(Connection connection) throws SQLException {
+        connection.setAutoCommit(false);
         EntityDBConnection.connection = connection;
-
-        setConnectionForAllEntities();
-
-        EntityDBConnection.connection.setAutoCommit(false);
         createTablesIfNotExists();
-    }
-
-    private static void setConnectionForAllEntities() {
-        EntityBase.setConnection(connection);
     }
 
     private static void createTablesIfNotExists() throws SQLException {

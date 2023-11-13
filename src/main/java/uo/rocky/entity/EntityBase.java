@@ -7,13 +7,7 @@ public abstract class EntityBase implements EntityRelatesToJSON, EntityRelatesTo
     public static final DateTimeFormatter LOCALDATETIME_FORMATTER_T = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
     public static final DateTimeFormatter LOCALDATETIME_FORMATTER_SPACE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
-    private static Connection connection = null;
-
-    public static Connection getConnection() {
-        return connection;
-    }
-
-    public static void setConnection(Connection connection) {
-        EntityBase.connection = connection;
+    protected static Connection getConnection() {
+        return EntityDBConnection.getConnection();
     }
 }
