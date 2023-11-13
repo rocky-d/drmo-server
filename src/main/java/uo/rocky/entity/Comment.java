@@ -131,13 +131,13 @@ public final class Comment extends EntityBase {
         return new StringJoiner(",", "{", "}")
                 .add("\"commentid\":\"" + id + "\"")
                 .add("\"comment\":" + EntityRelatesToJSON.escapeDoubleQuotes(content))
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_T) + datetimeoffset))  // TODO: localdatetime.toString()
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(LOCALDATETIME_FORMATTER_T.format(localdatetime) + datetimeoffset))  // TODO: localdatetime.toString()
                 .add("\"id\":\"" + cdtId + "\"")
                 .toString();
     }
 
     @Override
-    public synchronized boolean insertSQL() throws SQLException, DateTimeException {
+    public synchronized boolean insertSQL() throws SQLException {
         // TODO
 //        Class.forName("org.sqlite.JDBC");
 
@@ -146,7 +146,7 @@ public final class Comment extends EntityBase {
                         " VALUES (%s,%s,%s,%s,%s);",
                 id,
                 EntityRelatesToSQL.escapeSingleQuotes(content),
-                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_SPACE)),
+                EntityRelatesToSQL.escapeSingleQuotes(LOCALDATETIME_FORMATTER_SPACE.format(localdatetime)),
                 EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 cdtId
         );
