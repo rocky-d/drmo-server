@@ -43,4 +43,5 @@ build/
 *.jks
 .idea/
 draft/
+/server.json
 /archive/
