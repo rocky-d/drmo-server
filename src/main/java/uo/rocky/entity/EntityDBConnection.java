@@ -12,6 +12,12 @@ public final class EntityDBConnection {
     private static final String NO_QUERT_KEY = "ALL";
     private static Connection connection = null;
 
+    public static void closeConnection() throws SQLException {
+        if (!connection.isClosed()) {
+            connection.close();
+        }
+    }
+
     public static Connection getConnection() {
         return connection;
     }

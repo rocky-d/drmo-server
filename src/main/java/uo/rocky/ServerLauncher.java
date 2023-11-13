@@ -33,7 +33,6 @@ public final class ServerLauncher {
 
         httpServer.setExecutor(null);  // creates a default executor
         httpServer.start();
-        System.out.println("Server started on port " + PORT);
     }
 
     public static void launchHttpsServer() throws Exception {
@@ -71,7 +70,6 @@ public final class ServerLauncher {
 
         httpsServer.setExecutor(null);
         httpsServer.start();
-        System.out.println("Server started on port " + PORT);
     }
 
     public static void main(String[] args) throws Exception {
@@ -80,7 +78,12 @@ public final class ServerLauncher {
         EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
         System.out.println(SQLITE_URL + " connected");  // TODO: close()
 
-        launchHttpServer();
-//        launchHttpsServer();
+        try {
+            launchHttpServer();
+//            launchHttpsServer();
+            System.out.println("Server started on port " + PORT);
+        } finally {
+            EntityDBConnection.closeConnection();
+        }
     }
 }
