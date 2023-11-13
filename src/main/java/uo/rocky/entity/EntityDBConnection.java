@@ -64,240 +64,122 @@ public final class EntityDBConnection {
 
     static synchronized List<Comment> selectComments(Map<String, String> params) throws SQLException {
         String sql;
-        Statement statement;
-        ResultSet resultSet;
-        List<Comment> results;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "COMMENTID":
                 sql = "SELECT * FROM comment WHERE CMT_ID = " + params.get("COMMENTID") + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Comment.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "TIME":
                 sql = ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Comment.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "ID":
                 sql = "SELECT * FROM comment WHERE CMT_CDT_ID = " + params.get("ID") + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Comment.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case NO_QUERT_KEY:
                 sql = "SELECT * FROM comment;";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Comment.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             default:
-                results = null;
+                sql = null;
                 break;
+        }
+        List<Comment> results;
+        if (null == sql) {
+            results = null;
+        } else {
+            results = new ArrayList<>();
+//            System.out.println(sql);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                results.add(Comment.valueOf(resultSet));
+            }
+            resultSet.close();
+            statement.close();
+            connection.commit();
         }
         return results;
     }
 
     static synchronized List<Coordinate> selectCoordinates(Map<String, String> params) throws SQLException {
         String sql;
-        Statement statement;
-        ResultSet resultSet;
-        List<Coordinate> results;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "ID":
                 sql = "SELECT * FROM coordinate WHERE CDT_ID = " + params.get("ID") + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Coordinate.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "LOCATION":
                 sql = "SELECT * FROM coordinate WHERE " + params.get("DOWNLONGITUDE") + " <= CDT_LONGITUDE AND CDT_LONGITUDE <= " + params.get("UPLONGITUDE") +
                         " AND " + params.get("DOWNLATITUDE") + " <= CDT_LATITUDE AND CDT_LATITUDE <= " + params.get("UPLATITUDE") + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Coordinate.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "TIME":
                 sql = ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Coordinate.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "USER":
                 sql = "SELECT * FROM coordinate WHERE CDT_USR_NAME = " +
                         EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Coordinate.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case NO_QUERT_KEY:
                 sql = "SELECT * FROM coordinate;";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(Coordinate.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             default:
-                results = null;
+                sql = null;
                 break;
+        }
+        List<Coordinate> results;
+        if (null == sql) {
+            results = null;
+        } else {
+            results = new ArrayList<>();
+//            System.out.println(sql);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                results.add(Coordinate.valueOf(resultSet));
+            }
+            resultSet.close();
+            statement.close();
+            connection.commit();
         }
         return results;
     }
 
     static synchronized List<User> selectUsers(Map<String, String> params) throws SQLException {
         String sql;
-        Statement statement;
-        ResultSet resultSet;
-        List<User> results;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "USERNAME":
                 sql = "SELECT * FROM user WHERE USR_NAME = " +
                         EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(User.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "HASHEDPASSWORD":
                 sql = "SELECT * FROM user WHERE USR_HASHEDPASSWORD = " + params.get("HASHEDPASSWORD") + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(User.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "EMAIL":
                 sql = "SELECT * FROM user WHERE USR_EMAIL = " +
                         EntityRelatesToSQL.escapeSingleQuotes(params.get("EMAIL")) + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(User.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case "PHONE":
                 sql = "SELECT * FROM user WHERE USR_PHONE = " +
                         EntityRelatesToSQL.escapeSingleQuotes(params.get("PHONE")) + ";";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(User.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             case NO_QUERT_KEY:
                 sql = "SELECT * FROM user;";
-                System.out.println(sql);
-
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(sql);
-                results = new ArrayList<>();
-                while (resultSet.next()) {
-                    results.add(User.valueOf(resultSet));
-                }
-                resultSet.close();
-                statement.close();
-                connection.commit();
                 break;
             default:
-                results = null;
+                sql = null;
                 break;
+        }
+        List<User> results;
+        if (null == sql) {
+            results = null;
+        } else {
+            results = new ArrayList<>();
+//            System.out.println(sql);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                results.add(User.valueOf(resultSet));
+            }
+            resultSet.close();
+            statement.close();
+            connection.commit();
         }
         return results;
     }
