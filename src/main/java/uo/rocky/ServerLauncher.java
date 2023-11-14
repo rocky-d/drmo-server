@@ -80,14 +80,26 @@ public final class ServerLauncher {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Hello world!");
+
         configServer(configFilePath, UTF_8);
 
-        EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
-        System.out.println(sqliteUrl + " connected");
+        try {
+            EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
+            System.out.println(sqliteUrl + " connected");
 
-        launchHttpServer();
-//        launchHttpsServer();
-        System.out.println("HTTP" + (isHttps ? "S" : "") + " server started listening on port " + port);
+            if (!isHttps) {
+                launchHttpServer();
+                System.out.println("HTTP server started listening on port " + port);
+            } else {
+                launchHttpsServer();
+                System.out.println("HTTPS server started listening on port " + port);
+            }
+            System.out.println("HTTP" + (isHttps ? "S" : "") + " server started listening on port " + port);
+        } catch (Exception exception) {
+            // TODO: Load default config and save default config
+
+        }
+
     }
 
     public static void configServer(String filePath, Charset charset) throws IOException {
