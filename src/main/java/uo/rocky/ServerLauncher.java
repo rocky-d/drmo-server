@@ -1,7 +1,6 @@
 package uo.rocky;
 
 import com.sun.net.httpserver.*;
-import org.json.JSONException;
 import org.json.JSONObject;
 import uo.rocky.entity.EntityDBConnection;
 import uo.rocky.httphandler.CommentHttpHandler;
@@ -96,29 +95,23 @@ public final class ServerLauncher {
         String content = lines.collect(Collectors.joining("\n"));
         lines.close();
 
-        try {
-            JSONObject config = new JSONObject(content);
-            JSONObject sqliteConfig = config.getJSONObject("SQLITE");
-            sqliteUrl = "jdbc:sqlite:" + sqliteConfig.getString("PATH");
-            JSONObject serverConfig = config.getJSONObject("SERVER");
-            if ("HTTP".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
-                isHttps = false;
-                JSONObject httpConfig = serverConfig.getJSONObject("HTTP");
-                port = httpConfig.getInt("PORT");
-                host = httpConfig.getString("HOST");
-            } else if ("HTTPS".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
-                isHttps = true;
-                JSONObject httpsConfig = serverConfig.getJSONObject("HTTPS");
-                port = httpsConfig.getInt("PORT");
-                host = httpsConfig.getString("HOST");
-                JSONObject jksConfig = httpsConfig.getJSONObject("JKS");
-                jksPath = jksConfig.getString("PATH");
-                jksPassword = jksConfig.getString("PASSWORD").toCharArray();
-            } else {
-                throw new JSONException("");
-            }
-        } catch (JSONException jsonException) {
-            throw jsonException;
+        JSONObject config = new JSONObject(content);
+        JSONObject sqliteConfig = config.getJSONObject("SQLITE");
+        sqliteUrl = "jdbc:sqlite:" + sqliteConfig.getString("PATH");
+        JSONObject serverConfig = config.getJSONObject("SERVER");
+        if ("HTTP".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
+            isHttps = false;
+            JSONObject httpConfig = serverConfig.getJSONObject("HTTP");
+            port = httpConfig.getInt("PORT");
+            host = httpConfig.getString("HOST");
+        } else if ("HTTPS".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
+            isHttps = true;
+            JSONObject httpsConfig = serverConfig.getJSONObject("HTTPS");
+            port = httpsConfig.getInt("PORT");
+            host = httpsConfig.getString("HOST");
+            JSONObject jksConfig = httpsConfig.getJSONObject("JKS");
+            jksPath = jksConfig.getString("PATH");
+            jksPassword = jksConfig.getString("PASSWORD").toCharArray();
         }
     }
 }
