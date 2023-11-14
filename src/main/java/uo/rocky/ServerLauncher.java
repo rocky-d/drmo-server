@@ -94,7 +94,6 @@ public final class ServerLauncher {
                 launchHttpsServer();
                 System.out.println("HTTPS server started listening on port " + port);
             }
-            System.out.println("HTTP" + (isHttps ? "S" : "") + " server started listening on port " + port);
         } catch (Exception exception) {
             // TODO: Load default config and save default config
 
