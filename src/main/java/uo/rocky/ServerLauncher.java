@@ -1,6 +1,8 @@
 package uo.rocky;
 
 import com.sun.net.httpserver.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 import uo.rocky.entity.EntityDBConnection;
 import uo.rocky.httphandler.CommentHttpHandler;
 import uo.rocky.httphandler.CoordinatesHttpHandler;
@@ -12,19 +14,28 @@ import javax.net.ssl.TrustManagerFactory;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.KeyStore;
 import java.sql.DriverManager;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public final class ServerLauncher {
-    public static final String SQLITE_URL = "jdbc:sqlite:deer.sqlite.db";
+    public static final String configFilePath = "serverLauncher.json";
 
-    public static final int PORT = 8001;
-    public static final String HOST = "0.0.0.0";
+    private static String sqliteUrl;
+    private static boolean isHttps;
+    private static int port;
+    private static String host;
+    private static String jksPath;
+    private static char[] jksPassword;
 
     public static void launchHttpServer() throws IOException {
-        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
+        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getByName(host), port), 0);
 
         final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
         final HttpContext coordinatesContext = httpServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
@@ -36,11 +47,7 @@ public final class ServerLauncher {
     }
 
     public static void launchHttpsServer() throws Exception {
-        final String JKS_PATH = "keystore00.jks";
-        final char[] JKS_PASSWORD = "891213".toCharArray();
-
-
-        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName(HOST), PORT), 0);
+        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName(host), port), 0);
 
         final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
         commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
@@ -52,9 +59,9 @@ public final class ServerLauncher {
 //        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication"));
 
         KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(Files.newInputStream(Paths.get(JKS_PATH)), JKS_PASSWORD);
+        keyStore.load(Files.newInputStream(Paths.get(jksPath)), jksPassword);
         KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-        keyManagerFactory.init(keyStore, JKS_PASSWORD);
+        keyManagerFactory.init(keyStore, jksPassword);
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
         trustManagerFactory.init(keyStore);
         SSLContext sslContext = SSLContext.getInstance("TLS");
@@ -74,12 +81,44 @@ public final class ServerLauncher {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Hello world!");
+        configServer(configFilePath, UTF_8);
 
-        EntityDBConnection.setConnection(DriverManager.getConnection(SQLITE_URL));
-        System.out.println(SQLITE_URL + " connected");
+        EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
+        System.out.println(sqliteUrl + " connected");
 
         launchHttpServer();
 //        launchHttpsServer();
-        System.out.println("Server started on port " + PORT);
+        System.out.println("HTTP" + (isHttps ? "S" : "") + " server started listening on port " + port);
+    }
+
+    public static void configServer(String filePath, Charset charset) throws IOException {
+        Stream<String> lines = Files.lines(Paths.get(filePath), charset);
+        String content = lines.collect(Collectors.joining("\n"));
+        lines.close();
+
+        try {
+            JSONObject config = new JSONObject(content);
+            JSONObject sqliteConfig = config.getJSONObject("SQLITE");
+            sqliteUrl = "jdbc:sqlite:" + sqliteConfig.getString("PATH");
+            JSONObject serverConfig = config.getJSONObject("SERVER");
+            if ("HTTP".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
+                isHttps = false;
+                JSONObject httpConfig = serverConfig.getJSONObject("HTTP");
+                port = httpConfig.getInt("PORT");
+                host = httpConfig.getString("HOST");
+            } else if ("HTTPS".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
+                isHttps = true;
+                JSONObject httpsConfig = serverConfig.getJSONObject("HTTPS");
+                port = httpsConfig.getInt("PORT");
+                host = httpsConfig.getString("HOST");
+                JSONObject jksConfig = httpsConfig.getJSONObject("JKS");
+                jksPath = jksConfig.getString("PATH");
+                jksPassword = jksConfig.getString("PASSWORD").toCharArray();
+            } else {
+                throw new JSONException("");
+            }
+        } catch (JSONException jsonException) {
+            throw jsonException;
+        }
     }
 }
