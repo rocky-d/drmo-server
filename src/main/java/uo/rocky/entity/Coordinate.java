@@ -198,7 +198,7 @@ public final class Coordinate extends EntityBase {
                 .add("\"id\":\"" + id + "\"")
                 .add("\"longitude\":\"" + longitude + "\"")
                 .add("\"latitude\":\"" + latitude + "\"")
-                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(LOCALDATETIME_FORMATTER_T.format(localdatetime) + datetimeoffset))
+                .add("\"sent\":" + EntityRelatesToJSON.escapeDoubleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_T) + datetimeoffset))
                 .add("\"dangertype\":" + EntityRelatesToJSON.escapeDoubleQuotes(dangertype.name()))
                 .add("\"description\":" + EntityRelatesToJSON.escapeDoubleQuotes(description))
                 .add("\"username\":" + EntityRelatesToJSON.escapeDoubleQuotes(usrName))
@@ -220,7 +220,7 @@ public final class Coordinate extends EntityBase {
                 id,
                 longitude,
                 latitude,
-                EntityRelatesToSQL.escapeSingleQuotes(LOCALDATETIME_FORMATTER_SPACE.format(localdatetime)),
+                EntityRelatesToSQL.escapeSingleQuotes(localdatetime.format(LOCALDATETIME_FORMATTER_SPACE)),
                 EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 EntityRelatesToSQL.escapeSingleQuotes(dangertype.name()),
                 EntityRelatesToSQL.escapeSingleQuotes(description),
