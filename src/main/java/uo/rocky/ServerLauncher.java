@@ -86,11 +86,15 @@ public final class ServerLauncher {
 
         try {
             loadConfig();
-            System.out.println("Config \"" + CONFIG_FILE.getFileName() + "\" was loaded.");
+            System.out.println("Config \"" + CONFIG_FILE.getFileName() + "\" has been loaded.");
+            System.out.println("---------");
+
+            LogWriter.setBufferedWriter(logFile);
+            System.out.println("Log \"" + logFile.getFileName() + "\" has prepared.");
             System.out.println("---------");
 
             EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
-            System.out.println("SQLite \"" + sqliteUrl + "\" was connected.");
+            System.out.println("SQLite \"" + sqliteUrl + "\" has been connected.");
             System.out.println("---------");
 
             if (!isHttps) {
@@ -116,7 +120,7 @@ public final class ServerLauncher {
                 System.out.println();
                 if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES")) {
                     overrideConfig();
-                    System.out.println("Config was overridden.");
+                    System.out.println("Config has been overridden.");
                     System.out.println("Please check and modify (if you need to) the config file");
                     System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
                     System.out.println("And then restart the program.");
