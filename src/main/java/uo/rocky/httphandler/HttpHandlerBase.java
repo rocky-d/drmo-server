@@ -25,13 +25,13 @@ public abstract class HttpHandlerBase implements HttpHandler {
             httpExchange.sendResponseHeaders(StatusCode.INTERNAL_SERVER_ERROR.code(), responseBodyBytes.length);
             outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
         } catch (IOException ioException) {
-            System.out.println(ioException.getClass().getSimpleName() + ": " + ioException.getMessage());
+            System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
             throw new RuntimeException(ioException);
         }
     }
 
     public final void respondInternalServerError(HttpExchange httpExchange, Exception exception) {
-        respondInternalServerError(httpExchange, exception.getClass().getSimpleName() + ": " + exception.getMessage());
+        respondInternalServerError(httpExchange, exception.getClass().getName() + ": " + exception.getMessage());
     }
 
     public final void respondBadRequest(HttpExchange httpExchange, String message) throws IOException {
@@ -45,7 +45,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     }
 
     public final void respondBadRequest(HttpExchange httpExchange, RuntimeException runtimeException) throws IOException {
-        respondBadRequest(httpExchange, runtimeException.getClass().getSimpleName() + ": " + runtimeException.getMessage());
+        respondBadRequest(httpExchange, runtimeException.getClass().getName() + ": " + runtimeException.getMessage());
     }
 
     public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
