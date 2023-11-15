@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static uo.rocky.LogWriter.LogEntryType.INFO;
 
 public final class ServerLauncher {
     public static final Path CONFIG_FILE = Paths.get("serverLauncher.json");
@@ -99,10 +100,12 @@ public final class ServerLauncher {
 
             if (!isHttps) {
                 launchHttpServer();
+                LogWriter.appendEntry(INFO, "HTTP server started listening on (port number): " + port, "Access control (IP address of remote hosts): " + host);
                 System.out.println("HTTP server started listening on (port number): " + port);
                 System.out.println("Access control (IP address of remote hosts): " + host);
             } else {
                 launchHttpsServer();
+                LogWriter.appendEntry(INFO, "HTTPS server started listening on (port number): " + port, "Access control (IP address of remote hosts): " + host);
                 System.out.println("HTTPS server started listening on (port number): " + port);
                 System.out.println("Access control (IP address of remote hosts): " + host);
             }

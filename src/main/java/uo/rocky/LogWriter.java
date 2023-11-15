@@ -1,11 +1,15 @@
 package uo.rocky;
 
+import uo.rocky.entity.Coordinate;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.ZonedDateTime;
+import java.util.StringJoiner;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.StandardOpenOption.APPEND;
@@ -24,13 +28,34 @@ public final class LogWriter {
         bufferedWriter = Files.newBufferedWriter(logFile, UTF_8, OPEN_OPTIONS);
     }
 
-    public static synchronized void appendEntry(String entry) throws IOException {
-        bufferedWriter.write(entry);
+    public static synchronized void appendEntry(LogEntryType logEntryType, String... content) throws IOException {
+        bufferedWriter.write("<" + logEntryType.name() + "> " + ZonedDateTime.now());
         bufferedWriter.newLine();
+        for (String line : content) {
+            bufferedWriter.write("\t" + line);
+            bufferedWriter.newLine();
+        }
         bufferedWriter.flush();
     }
 
     public static synchronized void close() throws IOException {
         bufferedWriter.close();
+    }
+
+    public enum LogEntryType {
+        INFO,
+        WARNING,
+        ERROR;
+
+        LogEntryType() {
+        }
+
+        @Override
+        public final String toString() {
+            return new StringJoiner(", ", Coordinate.Dangertype.class.getSimpleName() + "{", "}")
+                    .add("name='" + name() + "'")
+                    .add("ordinal=" + ordinal())
+                    .toString();
+        }
     }
 }
