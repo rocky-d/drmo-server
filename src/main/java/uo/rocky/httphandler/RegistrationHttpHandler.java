@@ -22,7 +22,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
 
         try {
             String results = User.selectUserJSONString(parseQueryParameters(httpExchange));
-            System.out.println(results);
+//            System.out.println(results);
             httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
             outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
@@ -47,7 +47,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
 
         try {
             User user = User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
-            System.out.println(user);
+//            System.out.println(user);
             System.out.println(user.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (RuntimeException runtimeException) {
