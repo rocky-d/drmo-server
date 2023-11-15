@@ -19,8 +19,6 @@ public abstract class HttpHandlerBase implements HttpHandler {
 
     public final void respondInternalServerError(HttpExchange httpExchange, String message) {
         LogWriter.appendEntry(ERROR, "Respond \"Internal Server Error\"", message);
-        System.out.println("Respond \"Internal Server Error\"");
-        System.out.println(message);
 
         httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
@@ -30,7 +28,6 @@ public abstract class HttpHandlerBase implements HttpHandler {
             outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
         } catch (IOException ioException) {
             LogWriter.appendEntry(ERROR, ioException.getClass().getName() + ": " + ioException.getMessage());
-            System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
 //            throw new RuntimeException(ioException);
         }
     }
@@ -41,8 +38,6 @@ public abstract class HttpHandlerBase implements HttpHandler {
 
     public final void respondBadRequest(HttpExchange httpExchange, String message) throws IOException {
         LogWriter.appendEntry(WARNING, "Respond \"Bad Request\"", message);
-        System.out.println("Respond \"Bad Request\"");
-        System.out.println(message);
 
         httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
@@ -57,7 +52,6 @@ public abstract class HttpHandlerBase implements HttpHandler {
 
     public final void respondMethodNotAllowed(HttpExchange httpExchange) throws IOException {
         LogWriter.appendEntry(WARNING, "Respond \"Method Not Allowed\"");
-        System.out.println("Respond \"Method Not Allowed\"");
 
         httpExchange.getResponseHeaders().clear();
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
@@ -76,7 +70,6 @@ public abstract class HttpHandlerBase implements HttpHandler {
                 queryParameters.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
                 LogWriter.appendEntry(WARNING, "Param \"" + param + "\" is not two strings with one equal sign in between.");
-                System.out.println("Param \"" + param + "\" is not two strings with one equal sign in between.");
             }
         }
         return queryParameters;
@@ -102,7 +95,6 @@ public abstract class HttpHandlerBase implements HttpHandler {
 
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
         LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the HEAD request.");
-        System.out.println(getClass().getSimpleName() + " is trying to handle the HEAD request.");
 
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
@@ -147,7 +139,6 @@ public abstract class HttpHandlerBase implements HttpHandler {
     @Override
     public final void handle(HttpExchange httpExchange) {
         LogWriter.appendEntry(INFO, "Caught a \"" + httpExchange.getRequestMethod() + "\" request.");
-        System.out.println("Caught a \"" + httpExchange.getRequestMethod() + "\" request.");
 
         try {
             switch (httpExchange.getRequestMethod().toUpperCase()) {
