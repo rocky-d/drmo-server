@@ -9,6 +9,7 @@ import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.ZonedDateTime;
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -38,6 +39,8 @@ public final class LogWriter {
             }
             bufferedWriter.flush();
         } catch (IOException ioException) {
+            System.out.println(Arrays.toString(content));
+            System.out.println("Write log failed.");
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
             throw new RuntimeException(ioException);
         }
