@@ -28,14 +28,19 @@ public final class LogWriter {
         bufferedWriter = Files.newBufferedWriter(logFile, UTF_8, OPEN_OPTIONS);
     }
 
-    public static synchronized void appendEntry(LogEntryType logEntryType, String... content) throws IOException {
-        bufferedWriter.write("<" + logEntryType.name() + "> " + ZonedDateTime.now());
-        bufferedWriter.newLine();
-        for (String line : content) {
-            bufferedWriter.write("\t" + line);
+    public static synchronized void appendEntry(LogEntryType logEntryType, String... content) {
+        try {
+            bufferedWriter.write("<" + logEntryType.name() + "> " + ZonedDateTime.now());
             bufferedWriter.newLine();
+            for (String line : content) {
+                bufferedWriter.write("\t" + line);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+        } catch (IOException ioException) {
+            System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
+            throw new RuntimeException(ioException);
         }
-        bufferedWriter.flush();
     }
 
     public static synchronized void close() throws IOException {
