@@ -30,11 +30,14 @@ public final class LogWriter {
     }
 
     public static synchronized void appendEntry(LogEntryType logEntryType, String... content) {
+        String temp;
         try {
-            bufferedWriter.write("<" + logEntryType.name() + "> " + ZonedDateTime.now());
+            System.out.println(temp = "<" + logEntryType.name() + "> " + ZonedDateTime.now());
+            bufferedWriter.write(temp);
             bufferedWriter.newLine();
             for (String line : content) {
-                bufferedWriter.write("\t" + line);
+                System.out.println(temp = "\t" + line);
+                bufferedWriter.write(temp);
                 bufferedWriter.newLine();
             }
             bufferedWriter.flush();
