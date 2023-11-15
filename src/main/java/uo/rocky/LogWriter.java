@@ -39,7 +39,9 @@ public final class LogWriter {
             }
             bufferedWriter.flush();
         } catch (IOException ioException) {
+            System.out.println("*********");
             System.out.println(Arrays.toString(content));
+            System.out.println("*********");
             System.out.println("Write log failed.");
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
             throw new RuntimeException(ioException);
