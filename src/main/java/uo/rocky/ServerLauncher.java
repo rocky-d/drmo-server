@@ -85,11 +85,11 @@ public final class ServerLauncher {
 
         try {
             loadConfig();
-            System.out.println("Load config done.");
+            System.out.println("Config was loaded.");
             System.out.println("---------");
 
             EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
-            System.out.println(sqliteUrl + " connected.");
+            System.out.println(sqliteUrl + " was connected.");
             System.out.println("---------");
 
             if (!isHttps) {
