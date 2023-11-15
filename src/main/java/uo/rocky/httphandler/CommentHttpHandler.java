@@ -43,7 +43,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the GET request.");
+        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the POST request.");
 
         try {
             Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));

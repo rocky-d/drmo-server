@@ -43,7 +43,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the GET request.");
+        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the POST request.");
 
         try {
             Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
