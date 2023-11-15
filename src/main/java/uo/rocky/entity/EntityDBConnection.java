@@ -10,25 +10,24 @@ import java.util.Map;
 
 public final class EntityDBConnection {
     private static final String NO_QUERT_KEY = "ALL";
+
     private static Connection connection = null;
 
-    public static void closeConnection() throws SQLException {
-        if (null != connection && !connection.isClosed()) {
-            connection.close();
-        }
+    public static synchronized void close() throws SQLException {
+        connection.close();
     }
 
-    public static Connection getConnection() {
+    public static synchronized Connection getConnection() {
         return connection;
     }
 
-    public static void setConnection(Connection connection) throws SQLException {
+    public static synchronized void setConnection(Connection connection) throws SQLException {
         connection.setAutoCommit(false);
         EntityDBConnection.connection = connection;
         createTablesIfNotExists();
     }
 
-    private static void createTablesIfNotExists() throws SQLException {
+    private static synchronized void createTablesIfNotExists() throws SQLException {
         String sql;
         Statement statement = connection.createStatement();
 
