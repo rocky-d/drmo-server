@@ -27,15 +27,16 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public final class ServerLauncher {
     public static final Path CONFIG_FILE = Paths.get("serverLauncher.json");
 
+    private static Path logFile;
     private static String sqliteUrl;
     private static boolean isHttps;
     private static int port;
-    private static String host;
-    private static String jksPath;
+    private static InetAddress host;
+    private static Path jksFile;
     private static char[] jksPassword;
 
     public static void launchHttpServer() throws IOException {
-        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getByName(host), port), 0);
+        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(host, port), 0);
 
         final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
         final HttpContext coordinatesContext = httpServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
@@ -47,7 +48,7 @@ public final class ServerLauncher {
     }
 
     public static void launchHttpsServer() throws Exception {
-        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(InetAddress.getByName(host), port), 0);
+        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(host, port), 0);
 
         final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
         commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
@@ -59,7 +60,7 @@ public final class ServerLauncher {
 //        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication"));
 
         KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(Files.newInputStream(Paths.get(jksPath)), jksPassword);
+        keyStore.load(Files.newInputStream(jksFile), jksPassword);
         KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
         keyManagerFactory.init(keyStore, jksPassword);
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
@@ -135,22 +136,33 @@ public final class ServerLauncher {
         String content = lines.collect(Collectors.joining("\n"));
         lines.close();
 
+
         JSONObject config = new JSONObject(content);
-        JSONObject sqliteConfig = config.getJSONObject("SQLITE");
-        sqliteUrl = "jdbc:sqlite:" + sqliteConfig.getString("PATH");
+
+        JSONObject logConfig = config.getJSONObject("LOG");
+        logFile = Paths.get(logConfig.getString("PATH"));
+
+        JSONObject dbConfig = config.getJSONObject("DB");
+        sqliteUrl = "jdbc:sqlite:" + dbConfig.getString("PATH");
+
         JSONObject serverConfig = config.getJSONObject("SERVER");
-        if ("HTTP".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
+        String protocol = serverConfig.getString("PROTOCOL");
+        if ("HTTP".equalsIgnoreCase(protocol)) {
             isHttps = false;
+
             JSONObject httpConfig = serverConfig.getJSONObject("HTTP");
             port = httpConfig.getInt("PORT");
-            host = httpConfig.getString("HOST");
-        } else if ("HTTPS".equalsIgnoreCase(serverConfig.getString("PROTOCOL"))) {
+            host = InetAddress.getByName(httpConfig.getString("HOST"));
+
+        } else if ("HTTPS".equalsIgnoreCase(protocol)) {
             isHttps = true;
+
             JSONObject httpsConfig = serverConfig.getJSONObject("HTTPS");
             port = httpsConfig.getInt("PORT");
-            host = httpsConfig.getString("HOST");
+            host = InetAddress.getByName(httpsConfig.getString("HOST"));
+
             JSONObject jksConfig = httpsConfig.getJSONObject("JKS");
-            jksPath = jksConfig.getString("PATH");
+            jksFile = Paths.get(jksConfig.getString("PATH"));
             jksPassword = jksConfig.getString("PASSWORD").toCharArray();
         }
     }
@@ -159,7 +171,10 @@ public final class ServerLauncher {
         Files.deleteIfExists(CONFIG_FILE);
         Files.write(CONFIG_FILE, (
                 "{\n" +
-                        "  \"SQLITE\": {\n" +
+                        "  \"LOG\": {\n" +
+                        "    \"PATH\": \"default.server.log\"\n" +
+                        "  },\n" +
+                        "  \"DB\": {\n" +
                         "    \"PATH\": \"default.sqlite.db\"\n" +
                         "  },\n" +
                         "  \"SERVER\": {\n" +
@@ -176,9 +191,6 @@ public final class ServerLauncher {
                         "        \"PASSWORD\": \"<password>\"\n" +
                         "      }\n" +
                         "    }\n" +
-                        "  },\n" +
-                        "  \"LOG\": {\n" +
-                        "    \"PATH\": \"default.server.log\"\n" +
                         "  }\n" +
                         "}"
         ).getBytes(UTF_8));
