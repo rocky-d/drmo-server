@@ -85,9 +85,11 @@ public final class ServerLauncher {
 
         try {
             loadConfig();
+            System.out.println("Load config done.");
+            System.out.println("---------");
 
             EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
-            System.out.println(sqliteUrl + " connected");
+            System.out.println(sqliteUrl + " connected.");
             System.out.println("---------");
 
             if (!isHttps) {
@@ -113,7 +115,7 @@ public final class ServerLauncher {
                 System.out.println();
                 if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES")) {
                     overrideConfig();  // TODO: ask
-                    System.out.println("Override done.");
+                    System.out.println("Override config done.");
                     System.out.println("Please check and modify (if you need to) the config file,");
                     System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
                     System.out.println("And then restart the program.");
