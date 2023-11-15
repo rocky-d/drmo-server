@@ -102,21 +102,15 @@ public final class ServerLauncher {
             if (!isHttps) {
                 launchHttpServer();
                 LogWriter.appendEntry(INFO, "HTTP server start to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
-                System.out.println("HTTP server start to listen on (port number): " + port);
-                System.out.println("Access control (IP address of remote hosts): " + host);
             } else {
                 launchHttpsServer();
                 LogWriter.appendEntry(INFO, "HTTPS server start to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
-                System.out.println("HTTPS server start to listen on (port number): " + port);
-                System.out.println("Access control (IP address of remote hosts): " + host);
             }
 
         } catch (Exception exception) {
             LogWriter.appendEntry(ERROR, "Launch failed.", exception.getClass().getName() + ": " + exception.getMessage());
-            System.out.println("Launch failed.");
-            System.out.println(exception.getClass().getName() + ": " + exception.getMessage());
-            System.out.println();
 
+            System.out.println();
             Scanner scanner = new Scanner(System.in);
             String input;
             while (true) {

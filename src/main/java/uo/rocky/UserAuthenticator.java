@@ -22,7 +22,6 @@ public final class UserAuthenticator extends BasicAuthenticator {
             return null != users && 1 == users.size() && password.hashCode() == users.get(0).getHashedpassword();
         } catch (SQLException sqlException) {
             LogWriter.appendEntry(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
-            System.out.println(sqlException.getClass().getName() + ": " + sqlException.getMessage());
 //            throw new RuntimeException(sqlException);
             return false;
         }
