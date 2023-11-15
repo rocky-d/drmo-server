@@ -114,7 +114,7 @@ public final class ServerLauncher {
                 input = scanner.nextLine();
                 System.out.println();
                 if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES")) {
-                    overrideConfig();  // TODO: ask
+                    overrideConfig();
                     System.out.println("Override config done.");
                     System.out.println("Please check and modify (if you need to) the config file,");
                     System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
@@ -125,8 +125,9 @@ public final class ServerLauncher {
                     break;
                 }
             }
+        } finally {
+            System.out.println("=========");
         }
-        System.out.println("=========");
     }
 
     public static void loadConfig() throws IOException {
