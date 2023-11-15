@@ -2,6 +2,7 @@ package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import uo.rocky.LogWriter;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -10,12 +11,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static uo.rocky.LogWriter.LogEntryType.ERROR;
+import static uo.rocky.LogWriter.LogEntryType.WARNING;
 
 public abstract class HttpHandlerBase implements HttpHandler {
     private static final String GET_ALLOW = "HEAD";
     private static final String GET_CONTENT_TYPE = "text/plain; charset=utf-8";
 
     public final void respondInternalServerError(HttpExchange httpExchange, String message) {
+        LogWriter.appendEntry(ERROR, message);
         System.out.println(message);
 
         httpExchange.getResponseHeaders().clear();
@@ -25,6 +29,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
             httpExchange.sendResponseHeaders(StatusCode.INTERNAL_SERVER_ERROR.code(), responseBodyBytes.length);
             outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
         } catch (IOException ioException) {
+            LogWriter.appendEntry(ERROR, ioException.getClass().getName() + ": " + ioException.getMessage());
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
             throw new RuntimeException(ioException);
         }
@@ -35,6 +40,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     }
 
     public final void respondBadRequest(HttpExchange httpExchange, String message) throws IOException {
+        LogWriter.appendEntry(WARNING, message);
         System.out.println(message);
 
         httpExchange.getResponseHeaders().clear();
@@ -65,8 +71,8 @@ public abstract class HttpHandlerBase implements HttpHandler {
             if (2 == tempStrings.length) {
                 queryParameters.put(tempStrings[0].toUpperCase(), tempStrings[1]);
             } else {
-                // TODO
-                System.out.println("'" + param + "' is not two strings with one equal sign in between...");
+                LogWriter.appendEntry(WARNING, "Param \"" + param + "\" is not two strings with one equal sign in between...");
+                System.out.println("Param \"" + param + "\" is not two strings with one equal sign in between...");
             }
         }
         return queryParameters;
