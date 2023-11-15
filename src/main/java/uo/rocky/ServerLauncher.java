@@ -13,18 +13,19 @@ import javax.net.ssl.TrustManagerFactory;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.KeyStore;
 import java.sql.DriverManager;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public final class ServerLauncher {
-    public static final String configFilePath = "serverLauncher.json";
+    public static final Path CONFIG_FILE = Paths.get("serverLauncher.json");
 
     private static String sqliteUrl;
     private static boolean isHttps;
@@ -78,12 +79,12 @@ public final class ServerLauncher {
         httpsServer.start();
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         System.out.println("Hello world!");
 
-        loadConfig(configFilePath, UTF_8);
-
         try {
+            loadConfig();
+
             EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
             System.out.println(sqliteUrl + " connected");
 
@@ -95,14 +96,34 @@ public final class ServerLauncher {
                 System.out.println("HTTPS server started listening on port " + port);
             }
         } catch (Exception exception) {
-            // TODO: Load default config and save default config (cover write)
+            System.out.println("Launch failed.");
+            System.out.println(exception.getClass().getSimpleName() + ": " + exception.getMessage());
+            System.out.println();
 
+            Scanner scanner = new Scanner(System.in);
+            String input;
+            while (true) {
+                System.out.println("Override config file with default configuration?");
+                System.out.print("(Yes/No) > ");
+                input = scanner.nextLine();
+                System.out.println();
+                if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES")) {
+                    overrideConfig();  // TODO: ask
+                    System.out.println("Override done.");
+                    System.out.println("Please check and modify (if you need to) the config file,");
+                    System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
+                    System.out.println("And then restart the program.");
+                    break;
+                } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("NO")) {
+                    System.out.println("Please check the problem.");
+                    break;
+                }
+            }
         }
-
     }
 
-    public static void loadConfig(String filePath, Charset charset) throws IOException {
-        Stream<String> lines = Files.lines(Paths.get(filePath), charset);
+    public static void loadConfig() throws IOException {
+        Stream<String> lines = Files.lines(CONFIG_FILE, UTF_8);
         String content = lines.collect(Collectors.joining("\n"));
         lines.close();
 
@@ -124,5 +145,31 @@ public final class ServerLauncher {
             jksPath = jksConfig.getString("PATH");
             jksPassword = jksConfig.getString("PASSWORD").toCharArray();
         }
+    }
+
+    public static void overrideConfig() throws IOException {
+        Files.deleteIfExists(CONFIG_FILE);
+        Files.write(CONFIG_FILE, (
+                "{\n" +
+                        "  \"SQLITE\": {\n" +
+                        "    \"PATH\": \"default.sqlite.db\"\n" +
+                        "  },\n" +
+                        "  \"SERVER\": {\n" +
+                        "    \"PROTOCOL\": \"HTTP\",\n" +
+                        "    \"HTTP\": {\n" +
+                        "      \"PORT\": 8001,\n" +
+                        "      \"HOST\": \"0.0.0.0\"\n" +
+                        "    },\n" +
+                        "    \"HTTPS\": {\n" +
+                        "      \"PORT\": 8001,\n" +
+                        "      \"HOST\": \"0.0.0.0\",\n" +
+                        "      \"JKS\": {\n" +
+                        "        \"PATH\": \"<file path>\",\n" +
+                        "        \"PASSWORD\": \"<password>\"\n" +
+                        "      }\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}"
+        ).getBytes(UTF_8));
     }
 }
