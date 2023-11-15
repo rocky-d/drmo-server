@@ -175,30 +175,30 @@ public final class ServerLauncher {
 
     public static void overrideConfig() throws IOException {
         Files.deleteIfExists(CONFIG_FILE);
-        Files.write(CONFIG_FILE, (
+        Files.write(CONFIG_FILE, ("\n" +
                 "{\n" +
-                        "  \"LOG\": {\n" +
-                        "    \"PATH\": \"default.server.log\"\n" +
-                        "  },\n" +
-                        "  \"DB\": {\n" +
-                        "    \"PATH\": \"default.sqlite.db\"\n" +
-                        "  },\n" +
-                        "  \"SERVER\": {\n" +
-                        "    \"PROTOCOL\": \"HTTP\",\n" +
-                        "    \"HTTP\": {\n" +
-                        "      \"PORT\": 8001,\n" +
-                        "      \"HOST\": \"0.0.0.0\"\n" +
-                        "    },\n" +
-                        "    \"HTTPS\": {\n" +
-                        "      \"PORT\": 8001,\n" +
-                        "      \"HOST\": \"0.0.0.0\",\n" +
-                        "      \"JKS\": {\n" +
-                        "        \"PATH\": \"<file path>\",\n" +
-                        "        \"PASSWORD\": \"<password>\"\n" +
-                        "      }\n" +
-                        "    }\n" +
-                        "  }\n" +
-                        "}"
+                "  \"LOG\": {\n" +
+                "    \"PATH\": \"default.server.log\"\n" +
+                "  },\n" +
+                "  \"DB\": {\n" +
+                "    \"PATH\": \"default.sqlite.db\"\n" +
+                "  },\n" +
+                "  \"SERVER\": {\n" +
+                "    \"PROTOCOL\": \"HTTP\",\n" +
+                "    \"HTTP\": {\n" +
+                "      \"PORT\": 8001,\n" +
+                "      \"HOST\": \"0.0.0.0\"\n" +
+                "    },\n" +
+                "    \"HTTPS\": {\n" +
+                "      \"PORT\": 8001,\n" +
+                "      \"HOST\": \"0.0.0.0\",\n" +
+                "      \"JKS\": {\n" +
+                "        \"PATH\": \"<file path>\",\n" +
+                "        \"PASSWORD\": \"<password>\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}\n"
         ).getBytes(UTF_8));
     }
 }
