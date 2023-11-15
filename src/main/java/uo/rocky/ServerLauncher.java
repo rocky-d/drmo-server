@@ -81,7 +81,7 @@ public final class ServerLauncher {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello world!");
 
-        configServer(configFilePath, UTF_8);
+        loadConfig(configFilePath, UTF_8);
 
         try {
             EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
@@ -95,13 +95,13 @@ public final class ServerLauncher {
                 System.out.println("HTTPS server started listening on port " + port);
             }
         } catch (Exception exception) {
-            // TODO: Load default config and save default config
+            // TODO: Load default config and save default config (cover write)
 
         }
 
     }
 
-    public static void configServer(String filePath, Charset charset) throws IOException {
+    public static void loadConfig(String filePath, Charset charset) throws IOException {
         Stream<String> lines = Files.lines(Paths.get(filePath), charset);
         String content = lines.collect(Collectors.joining("\n"));
         lines.close();
