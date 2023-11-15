@@ -226,7 +226,7 @@ public final class Coordinate extends EntityBase {
                 EntityRelatesToSQL.escapeSingleQuotes(description),
                 EntityRelatesToSQL.escapeSingleQuotes(usrName)
         );
-        System.out.println(sql);
+//        System.out.println(sql);
 
         Statement statement = getConnection().createStatement();
         statement.executeUpdate(sql);

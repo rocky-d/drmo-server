@@ -147,7 +147,7 @@ public final class Comment extends EntityBase {
                 EntityRelatesToSQL.escapeSingleQuotes(datetimeoffset),
                 cdtId
         );
-        System.out.println(sql);
+//        System.out.println(sql);
 
         Statement statement = getConnection().createStatement();
         statement.executeUpdate(sql);

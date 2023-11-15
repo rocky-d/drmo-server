@@ -130,7 +130,7 @@ public final class User extends EntityBase {
                 EntityRelatesToSQL.escapeSingleQuotes(email),
                 EntityRelatesToSQL.escapeSingleQuotes(phone)
         );
-        System.out.println(sql);
+//        System.out.println(sql);
 
         Statement statement = getConnection().createStatement();
         statement.executeUpdate(sql);
