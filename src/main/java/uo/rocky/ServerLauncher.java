@@ -108,8 +108,6 @@ public final class ServerLauncher {
             }
 
         } catch (Exception exception) {
-            LogWriter.appendEntry(ERROR, "Launch failed.", exception.getClass().getName() + ": " + exception.getMessage());
-
             Scanner scanner = new Scanner(System.in);
             String input;
             while (true) {
