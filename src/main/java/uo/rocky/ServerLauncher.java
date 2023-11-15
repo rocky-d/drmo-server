@@ -176,6 +176,9 @@ public final class ServerLauncher {
                         "        \"PASSWORD\": \"<password>\"\n" +
                         "      }\n" +
                         "    }\n" +
+                        "  },\n" +
+                        "  \"LOG\": {\n" +
+                        "    \"PATH\": \"default.server.log\"\n" +
                         "  }\n" +
                         "}"
         ).getBytes(UTF_8));
