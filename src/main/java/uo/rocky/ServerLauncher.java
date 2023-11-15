@@ -110,14 +110,12 @@ public final class ServerLauncher {
         } catch (Exception exception) {
             LogWriter.appendEntry(ERROR, "Launch failed.", exception.getClass().getName() + ": " + exception.getMessage());
 
-            System.out.println();
             Scanner scanner = new Scanner(System.in);
             String input;
             while (true) {
                 System.out.println("Override config file with default configuration?");
                 System.out.print("(Yes/No) > ");
                 input = scanner.nextLine();
-                System.out.println();
                 if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES")) {
                     overrideConfig();
                     System.out.println("Config has been overridden.");
