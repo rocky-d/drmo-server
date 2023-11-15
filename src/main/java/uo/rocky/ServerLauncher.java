@@ -106,6 +106,7 @@ public final class ServerLauncher {
                 System.out.println("HTTPS server started listening on (port number): " + port);
                 System.out.println("Access control (IP address of remote hosts): " + host);
             }
+
         } catch (Exception exception) {
             System.out.println("Launch failed.");
             System.out.println(exception.getClass().getSimpleName() + ": " + exception.getMessage());
@@ -130,6 +131,7 @@ public final class ServerLauncher {
                     break;
                 }
             }
+
         } finally {
             System.out.println("=========");
         }
