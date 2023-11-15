@@ -26,7 +26,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
 
 public final class ServerLauncher {
-    public static final Path CONFIG_FILE = Paths.get("serverLauncher.json");
+    public static final Path CONFIG_FILE = Paths.get("serverLauncher0.json");
 
     private static Path logFile;
     private static String sqliteUrl;
@@ -71,8 +71,7 @@ public final class ServerLauncher {
         httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
             @Override
             public void configure(HttpsParameters httpsParameters) {
-                InetSocketAddress inetSocketAddress = httpsParameters.getClientAddress();
-                System.out.println("Remote: " + inetSocketAddress);
+                LogWriter.appendEntry(INFO, "Got remote connection: " + httpsParameters.getClientAddress());
                 httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
             }
         });
