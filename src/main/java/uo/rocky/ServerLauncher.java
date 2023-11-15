@@ -81,19 +81,23 @@ public final class ServerLauncher {
 
     public static void main(String[] args) throws IOException {
         System.out.println("Hello world!");
+        System.out.println("---------");
 
         try {
             loadConfig();
 
             EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
             System.out.println(sqliteUrl + " connected");
+            System.out.println("---------");
 
             if (!isHttps) {
                 launchHttpServer();
-                System.out.println("HTTP server started listening on port " + port);
+                System.out.println("HTTP server started listening on (port number): " + port);
+                System.out.println("Access control (IP address of remote hosts): " + host);
             } else {
                 launchHttpsServer();
-                System.out.println("HTTPS server started listening on port " + port);
+                System.out.println("HTTPS server started listening on (port number): " + port);
+                System.out.println("Access control (IP address of remote hosts): " + host);
             }
         } catch (Exception exception) {
             System.out.println("Launch failed.");
@@ -120,6 +124,7 @@ public final class ServerLauncher {
                 }
             }
         }
+        System.out.println("=========");
     }
 
     public static void loadConfig() throws IOException {
