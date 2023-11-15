@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static uo.rocky.LogWriter.LogEntryType.ERROR;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
 
 public final class ServerLauncher {
@@ -108,6 +107,10 @@ public final class ServerLauncher {
             }
 
         } catch (Exception exception) {
+            System.out.println();
+            System.out.println("Launch failed.");
+            System.out.println(exception.getClass().getName() + ": " + exception.getMessage());
+
             Scanner scanner = new Scanner(System.in);
             String input;
             while (true) {
