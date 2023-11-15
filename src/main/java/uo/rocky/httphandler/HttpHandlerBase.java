@@ -31,7 +31,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
         } catch (IOException ioException) {
             LogWriter.appendEntry(ERROR, ioException.getClass().getName() + ": " + ioException.getMessage());
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
-            throw new RuntimeException(ioException);
+//            throw new RuntimeException(ioException);
         }
     }
 

@@ -23,7 +23,8 @@ public final class UserAuthenticator extends BasicAuthenticator {
         } catch (SQLException sqlException) {
             LogWriter.appendEntry(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
             System.out.println(sqlException.getClass().getName() + ": " + sqlException.getMessage());
-            throw new RuntimeException(sqlException);
+//            throw new RuntimeException(sqlException);
+            return false;
         }
     }
 }
