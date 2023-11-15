@@ -2,12 +2,14 @@ package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
 import org.json.JSONObject;
+import uo.rocky.LogWriter;
 import uo.rocky.entity.Comment;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static uo.rocky.LogWriter.LogEntryType.INFO;
 
 public final class CommentHttpHandler extends HttpHandlerBase {
     public static final String GET_CONTEXT = "/comment";
@@ -16,6 +18,8 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
+        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the GET request.");
+
         try {
             String results = Comment.selectCommentJSONString(parseQueryParameters(httpExchange));
             System.out.println(results);
@@ -31,12 +35,16 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
+        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the HEAD request.");
+
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
     }
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
+        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the GET request.");
+
         try {
             Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
             System.out.println(comment);
