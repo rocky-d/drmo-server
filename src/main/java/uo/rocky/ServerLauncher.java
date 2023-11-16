@@ -26,7 +26,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
 
 /**
- * TODO
+ * Loads the config, prepares the log, connects the database, and launches the server.
  *
  * @author Rocky Haotian Du
  */
@@ -96,7 +96,7 @@ public final class ServerLauncher {
             System.out.println("---------");
 
             LogWriter.setBufferedWriter(logFile);
-            System.out.println("Log \"" + logFile.getFileName() + "\" has prepared.");
+            System.out.println("Log \"" + logFile.getFileName() + "\" has been prepared.");
             System.out.println("---------");
 
             EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
