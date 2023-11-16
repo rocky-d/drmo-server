@@ -254,10 +254,10 @@ public final class Coordinate extends EntityBase {
 
     public enum Dangertype {
 
-        DEER,
-        REINDEER,
-        MOOSE,
-        OTHER;
+        DEER(),
+        REINDEER(),
+        MOOSE(),
+        OTHER();
 
         Dangertype() {
         }
