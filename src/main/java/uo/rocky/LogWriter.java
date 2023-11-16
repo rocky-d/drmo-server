@@ -96,7 +96,7 @@ public final class LogWriter {
         }
 
         /**
-         * Overrides toString() to provide details about the instances.
+         * Overrides {@code toString()} to provide details about the instances.
          *
          * @return a string representation of the instances.
          */
