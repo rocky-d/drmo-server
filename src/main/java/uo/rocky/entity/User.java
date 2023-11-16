@@ -3,6 +3,8 @@ package uo.rocky.entity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * TODO
@@ -19,21 +23,36 @@ import java.util.stream.Collectors;
 public final class User extends EntityBase {
 
     private String name;
-    private int hashedpassword;
+    private long hashedpassword;
     private String email;
     private String phone;
 
-    public User(String name, int hashedpassword, String email, String phone) {
+    public User(String name, long hashedpassword, String email, String phone) {
         this.name = name;
         this.hashedpassword = hashedpassword;
         this.email = email;
         this.phone = phone;
     }
 
+    public static long hashPassword(String password) {
+        byte[] digestedPassword;
+        try {
+            digestedPassword = MessageDigest.getInstance("SHA-256").digest(password.getBytes(UTF_8));
+        } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
+            throw new RuntimeException(noSuchAlgorithmException);
+        }
+        long hashedPassword = 0;
+        for (int i = 0; i < 8 && i < digestedPassword.length; i++) {
+            hashedPassword <<= 8;
+            hashedPassword |= (digestedPassword[i] & 0xFF);
+        }
+        return hashedPassword;
+    }
+
     public static User valueOf(JSONObject jsonObject) {
         return new User(
                 jsonObject.getString("username"),
-                jsonObject.getString("password").hashCode(),
+                hashPassword(jsonObject.getString("password")),
                 jsonObject.has("email") ? jsonObject.getString("email") : null,
                 jsonObject.has("phone") ? jsonObject.getString("phone") : null
         );
@@ -42,7 +61,7 @@ public final class User extends EntityBase {
     public static User valueOf(ResultSet resultSet) throws SQLException {
         return new User(
                 resultSet.getString("USR_NAME"),
-                resultSet.getInt("USR_HASHEDPASSWORD"),
+                resultSet.getLong("USR_HASHEDPASSWORD"),
                 resultSet.getString("USR_EMAIL"),
                 resultSet.getString("USR_PHONE")
         );
@@ -80,11 +99,11 @@ public final class User extends EntityBase {
         this.name = name;
     }
 
-    public int getHashedpassword() {
+    public long getHashedpassword() {
         return hashedpassword;
     }
 
-    public void setHashedpassword(int hashedpassword) {
+    public void setHashedpassword(long hashedpassword) {
         this.hashedpassword = hashedpassword;
     }
 
