@@ -24,11 +24,14 @@ import static java.nio.file.StandardOpenOption.CREATE;
  * @author Rocky Haotian Du
  */
 public final class LogWriter {
+
     private static final OpenOption[] OPEN_OPTIONS = new StandardOpenOption[]{APPEND, CREATE};
 
     private static BufferedWriter bufferedWriter = null;
 
     /**
+     * Returns The BufferedWriter instance for writing log entries.
+     *
      * @return The BufferedWriter instance for writing log entries.
      */
     public static synchronized BufferedWriter getBufferedWriter() {
