@@ -67,27 +67,27 @@ public final class User extends EntityBase {
         );
     }
 
-    public static synchronized boolean insertUser(User user) throws SQLException {
+    public static boolean insertUser(User user) throws SQLException {
         return user.insertSQL();
     }
 
-    public static synchronized boolean deleteUser() throws SQLException {
+    public static boolean deleteUser() throws SQLException {
         return false;
     }
 
-    public static synchronized boolean updateUser() throws SQLException {
+    public static boolean updateUser() throws SQLException {
         return false;
     }
 
-    public static synchronized List<User> selectUserList(Map<String, String> params) throws SQLException {
+    public static List<User> selectUserList(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectUsers(params);
     }
 
-    public static synchronized String selectUserJSONString(Map<String, String> params) throws SQLException {
+    public static String selectUserJSONString(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectUsers(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
-    public static synchronized JSONArray selectUserJSONArray(Map<String, String> params) throws SQLException {
+    public static JSONArray selectUserJSONArray(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectUsers(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 

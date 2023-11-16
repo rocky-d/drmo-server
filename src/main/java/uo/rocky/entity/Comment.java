@@ -55,27 +55,27 @@ public final class Comment extends EntityBase {
         );
     }
 
-    public static synchronized boolean insertComment(Comment comment) throws SQLException {
+    public static boolean insertComment(Comment comment) throws SQLException {
         return comment.insertSQL();
     }
 
-    public static synchronized boolean deleteComment() throws SQLException {
+    public static boolean deleteComment() throws SQLException {
         return false;
     }
 
-    public static synchronized boolean updateComment() throws SQLException {
+    public static boolean updateComment() throws SQLException {
         return false;
     }
 
-    public static synchronized List<Comment> selectCommentList(Map<String, String> params) throws SQLException {
+    public static List<Comment> selectCommentList(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectComments(params);
     }
 
-    public static synchronized String selectCommentJSONString(Map<String, String> params) throws SQLException {
+    public static String selectCommentJSONString(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
-    public static synchronized JSONArray selectCommentJSONArray(Map<String, String> params) throws SQLException {
+    public static JSONArray selectCommentJSONArray(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 

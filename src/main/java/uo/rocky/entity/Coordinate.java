@@ -68,31 +68,31 @@ public final class Coordinate extends EntityBase {
         );
     }
 
-    public static synchronized boolean insertCoordinate(Coordinate coordinate) throws SQLException {
+    public static boolean insertCoordinate(Coordinate coordinate) throws SQLException {
         return coordinate.insertSQL();
     }
 
-    public static synchronized boolean deleteCoordinate() throws SQLException {
+    public static boolean deleteCoordinate() throws SQLException {
         return false;
     }
 
-    public static synchronized boolean updateCoordinate() throws SQLException {
+    public static boolean updateCoordinate() throws SQLException {
         return false;
     }
 
-    public static synchronized List<Coordinate> selectCoordinateList(Map<String, String> params) throws SQLException {
+    public static List<Coordinate> selectCoordinateList(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectCoordinates(params);
     }
 
-    public static synchronized String selectCoordinateJSONString(Map<String, String> params) throws SQLException {
+    public static String selectCoordinateJSONString(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
-    public static synchronized JSONArray selectCoordinateJSONArray(Map<String, String> params) throws SQLException {
+    public static JSONArray selectCoordinateJSONArray(Map<String, String> params) throws SQLException {
         return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
-    public static synchronized String selectCoordinateWithCommentsJSONString(Map<String, String> params) throws SQLException {
+    public static String selectCoordinateWithCommentsJSONString(Map<String, String> params) throws SQLException {
         StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
         for (Coordinate coordinate : EntityDBConnection.selectCoordinates(params)) {
             stringJoiner.add(coordinate.toJSONStringWithComments());
@@ -100,7 +100,7 @@ public final class Coordinate extends EntityBase {
         return stringJoiner.toString();
     }
 
-    public static synchronized JSONArray selectCoordinateWithCommentsJSONArray(Map<String, String> params) throws SQLException {
+    public static JSONArray selectCoordinateWithCommentsJSONArray(Map<String, String> params) throws SQLException {
         JSONArray jsonArray = new JSONArray();
         for (Coordinate coordinate : EntityDBConnection.selectCoordinates(params)) {
             jsonArray.put(coordinate.toJSONObjectWithComments());
