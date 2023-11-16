@@ -19,7 +19,7 @@ import static java.nio.file.StandardOpenOption.CREATE;
 /**
  * Handles the writing of log entries to a log file.
  *
- * <p>All fields and methods are static.
+ * <p> All fields and methods are static.
  *
  * @author Rocky Haotian Du
  */
