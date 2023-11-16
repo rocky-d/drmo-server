@@ -91,18 +91,18 @@ public final class LogWriter {
         /**
          * The info type indicating the normal actions.
          */
-        INFO,
+        INFO(),
         /**
          * The warning type indicating the improper actions causing not serious consequences.
          */
-        WARNING,
+        WARNING(),
         /**
-         * The error type indicating the unexpected errors.
+         * The error type indicating the exceptions that may affect the server's operations.
          */
-        ERROR;
+        ERROR();
 
         /**
-         * Instantiates the types.
+         * Constructs the types above.
          */
         LogEntryType() {
         }
