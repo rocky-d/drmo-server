@@ -84,7 +84,7 @@ public final class LogWriter {
     }
 
     /**
-     * Represents the types of log entries.
+     * Enumerates and represents the types of log entries.
      */
     public enum LogEntryType {
 
