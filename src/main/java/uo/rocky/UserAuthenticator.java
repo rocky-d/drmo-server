@@ -31,6 +31,12 @@ public final class UserAuthenticator extends BasicAuthenticator {
         super(realm);
     }
 
+    /**
+     * TODO
+     *
+     * @param password TODO
+     * @return TODO
+     */
     public static long hashPassword(String password) {
         final String DIGEST_ALGORITHM = "SHA-256";
         final String SALT = "6GYxNi78Dqd2I";
