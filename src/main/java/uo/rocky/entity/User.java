@@ -42,7 +42,7 @@ public final class User extends EntityBase {
             throw new RuntimeException(noSuchAlgorithmException);
         }
         long hashedPassword = 0;
-        for (int i = 0; i < 8 && i < digestedPassword.length; i++) {
+        for (int i = 0; i < 16 && i < digestedPassword.length; i++) {
             hashedPassword <<= 8;
             hashedPassword |= (digestedPassword[i] & 0xFF);
         }
