@@ -88,10 +88,22 @@ public final class LogWriter {
      */
     public enum LogEntryType {
 
+        /**
+         * The info type indicating the normal actions.
+         */
         INFO,
+        /**
+         * The warning type indicating the improper actions causing not serious consequences.
+         */
         WARNING,
+        /**
+         * The error type indicating the unexpected errors happened.
+         */
         ERROR;
 
+        /**
+         * Instantiates the types.
+         */
         LogEntryType() {
         }
 
