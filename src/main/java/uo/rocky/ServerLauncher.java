@@ -71,7 +71,7 @@ public final class ServerLauncher {
         httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
             @Override
             public void configure(HttpsParameters httpsParameters) {
-                LogWriter.appendEntry(INFO, "Got remote handshake: " + httpsParameters.getClientAddress());
+                LogWriter.appendEntry(INFO, "Got remote connection: " + httpsParameters.getClientAddress());
                 httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
             }
         });
