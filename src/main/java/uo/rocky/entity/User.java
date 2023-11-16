@@ -2,9 +2,8 @@ package uo.rocky.entity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import uo.rocky.UserAuthenticator;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * TODO
@@ -34,30 +31,10 @@ public final class User extends EntityBase {
         this.phone = phone;
     }
 
-    public static long hashPassword(String password) {
-        final String DIGEST_ALGORITHM = "SHA-256";
-        final String SALT = "6GYxNi78Dqd2I";
-
-        byte[] digestedPassword;
-        try {
-            digestedPassword = MessageDigest.getInstance(DIGEST_ALGORITHM).digest((password + SALT).getBytes(UTF_8));
-        } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
-            throw new RuntimeException(noSuchAlgorithmException);
-        }
-
-        long hashedPassword = 0;
-        for (byte b : digestedPassword) {
-            hashedPassword <<= 8;
-            hashedPassword |= (b & 0xFF);
-        }
-
-        return hashedPassword;
-    }
-
     public static User valueOf(JSONObject jsonObject) {
         return new User(
                 jsonObject.getString("username"),
-                hashPassword(jsonObject.getString("password")),
+                UserAuthenticator.hashPassword(jsonObject.getString("password")),
                 jsonObject.has("email") ? jsonObject.getString("email") : null,
                 jsonObject.has("phone") ? jsonObject.getString("phone") : null
         );

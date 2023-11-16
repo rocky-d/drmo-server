@@ -3,11 +3,14 @@ package uo.rocky;
 import com.sun.net.httpserver.BasicAuthenticator;
 import uo.rocky.entity.User;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.ERROR;
 
 /**
@@ -28,6 +31,26 @@ public final class UserAuthenticator extends BasicAuthenticator {
         super(realm);
     }
 
+    public static long hashPassword(String password) {
+        final String DIGEST_ALGORITHM = "SHA-256";
+        final String SALT = "6GYxNi78Dqd2I";
+
+        byte[] digestedPassword;
+        try {
+            digestedPassword = MessageDigest.getInstance(DIGEST_ALGORITHM).digest((password + SALT).getBytes(UTF_8));
+        } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
+            throw new RuntimeException(noSuchAlgorithmException);
+        }
+
+        long hashedPassword = 0;
+        for (byte b : digestedPassword) {
+            hashedPassword <<= 8;
+            hashedPassword |= (b & 0xFF);
+        }
+
+        return hashedPassword;
+    }
+
     /**
      * Checks user credentials for authentication.
      *
@@ -39,7 +62,7 @@ public final class UserAuthenticator extends BasicAuthenticator {
     public boolean checkCredentials(String username, String password) {
         try {
             List<User> users = User.selectUserList(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", username}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1])));
-            return null != users && 1 == users.size() && User.hashPassword(password) == users.get(0).getHashedpassword();
+            return null != users && 1 == users.size() && hashPassword(password) == users.get(0).getHashedpassword();
         } catch (SQLException sqlException) {
             LogWriter.appendEntry(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
 //            throw new RuntimeException(sqlException);
