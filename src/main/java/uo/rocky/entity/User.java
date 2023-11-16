@@ -35,18 +35,22 @@ public final class User extends EntityBase {
     }
 
     public static long hashPassword(String password) {
+        final String DIGEST_ALGORITHM = "SHA-256";
         final String SALT = "6GYxNi78Dqd2I";
+
         byte[] digestedPassword;
         try {
-            digestedPassword = MessageDigest.getInstance("SHA-256").digest((password + SALT).getBytes(UTF_8));
+            digestedPassword = MessageDigest.getInstance(DIGEST_ALGORITHM).digest((password + SALT).getBytes(UTF_8));
         } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
             throw new RuntimeException(noSuchAlgorithmException);
         }
+
         long hashedPassword = 0;
         for (byte b : digestedPassword) {
             hashedPassword <<= 8;
             hashedPassword |= (b & 0xFF);
         }
+
         return hashedPassword;
     }
 
