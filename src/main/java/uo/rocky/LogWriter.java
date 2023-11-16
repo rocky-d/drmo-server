@@ -28,26 +28,26 @@ public final class LogWriter {
     private static BufferedWriter bufferedWriter = null;
 
     /**
-     * Returns the BufferedWriter instance for writing log entries.
+     * Returns the {@link BufferedWriter} instance for writing log entries.
      *
-     * @return the BufferedWriter instance for writing log entries.
+     * @return the {@link BufferedWriter} instance for writing log entries.
      */
     public static synchronized BufferedWriter getBufferedWriter() {
         return bufferedWriter;
     }
 
     /**
-     * Sets up the BufferedWriter for writing logs to the specified file.
+     * Sets up the {@link BufferedWriter} instance for writing logs to the specified file.
      *
      * @param logFile the path to the log file.
-     * @throws IOException if an I/O error occurs while setting up the writer.
+     * @throws IOException if an I/O error occurs while setting up {@code bufferedWriter}.
      */
     public static synchronized void setBufferedWriter(Path logFile) throws IOException {
         bufferedWriter = Files.newBufferedWriter(logFile, UTF_8, OPEN_OPTIONS);
     }
 
     /**
-     * Appends a log entry of a specified type with provided content.
+     * Appends a log entry of a {@link LogEntryType} instance with provided content.
      *
      * @param logEntryType the type of log entry (INFO, WARNING, ERROR).
      * @param content      the content to be logged, represented as one or more strings.
@@ -75,9 +75,9 @@ public final class LogWriter {
     }
 
     /**
-     * Closes the BufferedWriter.
+     * Closes the {@link BufferedWriter}.
      *
-     * @throws IOException if an I/O error occurs while closing the writer.
+     * @throws IOException if an I/O error occurs while closing {@code bufferedWriter}.
      */
     public static synchronized void close() throws IOException {
         bufferedWriter.close();
