@@ -30,7 +30,7 @@ public final class LogWriter {
     /**
      * Returns the BufferedWriter instance for writing log entries.
      *
-     * @return The BufferedWriter instance for writing log entries.
+     * @return the BufferedWriter instance for writing log entries.
      */
     public static synchronized BufferedWriter getBufferedWriter() {
         return bufferedWriter;
@@ -39,8 +39,8 @@ public final class LogWriter {
     /**
      * Sets up the BufferedWriter for writing logs to the specified file.
      *
-     * @param logFile The path to the log file.
-     * @throws IOException If an I/O error occurs while setting up the writer.
+     * @param logFile the path to the log file.
+     * @throws IOException if an I/O error occurs while setting up the writer.
      */
     public static synchronized void setBufferedWriter(Path logFile) throws IOException {
         bufferedWriter = Files.newBufferedWriter(logFile, UTF_8, OPEN_OPTIONS);
@@ -49,8 +49,8 @@ public final class LogWriter {
     /**
      * Appends a log entry of a specified type with provided content.
      *
-     * @param logEntryType The type of log entry (INFO, WARNING, ERROR).
-     * @param content      The content to be logged, represented as one or more strings.
+     * @param logEntryType the type of log entry (INFO, WARNING, ERROR).
+     * @param content      the content to be logged, represented as one or more strings.
      */
     public static synchronized void appendEntry(LogEntryType logEntryType, String... content) {
         String temp;
@@ -77,7 +77,7 @@ public final class LogWriter {
     /**
      * Closes the BufferedWriter.
      *
-     * @throws IOException If an I/O error occurs while closing the writer.
+     * @throws IOException if an I/O error occurs while closing the writer.
      */
     public static synchronized void close() throws IOException {
         bufferedWriter.close();
@@ -98,7 +98,7 @@ public final class LogWriter {
         /**
          * Overrides toString() to provide details about the instances.
          *
-         * @return A string representation of the type.
+         * @return a string representation of the instances.
          */
         @Override
         public final String toString() {
