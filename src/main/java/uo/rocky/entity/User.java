@@ -35,9 +35,10 @@ public final class User extends EntityBase {
     }
 
     public static long hashPassword(String password) {
+        final String SALT = "6GYxNi78Dqd2I";
         byte[] digestedPassword;
         try {
-            digestedPassword = MessageDigest.getInstance("SHA-256").digest(password.getBytes(UTF_8));
+            digestedPassword = MessageDigest.getInstance("SHA-256").digest((password + SALT).getBytes(UTF_8));
         } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
             throw new RuntimeException(noSuchAlgorithmException);
         }
