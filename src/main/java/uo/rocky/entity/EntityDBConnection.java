@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class EntityDBConnection {
     private static final String NO_QUERT_KEY = "ALL";
 

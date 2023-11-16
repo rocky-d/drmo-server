@@ -2,6 +2,11 @@ package uo.rocky.httphandler;
 
 import java.util.StringJoiner;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public enum StatusCode {
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),

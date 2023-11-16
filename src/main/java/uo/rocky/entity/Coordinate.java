@@ -14,6 +14,11 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class Coordinate extends EntityBase {
     private long id;
     private double longitude;

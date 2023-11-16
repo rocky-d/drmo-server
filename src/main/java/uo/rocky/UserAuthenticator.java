@@ -10,6 +10,11 @@ import java.util.stream.Stream;
 
 import static uo.rocky.LogWriter.LogEntryType.ERROR;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class UserAuthenticator extends BasicAuthenticator {
     public UserAuthenticator(String realm) {
         super(realm);

@@ -12,6 +12,11 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
 import static uo.rocky.LogWriter.LogEntryType.WARNING;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class CoordinatesHttpHandler extends HttpHandlerBase {
     public static final String GET_CONTEXT = "/coordinates";
     private static final String GET_ALLOW = "GET, HEAD, POST";

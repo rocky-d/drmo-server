@@ -25,6 +25,11 @@ import java.util.stream.Stream;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class ServerLauncher {
     public static final Path CONFIG_FILE = Paths.get("serverLauncher0.json");
 

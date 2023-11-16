@@ -11,6 +11,11 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class User extends EntityBase {
     private String name;
     private int hashedpassword;

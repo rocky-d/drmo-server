@@ -13,6 +13,11 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class Comment extends EntityBase {
     private long id;
     private String content;

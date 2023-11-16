@@ -3,6 +3,11 @@ package uo.rocky.entity;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public abstract class EntityBase implements EntityRelatesToJSON, EntityRelatesToSQL {
     protected static final DateTimeFormatter LOCALDATETIME_FORMATTER_T = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
     protected static final DateTimeFormatter LOCALDATETIME_FORMATTER_SPACE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");

@@ -12,6 +12,11 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
 import static uo.rocky.LogWriter.LogEntryType.WARNING;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public final class RegistrationHttpHandler extends HttpHandlerBase {
     public static final String GET_CONTEXT = "/registration";
     private static final String GET_ALLOW = "GET, HEAD, POST";

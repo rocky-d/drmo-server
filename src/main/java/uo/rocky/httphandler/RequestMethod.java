@@ -2,6 +2,11 @@ package uo.rocky.httphandler;
 
 import java.util.StringJoiner;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public enum RequestMethod {
     GET,
     HEAD,
