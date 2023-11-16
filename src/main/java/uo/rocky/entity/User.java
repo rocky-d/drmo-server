@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
  * @author Rocky Haotian Du
  */
 public final class User extends EntityBase {
+
     private String name;
     private int hashedpassword;
     private String email;

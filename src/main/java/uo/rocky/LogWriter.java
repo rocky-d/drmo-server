@@ -89,6 +89,7 @@ public final class LogWriter {
      * Enumerates the types of log entries.
      */
     public enum LogEntryType {
+
         INFO,
         WARNING,
         ERROR;

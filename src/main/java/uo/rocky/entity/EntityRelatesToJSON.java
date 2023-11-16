@@ -10,6 +10,7 @@ import org.json.JSONString;
  * @author Rocky Haotian Du
  */
 public interface EntityRelatesToJSON extends JSONString {
+
     static String escapeDoubleQuotes(String string) {
         return null == string ? "null" : "\"" + string.replace("\"", "\\\"") + "\"";
     }

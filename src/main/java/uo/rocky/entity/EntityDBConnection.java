@@ -14,6 +14,7 @@ import java.util.Map;
  * @author Rocky Haotian Du
  */
 public final class EntityDBConnection {
+
     private static final String NO_QUERT_KEY = "ALL";
 
     private static Connection connection = null;

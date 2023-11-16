@@ -31,6 +31,7 @@ import static uo.rocky.LogWriter.LogEntryType.INFO;
  * @author Rocky Haotian Du
  */
 public final class ServerLauncher {
+
     public static final Path CONFIG_FILE = Paths.get("serverLauncher0.json");
 
     private static Path logFile;

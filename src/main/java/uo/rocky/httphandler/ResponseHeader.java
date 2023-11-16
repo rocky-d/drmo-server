@@ -8,6 +8,7 @@ import java.util.StringJoiner;
  * @author Rocky Haotian Du
  */
 public enum ResponseHeader {
+
     ALLOW("Allow"),
     CONTENT_ENCODING("Content-Encoding"),
     CONTENT_LENGTH("Content-Length"),

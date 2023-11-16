@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
  * @author Rocky Haotian Du
  */
 public final class Comment extends EntityBase {
+
     private long id;
     private String content;
     private LocalDateTime localdatetime;

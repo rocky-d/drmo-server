@@ -8,6 +8,7 @@ import java.util.StringJoiner;
  * @author Rocky Haotian Du
  */
 public enum RequestMethod {
+
     GET,
     HEAD,
     POST,

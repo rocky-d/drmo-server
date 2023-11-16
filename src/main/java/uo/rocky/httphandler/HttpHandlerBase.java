@@ -19,6 +19,7 @@ import static uo.rocky.LogWriter.LogEntryType.*;
  * @author Rocky Haotian Du
  */
 public abstract class HttpHandlerBase implements HttpHandler {
+
     private static final String GET_ALLOW = "HEAD";
     private static final String GET_CONTENT_TYPE = "text/plain; charset=utf-8";
 

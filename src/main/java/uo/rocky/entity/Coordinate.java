@@ -20,6 +20,7 @@ import java.util.stream.Stream;
  * @author Rocky Haotian Du
  */
 public final class Coordinate extends EntityBase {
+
     private long id;
     private double longitude;
     private double latitude;
@@ -252,6 +253,7 @@ public final class Coordinate extends EntityBase {
     }
 
     public enum Dangertype {
+
         DEER,
         REINDEER,
         MOOSE,

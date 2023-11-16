@@ -8,6 +8,7 @@ import java.util.StringJoiner;
  * @author Rocky Haotian Du
  */
 public enum StatusCode {
+
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),
     OK(200, "OK"),
