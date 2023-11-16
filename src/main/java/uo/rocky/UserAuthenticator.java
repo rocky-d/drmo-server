@@ -12,8 +12,8 @@ import static uo.rocky.LogWriter.LogEntryType.ERROR;
 
 /**
  * Authenticates users for the server.
- *
- * <p> Extends {@link BasicAuthenticator}.
+ * <p>
+ * Extends {@link BasicAuthenticator}.
  *
  * @author Rocky Haotian Du
  */
