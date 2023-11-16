@@ -20,7 +20,7 @@ import static uo.rocky.LogWriter.LogEntryType.ERROR;
 public final class UserAuthenticator extends BasicAuthenticator {
 
     /**
-     * Instantiates a {@link UserAuthenticator} instance with a message of realm.
+     * Constructs a {@link UserAuthenticator} instance with a message of realm.
      *
      * @param realm the message of realm.
      */
