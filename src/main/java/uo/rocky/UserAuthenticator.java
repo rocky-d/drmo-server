@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import static uo.rocky.LogWriter.LogEntryType.ERROR;
 
 /**
- * Authenticates users.
+ * Authenticates users for the server.
  *
  * <p> Extends {@link BasicAuthenticator}.
  *
