@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
+import static uo.rocky.LogWriter.LogEntryType.WARNING;
 
 public final class CoordinatesHttpHandler extends HttpHandlerBase {
     public static final String GET_CONTEXT = "/coordinates";
@@ -48,7 +49,8 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         try {
             Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
 //            System.out.println(coordinate);
-            System.out.println(coordinate.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
+            if (coordinate.insertSQL()) LogWriter.appendEntry(INFO, "INSERT succeeded.");
+            else LogWriter.appendEntry(WARNING, "INSERT failed.");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (RuntimeException runtimeException) {
             respondBadRequest(httpExchange, runtimeException);

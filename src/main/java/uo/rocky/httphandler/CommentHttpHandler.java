@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.INFO;
+import static uo.rocky.LogWriter.LogEntryType.WARNING;
 
 public final class CommentHttpHandler extends HttpHandlerBase {
     public static final String GET_CONTEXT = "/comment";
@@ -48,7 +49,8 @@ public final class CommentHttpHandler extends HttpHandlerBase {
         try {
             Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
 //            System.out.println(comment);
-            System.out.println(comment.insertSQL() ? "INSERT succeed!" : "INSERT failed!");
+            if (comment.insertSQL()) LogWriter.appendEntry(INFO, "INSERT succeeded.");
+            else LogWriter.appendEntry(WARNING, "INSERT failed.");
             httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
         } catch (RuntimeException runtimeException) {
             respondBadRequest(httpExchange, runtimeException);
