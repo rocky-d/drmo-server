@@ -97,7 +97,7 @@ public final class LogWriter {
          */
         WARNING,
         /**
-         * The error type indicating the unexpected errors happened.
+         * The error type indicating the unexpected errors.
          */
         ERROR;
 
