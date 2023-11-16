@@ -28,7 +28,7 @@ public final class LogWriter {
     private static BufferedWriter bufferedWriter = null;
 
     /**
-     * Returns The BufferedWriter instance for writing log entries.
+     * Returns the BufferedWriter instance for writing log entries.
      *
      * @return The BufferedWriter instance for writing log entries.
      */

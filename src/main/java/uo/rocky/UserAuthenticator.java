@@ -11,16 +11,28 @@ import java.util.stream.Stream;
 import static uo.rocky.LogWriter.LogEntryType.ERROR;
 
 /**
- * TODO
+ * Extends {@link BasicAuthenticator}.
  *
  * @author Rocky Haotian Du
  */
 public final class UserAuthenticator extends BasicAuthenticator {
 
+    /**
+     * Instantiates a UserAuthenticator instance with a message of realm.
+     *
+     * @param realm The message of realm.
+     */
     public UserAuthenticator(String realm) {
         super(realm);
     }
 
+    /**
+     * Checks user credentials for authentication.
+     *
+     * @param username The username to be checked.
+     * @param password The password corresponding to the username.
+     * @return `true` if the credentials are valid, `false` otherwise.
+     */
     @Override
     public boolean checkCredentials(String username, String password) {
         try {
