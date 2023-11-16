@@ -1,7 +1,5 @@
 package uo.rocky;
 
-import uo.rocky.entity.Coordinate;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -98,13 +96,13 @@ public final class LogWriter {
         }
 
         /**
-         * Overrides toString() to provide details about the LogEntryType.
+         * Overrides toString() to provide details about the instances.
          *
          * @return A string representation of the type.
          */
         @Override
         public final String toString() {
-            return new StringJoiner(", ", Coordinate.Dangertype.class.getSimpleName() + "{", "}")
+            return new StringJoiner(", ", LogEntryType.class.getSimpleName() + "{", "}")
                     .add("name='" + name() + "'")
                     .add("ordinal=" + ordinal())
                     .toString();
