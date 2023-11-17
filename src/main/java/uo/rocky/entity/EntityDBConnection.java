@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static uo.rocky.entity.EntityBase.LOCALDATETIME_FORMATTER_SPACE;
-import static uo.rocky.entity.EntityBase.LOCALDATETIME_FORMATTER_T;
+import static uo.rocky.entity.EntityRelatesToJSON.LOCALDATETIME_FORMATTER_T;
+import static uo.rocky.entity.EntityRelatesToSQL.LOCALDATETIME_FORMATTER_SPACE;
 
 /**
  * Manages the connection between the entities and the database.
