@@ -23,7 +23,7 @@ import static uo.rocky.LogWriter.LogEntryType.ERROR;
 public final class UserAuthenticator extends BasicAuthenticator {
 
     /**
-     * Constructs a {@link UserAuthenticator} instance with a message of realm.
+     * Constructs {@link UserAuthenticator} instances with a message of realm.
      *
      * @param realm the message of realm.
      */
@@ -32,10 +32,10 @@ public final class UserAuthenticator extends BasicAuthenticator {
     }
 
     /**
-     * TODO
+     * Hashes passwords to implement password encryption.
      *
-     * @param password TODO
-     * @return TODO
+     * @param password the password to be hashed.
+     * @return the hashed password.
      */
     public static long hashPassword(String password) {
         final String DIGEST_ALGORITHM = "SHA-256";
