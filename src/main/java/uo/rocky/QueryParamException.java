@@ -5,7 +5,7 @@ package uo.rocky;
  *
  * @author Rocky Haotian Du
  */
-public class QueryParamException extends RuntimeException {
+public final class QueryParamException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
