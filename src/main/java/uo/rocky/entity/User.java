@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * TODO
@@ -127,7 +128,9 @@ public final class User extends EntityBase {
 
     @Override
     public synchronized boolean insertSQL() throws SQLException {
-//        Class.forName("org.sqlite.JDBC");
+        if (!EntityDBConnection.selectUsers(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", name}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+            return false;
+        }
 
         String sql = String.format("INSERT INTO user" +
                         " (USR_NAME,USR_HASHEDPASSWORD,USR_EMAIL,USR_PHONE)" +
@@ -143,7 +146,6 @@ public final class User extends EntityBase {
         statement.executeUpdate(sql);
         statement.close();
         getConnection().commit();
-
         return true;
     }
 

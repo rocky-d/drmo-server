@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * TODO
@@ -142,7 +143,12 @@ public final class Comment extends EntityBase {
 
     @Override
     public synchronized boolean insertSQL() throws SQLException {
-//        Class.forName("org.sqlite.JDBC");
+        if (!EntityDBConnection.selectComments(Stream.of(new String[]{"QUERY", "COMMENTID"}, new String[]{"COMMENTID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+            return false;
+        }
+        if (EntityDBConnection.selectCoordinates(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(cdtId)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+            return false;
+        }
 
         String sql = String.format("INSERT INTO comment" +
                         " (CMT_ID,CMT_CONTENT,CMT_LOCALDATETIME,CMT_DATETIMEOFFSET,CMT_CDT_ID)" +
@@ -159,7 +165,6 @@ public final class Comment extends EntityBase {
         statement.executeUpdate(sql);
         statement.close();
         getConnection().commit();
-
         return true;
     }
 
