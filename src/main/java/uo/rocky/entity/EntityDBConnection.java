@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static uo.rocky.entity.EntityBase.LOCALDATETIME_FORMATTER_SPACE;
+import static uo.rocky.entity.EntityBase.LOCALDATETIME_FORMATTER_T;
 
 /**
  * Manages the connection between the entities and the database.
@@ -126,7 +130,7 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM coordinate WHERE " + params.get("DOWNLONGITUDE") + " <= CDT_LONGITUDE AND CDT_LONGITUDE <= " + params.get("UPLONGITUDE") + " AND " + params.get("DOWNLATITUDE") + " <= CDT_LATITUDE AND CDT_LATITUDE <= " + params.get("UPLATITUDE") + ";";
                 break;
             case "SENT":
-                sql = "SELECT * FROM coordinate WHERE " + params.getOrDefault("DOWNDATETIME", "0000-00-00 00:00:00.000") + ";";
+                sql = "SELECT * FROM coordinate WHERE " + EntityRelatesToSQL.escapeSingleQuotes(LocalDateTime.parse(params.getOrDefault("DOWNDATETIME", "0001-01-01T00:00:00.000Z").substring(0, 23), LOCALDATETIME_FORMATTER_T).format(LOCALDATETIME_FORMATTER_SPACE)) + " <= CDT_LOCALDATETIME AND CDT_LOCALDATETIME <= " + EntityRelatesToSQL.escapeSingleQuotes(LocalDateTime.parse(params.getOrDefault("UPDATETIME", "9999-12-31T23:59:59.999Z").substring(0, 23), LOCALDATETIME_FORMATTER_T).format(LOCALDATETIME_FORMATTER_SPACE)) + ";";
                 break;
             case "USER":
                 sql = "SELECT * FROM coordinate WHERE CDT_USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
@@ -164,7 +168,7 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM comment WHERE CMT_ID = " + params.get("COMMENTID") + ";";
                 break;
             case "SENT":
-                sql = ";";
+                sql = "SELECT * FROM comment WHERE " + EntityRelatesToSQL.escapeSingleQuotes(LocalDateTime.parse(params.getOrDefault("DOWNDATETIME", "0001-01-01T00:00:00.000Z").substring(0, 23), LOCALDATETIME_FORMATTER_T).format(LOCALDATETIME_FORMATTER_SPACE)) + " <= CMT_LOCALDATETIME AND CMT_LOCALDATETIME <= " + EntityRelatesToSQL.escapeSingleQuotes(LocalDateTime.parse(params.getOrDefault("UPDATETIME", "9999-12-31T23:59:59.999Z").substring(0, 23), LOCALDATETIME_FORMATTER_T).format(LOCALDATETIME_FORMATTER_SPACE)) + ";";
                 break;
             case "ID":
                 sql = "SELECT * FROM comment WHERE CMT_CDT_ID = " + params.get("ID") + ";";
