@@ -1,5 +1,7 @@
 package uo.rocky.entity;
 
+import uo.rocky.QueryParamException;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,7 +81,7 @@ public final class EntityDBConnection {
         connection.commit();
     }
 
-    static synchronized List<User> selectUsers(Map<String, String> params) throws SQLException {
+    static synchronized List<User> selectUsers(Map<String, String> params) throws SQLException, QueryParamException {
         String sql;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "USERNAME":
@@ -98,29 +100,23 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM user;";
                 break;
             default:
-                sql = null;
-                break;
+                throw new QueryParamException("");
         }
 
-        List<User> results;
-        if (null == sql) {
-            results = null;
-        } else {
-            results = new ArrayList<>();
-//            System.out.println(sql);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                results.add(User.valueOf(resultSet));
-            }
-            resultSet.close();
-            statement.close();
-            connection.commit();
+        List<User> results = new ArrayList<>();
+//        System.out.println(sql);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            results.add(User.valueOf(resultSet));
         }
+        resultSet.close();
+        statement.close();
+        connection.commit();
         return results;
     }
 
-    static synchronized List<Coordinate> selectCoordinates(Map<String, String> params) throws SQLException {
+    static synchronized List<Coordinate> selectCoordinates(Map<String, String> params) throws SQLException, QueryParamException {
         String sql;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "ID":
@@ -139,29 +135,23 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM coordinate;";
                 break;
             default:
-                sql = null;
-                break;
+                throw new QueryParamException("");
         }
 
-        List<Coordinate> results;
-        if (null == sql) {
-            results = null;
-        } else {
-            results = new ArrayList<>();
-//            System.out.println(sql);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                results.add(Coordinate.valueOf(resultSet));
-            }
-            resultSet.close();
-            statement.close();
-            connection.commit();
+        List<Coordinate> results = new ArrayList<>();
+//        System.out.println(sql);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            results.add(Coordinate.valueOf(resultSet));
         }
+        resultSet.close();
+        statement.close();
+        connection.commit();
         return results;
     }
 
-    static synchronized List<Comment> selectComments(Map<String, String> params) throws SQLException {
+    static synchronized List<Comment> selectComments(Map<String, String> params) throws SQLException, QueryParamException {
         String sql;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
             case "COMMENTID":
@@ -177,25 +167,19 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM comment;";
                 break;
             default:
-                sql = null;
-                break;
+                throw new QueryParamException("");
         }
 
-        List<Comment> results;
-        if (null == sql) {
-            results = null;
-        } else {
-            results = new ArrayList<>();
-//            System.out.println(sql);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                results.add(Comment.valueOf(resultSet));
-            }
-            resultSet.close();
-            statement.close();
-            connection.commit();
+        List<Comment> results = new ArrayList<>();
+//        System.out.println(sql);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            results.add(Comment.valueOf(resultSet));
         }
+        resultSet.close();
+        statement.close();
+        connection.commit();
         return results;
     }
 }
