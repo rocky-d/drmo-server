@@ -1,4 +1,4 @@
-package uo.rocky;
+package uo.rocky.entity;
 
 /**
  * TODO
