@@ -47,7 +47,7 @@ public final class LogWriter {
     }
 
     /**
-     * Appends a log entry of a {@link LogEntryType} object with provided messages.
+     * Appends a log entry of a {@link LogEntryType} instance with provided messages.
      *
      * @param logEntryType the type of log entry (INFO, WARNING, ERROR).
      * @param messages     the messages to be logged, represented as one or more strings.
