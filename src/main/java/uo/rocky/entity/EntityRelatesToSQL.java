@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  */
 public interface EntityRelatesToSQL {
 
-    public static final DateTimeFormatter LOCALDATETIME_FORMATTER_SPACE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+    DateTimeFormatter LOCALDATETIME_FORMATTER_SPACE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     static String escapeSingleQuotes(String string) {
         return null == string ? "NULL" : "'" + string.replace("'", "''") + "'";

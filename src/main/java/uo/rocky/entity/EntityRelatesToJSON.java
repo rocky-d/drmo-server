@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
  */
 public interface EntityRelatesToJSON extends JSONString {
 
-    public static final DateTimeFormatter LOCALDATETIME_FORMATTER_T = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    DateTimeFormatter LOCALDATETIME_FORMATTER_T = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
     static String escapeDoubleQuotes(String string) {
         return null == string ? "null" : "\"" + string.replace("\"", "\\\"") + "\"";
