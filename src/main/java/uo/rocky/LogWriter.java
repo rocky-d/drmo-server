@@ -37,7 +37,7 @@ public final class LogWriter {
     }
 
     /**
-     * Sets up {@link #bufferedWriter} by a new {@link BufferedWriter} instance for writing logs to a log file.
+     * Sets up {@link #bufferedWriter} by a new {@link BufferedWriter} object for writing logs to a log file.
      *
      * @param logFile the path to the log file.
      * @throws IOException if an I/O error occurs while setting up {@link #bufferedWriter}.
@@ -47,7 +47,7 @@ public final class LogWriter {
     }
 
     /**
-     * Appends a log entry of a {@link LogEntryType} instance with provided messages.
+     * Appends a log entry of a {@link LogEntryType} object with provided messages.
      *
      * @param logEntryType the type of log entry (INFO, WARNING, ERROR).
      * @param messages     the messages to be logged, represented as one or more strings.
