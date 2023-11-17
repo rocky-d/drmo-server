@@ -47,18 +47,18 @@ public final class LogWriter {
     }
 
     /**
-     * Appends a log entry of a {@link LogEntryType} instance with provided content.
+     * Appends a log entry of a {@link LogEntryType} instance with provided messages.
      *
      * @param logEntryType the type of log entry (INFO, WARNING, ERROR).
-     * @param content      the content to be logged, represented as one or more strings.
+     * @param messages     the messages to be logged, represented as one or more strings.
      */
-    public static synchronized void appendEntry(LogEntryType logEntryType, String... content) {
+    public static synchronized void appendEntry(LogEntryType logEntryType, String... messages) {
         String temp;
         try {
             System.out.println(temp = "<" + logEntryType.name() + "> " + ZonedDateTime.now());
             bufferedWriter.write(temp);
             bufferedWriter.newLine();
-            for (String line : content) {
+            for (String line : messages) {
                 System.out.println(temp = "\t" + line);
                 bufferedWriter.write(temp);
                 bufferedWriter.newLine();
@@ -66,7 +66,7 @@ public final class LogWriter {
             bufferedWriter.flush();
         } catch (IOException ioException) {
             System.out.println("*********");
-            System.out.println(Arrays.toString(content));
+            System.out.println(Arrays.toString(messages));
             System.out.println("*********");
             System.out.println("Write log failed.");
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
