@@ -75,27 +75,30 @@ public final class EntityDBConnection {
         connection.commit();
     }
 
-    static synchronized List<Comment> selectComments(Map<String, String> params) throws SQLException {
+    static synchronized List<User> selectUsers(Map<String, String> params) throws SQLException {
         String sql;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
-            case "COMMENTID":
-                sql = "SELECT * FROM comment WHERE CMT_ID = " + params.get("COMMENTID") + ";";
+            case "USERNAME":
+                sql = "SELECT * FROM user WHERE USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
                 break;
-            case "TIME":
-                sql = ";";
+            case "HASHEDPASSWORD":
+                sql = "SELECT * FROM user WHERE USR_HASHEDPASSWORD = " + params.get("HASHEDPASSWORD") + ";";
                 break;
-            case "ID":
-                sql = "SELECT * FROM comment WHERE CMT_CDT_ID = " + params.get("ID") + ";";
+            case "EMAIL":
+                sql = "SELECT * FROM user WHERE USR_EMAIL = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("EMAIL")) + ";";
+                break;
+            case "PHONE":
+                sql = "SELECT * FROM user WHERE USR_PHONE = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("PHONE")) + ";";
                 break;
             case NO_QUERT_KEY:
-                sql = "SELECT * FROM comment;";
+                sql = "SELECT * FROM user;";
                 break;
             default:
                 sql = null;
                 break;
         }
 
-        List<Comment> results;
+        List<User> results;
         if (null == sql) {
             results = null;
         } else {
@@ -104,7 +107,7 @@ public final class EntityDBConnection {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                results.add(Comment.valueOf(resultSet));
+                results.add(User.valueOf(resultSet));
             }
             resultSet.close();
             statement.close();
@@ -154,30 +157,27 @@ public final class EntityDBConnection {
         return results;
     }
 
-    static synchronized List<User> selectUsers(Map<String, String> params) throws SQLException {
+    static synchronized List<Comment> selectComments(Map<String, String> params) throws SQLException {
         String sql;
         switch (params.getOrDefault("QUERY", NO_QUERT_KEY).toUpperCase()) {
-            case "USERNAME":
-                sql = "SELECT * FROM user WHERE USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
+            case "COMMENTID":
+                sql = "SELECT * FROM comment WHERE CMT_ID = " + params.get("COMMENTID") + ";";
                 break;
-            case "HASHEDPASSWORD":
-                sql = "SELECT * FROM user WHERE USR_HASHEDPASSWORD = " + params.get("HASHEDPASSWORD") + ";";
+            case "TIME":
+                sql = ";";
                 break;
-            case "EMAIL":
-                sql = "SELECT * FROM user WHERE USR_EMAIL = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("EMAIL")) + ";";
-                break;
-            case "PHONE":
-                sql = "SELECT * FROM user WHERE USR_PHONE = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("PHONE")) + ";";
+            case "ID":
+                sql = "SELECT * FROM comment WHERE CMT_CDT_ID = " + params.get("ID") + ";";
                 break;
             case NO_QUERT_KEY:
-                sql = "SELECT * FROM user;";
+                sql = "SELECT * FROM comment;";
                 break;
             default:
                 sql = null;
                 break;
         }
 
-        List<User> results;
+        List<Comment> results;
         if (null == sql) {
             results = null;
         } else {
@@ -186,7 +186,7 @@ public final class EntityDBConnection {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                results.add(User.valueOf(resultSet));
+                results.add(Comment.valueOf(resultSet));
             }
             resultSet.close();
             statement.close();
