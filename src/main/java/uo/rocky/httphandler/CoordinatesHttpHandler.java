@@ -55,9 +55,13 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         try {
             Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
 //            System.out.println(coordinate);
-            if (coordinate.insertSQL()) LogWriter.appendEntry(INFO, "INSERT coordinate succeeded.");
-            else LogWriter.appendEntry(WARNING, "INSERT coordinate failed.");
-            httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
+            if (coordinate.insertSQL()) {
+                LogWriter.appendEntry(INFO, "INSERT coordinate succeeded.");
+                httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
+            } else {
+                LogWriter.appendEntry(WARNING, "INSERT coordinate failed.");
+                respondBadRequest(httpExchange, "The data provided does not meet the definition of the relational data tables");
+            }
         } catch (RuntimeException runtimeException) {
             respondBadRequest(httpExchange, runtimeException);
         } catch (SQLException sqlException) {

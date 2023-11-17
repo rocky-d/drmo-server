@@ -55,9 +55,13 @@ public final class CommentHttpHandler extends HttpHandlerBase {
         try {
             Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
 //            System.out.println(comment);
-            if (comment.insertSQL()) LogWriter.appendEntry(INFO, "INSERT comment succeeded.");
-            else LogWriter.appendEntry(WARNING, "INSERT comment failed.");
-            httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
+            if (comment.insertSQL()) {
+                LogWriter.appendEntry(INFO, "INSERT comment succeeded.");
+                httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
+            } else {
+                LogWriter.appendEntry(WARNING, "INSERT comment failed.");
+                respondBadRequest(httpExchange, "The data provided does not meet the definition of the relational data tables");
+            }
         } catch (RuntimeException runtimeException) {
             respondBadRequest(httpExchange, runtimeException);
         } catch (SQLException sqlException) {
