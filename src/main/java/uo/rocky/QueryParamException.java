@@ -1,5 +1,10 @@
 package uo.rocky;
 
+/**
+ * TODO
+ *
+ * @author Rocky Haotian Du
+ */
 public class QueryParamException extends RuntimeException {
 
     /**
