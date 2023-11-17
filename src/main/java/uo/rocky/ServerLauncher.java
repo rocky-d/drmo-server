@@ -198,7 +198,7 @@ public final class ServerLauncher {
                 "      \"PORT\": 8001,\n" +
                 "      \"HOST\": \"0.0.0.0\",\n" +
                 "      \"JKS\": {\n" +
-                "        \"PATH\": \"<file-path>\",\n" +
+                "        \"PATH\": \"<path>\",\n" +
                 "        \"PASSWORD\": \"<password>\"\n" +
                 "      }\n" +
                 "    }\n" +
