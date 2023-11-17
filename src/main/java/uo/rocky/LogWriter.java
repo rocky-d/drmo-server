@@ -28,16 +28,16 @@ public final class LogWriter {
     private static BufferedWriter bufferedWriter = null;
 
     /**
-     * Returns the {@link BufferedWriter} instance for writing log entries.
+     * Returns {@code bufferedWriter}.
      *
-     * @return the {@link BufferedWriter} instance for writing log entries.
+     * @return {@code bufferedWriter}.
      */
     public static synchronized BufferedWriter getBufferedWriter() {
         return bufferedWriter;
     }
 
     /**
-     * Sets up the {@link BufferedWriter} instance for writing logs to the specified file.
+     * Sets up {@code bufferedWriter} by a new {@link BufferedWriter} instance for writing logs to a log file.
      *
      * @param logFile the path to the log file.
      * @throws IOException if an I/O error occurs while setting up {@code bufferedWriter}.
@@ -75,7 +75,7 @@ public final class LogWriter {
     }
 
     /**
-     * Closes the {@link BufferedWriter}.
+     * Closes {@code bufferedWriter}.
      *
      * @throws IOException if an I/O error occurs while closing {@code bufferedWriter}.
      */
