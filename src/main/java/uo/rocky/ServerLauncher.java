@@ -27,6 +27,8 @@ import static uo.rocky.LogWriter.LogEntryType.INFO;
 
 /**
  * Loads the config, prepares the log, connects the database, and launches the server.
+ * <p>
+ * All fields and methods are static.
  *
  * @author Rocky Haotian Du
  */
