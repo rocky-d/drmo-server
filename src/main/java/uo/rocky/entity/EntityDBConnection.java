@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * TODO
+ * Manages the connection between the entities and the database.
+ * <p>
+ * All fields and methods are static.
  *
  * @author Rocky Haotian Du
  */
