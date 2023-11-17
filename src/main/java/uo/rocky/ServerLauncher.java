@@ -32,7 +32,7 @@ import static uo.rocky.LogWriter.LogEntryType.INFO;
  */
 public final class ServerLauncher {
 
-    public static final Path CONFIG_FILE = Paths.get("serverLauncher0.json");
+    private static final Path CONFIG_FILE = Paths.get("serverLauncher0.json");
 
     private static Path logFile;
     private static String sqliteUrl;
