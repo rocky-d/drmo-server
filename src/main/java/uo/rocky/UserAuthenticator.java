@@ -23,9 +23,9 @@ import static uo.rocky.LogWriter.LogEntryType.ERROR;
 public final class UserAuthenticator extends BasicAuthenticator {
 
     /**
-     * Constructs {@link UserAuthenticator} instances with a message of realm.
+     * Constructs {@link UserAuthenticator} instances with a realm message.
      *
-     * @param realm the message of realm.
+     * @param realm the message of the realm.
      */
     public UserAuthenticator(String realm) {
         super(realm);
