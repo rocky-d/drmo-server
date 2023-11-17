@@ -62,7 +62,8 @@ public final class UserAuthenticator extends BasicAuthenticator {
      *
      * @param username the username of the user to be authenticated.
      * @param password the password of the user to be authenticated.
-     * @return {@code true} if only one pair of username and password in the database is the same as provided; otherwise {@code false}.
+     * @return {@code true} if only one pair of username and password in the database
+     * is the same as provided; otherwise {@code false}.
      */
     @Override
     public boolean checkCredentials(String username, String password) {
