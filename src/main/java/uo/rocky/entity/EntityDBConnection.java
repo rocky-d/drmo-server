@@ -125,8 +125,8 @@ public final class EntityDBConnection {
             case "LOCATION":
                 sql = "SELECT * FROM coordinate WHERE " + params.get("DOWNLONGITUDE") + " <= CDT_LONGITUDE AND CDT_LONGITUDE <= " + params.get("UPLONGITUDE") + " AND " + params.get("DOWNLATITUDE") + " <= CDT_LATITUDE AND CDT_LATITUDE <= " + params.get("UPLATITUDE") + ";";
                 break;
-            case "TIME":
-                sql = ";";
+            case "SENT":
+                sql = "SELECT * FROM coordinate WHERE " + params.getOrDefault("DOWNDATETIME", "0000-00-00 00:00:00.000") + ";";
                 break;
             case "USER":
                 sql = "SELECT * FROM coordinate WHERE CDT_USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
@@ -163,7 +163,7 @@ public final class EntityDBConnection {
             case "COMMENTID":
                 sql = "SELECT * FROM comment WHERE CMT_ID = " + params.get("COMMENTID") + ";";
                 break;
-            case "TIME":
+            case "SENT":
                 sql = ";";
                 break;
             case "ID":
