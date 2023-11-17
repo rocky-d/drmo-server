@@ -127,7 +127,7 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM coordinate WHERE CDT_ID = " + params.get("ID") + ";";
                 break;
             case "LOCATION":
-                sql = "SELECT * FROM coordinate WHERE CDT_LONGITUDE BETWEEN " + params.get("DOWNLONGITUDE") + " AND " + params.get("UPLONGITUDE") + " AND CDT_LATITUDE BETWEEN " + params.get("DOWNLATITUDE") + " AND " + params.get("UPLATITUDE") + ";";
+                sql = "SELECT * FROM coordinate WHERE CDT_LONGITUDE BETWEEN " + params.getOrDefault("DOWNLONGITUDE", String.valueOf(-180L)) + " AND " + params.getOrDefault("UPLONGITUDE", String.valueOf(+180L)) + " AND CDT_LATITUDE BETWEEN " + params.getOrDefault("DOWNLATITUDE", String.valueOf(-90L)) + " AND " + params.getOrDefault("UPLATITUDE", String.valueOf(+90L)) + ";";
                 break;
             case "SENT":
                 sql = "SELECT * FROM coordinate WHERE CDT_LOCALDATETIME BETWEEN " + EntityRelatesToSQL.escapeSingleQuotes(LocalDateTime.parse(params.getOrDefault("DOWNSENT", "0001-01-01T00:00:00.000Z").substring(0, 23), LOCALDATETIME_FORMATTER_T).format(LOCALDATETIME_FORMATTER_SPACE)) + " AND " + EntityRelatesToSQL.escapeSingleQuotes(LocalDateTime.parse(params.getOrDefault("UPSENT", "9999-12-31T23:59:59.999Z").substring(0, 23), LOCALDATETIME_FORMATTER_T).format(LOCALDATETIME_FORMATTER_SPACE)) + ";";
