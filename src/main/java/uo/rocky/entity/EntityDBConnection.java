@@ -100,7 +100,7 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM user;";
                 break;
             default:
-                throw new QueryParamException("");
+                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"USERNAME\", \"HASHEDPASSWORD\", \"EMAIL\", or \"PHONE\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
         }
 
         List<User> results = new ArrayList<>();
@@ -135,7 +135,7 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM coordinate;";
                 break;
             default:
-                throw new QueryParamException("");
+                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"ID\", \"LOCATION\", \"SENT\", or \"USER\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
         }
 
         List<Coordinate> results = new ArrayList<>();
@@ -167,7 +167,7 @@ public final class EntityDBConnection {
                 sql = "SELECT * FROM comment;";
                 break;
             default:
-                throw new QueryParamException("");
+                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"COMMENTID\", \"SENT\", or \"ID\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
         }
 
         List<Comment> results = new ArrayList<>();
