@@ -107,10 +107,10 @@ public final class ServerLauncher {
 
             if (!isHttps) {
                 launchHttpServer();
-                LogWriter.appendEntry(INFO, "HTTP server start to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
+                LogWriter.appendEntry(INFO, "HTTP server has started to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
             } else {
                 launchHttpsServer();
-                LogWriter.appendEntry(INFO, "HTTPS server start to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
+                LogWriter.appendEntry(INFO, "HTTPS server has started to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
             }
 
         } catch (Exception exception) {
