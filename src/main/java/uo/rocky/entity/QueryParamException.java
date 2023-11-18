@@ -1,7 +1,7 @@
 package uo.rocky.entity;
 
 /**
- * TODO
+ * Thrown when invalid the parameter values of the "QUERY" key occur while querying data.
  *
  * @author Rocky Haotian Du
  */
