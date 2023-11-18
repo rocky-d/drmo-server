@@ -2,6 +2,8 @@ package uo.rocky.entity;
 
 /**
  * Thrown when invalid the parameter values of the "QUERY" key occur while querying data.
+ * <p>
+ * Extends {@link RuntimeException}.
  *
  * @author Rocky Haotian Du
  */
