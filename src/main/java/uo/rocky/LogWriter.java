@@ -55,6 +55,7 @@ public final class LogWriter {
      */
     public static synchronized void appendEntry(LogEntryType logEntryType, String... messages) {
         final String RESET_CODE = "\u001B[0m";
+        final String SPECIAL_STYLE_CODE = "\u001B[35m";
         String temp;
         try {
             System.out.print(logEntryType.STYLE_CODE);
@@ -70,7 +71,7 @@ public final class LogWriter {
             System.out.print(RESET_CODE);
         } catch (IOException ioException) {
             System.out.print(RESET_CODE);
-            System.out.print("\u001B[35m");
+            System.out.print(SPECIAL_STYLE_CODE);
             System.out.println("*********");
             System.out.println(Arrays.toString(messages));
             System.out.println("*********");
