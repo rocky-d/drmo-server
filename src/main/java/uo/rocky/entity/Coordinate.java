@@ -223,7 +223,7 @@ public final class Coordinate extends EntityBase {
         }
         if (EntityDBConnection.selectUsers(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", usrName}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
             return false;
-        }
+        }  // TODO: http may not require user
 
         String sql = String.format("INSERT INTO coordinate" +
                         " (CDT_ID,CDT_LONGITUDE,CDT_LATITUDE,CDT_LOCALDATETIME,CDT_DATETIMEOFFSET,CDT_DANGERTYPE,CDT_DESCRIPTION,CDT_USR_NAME)" +
