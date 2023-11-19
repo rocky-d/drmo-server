@@ -129,10 +129,10 @@ public final class LogWriter {
          */
         @Override
         public final String toString() {
+            final String RESET_CODE = "\u001B[0m";
             return new StringJoiner(", ", LogEntryType.class.getSimpleName() + "{", "}")
-                    .add("name='" + name() + "'")
-                    .add("ordinal=" + ordinal())
-                    .add("STYLE_CODE='" + STYLE_CODE + "'")
+                    .add("name='" + STYLE_CODE + name() + RESET_CODE + "'")
+                    .add("ordinal=" + STYLE_CODE + ordinal() + RESET_CODE)
                     .toString();
         }
     }
