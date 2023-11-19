@@ -25,7 +25,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {
-        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the GET request.");
+        LogWriter.appendEntry(INFO, "Try to handle the GET request in " + getClass().getSimpleName() + ".");
 
         try {
             String results = Comment.selectCommentJSONString(parseQueryParameters(httpExchange));
@@ -42,7 +42,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
-        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the HEAD request.");
+        LogWriter.appendEntry(INFO, "Try to handle the HEAD request in " + getClass().getSimpleName() + ".");
 
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
@@ -50,7 +50,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
 
     @Override
     public void handlePOSTRequest(HttpExchange httpExchange) throws IOException {
-        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the POST request.");
+        LogWriter.appendEntry(INFO, "Try to handle the POST request in " + getClass().getSimpleName() + ".");
 
         try {
             if (Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8))).insertSQL()) {

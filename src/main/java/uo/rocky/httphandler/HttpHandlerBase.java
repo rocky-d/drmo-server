@@ -102,7 +102,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
     }
 
     public void handleHEADRequest(HttpExchange httpExchange) throws IOException {
-        LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the HEAD request.");
+        LogWriter.appendEntry(INFO, "Try to handle the HEAD request in " + getClass().getSimpleName() + ".");
 
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
         httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
