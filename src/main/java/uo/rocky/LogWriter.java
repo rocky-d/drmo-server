@@ -82,7 +82,7 @@ public final class LogWriter {
             }
             System.out.print(SPECIAL_STYLE_CODE);
             System.out.println("*********");
-            System.out.println("Write the log entries above failed.");
+            System.out.println("Write the log entry above failed.");
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
             System.out.print(STYLELESS_CODE);
 
