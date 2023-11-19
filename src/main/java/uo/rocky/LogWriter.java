@@ -7,7 +7,6 @@ import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
 import java.util.StringJoiner;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -54,7 +53,7 @@ public final class LogWriter {
      * @param messages     the messages to be logged, represented as one or more strings.
      */
     public static synchronized void appendEntry(LogEntryType logEntryType, String... messages) {
-        final String RESET_CODE = "\u001B[0m";
+        final String STYLELESS_CODE = "\u001B[0m";
         final String SPECIAL_STYLE_CODE = "\u001B[35m";
         String temp;
         try {
@@ -69,17 +68,23 @@ public final class LogWriter {
                 bufferedWriter.write(temp);
                 bufferedWriter.newLine();
             }
-            System.out.print(RESET_CODE);
+            System.out.print(STYLELESS_CODE);
             bufferedWriter.flush();
         } catch (IOException ioException) {
-            System.out.print(RESET_CODE);
             System.out.print(SPECIAL_STYLE_CODE);
             System.out.println("*********");
-            System.out.println(Arrays.toString(messages));
+            System.out.print(logEntryType.STYLE_CODE);
+            temp = "<" + logEntryType.name() + ">" + ZonedDateTime.now();
+            System.out.println(temp);
+            for (String message : messages) {
+                temp = "\t" + message;
+                System.out.println(temp);
+            }
+            System.out.print(SPECIAL_STYLE_CODE);
             System.out.println("*********");
-            System.out.println("Write log failed.");
+            System.out.println("Write the log entries above failed.");
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
-            System.out.print(RESET_CODE);
+            System.out.print(STYLELESS_CODE);
 
             ioException.printStackTrace(System.err);
             System.exit(-1);
@@ -132,10 +137,10 @@ public final class LogWriter {
          */
         @Override
         public final String toString() {
-            final String RESET_CODE = "\u001B[0m";
+            final String STYLELESS_CODE = "\u001B[0m";
             return new StringJoiner(", ", LogEntryType.class.getSimpleName() + "{", "}")
-                    .add("name='" + STYLE_CODE + name() + RESET_CODE + "'")
-                    .add("ordinal=" + STYLE_CODE + ordinal() + RESET_CODE)
+                    .add("name='" + STYLE_CODE + name() + STYLELESS_CODE + "'")
+                    .add("ordinal=" + STYLE_CODE + ordinal() + STYLELESS_CODE)
                     .toString();
         }
     }
