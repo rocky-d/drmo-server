@@ -49,7 +49,8 @@ public final class UserAuthenticator extends BasicAuthenticator {
             return hashedPassword;
         } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
             LogWriter.appendEntry(ERROR, noSuchAlgorithmException.getClass().getName() + ": " + noSuchAlgorithmException.getMessage());
-            noSuchAlgorithmException.printStackTrace();
+
+            noSuchAlgorithmException.printStackTrace(System.err);
             System.exit(-1);
             return 0;
         }
@@ -70,7 +71,8 @@ public final class UserAuthenticator extends BasicAuthenticator {
             return 1 == users.size() && hashPassword(password) == users.get(0).getHashedpassword();
         } catch (SQLException sqlException) {
             LogWriter.appendEntry(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
-            sqlException.printStackTrace();
+
+            sqlException.printStackTrace(System.err);
             System.exit(-1);
             return false;
         }
