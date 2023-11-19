@@ -114,9 +114,8 @@ public final class ServerLauncher {
             }
 
         } catch (Exception exception) {
-            System.out.println("Launch failed.");
-            System.out.println(exception.getClass().getName() + ": " + exception.getMessage());
-            System.out.println();
+            System.err.println("Launch failed.");
+            System.err.println(exception.getClass().getName() + ": " + exception.getMessage());
 
             Scanner scanner = new Scanner(System.in);
             String input;
