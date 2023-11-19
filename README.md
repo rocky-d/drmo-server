@@ -21,6 +21,7 @@ This is only the information of my own development environment:
 
 ### Usage
 
+- Build the project with **Maven**.
 - Run the main method in the `ServerLauncher` class to start the server.
 - Follow the instructions of the program if it's the **first** run.
   - Don't panic if you see the error message. Calm down and read the prompts carefully.
