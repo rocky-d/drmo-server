@@ -59,11 +59,13 @@ public final class LogWriter {
         String temp;
         try {
             System.out.print(logEntryType.STYLE_CODE);
-            System.out.println(temp = "<" + logEntryType.name() + ">" + ZonedDateTime.now());
+            temp = "<" + logEntryType.name() + ">" + ZonedDateTime.now();
+            System.out.println(temp);
             bufferedWriter.write(temp);
             bufferedWriter.newLine();
-            for (String line : messages) {
-                System.out.println(temp = "\t" + line);
+            for (String message : messages) {
+                temp = "\t" + message;
+                System.out.println(temp);
                 bufferedWriter.write(temp);
                 bufferedWriter.newLine();
             }
