@@ -20,8 +20,8 @@ import static uo.rocky.LogWriter.LogEntryType.WARNING;
 public final class CoordinatesHttpHandler extends HttpHandlerBase {
 
     public static final String GET_CONTEXT = "/coordinates";
-    private static final String GET_ALLOW = "GET, HEAD, POST";
-    private static final String GET_CONTENT_TYPE = "application/json; charset=utf-8";
+    public static final String GET_ALLOW = "GET, HEAD, POST";
+    public static final String GET_CONTENT_TYPE = "application/json; charset=utf-8";
 
     @Override
     public void handleGETRequest(HttpExchange httpExchange) throws IOException {

@@ -20,8 +20,8 @@ import static uo.rocky.LogWriter.LogEntryType.*;
  */
 public abstract class HttpHandlerBase implements HttpHandler {
 
-    private static final String GET_ALLOW = "HEAD";
-    private static final String GET_CONTENT_TYPE = "text/plain; charset=utf-8";
+    public static final String GET_ALLOW = "HEAD";
+    public static final String GET_CONTENT_TYPE = "text/plain; charset=utf-8";
 
     public final void respondInternalServerError(HttpExchange httpExchange, String message) {
         LogWriter.appendEntry(ERROR, "Respond \"Internal Server Error\"", message);
