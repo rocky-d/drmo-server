@@ -35,6 +35,12 @@ This is only the information of my own development environment:
   - Check and modify (if you need to) the config file.
   - Restart the program.
 
+Normal:
+![Normal](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png)
+
+The first run:
+![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221641.png)
+
 ### Config
 
 ...
