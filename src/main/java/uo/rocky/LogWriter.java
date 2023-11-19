@@ -69,8 +69,8 @@ public final class LogWriter {
                 bufferedWriter.write(temp);
                 bufferedWriter.newLine();
             }
-            bufferedWriter.flush();
             System.out.print(RESET_CODE);
+            bufferedWriter.flush();
         } catch (IOException ioException) {
             System.out.print(RESET_CODE);
             System.out.print(SPECIAL_STYLE_CODE);
