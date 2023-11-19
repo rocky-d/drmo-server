@@ -183,10 +183,10 @@ public final class ServerLauncher {
         Files.write(CONFIG_FILE, ("\n" +
                 "{\n" +
                 "  \"LOG\": {\n" +
-                "    \"PATH\": \"default.server.log\"\n" +
+                "    \"PATH\": \"drmo.server.log\"\n" +
                 "  },\n" +
                 "  \"DB\": {\n" +
-                "    \"PATH\": \"default.sqlite.db\"\n" +
+                "    \"PATH\": \"drmo.sqlite.db\"\n" +
                 "  },\n" +
                 "  \"SERVER\": {\n" +
                 "    \"PROTOCOL\": \"HTTP\",\n" +
