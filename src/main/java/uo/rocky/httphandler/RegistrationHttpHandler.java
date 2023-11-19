@@ -53,9 +53,7 @@ public final class RegistrationHttpHandler extends HttpHandlerBase {
         LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the POST request.");
 
         try {
-            User user = User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
-//            System.out.println(user);
-            if (user.insertSQL()) {
+            if (User.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8))).insertSQL()) {
                 LogWriter.appendEntry(INFO, "INSERT user succeeded.");
                 httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
             } else {

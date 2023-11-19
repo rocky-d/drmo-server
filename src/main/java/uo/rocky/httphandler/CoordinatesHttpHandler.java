@@ -53,9 +53,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the POST request.");
 
         try {
-            Coordinate coordinate = Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
-//            System.out.println(coordinate);
-            if (coordinate.insertSQL()) {
+            if (Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8))).insertSQL()) {
                 LogWriter.appendEntry(INFO, "INSERT coordinate succeeded.");
                 httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
             } else {

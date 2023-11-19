@@ -53,9 +53,7 @@ public final class CommentHttpHandler extends HttpHandlerBase {
         LogWriter.appendEntry(INFO, getClass().getSimpleName() + " is trying to handle the POST request.");
 
         try {
-            Comment comment = Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8)));
-//            System.out.println(comment);
-            if (comment.insertSQL()) {
+            if (Comment.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8))).insertSQL()) {
                 LogWriter.appendEntry(INFO, "INSERT comment succeeded.");
                 httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
             } else {
