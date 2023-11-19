@@ -8,7 +8,13 @@
 
 ------
 
-### The Project Name
+### Introduction
+
+#### What is it?
+
+...
+
+#### Why is it called "drmo-server"?
 
 The word "drmo" in the project name is actually the abbreviation of the four supported danger types - "deer", "reindeer", "moose", and "other". And it's also an HTTP/HTTPS server. That's why it is called "drmo-server". 🎄🎄🎄🦌🦌🦌🌐🌐🌐
 
@@ -30,3 +36,5 @@ This is only the information of my own development environment:
   - Restart the program.
 
 ### Config
+
+...
