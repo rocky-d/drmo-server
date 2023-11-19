@@ -34,7 +34,8 @@ public abstract class HttpHandlerBase implements HttpHandler {
             outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
         } catch (IOException ioException) {
             LogWriter.appendEntry(ERROR, ioException.getClass().getName() + ": " + ioException.getMessage());
-            throw new RuntimeException(ioException);
+            ioException.printStackTrace();
+            System.exit(-1);
         }
     }
 

@@ -71,7 +71,8 @@ public final class LogWriter {
             System.out.println("*********");
             System.out.println("Write log failed.");
             System.out.println(ioException.getClass().getName() + ": " + ioException.getMessage());
-            throw new RuntimeException(ioException);
+            ioException.printStackTrace();
+            System.exit(-1);
         }
     }
 

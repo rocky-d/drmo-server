@@ -40,21 +40,19 @@ public final class UserAuthenticator extends BasicAuthenticator {
     public static long hashPassword(String password) {
         final String DIGEST_ALGORITHM = "SHA-256";
         final String SALT = "6GYxNi78Dqd2I";
-
-        byte[] digestedPassword;
         try {
-            digestedPassword = MessageDigest.getInstance(DIGEST_ALGORITHM).digest((password + SALT).getBytes(UTF_8));
+            long hashedPassword = 0;
+            for (byte b : MessageDigest.getInstance(DIGEST_ALGORITHM).digest((password + SALT).getBytes(UTF_8))) {
+                hashedPassword <<= 8;
+                hashedPassword |= (b & 0xFF);
+            }
+            return hashedPassword;
         } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
-            throw new RuntimeException(noSuchAlgorithmException);
+            LogWriter.appendEntry(ERROR, noSuchAlgorithmException.getClass().getName() + ": " + noSuchAlgorithmException.getMessage());
+            noSuchAlgorithmException.printStackTrace();
+            System.exit(-1);
+            return 0;
         }
-
-        long hashedPassword = 0;
-        for (byte b : digestedPassword) {
-            hashedPassword <<= 8;
-            hashedPassword |= (b & 0xFF);
-        }
-
-        return hashedPassword;
     }
 
     /**
@@ -72,7 +70,9 @@ public final class UserAuthenticator extends BasicAuthenticator {
             return 1 == users.size() && hashPassword(password) == users.get(0).getHashedpassword();
         } catch (SQLException sqlException) {
             LogWriter.appendEntry(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
-            throw new RuntimeException(sqlException);
+            sqlException.printStackTrace();
+            System.exit(-1);
+            return false;
         }
     }
 }
