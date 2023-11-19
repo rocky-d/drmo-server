@@ -39,7 +39,7 @@ Normal:
 ![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png)
 
 The first run:
-![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/new20231119221641.png)
+![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png)
 
 ### Config
 
