@@ -101,15 +101,18 @@ public final class LogWriter {
     public enum LogEntryType {
 
         /**
-         * The info type indicating the normal actions.
+         * The green-colored info type indicating
+         * the normal actions.
          */
         INFO("\u001B[32m"),
         /**
-         * The warning type indicating the improper actions causing not serious consequences.
+         * The yellow-colored warning type indicating
+         * the improper actions causing not serious consequences.
          */
         WARNING("\u001B[33m"),
         /**
-         * The error type indicating the exceptions that may affect the server's operations.
+         * The red-colored error type indicating
+         * the exceptions that may affect the server's operations.
          */
         ERROR("\u001B[31m");
 
