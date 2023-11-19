@@ -69,7 +69,8 @@ public final class LogWriter {
             bufferedWriter.flush();
             System.out.print(RESET_CODE);
         } catch (IOException ioException) {
-            System.out.print(RESET_CODE + "\u001B[35m");
+            System.out.print(RESET_CODE);
+            System.out.print("\u001B[35m");
             System.out.println("*********");
             System.out.println(Arrays.toString(messages));
             System.out.println("*********");
