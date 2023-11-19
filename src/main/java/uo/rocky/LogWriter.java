@@ -62,7 +62,7 @@ public final class LogWriter {
             bufferedWriter.write(temp);
             bufferedWriter.newLine();
             for (String line : messages) {
-                System.out.println(temp = "        " + line);
+                System.out.println(temp = "\t" + line);
                 bufferedWriter.write(temp);
                 bufferedWriter.newLine();
             }
