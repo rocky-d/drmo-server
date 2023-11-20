@@ -38,10 +38,10 @@ build/
 .DS_Store
 
 ### rocky-d ###
-*.log
-*.db
+*.config.json
+*.server.log
+*.sqlite.db
 *.jks
 .idea/
 draft/
-/*.json
 /archive/
