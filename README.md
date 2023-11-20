@@ -4,7 +4,7 @@
 
 #### Developed by `Rocky Haotian Du` (GitHub: *[rocky-d](https://github.com/rocky-d)*)
 
-#### Last modification time: `2023-11-20`
+#### Last modified date: `2023-11-20`
 
 ------
 
