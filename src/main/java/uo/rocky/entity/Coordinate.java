@@ -44,7 +44,7 @@ public final class Coordinate extends EntityBase {
     }
 
     public static Coordinate valueOf(JSONObject jsonObject) {
-        Instant.parse(jsonObject.getString("sent"));
+        OFFSETDATETIME_FORMATTER.parse(jsonObject.getString("sent"));
         return new Coordinate(
                 Instant.now().toEpochMilli(),
                 jsonObject.getDouble("longitude"),
