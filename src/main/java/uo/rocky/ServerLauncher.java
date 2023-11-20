@@ -203,12 +203,12 @@ public final class ServerLauncher {
                 "    \"HTTP\": {\n" +
                 "      \"PORT\": 8001,\n" +
                 "      \"HOST\": \"0.0.0.0\",\n" +
-                "      \"AUTHENTICATION\": false" +
+                "      \"AUTHENTICATION\": false\n" +
                 "    },\n" +
                 "    \"HTTPS\": {\n" +
                 "      \"PORT\": 8001,\n" +
                 "      \"HOST\": \"0.0.0.0\",\n" +
-                "      \"AUTHENTICATION\": true," +
+                "      \"AUTHENTICATION\": true,\n" +
                 "      \"JKS\": {\n" +
                 "        \"PATH\": \"<path>\",\n" +
                 "        \"PASSWORD\": \"<password>\"\n" +
