@@ -44,32 +44,32 @@ public final class EntitySQLConnection {
         Statement statement = connection.createStatement();
 
         sql = "CREATE TABLE IF NOT EXISTS user (\n" +
-                "    USR_NAME TEXT PRIMARY KEY NOT NULL UNIQUE,\n" +
-                "    USR_HASHEDPASSWORD INTEGER NOT NULL,\n" +
-                "    USR_EMAIL TEXT,\n" +
-                "    USR_PHONE TEXT\n" +
+                "    USR_NAME            TEXT     NOT NULL  PRIMARY KEY  UNIQUE,\n" +
+                "    USR_HASHEDPASSWORD  INTEGER  NOT NULL,\n" +
+                "    USR_EMAIL           TEXT,\n" +
+                "    USR_PHONE           TEXT\n" +
                 ");\n";
         statement.addBatch(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS coordinate (\n" +
-                "    CDT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
-                "    CDT_LONGITUDE REAL NOT NULL,\n" +
-                "    CDT_LATITUDE REAL NOT NULL,\n" +
-                "    CDT_LOCALDATETIME NUMERIC NOT NULL,\n" +
-                "    CDT_DATETIMEOFFSET TEXT NOT NULL,\n" +
-                "    CDT_DANGERTYPE TEXT NOT NULL,\n" +
-                "    CDT_DESCRIPTION TEXT,\n" +
-                "    CDT_USR_NAME TEXT NOT NULL,\n" +
+                "    CDT_ID              INTEGER  NOT NULL  PRIMARY KEY  UNIQUE,\n" +
+                "    CDT_LONGITUDE       REAL     NOT NULL,\n" +
+                "    CDT_LATITUDE        REAL     NOT NULL,\n" +
+                "    CDT_LOCALDATETIME   NUMERIC  NOT NULL,\n" +
+                "    CDT_DATETIMEOFFSET  TEXT     NOT NULL,\n" +
+                "    CDT_DANGERTYPE      TEXT     NOT NULL,\n" +
+                "    CDT_DESCRIPTION     TEXT,\n" +
+                "    CDT_USR_NAME        TEXT     NOT NULL,\n" +
                 "    FOREIGN KEY (CDT_USR_NAME) REFERENCES user(USR_NAME)\n" +
                 ");\n";
         statement.addBatch(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS comment (\n" +
-                "    CMT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
-                "    CMT_CONTENT TEXT NOT NULL,\n" +
-                "    CMT_LOCALDATETIME NUMERIC NOT NULL,\n" +
-                "    CMT_DATETIMEOFFSET TEXT NOT NULL,\n" +
-                "    CMT_CDT_ID INTEGER NOT NULL,\n" +
+                "    CMT_ID              INTEGER  NOT NULL  PRIMARY KEY  UNIQUE,\n" +
+                "    CMT_CONTENT         TEXT     NOT NULL,\n" +
+                "    CMT_LOCALDATETIME   NUMERIC  NOT NULL,\n" +
+                "    CMT_DATETIMEOFFSET  TEXT     NOT NULL,\n" +
+                "    CMT_CDT_ID          INTEGER  NOT NULL,\n" +
                 "    FOREIGN KEY (CMT_CDT_ID) REFERENCES coordinate(CDT_ID)\n" +
                 ");\n";
         statement.addBatch(sql);
