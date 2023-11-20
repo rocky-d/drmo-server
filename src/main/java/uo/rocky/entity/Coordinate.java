@@ -258,6 +258,11 @@ public final class Coordinate extends EntityBase {
         return false;
     }
 
+    /**
+     * TOWRITE
+     *
+     * @author Rocky Haotian Du
+     */
     public enum Dangertype {
 
         DEER(),

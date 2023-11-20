@@ -102,6 +102,8 @@ public final class LogWriter {
 
     /**
      * Enumerates and represents the types of log entries.
+     *
+     * @author Rocky Haotian Du
      */
     public enum LogEntryType {
 
