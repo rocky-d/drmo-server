@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS comment (
 
 Exit status:
 
-- -2301: `LogWriter`.`append(logEntryType, String...):void`
-- -2302: `UserAuthenticator`.`hashPassword(String):long`
-- -2303: `UserAuthenticator`.`checkCredentials(String, String):boolean`
-- -2304: `HttpHandlerBase`.`respondInternalServerError(HttpExchange, String):void`
+- `-2301`: `LogWriter`.`append(logEntryType, String...):void`
+- `-2302`: `UserAuthenticator`.`hashPassword(String):long`
+- `-2303`: `UserAuthenticator`.`checkCredentials(String, String):boolean`
+- `-2304`: `HttpHandlerBase`.`respondInternalServerError(HttpExchange, String):void`
