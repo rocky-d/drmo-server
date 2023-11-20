@@ -23,11 +23,11 @@
   - [HTTP/HTTPS](#httphttps)
   - [JSON](#json)
   - [SQL](#sql)
-    - [Entities](#entities)
+    - [Entity](#entity)
       - [User](#user)
       - [Coordinate](#coordinate)
       - [Comment](#comment)
-    - [Relationships](#relationships)
+    - [Relationship](#relationship)
       - [\<user\> 1 - 0...N \<coordinate\>](#user-1---0n-coordinate)
       - [\<coordinate\> 1 - 0...N \<comment\>](#coordinate-1---0n-comment)
   - [LOG](#log)
@@ -115,7 +115,7 @@ ERD (Entity-Relationship Diagram):
 
 <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/>
 
-##### Entities
+##### Entity
 
 ###### User
 
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS comment (
 );
 ```
 
-##### Relationships
+##### Relationship
 
 ###### \<user\> 1 - 0...N \<coordinate\>
 
