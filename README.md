@@ -93,7 +93,35 @@ The first run:
 
 #### How to modify its configuration?
 
-...
+Default configuration:
+
+```json5
+{
+  "LOG": {
+    "PATH": "drmo.server.log"
+  },
+  "SQL": {
+    "PATH": "drmo.sqlite.db"
+  },
+  "SERVER": {
+    "PROTOCOL": "HTTP",
+    "HTTP": {
+      "PORT": 8001,
+      "HOST": "0.0.0.0",
+      "AUTHENTICATION": false
+    },
+    "HTTPS": {
+      "PORT": 8001,
+      "HOST": "0.0.0.0",
+      "AUTHENTICATION": true,
+      "JKS": {
+        "PATH": "<path>",
+        "PASSWORD": "<password>"
+      }
+    }
+  }
+}
+```
 
 ------
 
