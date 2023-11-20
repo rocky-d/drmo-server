@@ -161,13 +161,13 @@ CREATE TABLE IF NOT EXISTS comment (
 
 ###### \<user\> 1 - 0...N \<coordinate\>
 
-- **one** user *posts* **zero to many** coordinate(s)
-- **one** coordinate *is posted by* **one** user
+- **one** user ***posts*** **zero to many** coordinate(s)
+- **one** coordinate ***is posted by*** **one** user
 
 ###### \<coordinate\> 1 - 0...N \<comment\>
 
-- **one** coordinate *has* **zero to many** comment(s)
-- **one** comment *is commented on* **one** coordinate
+- **one** coordinate ***has*** **zero to many** comment(s)
+- **one** comment ***is commented on*** **one** coordinate
 
 #### LOG
 
