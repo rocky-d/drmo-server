@@ -93,7 +93,7 @@ The first run:
 
 #### How to modify its configuration?
 
-...
+The path to the config file `serverLauncher.config.json` is under the root directory of the project. Properly edit it to modify the configuration of the server.
 
 Default configuration with annotations for explanation:
 
