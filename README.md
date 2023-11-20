@@ -113,7 +113,7 @@ Default configuration:
 
   "?SERVER": "server config",
   "SERVER": {
-    "?MODE": "[\"HTTP\"/\"HTTPS\"]",
+    "?MODE": "[\"HTTP\"/\"HTTPS\"] whether to run in HTTP mode or HTTPS mode",
     "MODE": "HTTP",
 
     "?HTTP": "server config when using HTTP mode",
@@ -124,7 +124,7 @@ Default configuration:
       "?HOST": "IP address of remote hosts to control access",
       "HOST": "0.0.0.0",
 
-      "?AUTHENTICATION": "[true/false]",
+      "?AUTHENTICATION": "[true/false] whether to enable authentication",
       "AUTHENTICATION": false
     },
 
@@ -136,7 +136,7 @@ Default configuration:
       "?HOST": "IP address of remote hosts to control access",
       "HOST": "0.0.0.0",
 
-      "?AUTHENTICATION": "[true/false]",
+      "?AUTHENTICATION": "[true/false] whether to enable authentication",
       "AUTHENTICATION": true,
 
       "?KEYSTORE": "KeyStore config",
