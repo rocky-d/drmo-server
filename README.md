@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS comment (
 
 Exit status:
 
-- 1:
-- 2:
-- 3:
-- 4:
+- -2301:
+- -2302:
+- -2303:
+- -2304:
