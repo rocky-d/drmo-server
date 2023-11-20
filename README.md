@@ -2,9 +2,9 @@
 
 ## Coursework for `Programming 3`
 
-### Developed by `Rocky Haotian Du` (GitHub: *[rocky-d](https://github.com/rocky-d)*)
+#### Developed by `Rocky Haotian Du` (GitHub: *[rocky-d](https://github.com/rocky-d)*)
 
-### Last modification time: `2023-11-20`
+#### Last modification time: `2023-11-20`
 
 ------
 
@@ -18,6 +18,8 @@
 
 The word "drmo" in the project name is actually the abbreviation of the four supported danger types - "DEER", "REINDEER", "MOOSE", and "OTHER". And it's also an HTTP/HTTPS server. That's why it is called "drmo-server". 🎄🎄🎄🦌🦌🦌🌐🌐🌐
 
+------
+
 ### Environment
 
 This is only the information of my own development environment:
@@ -25,6 +27,8 @@ This is only the information of my own development environment:
 - Windows 10
 - Java 8
 - Maven 3.9.2
+
+------
 
 ### Usage
 
@@ -50,6 +54,10 @@ The first run:
 
 ...
 
+------
+
 ### Configuration
 
 ...
+
+------
