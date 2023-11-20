@@ -95,7 +95,7 @@ The first run:
 
 ...
 
-Default configuration:
+Default configuration with annotations for explanation:
 
 ```json
 {
