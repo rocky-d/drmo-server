@@ -4,7 +4,7 @@
 
 ### Developed by `Rocky Haotian Du` (GitHub: *[rocky-d](https://github.com/rocky-d)*)
 
-### Last modification time: `2023-11-19`
+### Last modification time: `2023-11-20`
 
 ------
 
@@ -50,6 +50,6 @@ The first run:
 
 ...
 
-### Config
+### Configuration
 
 ...
