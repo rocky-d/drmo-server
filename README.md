@@ -78,39 +78,57 @@ The first run:
 
 #### SQL
 
-ERD...
+**SQLite** is the RDBMS (Relational Database Management System) to store the data of users, coordinates, and comments for the server.
 
-```sqlite
-CREATE TABLE IF NOT EXISTS user (
-    USR_NAME TEXT PRIMARY KEY NOT NULL UNIQUE,
-    USR_HASHEDPASSWORD INTEGER NOT NULL,
-    USR_EMAIL TEXT,
-    USR_PHONE TEXT
-);
-CREATE TABLE IF NOT EXISTS coordinate (
-    CDT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,
-    CDT_LONGITUDE REAL NOT NULL,
-    CDT_LATITUDE REAL NOT NULL,
-    CDT_LOCALDATETIME NUMERIC NOT NULL,
-    CDT_DATETIMEOFFSET TEXT NOT NULL,
-    CDT_DANGERTYPE TEXT NOT NULL,
-    CDT_DESCRIPTION TEXT,
-    CDT_USR_NAME TEXT NOT NULL,
-    FOREIGN KEY (CDT_USR_NAME) REFERENCES user(USR_NAME)
-);
-CREATE TABLE IF NOT EXISTS comment (
-    CMT_ID INTEGER PRIMARY KEY NOT NULL UNIQUE,
-    CMT_CONTENT TEXT NOT NULL,
-    CMT_LOCALDATETIME NUMERIC NOT NULL,
-    CMT_DATETIMEOFFSET TEXT NOT NULL,
-    CMT_CDT_ID INTEGER NOT NULL,
-    FOREIGN KEY (CMT_CDT_ID) REFERENCES coordinate(CDT_ID)
-);
-```
+ERD...
 
 ##### Entity
 
-...
+###### User
+
+DDL of the **user** table:
+
+```sqlite
+CREATE TABLE IF NOT EXISTS user (
+    USR_NAME            TEXT     NOT NULL  PRIMARY KEY  UNIQUE,
+    USR_HASHEDPASSWORD  INTEGER  NOT NULL,
+    USR_EMAIL           TEXT,
+    USR_PHONE           TEXT
+);
+```
+
+###### Coordinate
+
+DDL of the **coordinate** table:
+
+```sqlite
+CREATE TABLE IF NOT EXISTS coordinate (
+    CDT_ID              INTEGER  NOT NULL  PRIMARY KEY  UNIQUE,
+    CDT_LONGITUDE       REAL     NOT NULL,
+    CDT_LATITUDE        REAL     NOT NULL,
+    CDT_LOCALDATETIME   NUMERIC  NOT NULL,
+    CDT_DATETIMEOFFSET  TEXT     NOT NULL,
+    CDT_DANGERTYPE      TEXT     NOT NULL,
+    CDT_DESCRIPTION     TEXT,
+    CDT_USR_NAME        TEXT     NOT NULL,
+    FOREIGN KEY (CDT_USR_NAME) REFERENCES user(USR_NAME)
+);
+```
+
+###### Comment
+
+DDL of the **comment** table:
+
+```sqlite
+CREATE TABLE IF NOT EXISTS comment (
+    CMT_ID              INTEGER  NOT NULL  PRIMARY KEY  UNIQUE,
+    CMT_CONTENT         TEXT     NOT NULL,
+    CMT_LOCALDATETIME   NUMERIC  NOT NULL,
+    CMT_DATETIMEOFFSET  TEXT     NOT NULL,
+    CMT_CDT_ID          INTEGER  NOT NULL,
+    FOREIGN KEY (CMT_CDT_ID) REFERENCES coordinate(CDT_ID)
+);
+```
 
 ##### Relationship
 
@@ -129,3 +147,12 @@ CREATE TABLE IF NOT EXISTS comment (
 - The *green-colored* **INFO** type indicating the normal actions.
 - The *yellow-colored* **WARNING** type indicating the improper actions causing not serious consequences.
 - The *red-colored* **ERROR** type indicating the exceptions that may affect the server's operations.
+
+### Exception
+
+Exit status:
+
+- 1:
+- 2:
+- 3:
+- 4:
