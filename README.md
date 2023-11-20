@@ -107,7 +107,9 @@ The first run:
 
 **SQLite** is the RDBMS (Relational Database Management System) to store the data of users, coordinates, and comments for the server.
 
-ERD...
+ERD (Entity-Relationship Diagram):
+
+![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png)
 
 ##### Entities
 
