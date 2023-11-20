@@ -52,7 +52,7 @@ public final class LogWriter {
      * @param logEntryType the type of log entry (INFO, WARNING, ERROR).
      * @param messages     the messages to be logged, represented as one or more strings.
      */
-    public static synchronized void appendLogEntry(LogEntryType logEntryType, String... messages) {
+    public static synchronized void append(LogEntryType logEntryType, String... messages) {
         final String STYLELESS_CODE = "\u001B[0m";
         final String SPECIAL_STYLE_CODE = "\u001B[35m";
         String temp;

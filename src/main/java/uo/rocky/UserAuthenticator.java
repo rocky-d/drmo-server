@@ -48,7 +48,7 @@ public final class UserAuthenticator extends BasicAuthenticator {
             }
             return hashedPassword;
         } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
-            LogWriter.appendLogEntry(ERROR, noSuchAlgorithmException.getClass().getName() + ": " + noSuchAlgorithmException.getMessage());
+            LogWriter.append(ERROR, noSuchAlgorithmException.getClass().getName() + ": " + noSuchAlgorithmException.getMessage());
 
             noSuchAlgorithmException.printStackTrace(System.err);
             System.exit(-1);
@@ -70,7 +70,7 @@ public final class UserAuthenticator extends BasicAuthenticator {
             List<User> users = User.selectUserList(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", username}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1])));
             return 1 == users.size() && hashPassword(password) == users.get(0).getHashedpassword();
         } catch (SQLException sqlException) {
-            LogWriter.appendLogEntry(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
+            LogWriter.append(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
 
             sqlException.printStackTrace(System.err);
             System.exit(-1);
