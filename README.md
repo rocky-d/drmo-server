@@ -47,6 +47,10 @@ The word "drmo" in the project name is actually the abbreviation of the four sup
 
 You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 
+#### What are its functionalities?
+
+...
+
 #### What are its features?
 
 ...
