@@ -68,4 +68,32 @@ The first run:
 
 ### Internal
 
+#### HTTP/HTTPS
+
 ...
+
+#### JSON
+
+...
+
+#### SQL
+
+ERD
+
+DDL
+
+##### Entity
+
+...
+
+##### Relationship
+
+###### \<USER\> 1 - 0...N \<COORDINATE\>
+
+- **one** USER *posts* **zero to many** COORDINATEs
+- **one** COORDINATE *is posted by* **one** USER
+
+###### \<COORDINATE\> 1 - 0...N \<COMMENT\>
+
+- **one** COORDINATE *has* **zero to many** COMMENTs
+- **one** COMMENT *is commented on* **one** COORDINATE
