@@ -65,15 +65,15 @@ public final class User extends EntityBase {
     }
 
     public static List<User> selectUserList(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectUsers(params);
+        return EntitySQLConnection.selectUsers(params);
     }
 
     public static String selectUserJSONString(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectUsers(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntitySQLConnection.selectUsers(params).stream().map(User::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static JSONArray selectUserJSONArray(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectUsers(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntitySQLConnection.selectUsers(params).stream().map(User::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public String getName() {
@@ -130,7 +130,7 @@ public final class User extends EntityBase {
 
     @Override
     public synchronized boolean insertSQL() throws SQLException {
-        if (!EntityDBConnection.selectUsers(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", name}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+        if (!EntitySQLConnection.selectUsers(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", name}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
             return false;
         }
 

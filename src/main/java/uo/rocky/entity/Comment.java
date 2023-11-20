@@ -71,15 +71,15 @@ public final class Comment extends EntityBase {
     }
 
     public static List<Comment> selectCommentList(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectComments(params);
+        return EntitySQLConnection.selectComments(params);
     }
 
     public static String selectCommentJSONString(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntitySQLConnection.selectComments(params).stream().map(Comment::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static JSONArray selectCommentJSONArray(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectComments(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntitySQLConnection.selectComments(params).stream().map(Comment::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public long getId() {
@@ -145,10 +145,10 @@ public final class Comment extends EntityBase {
 
     @Override
     public synchronized boolean insertSQL() throws SQLException {
-        if (!EntityDBConnection.selectComments(Stream.of(new String[]{"QUERY", "COMMENTID"}, new String[]{"COMMENTID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+        if (!EntitySQLConnection.selectComments(Stream.of(new String[]{"QUERY", "COMMENTID"}, new String[]{"COMMENTID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
             return false;
         }
-//        if (EntityDBConnection.selectCoordinates(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(cdtId)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+//        if (EntitySQLConnection.selectCoordinates(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(cdtId)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
 //            return false;
 //        }
 

@@ -19,7 +19,7 @@ import static uo.rocky.entity.EntityRelatesToSQL.LOCALDATETIME_FORMATTER_SPACE;
  *
  * @author Rocky Haotian Du
  */
-public final class EntityDBConnection {
+public final class EntitySQLConnection {
 
     private static final String NO_QUERT_PARAM = "ALL";
 
@@ -35,7 +35,7 @@ public final class EntityDBConnection {
 
     public static synchronized void setConnection(Connection connection) throws SQLException {
         connection.setAutoCommit(false);
-        EntityDBConnection.connection = connection;
+        EntitySQLConnection.connection = connection;
         createTablesIfNotExists();
     }
 

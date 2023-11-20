@@ -2,7 +2,7 @@ package uo.rocky;
 
 import com.sun.net.httpserver.*;
 import org.json.JSONObject;
-import uo.rocky.entity.EntityDBConnection;
+import uo.rocky.entity.EntitySQLConnection;
 import uo.rocky.httphandler.CommentHttpHandler;
 import uo.rocky.httphandler.CoordinatesHttpHandler;
 import uo.rocky.httphandler.RegistrationHttpHandler;
@@ -110,7 +110,7 @@ public final class ServerLauncher {
             System.out.println("Log \"" + logFile.getFileName() + "\" has been prepared.");
             System.out.println("---------");
 
-            EntityDBConnection.setConnection(DriverManager.getConnection(sqliteUrl));
+            EntitySQLConnection.setConnection(DriverManager.getConnection(sqliteUrl));
             System.out.println("SQLite \"" + sqliteUrl + "\" has been connected.");
             System.out.println("---------");
 

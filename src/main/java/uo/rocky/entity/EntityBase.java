@@ -12,6 +12,6 @@ import java.sql.Connection;
 public abstract class EntityBase implements EntityRelatesToJSON, EntityRelatesToSQL {
 
     protected static Connection getConnection() {
-        return EntityDBConnection.getConnection();
+        return EntitySQLConnection.getConnection();
     }
 }

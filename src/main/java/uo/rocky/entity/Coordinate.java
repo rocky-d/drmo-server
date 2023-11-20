@@ -83,20 +83,20 @@ public final class Coordinate extends EntityBase {
     }
 
     public static List<Coordinate> selectCoordinateList(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectCoordinates(params);
+        return EntitySQLConnection.selectCoordinates(params);
     }
 
     public static String selectCoordinateJSONString(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
+        return EntitySQLConnection.selectCoordinates(params).stream().map(Coordinate::toJSONString).collect(Collectors.joining(",", "[", "]"));
     }
 
     public static JSONArray selectCoordinateJSONArray(Map<String, String> params) throws SQLException {
-        return EntityDBConnection.selectCoordinates(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
+        return EntitySQLConnection.selectCoordinates(params).stream().map(Coordinate::toJSONObject).collect(JSONArray::new, JSONArray::put, JSONArray::put);
     }
 
     public static String selectCoordinateWithCommentsJSONString(Map<String, String> params) throws SQLException {
         StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
-        for (Coordinate coordinate : EntityDBConnection.selectCoordinates(params)) {
+        for (Coordinate coordinate : EntitySQLConnection.selectCoordinates(params)) {
             stringJoiner.add(coordinate.toJSONStringWithComments());
         }
         return stringJoiner.toString();
@@ -104,7 +104,7 @@ public final class Coordinate extends EntityBase {
 
     public static JSONArray selectCoordinateWithCommentsJSONArray(Map<String, String> params) throws SQLException {
         JSONArray jsonArray = new JSONArray();
-        for (Coordinate coordinate : EntityDBConnection.selectCoordinates(params)) {
+        for (Coordinate coordinate : EntitySQLConnection.selectCoordinates(params)) {
             jsonArray.put(coordinate.toJSONObjectWithComments());
         }
         return jsonArray;
@@ -220,10 +220,10 @@ public final class Coordinate extends EntityBase {
 
     @Override
     public synchronized boolean insertSQL() throws SQLException {
-        if (!EntityDBConnection.selectCoordinates(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+        if (!EntitySQLConnection.selectCoordinates(Stream.of(new String[]{"QUERY", "ID"}, new String[]{"ID", String.valueOf(id)}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
             return false;
         }
-//        if (EntityDBConnection.selectUsers(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", usrName}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
+//        if (EntitySQLConnection.selectUsers(Stream.of(new String[]{"QUERY", "USERNAME"}, new String[]{"USERNAME", usrName}).collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]))).isEmpty()) {
 //            return false;
 //        }
 
