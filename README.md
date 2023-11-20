@@ -95,7 +95,7 @@ The first run:
 
 Default configuration:
 
-```json5
+```json
 {
   "LOG": {
     "PATH": "drmo.server.log"
