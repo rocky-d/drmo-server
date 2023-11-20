@@ -116,7 +116,7 @@ Default configuration with annotations for explanation:
     "?MODE": "[\"HTTP\"/\"HTTPS\"] whether to run in HTTP mode or HTTPS mode",
     "MODE": "HTTP",
 
-    "?HTTP": "server config when using HTTP mode",
+    "?HTTP": "server config when running in HTTP mode",
     "HTTP": {
       "?PORT": "port number to listen on",
       "PORT": 8001,
@@ -128,7 +128,7 @@ Default configuration with annotations for explanation:
       "AUTHENTICATION": false
     },
 
-    "?HTTPS": "server config when using HTTPS mode",
+    "?HTTPS": "server config when running in HTTPS mode",
     "HTTPS": {
       "?PORT": "port number to listen on",
       "PORT": 8001,
