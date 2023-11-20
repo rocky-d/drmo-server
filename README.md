@@ -90,10 +90,10 @@ DDL...
 
 ###### \<USER\> 1 - 0...N \<COORDINATE\>
 
-- **one** USER *posts* **zero to many** COORDINATEs
+- **one** USER *posts* **zero to many** COORDINATE(s)
 - **one** COORDINATE *is posted by* **one** USER
 
 ###### \<COORDINATE\> 1 - 0...N \<COMMENT\>
 
-- **one** COORDINATE *has* **zero to many** COMMENTs
+- **one** COORDINATE *has* **zero to many** COMMENT(s)
 - **one** COMMENT *is commented on* **one** COORDINATE
