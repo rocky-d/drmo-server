@@ -69,7 +69,7 @@ This is only the information of my own development environment:
 
 - Build the project with **Maven**.
 - Run the main method in the `ServerLauncher` class to start the server.
-- Follow the instructions of the program if it's **the first run**.
+- Follow the printed instructions if it's **the first run**.
   - Don't panic if you see an error message. Calm down and read the prompts carefully.
   - Choose whether to load the default configuration. (Type `yes` or `y` and then press `Enter`.)
   - Check and modify (if you need to) the config file.
