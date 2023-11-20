@@ -42,8 +42,9 @@ public final class ServerLauncher {
     private static int port;
     private static InetAddress host;
     private static boolean setAuthenticator;
-    private static Path jksFile;
-    private static char[] jksPassword;
+    private static String keystoreType;
+    private static Path keystoreFile;
+    private static char[] keystorePassword;
 
     public static void main(String[] args) throws IOException {
         System.out.println("Hello world!");
@@ -126,10 +127,10 @@ public final class ServerLauncher {
             registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
         }
 
-        KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(Files.newInputStream(jksFile), jksPassword);
+        KeyStore keyStore = KeyStore.getInstance(keystoreType);
+        keyStore.load(Files.newInputStream(keystoreFile), keystorePassword);
         KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-        keyManagerFactory.init(keyStore, jksPassword);
+        keyManagerFactory.init(keyStore, keystorePassword);
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
         trustManagerFactory.init(keyStore);
         SSLContext sslContext = SSLContext.getInstance("TLS");
@@ -161,8 +162,8 @@ public final class ServerLauncher {
         sqliteUrl = "jdbc:sqlite:" + dbConfig.getString("PATH");
 
         JSONObject serverConfig = config.getJSONObject("SERVER");
-        String protocol = serverConfig.getString("PROTOCOL");
-        if ("HTTP".equalsIgnoreCase(protocol)) {
+        String serverMode = serverConfig.getString("MODE");
+        if ("HTTP".equalsIgnoreCase(serverMode)) {
             isHttps = false;
 
             JSONObject httpConfig = serverConfig.getJSONObject("HTTP");
@@ -170,7 +171,7 @@ public final class ServerLauncher {
             host = InetAddress.getByName(httpConfig.getString("HOST"));
             setAuthenticator = httpConfig.getBoolean("AUTHENTICATION");
 
-        } else if ("HTTPS".equalsIgnoreCase(protocol)) {
+        } else if ("HTTPS".equalsIgnoreCase(serverMode)) {
             isHttps = true;
 
             JSONObject httpsConfig = serverConfig.getJSONObject("HTTPS");
@@ -178,9 +179,10 @@ public final class ServerLauncher {
             host = InetAddress.getByName(httpsConfig.getString("HOST"));
             setAuthenticator = httpsConfig.getBoolean("AUTHENTICATION");
 
-            JSONObject jksConfig = httpsConfig.getJSONObject("JKS");
-            jksFile = Paths.get(jksConfig.getString("PATH"));
-            jksPassword = jksConfig.getString("PASSWORD").toCharArray();
+            JSONObject keystoreConfig = httpsConfig.getJSONObject("KEYSTORE");
+            keystoreType = keystoreConfig.getString("TYPE");
+            keystoreFile = Paths.get(keystoreConfig.getString("PATH"));
+            keystorePassword = keystoreConfig.getString("PASSWORD").toCharArray();
         }
     }
 
@@ -195,7 +197,7 @@ public final class ServerLauncher {
                 "    \"PATH\": \"drmo.sqlite.db\"\n" +
                 "  },\n" +
                 "  \"SERVER\": {\n" +
-                "    \"PROTOCOL\": \"HTTP\",\n" +
+                "    \"MODE\": \"HTTP\",\n" +
                 "    \"HTTP\": {\n" +
                 "      \"PORT\": 8001,\n" +
                 "      \"HOST\": \"0.0.0.0\",\n" +
@@ -205,7 +207,8 @@ public final class ServerLauncher {
                 "      \"PORT\": 8001,\n" +
                 "      \"HOST\": \"0.0.0.0\",\n" +
                 "      \"AUTHENTICATION\": true,\n" +
-                "      \"JKS\": {\n" +
+                "      \"KEYSTORE\": {\n" +
+                "        \"TYPE\": \"JKS\",\n" +
                 "        \"PATH\": \"<path>\",\n" +
                 "        \"PASSWORD\": \"<password>\"\n" +
                 "      }\n" +
