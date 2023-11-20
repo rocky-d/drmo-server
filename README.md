@@ -97,3 +97,7 @@ DDL...
 
 - **one** COORDINATE *has* **zero to many** COMMENT(s)
 - **one** COMMENT *is commented on* **one** COORDINATE
+
+#### LOG
+
+...
