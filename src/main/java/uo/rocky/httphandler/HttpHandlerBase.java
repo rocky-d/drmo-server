@@ -14,7 +14,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static uo.rocky.LogWriter.LogEntryType.*;
 
 /**
- * TODO
+ * TOWRITE
  *
  * @author Rocky Haotian Du
  */

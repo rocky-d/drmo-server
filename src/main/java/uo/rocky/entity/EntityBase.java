@@ -3,7 +3,7 @@ package uo.rocky.entity;
 import java.sql.Connection;
 
 /**
- * TODO
+ * TOWRITE
  * <p>
  * Implements {@link EntityRelatesToJSON}, {@link EntityRelatesToSQL}.
  *

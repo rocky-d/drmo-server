@@ -13,7 +13,7 @@ import static uo.rocky.LogWriter.LogEntryType.INFO;
 import static uo.rocky.LogWriter.LogEntryType.WARNING;
 
 /**
- * TODO
+ * TOWRITE
  *
  * @author Rocky Haotian Du
  */
