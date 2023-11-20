@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
  */
 public interface EntityRelatesToJSON extends JSONString {
 
+    DateTimeFormatter OFFSETDATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
     DateTimeFormatter LOCALDATETIME_FORMATTER_T = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
     static String escapeDoubleQuotes(String string) {
