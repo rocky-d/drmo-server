@@ -8,6 +8,33 @@
 
 ------
 
+### Outline
+
+- [Introduction](#introduction)
+  - [What is it?](#what-is-it)
+  - [Why is it called "drmo-server"?](#why-is-it-called-drmo-server)
+  - [What are its features?](#what-are-its-features)
+- [Environment](#environment)
+- [Usage](#usage)
+  - [How to run it?](#how-to-run-it)
+  - [How to send requests to it?](#how-to-send-requests-to-it)
+  - [How to modify its configuration?](#how-to-modify-its-configuration)
+- [Internal](#internal)
+  - [HTTP/HTTPS](#httphttps)
+  - [JSON](#json)
+  - [SQL](#sql)
+    - [Entities](#entities)
+      - [User](#user)
+      - [Coordinate](#coordinate)
+      - [Comment](#comment)
+    - [Relationships](#relationships)
+      - [\<USER\> 1 - 0...N \<COORDINATE\>](#user-1---0n-coordinate)
+      - [\<COORDINATE\> 1 - 0...N \<COMMENT\>](#coordinate-1---0n-comment)
+  - [LOG](#log)
+- [Exception](#exception)
+
+------
+
 ### Introduction
 
 #### What is it?
@@ -82,7 +109,7 @@ The first run:
 
 ERD...
 
-##### Entity
+##### Entities
 
 ###### User
 
@@ -130,7 +157,7 @@ CREATE TABLE IF NOT EXISTS comment (
 );
 ```
 
-##### Relationship
+##### Relationships
 
 ###### \<USER\> 1 - 0...N \<COORDINATE\>
 
