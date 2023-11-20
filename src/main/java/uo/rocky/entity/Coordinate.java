@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 
 /**
  * TODO
+ * <p>
+ * Extends {@link EntityBase}.
  *
  * @author Rocky Haotian Du
  */

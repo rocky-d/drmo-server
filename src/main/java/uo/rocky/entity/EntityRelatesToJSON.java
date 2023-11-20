@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * TODO
+ * <p>
+ * Extends {@link JSONString}.
  *
  * @author Rocky Haotian Du
  */
