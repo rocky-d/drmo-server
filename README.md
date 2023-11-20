@@ -11,26 +11,26 @@
 ### Outline
 
 - [Introduction](#introduction)
-  - [What is it?](#what-is-it)
-  - [Why is it called "drmo-server"?](#why-is-it-called-drmo-server)
-  - [What are its features?](#what-are-its-features)
+    - [What is it?](#what-is-it)
+    - [Why is it called "drmo-server"?](#why-is-it-called-drmo-server)
+    - [What are its features?](#what-are-its-features)
 - [Environment](#environment)
 - [Usage](#usage)
-  - [How to run it?](#how-to-run-it)
-  - [How to send requests to it?](#how-to-send-requests-to-it)
-  - [How to modify its configuration?](#how-to-modify-its-configuration)
+    - [How to run it?](#how-to-run-it)
+    - [How to send requests to it?](#how-to-send-requests-to-it)
+    - [How to modify its configuration?](#how-to-modify-its-configuration)
 - [Internal](#internal)
-  - [HTTP/HTTPS](#httphttps)
-  - [JSON](#json)
-  - [SQL](#sql)
-    - [Entity](#entity)
-      - [User](#user)
-      - [Coordinate](#coordinate)
-      - [Comment](#comment)
-    - [Relationship](#relationship)
-      - [\<user\> 1 - 0...N \<coordinate\>](#user-1---0n-coordinate)
-      - [\<coordinate\> 1 - 0...N \<comment\>](#coordinate-1---0n-comment)
-  - [LOG](#log)
+    - [HTTP/HTTPS](#httphttps)
+    - [JSON](#json)
+    - [SQL](#sql)
+        - [Entity](#entity)
+            - [User](#user)
+            - [Coordinate](#coordinate)
+            - [Comment](#comment)
+        - [Relationship](#relationship)
+            - [\<user\> 1 - 0...N \<coordinate\>](#user-1---0n-coordinate)
+            - [\<coordinate\> 1 - 0...N \<comment\>](#coordinate-1---0n-comment)
+    - [LOG](#log)
 - [Exception](#exception)
 
 ------
@@ -74,10 +74,10 @@ This is only the information of my own development environment:
 - Build the project with **Maven**.
 - Run the main method in the `ServerLauncher` class to start the server.
 - Follow the printed instructions if it's **the first run**.
-  - Don't panic if you see an error message. Calm down and read the prompts carefully.
-  - Choose whether to load the default configuration. (Type `yes` or `y` and then press `Enter`.)
-  - Check and modify (if you need to) the config file.
-  - Rerun the program.
+    - Don't panic if you see an error message. Calm down and read the prompts carefully.
+    - Choose whether to load the default configuration. (Type `yes` or `y` and then press `Enter`.)
+    - Check and modify (if you need to) the config file.
+    - Rerun the program.
 
 Normal:
 
