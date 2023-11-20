@@ -105,7 +105,7 @@ Default configuration:
     "PATH": "drmo.server.log"
   },
 
-  "?SQL": "sql config",
+  "?SQL": "SQLite config",
   "SQL": {
     "?PATH": "path to database file",
     "PATH": "drmo.sqlite.db"
