@@ -18,6 +18,8 @@
 
 The word "drmo" in the project name is actually the abbreviation of the four supported danger types - "DEER", "REINDEER", "MOOSE", and "OTHER". And it's also an HTTP/HTTPS server. That's why it is called "drmo-server". 🎄🎄🎄🦌🦌🦌🌐🌐🌐
 
+You can speak "dremo server" or simply "D-R-M-O server" to call it.
+
 ------
 
 ### Environment
