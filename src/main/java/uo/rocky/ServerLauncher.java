@@ -64,10 +64,10 @@ public final class ServerLauncher {
 
             if (!isHttps) {
                 launchHttpServer();
-                LogWriter.appendEntry(INFO, "HTTP server has started to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
+                LogWriter.appendLogEntry(INFO, "HTTP server has started to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
             } else {
                 launchHttpsServer();
-                LogWriter.appendEntry(INFO, "HTTPS server has started to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
+                LogWriter.appendLogEntry(INFO, "HTTPS server has started to listen on (port number): " + port, "Access control (IP address of remote hosts): " + host);
             }
 
         } catch (Exception exception) {
@@ -137,7 +137,7 @@ public final class ServerLauncher {
         httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
             @Override
             public void configure(HttpsParameters httpsParameters) {
-                LogWriter.appendEntry(INFO, "Got remote connection: " + httpsParameters.getClientAddress());
+                LogWriter.appendLogEntry(INFO, "Got remote connection: " + httpsParameters.getClientAddress());
                 httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
             }
         });
