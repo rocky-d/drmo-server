@@ -100,4 +100,6 @@ DDL...
 
 #### LOG
 
-...
+- The *green-colored* **INFO** type indicating the normal actions.
+- The *yellow-colored* **WARNING** type indicating the improper actions causing not serious consequences.
+- The *red-colored* **ERROR** type indicating the exceptions that may affect the server's operations.
