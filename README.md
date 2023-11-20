@@ -77,11 +77,11 @@ This is only the information of my own development environment:
 
 Normal:
 
-![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png)
+<img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="100%" height="100%"/>
 
 The first run:
 
-![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png)
+<img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="100%" height="100%"/>
 
 #### How to send requests to it?
 
@@ -109,7 +109,7 @@ The first run:
 
 ERD (Entity-Relationship Diagram):
 
-![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png)
+<img alt="erd" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="64%" height="64%"/>
 
 ##### Entities
 
