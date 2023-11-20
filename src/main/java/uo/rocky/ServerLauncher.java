@@ -128,7 +128,7 @@ public final class ServerLauncher {
                     System.out.println("Config has been overridden.");
                     System.out.println("Please check and modify (if you need to) the config file");
                     System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
-                    System.out.println("And then restart the program.");
+                    System.out.println("And then rerun the program.");
                     break;
                 } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("NO")) {
                     System.out.println("Please check the problem.");
