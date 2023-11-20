@@ -78,9 +78,9 @@ The first run:
 
 #### SQL
 
-ERD
+ERD...
 
-DDL
+DDL...
 
 ##### Entity
 
