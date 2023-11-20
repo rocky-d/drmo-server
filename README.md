@@ -28,8 +28,8 @@
       - [Coordinate](#coordinate)
       - [Comment](#comment)
     - [Relationships](#relationships)
-      - [\<USER\> 1 - 0...N \<COORDINATE\>](#user-1---0n-coordinate)
-      - [\<COORDINATE\> 1 - 0...N \<COMMENT\>](#coordinate-1---0n-comment)
+      - [\<user\> 1 - 0...N \<coordinate\>](#user-1---0n-coordinate)
+      - [\<coordinate\> 1 - 0...N \<comment\>](#coordinate-1---0n-comment)
   - [LOG](#log)
 - [Exception](#exception)
 
@@ -159,15 +159,15 @@ CREATE TABLE IF NOT EXISTS comment (
 
 ##### Relationships
 
-###### \<USER\> 1 - 0...N \<COORDINATE\>
+###### \<user\> 1 - 0...N \<coordinate\>
 
-- **one** USER *posts* **zero to many** COORDINATE(s)
-- **one** COORDINATE *is posted by* **one** USER
+- **one** user *posts* **zero to many** coordinate(s)
+- **one** coordinate *is posted by* **one** user
 
-###### \<COORDINATE\> 1 - 0...N \<COMMENT\>
+###### \<coordinate\> 1 - 0...N \<comment\>
 
-- **one** COORDINATE *has* **zero to many** COMMENT(s)
-- **one** COMMENT *is commented on* **one** COORDINATE
+- **one** coordinate *has* **zero to many** comment(s)
+- **one** comment *is commented on* **one** coordinate
 
 #### LOG
 
