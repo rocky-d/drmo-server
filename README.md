@@ -93,29 +93,61 @@ The first run:
 
 #### How to modify its configuration?
 
+...
+
 Default configuration:
 
 ```json
 {
+  "?LOG": "log config",
   "LOG": {
+    "?PATH": "path to log file",
     "PATH": "drmo.server.log"
   },
+
+  "?SQL": "sql config",
   "SQL": {
+    "?PATH": "path to database file",
     "PATH": "drmo.sqlite.db"
   },
+
+  "?SERVER": "server config",
   "SERVER": {
-    "PROTOCOL": "HTTP",
+    "?MODE": "[\"HTTP\"/\"HTTPS\"]",
+    "MODE": "HTTP",
+
+    "?HTTP": "server config when using HTTP mode",
     "HTTP": {
+      "?PORT": "port number to listen on",
       "PORT": 8001,
+
+      "?HOST": "IP address of remote hosts to control access",
       "HOST": "0.0.0.0",
+
+      "?AUTHENTICATION": "[true/false]",
       "AUTHENTICATION": false
     },
+
+    "?HTTPS": "server config when using HTTPS mode",
     "HTTPS": {
+      "?PORT": "port number to listen on",
       "PORT": 8001,
+
+      "?HOST": "IP address of remote hosts to control access",
       "HOST": "0.0.0.0",
+
+      "?AUTHENTICATION": "[true/false]",
       "AUTHENTICATION": true,
-      "JKS": {
+
+      "?KEYSTORE": "KeyStore config",
+      "KEYSTORE": {
+        "?TYPE": "type of KeyStore",
+        "TYPE": "JKS",
+
+        "?PATH": "path to KeyStore file",
         "PATH": "<path>",
+
+        "?PASSWORD": "password of KeyStore",
         "PASSWORD": "<password>"
       }
     }
