@@ -26,8 +26,8 @@ You can speak "Dre-Mo Server" or simply "D-R-M-O Server" to call it.
 
 This is only the information of my own development environment:
 
-- Windows 10
-- Java 8
+- Windows 10 Pro
+- Java 1.8.0_202
 - Maven 3.9.2
 
 ------
