@@ -109,7 +109,7 @@ The first run:
 
 ERD (Entity-Relationship Diagram):
 
-<img alt="erd" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="64%" height="64%"/>
+<img alt="erd" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/>
 
 ##### Entities
 
