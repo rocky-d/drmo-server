@@ -56,10 +56,12 @@ The first run:
 
 ...
 
-------
-
-### Configuration
+#### How to modify its configuration?
 
 ...
 
 ------
+
+### Internal
+
+...
