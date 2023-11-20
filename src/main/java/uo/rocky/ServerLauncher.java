@@ -161,7 +161,7 @@ public final class ServerLauncher {
         JSONObject logConfig = config.getJSONObject("LOG");
         logFile = Paths.get(logConfig.getString("PATH"));
 
-        JSONObject dbConfig = config.getJSONObject("DB");
+        JSONObject dbConfig = config.getJSONObject("SQL");
         sqliteUrl = "jdbc:sqlite:" + dbConfig.getString("PATH");
 
         JSONObject serverConfig = config.getJSONObject("SERVER");
@@ -195,7 +195,7 @@ public final class ServerLauncher {
                 "  \"LOG\": {\n" +
                 "    \"PATH\": \"drmo.server.log\"\n" +
                 "  },\n" +
-                "  \"DB\": {\n" +
+                "  \"SQL\": {\n" +
                 "    \"PATH\": \"drmo.sqlite.db\"\n" +
                 "  },\n" +
                 "  \"SERVER\": {\n" +
