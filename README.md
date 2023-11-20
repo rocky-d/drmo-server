@@ -148,6 +148,8 @@ CREATE TABLE IF NOT EXISTS comment (
 - The *yellow-colored* **WARNING** type indicating the improper actions causing not serious consequences.
 - The *red-colored* **ERROR** type indicating the exceptions that may affect the server's operations.
 
+------
+
 ### Exception
 
 Exit status:
