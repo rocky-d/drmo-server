@@ -36,7 +36,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
             LogWriter.append(ERROR, ioException.getClass().getName() + ": " + ioException.getMessage());
 
             ioException.printStackTrace(System.err);
-            System.exit(-1);
+            System.exit(-2304);
         }
     }
 

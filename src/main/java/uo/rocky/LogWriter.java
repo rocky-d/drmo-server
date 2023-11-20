@@ -87,7 +87,7 @@ public final class LogWriter {
             System.out.print(STYLELESS_CODE);
 
             ioException.printStackTrace(System.err);
-            System.exit(-1);
+            System.exit(-2301);
         }
     }
 

@@ -51,7 +51,7 @@ public final class UserAuthenticator extends BasicAuthenticator {
             LogWriter.append(ERROR, noSuchAlgorithmException.getClass().getName() + ": " + noSuchAlgorithmException.getMessage());
 
             noSuchAlgorithmException.printStackTrace(System.err);
-            System.exit(-1);
+            System.exit(-2302);
             return 0;
         }
     }
@@ -73,7 +73,7 @@ public final class UserAuthenticator extends BasicAuthenticator {
             LogWriter.append(ERROR, sqlException.getClass().getName() + ": " + sqlException.getMessage());
 
             sqlException.printStackTrace(System.err);
-            System.exit(-1);
+            System.exit(-2303);
             return false;
         }
     }
