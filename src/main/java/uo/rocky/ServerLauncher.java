@@ -45,54 +45,6 @@ public final class ServerLauncher {
     private static Path jksFile;
     private static char[] jksPassword;
 
-    public static void launchHttpServer() throws IOException {
-        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(host, port), 0);
-
-        final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
-        final HttpContext coordinatesContext = httpServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
-        final HttpContext registrationContext = httpServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
-        if (setAuthenticator) {
-            commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
-            coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
-            registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
-        }
-
-        httpServer.setExecutor(null);
-        httpServer.start();
-    }
-
-    public static void launchHttpsServer() throws Exception {
-        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(host, port), 0);
-
-        final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
-        final HttpContext coordinatesContext = httpsServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
-        final HttpContext registrationContext = httpsServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
-        if (setAuthenticator) {
-            commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
-            coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
-            registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
-        }
-
-        KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(Files.newInputStream(jksFile), jksPassword);
-        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-        keyManagerFactory.init(keyStore, jksPassword);
-        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
-        trustManagerFactory.init(keyStore);
-        SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
-        httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
-            @Override
-            public void configure(HttpsParameters httpsParameters) {
-                LogWriter.appendEntry(INFO, "Got remote connection: " + httpsParameters.getClientAddress());
-                httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
-            }
-        });
-
-        httpsServer.setExecutor(null);
-        httpsServer.start();
-    }
-
     public static void main(String[] args) throws IOException {
         System.out.println("Hello world!");
         System.out.println("---------");
@@ -144,6 +96,54 @@ public final class ServerLauncher {
         } finally {
             System.out.println("=========");
         }
+    }
+
+    public static void launchHttpServer() throws IOException {
+        final HttpServer httpServer = HttpServer.create(new InetSocketAddress(host, port), 0);
+
+        final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
+        final HttpContext coordinatesContext = httpServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
+        final HttpContext registrationContext = httpServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
+        if (setAuthenticator) {
+            commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
+            coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
+            registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
+        }
+
+        httpServer.setExecutor(null);
+        httpServer.start();
+    }
+
+    public static void launchHttpsServer() throws Exception {
+        final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(host, port), 0);
+
+        final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
+        final HttpContext coordinatesContext = httpsServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
+        final HttpContext registrationContext = httpsServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
+        if (setAuthenticator) {
+            commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
+            coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
+            registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
+        }
+
+        KeyStore keyStore = KeyStore.getInstance("JKS");
+        keyStore.load(Files.newInputStream(jksFile), jksPassword);
+        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
+        keyManagerFactory.init(keyStore, jksPassword);
+        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
+        trustManagerFactory.init(keyStore);
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
+        httpsServer.setHttpsConfigurator(new HttpsConfigurator(sslContext) {
+            @Override
+            public void configure(HttpsParameters httpsParameters) {
+                LogWriter.appendEntry(INFO, "Got remote connection: " + httpsParameters.getClientAddress());
+                httpsParameters.setSSLParameters(getSSLContext().getDefaultSSLParameters());
+            }
+        });
+
+        httpsServer.setExecutor(null);
+        httpsServer.start();
     }
 
     public static void loadConfig() throws IOException {
