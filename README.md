@@ -28,13 +28,15 @@ This is only the information of my own development environment:
 
 ### Usage
 
+#### How to run it?
+
 - Build the project with **Maven**.
 - Run the main method in the `ServerLauncher` class to start the server.
 - Follow the instructions of the program if it's **the first run**.
   - Don't panic if you see an error message. Calm down and read the prompts carefully.
   - Choose whether to load the default configuration. (Type `yes` or `y` and then press `enter`.)
   - Check and modify (if you need to) the config file.
-  - Restart the program.
+  - Rerun the program.
 
 Normal:
 
@@ -43,6 +45,10 @@ Normal:
 The first run:
 
 ![](https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png)
+
+#### How to send requests to it?
+
+...
 
 ### Config
 
