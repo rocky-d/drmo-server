@@ -41,6 +41,7 @@ public final class ServerLauncher {
     private static boolean isHttps;
     private static int port;
     private static InetAddress host;
+    private static boolean setAuthenticator;
     private static Path jksFile;
     private static char[] jksPassword;
 
@@ -48,13 +49,15 @@ public final class ServerLauncher {
         final HttpServer httpServer = HttpServer.create(new InetSocketAddress(host, port), 0);
 
         final HttpContext commentContext = httpServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
-//        commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
         final HttpContext coordinatesContext = httpServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
-//        coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
         final HttpContext registrationContext = httpServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
-//        registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
 //        final HttpContext warningContext = httpServer.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
-//        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication"));
+        if (setAuthenticator) {
+            commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
+            coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
+            registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
+//            warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication"));
+        }
 
         httpServer.setExecutor(null);
         httpServer.start();
@@ -64,13 +67,15 @@ public final class ServerLauncher {
         final HttpsServer httpsServer = HttpsServer.create(new InetSocketAddress(host, port), 0);
 
         final HttpContext commentContext = httpsServer.createContext(CommentHttpHandler.GET_CONTEXT, new CommentHttpHandler());
-        commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
         final HttpContext coordinatesContext = httpsServer.createContext(CoordinatesHttpHandler.GET_CONTEXT, new CoordinatesHttpHandler());
-        coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
         final HttpContext registrationContext = httpsServer.createContext(RegistrationHttpHandler.GET_CONTEXT, new RegistrationHttpHandler());
-//        registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
 //        final HttpContext warningContext = httpsServer.createContext(WarningHttpHandler.GET_CONTEXT, new WarningHttpHandler());
-//        warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication"));
+        if (setAuthenticator) {
+            commentContext.setAuthenticator(new UserAuthenticator("'" + CommentHttpHandler.GET_CONTEXT + "' requires authentication"));
+            coordinatesContext.setAuthenticator(new UserAuthenticator("'" + CoordinatesHttpHandler.GET_CONTEXT + "' requires authentication"));
+            registrationContext.setAuthenticator(new UserAuthenticator("'" + RegistrationHttpHandler.GET_CONTEXT + "' requires authentication"));
+//            warningContext.setAuthenticator(new UserAuthenticator("'" + WarningHttpHandler.GET_CONTEXT + "' requires authentication"));
+        }
 
         KeyStore keyStore = KeyStore.getInstance("JKS");
         keyStore.load(Files.newInputStream(jksFile), jksPassword);
@@ -167,6 +172,7 @@ public final class ServerLauncher {
             JSONObject httpConfig = serverConfig.getJSONObject("HTTP");
             port = httpConfig.getInt("PORT");
             host = InetAddress.getByName(httpConfig.getString("HOST"));
+            setAuthenticator = httpConfig.getBoolean("AUTHENTICATION");
 
         } else if ("HTTPS".equalsIgnoreCase(protocol)) {
             isHttps = true;
@@ -174,6 +180,7 @@ public final class ServerLauncher {
             JSONObject httpsConfig = serverConfig.getJSONObject("HTTPS");
             port = httpsConfig.getInt("PORT");
             host = InetAddress.getByName(httpsConfig.getString("HOST"));
+            setAuthenticator = httpsConfig.getBoolean("AUTHENTICATION");
 
             JSONObject jksConfig = httpsConfig.getJSONObject("JKS");
             jksFile = Paths.get(jksConfig.getString("PATH"));
@@ -195,11 +202,13 @@ public final class ServerLauncher {
                 "    \"PROTOCOL\": \"HTTP\",\n" +
                 "    \"HTTP\": {\n" +
                 "      \"PORT\": 8001,\n" +
-                "      \"HOST\": \"0.0.0.0\"\n" +
+                "      \"HOST\": \"0.0.0.0\",\n" +
+                "      \"AUTHENTICATION\": false" +
                 "    },\n" +
                 "    \"HTTPS\": {\n" +
                 "      \"PORT\": 8001,\n" +
                 "      \"HOST\": \"0.0.0.0\",\n" +
+                "      \"AUTHENTICATION\": true," +
                 "      \"JKS\": {\n" +
                 "        \"PATH\": \"<path>\",\n" +
                 "        \"PASSWORD\": \"<password>\"\n" +
