@@ -49,11 +49,26 @@ You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 
 #### What are its functionalities?
 
-...
+- Request Handling
+- JSON Data Parsing and Packaging
+- User Registration 
+- User Authentication
+- Data Storage
+- Data Query
+- Password Encryption
+- Configuration Customization
+- Exception Handling
+- Log Record
 
 #### What are its features?
 
-...
+- Interactive Launching
+- Multiple Query Modes
+- Flexible Configuration
+- Relational Data Model
+- Distributed Modular Architecture
+- High Cohesion & Low Coupling
+- Clean and Well Commented Code
 
 ------
 
