@@ -4,7 +4,7 @@
 
 #### Developed by `Rocky Haotian Du` (GitHub: *[rocky-d](https://github.com/rocky-d)*)
 
-#### Last modified date: `2023-11-20`
+#### Last modified date: `2023-11-21`
 
 ------
 
@@ -271,6 +271,14 @@ Exit status:
 - `-2303`: `UserAuthenticator`.`checkCredentials(String, String):boolean`
 - `-2304`: `HttpHandlerBase`.`respondInternalServerError(HttpExchange, String):void`
 
+------
+
 ### Statistic
 
-...
+Until 2023-11-21T15:41:47+08:00:
+
+- 563 commits
+- ? lines of code
+- ? interfaces
+- ? classes
+- ? enums
