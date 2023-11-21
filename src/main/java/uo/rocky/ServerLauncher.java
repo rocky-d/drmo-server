@@ -81,14 +81,14 @@ public final class ServerLauncher {
                 System.out.println("Override config file with default configuration?");
                 System.out.print("(Yes/No) > ");
                 input = scanner.nextLine();
-                if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES")) {
+                if ("Y".equalsIgnoreCase(input) || "YES".equalsIgnoreCase(input)) {
                     overrideConfig();
                     System.out.println("Config has been overridden.");
                     System.out.println("Please check and modify (if you need to) the config file");
                     System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
                     System.out.println("And then rerun the program.");
                     break;
-                } else if (input.equalsIgnoreCase("N") || input.equalsIgnoreCase("NO")) {
+                } else if ("N".equalsIgnoreCase(input) || "NO".equalsIgnoreCase(input)) {
                     System.out.println("Please check the problem.");
                     break;
                 }
