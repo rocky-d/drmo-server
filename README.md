@@ -190,7 +190,7 @@ Default configuration with annotations for explanation:
 
 ERD (Entity-Relationship Diagram):
 
-<p style="text-align: center;"><img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/></p>
+<p align="center"><img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/></p>
 
 ##### Entity
 
