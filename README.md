@@ -179,7 +179,7 @@ Default configuration with annotations for explanation:
 
 #### HTTP/HTTPS
 
-The `drmo-server` can operate in HTTP mode or HTTPS mode, offering flexibility in communication protocols. HTTP is suitable for basic communication, while HTTPS provides secure encrypted connections.
+`drmo-server` can operate in HTTP mode or HTTPS mode, offering flexibility in communication protocols. HTTP is suitable for basic communication, while HTTPS provides secure encrypted connections.
 
 #### JSON
 
