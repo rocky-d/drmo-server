@@ -70,6 +70,7 @@ You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 - Distributed Modular Architecture
 - High Cohesion & Low Coupling
 - Clean and Well Commented Code
+- Multilevel Log Entry
 - Colorful Log Printing
 
 ------
@@ -178,11 +179,11 @@ Default configuration with annotations for explanation:
 
 #### HTTP/HTTPS
 
-...
+The `drmo-server` can operate in HTTP mode or HTTPS mode, offering flexibility in communication protocols. HTTP is suitable for basic communication, while HTTPS provides secure encrypted connections.
 
 #### JSON
 
-**JSON** is the data interchange format
+**JSON** is the data format for exchanging information between clients and the server due to its simplicity and readability.
 
 #### SQL
 
@@ -253,6 +254,8 @@ CREATE TABLE IF NOT EXISTS comment (
 - **one** comment ***is commented on*** **one** coordinate
 
 #### LOG
+
+Log entry types:
 
 - The *green-colored* **INFO** type indicating the normal actions.
 - The *yellow-colored* **WARNING** type indicating the improper actions causing not serious consequences.
