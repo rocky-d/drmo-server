@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS coordinate (
 
 DDL of the **comment** table:
 
-```sqlite
+```sql
 CREATE TABLE IF NOT EXISTS comment (
     CMT_ID              INTEGER  NOT NULL  PRIMARY KEY  UNIQUE,
     CMT_CONTENT         TEXT     NOT NULL,
