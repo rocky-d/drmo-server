@@ -69,6 +69,7 @@ You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 - Distributed Modular Architecture
 - High Cohesion & Low Coupling
 - Clean and Well Commented Code
+- Colorful Log Printing
 
 ------
 
