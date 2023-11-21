@@ -51,10 +51,8 @@ You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 
 - Request Handling
 - JSON Data Handling and Responding
-- Data Storage
-- Data Query
-- User Registration 
-- User Authentication
+- Data Storing and Querying
+- User Registration and Authentication
 - Password Encryption
 - Configuration Customization
 - Exception Handling
