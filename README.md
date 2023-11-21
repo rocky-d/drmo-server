@@ -50,7 +50,7 @@ You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 #### What are its functionalities?
 
 - Request Handling
-- JSON Data Parsing and Packaging
+- JSON Data Handling and Responding
 - Data Storage
 - Data Query
 - User Registration 
@@ -64,6 +64,7 @@ You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 
 - Interactive Launching
 - Multiple Query Modes
+- Ordered JSON Data Responding
 - Flexible Configuration
 - Relational Data Model
 - Distributed Modular Architecture
@@ -181,7 +182,7 @@ Default configuration with annotations for explanation:
 
 #### JSON
 
-...
+**JSON** is the data interchange format
 
 #### SQL
 
