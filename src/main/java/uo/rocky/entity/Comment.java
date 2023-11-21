@@ -52,8 +52,8 @@ public final class Comment extends EntityBase {
         return new Comment(
                 resultSet.getLong("CMT_ID"),
                 resultSet.getString("CMT_CONTENT"),
-                LocalDateTime.parse(resultSet.getString("CDT_LOCALDATETIME"), LOCALDATETIME_FORMATTER_SPACE),
-                resultSet.getString("CDT_DATETIMEOFFSET"),
+                LocalDateTime.parse(resultSet.getString("CMT_LOCALDATETIME"), LOCALDATETIME_FORMATTER_SPACE),
+                resultSet.getString("CMT_DATETIMEOFFSET"),
                 resultSet.getLong("CMT_CDT_ID")
         );
     }
