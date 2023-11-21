@@ -30,9 +30,13 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         try {
             String results = Coordinate.selectCoordinateWithCommentsJSONString(parseQueryParameters(httpExchange));
 //            System.out.println(results);
-            httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
-            httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
-            outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
+            if ("[]".equals(results)) {
+                httpExchange.sendResponseHeaders(StatusCode.NO_CONTENT.code(), -1);
+            } else {
+                httpExchange.getResponseHeaders().add(ResponseHeader.CONTENT_TYPE.call(), GET_CONTENT_TYPE);
+                httpExchange.sendResponseHeaders(StatusCode.OK.code(), results.getBytes(UTF_8).length);
+                outputResponseBody(httpExchange.getResponseBody(), results, UTF_8);
+            }
         } catch (RuntimeException runtimeException) {
             respondBadRequest(httpExchange, runtimeException);
         } catch (SQLException sqlException) {
