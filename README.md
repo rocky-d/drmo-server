@@ -32,6 +32,7 @@
             - [\<coordinate\> 1 - 0...N \<comment\>](#coordinate-1---0n-comment)
     - [LOG](#log)
 - [Exception](#exception)
+- [Statistic](#statistic)
 
 ------
 
@@ -177,7 +178,7 @@ Default configuration with annotations for explanation:
 
 #### HTTP/HTTPS
 
-`drmo-server` can operate in HTTP mode or HTTPS mode, offering flexibility in communication protocols. HTTP is suitable for basic communication, while HTTPS provides secure encrypted connections.
+`drmo-server` can operate in both HTTP and HTTPS modes, offering flexibility in communication protocols. HTTP is suitable for basic communication, while HTTPS provides secure encrypted connections.
 
 #### JSON
 
@@ -269,3 +270,7 @@ Exit status:
 - `-2302`: `UserAuthenticator`.`hashPassword(String):long`
 - `-2303`: `UserAuthenticator`.`checkCredentials(String, String):boolean`
 - `-2304`: `HttpHandlerBase`.`respondInternalServerError(HttpExchange, String):void`
+
+### Statistic
+
+...
