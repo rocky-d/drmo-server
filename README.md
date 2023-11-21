@@ -51,10 +51,10 @@ You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
 
 - Request Handling
 - JSON Data Parsing and Packaging
-- User Registration 
-- User Authentication
 - Data Storage
 - Data Query
+- User Registration 
+- User Authentication
 - Password Encryption
 - Configuration Customization
 - Exception Handling
