@@ -49,7 +49,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         LogWriter.append(INFO, "Try to handle the HEAD request in " + getClass().getSimpleName() + ".");
 
         httpExchange.getResponseHeaders().add(ResponseHeader.ALLOW.call(), GET_ALLOW);
-        httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
+        httpExchange.sendResponseHeaders(StatusCode.NO_CONTENT.code(), -1);
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class CoordinatesHttpHandler extends HttpHandlerBase {
         try {
             if (Coordinate.valueOf(new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8))).insertSQL()) {
                 LogWriter.append(INFO, "INSERT coordinate succeeded.");
-                httpExchange.sendResponseHeaders(StatusCode.OK.code(), -1);
+                httpExchange.sendResponseHeaders(StatusCode.NO_CONTENT.code(), -1);
             } else {
                 LogWriter.append(WARNING, "INSERT coordinate failed.");
                 respondBadRequest(httpExchange, "The data provided does not meet the definition of the relational data tables");
