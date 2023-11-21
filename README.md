@@ -98,11 +98,11 @@ This is only the information of my own development environment:
 
 Normal:
 
-<img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="100%" height="100%"/>
+<div style="text-align: center;"><img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="100%" height="100%"/></div>
 
 The first run:
 
-<img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="100%" height="100%"/>
+<div style="text-align: center;"><img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="100%" height="100%"/></div>
 
 #### How to send requests to it?
 
@@ -190,7 +190,7 @@ Default configuration with annotations for explanation:
 
 ERD (Entity-Relationship Diagram):
 
-<img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/>
+<div style="text-align: center;"><img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/></div>
 
 ##### Entity
 
