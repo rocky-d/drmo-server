@@ -199,7 +199,7 @@ ERD (Entity-Relationship Diagram):
 
 DDL of the **user** table:
 
-```sqlite
+```sql
 CREATE TABLE IF NOT EXISTS user (
     USR_NAME            TEXT     NOT NULL  PRIMARY KEY  UNIQUE,
     USR_HASHEDPASSWORD  INTEGER  NOT NULL,
@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS user (
 
 DDL of the **coordinate** table:
 
-```sqlite
+```sql
 CREATE TABLE IF NOT EXISTS coordinate (
     CDT_ID              INTEGER  NOT NULL  PRIMARY KEY  UNIQUE,
     CDT_LONGITUDE       REAL     NOT NULL,
