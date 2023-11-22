@@ -4,7 +4,7 @@
 
 #### Developed by `Rocky Haotian Du` (GitHub: *[rocky-d](https://github.com/rocky-d)*)
 
-#### Last modified date: `2023-11-21`
+#### Last modified date: `2023-11-22`
 
 ------
 
@@ -101,13 +101,13 @@ Steps:
 Normal:
 
 <p align="center">
-  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="100%" height="100%"/>
+  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="90%" height="90%"/>
 </p>
 
 The first run:
 
 <p align="center">
-  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="100%" height="100%"/>
+  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="90%" height="90%"/>
 </p>
 
 #### How to send requests to it?
@@ -233,7 +233,7 @@ src
 ERD (Entity-Relationship Diagram):
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/>
+  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="60%" height="60%"/>
 </p>
 
 ##### Entity
@@ -323,6 +323,3 @@ Until 2023-11-21T15:41:47+08:00:
 
 - 563 commits
 - ? lines of code
-- ? interfaces
-- ? classes
-- ? enums
