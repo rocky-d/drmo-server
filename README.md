@@ -135,7 +135,7 @@ Recommended tools:
 
 Send a **GET** request to `/registration` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **user** data.
 
-Parameter specification table for querying **user** data:
+Parameter specification table for querying **user** data (fields with `*` are required):
 
 |     query      | other param(s)  | description               |
 |:--------------:|:---------------:|---------------------------|
@@ -160,7 +160,7 @@ Parameter specification table for querying **user** data:
 
 Send a **GET** request to `/coordinates` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data.
 
-Parameter specification table for querying **coordinate** data:
+Parameter specification table for querying **coordinate** data (fields with `*` are required):
 
 |  query   |                        other param(s)                         | description                                                                                                                                                                  |
 |:--------:|:-------------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -185,7 +185,7 @@ Parameter specification table for querying **coordinate** data:
 
 Send a **GET** request to `/comment` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **comment** data.
 
-Parameter specification table for querying **comment** data:
+Parameter specification table for querying **comment** data (fields with `*` are required):
 
 |   query   |   other param(s)    | description                                                                                                                       |
 |:---------:|:-------------------:|-----------------------------------------------------------------------------------------------------------------------------------|
