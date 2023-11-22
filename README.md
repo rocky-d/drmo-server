@@ -182,6 +182,42 @@ Default configuration with annotations for explanation:
 
 ### Internal
 
+Source tree:
+
+```
+src
+├─main
+│  ├─java
+│  │  └─uo
+│  │      └─rocky
+│  │          ├─entity
+│  │          │  ├─Comment.java
+│  │          │  ├─Coordinate.java
+│  │          │  ├─EntityBase.java
+│  │          │  ├─EntityRelatesToJSON.java
+│  │          │  ├─EntityRelatesToSQL.java
+│  │          │  ├─EntitySQLConnection.java
+│  │          │  ├─QueryParamException.java
+│  │          │  └─User.java
+│  │          ├─httphandler
+│  │          │  ├─CommentHttpHandler.java
+│  │          │  ├─CoordinatesHttpHandler.java
+│  │          │  ├─HttpHandlerBase.java
+│  │          │  ├─RegistrationHttpHandler.java
+│  │          │  ├─RequestMethod.java
+│  │          │  ├─ResponseHeader.java
+│  │          │  └─StatusCode.java
+│  │          ├─LogWriter.java
+│  │          ├─ServerLauncher.java
+│  │          └─UserAuthenticator.java
+│  └─resources
+└─test
+    ├─java
+    │  └─uo
+    │      └─rocky
+    └─resources
+```
+
 #### HTTP/HTTPS
 
 `drmo-server` can operate in both HTTP and HTTPS modes, offering flexibility in communication protocols. HTTP is suitable for basic communication, while HTTPS provides secure encrypted connections.
