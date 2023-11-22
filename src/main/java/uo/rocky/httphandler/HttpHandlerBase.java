@@ -2,7 +2,6 @@ package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.json.JSONException;
 import org.json.JSONObject;
 import uo.rocky.LogWriter;
 
@@ -84,21 +83,17 @@ public abstract class HttpHandlerBase implements HttpHandler {
         }
 
         Map<String, String> paramsFromRequestBody = new HashMap<>();
-        try {
-            String requestBody = inputRequestBody(httpExchange.getRequestBody(), UTF_8);
-            if (!requestBody.isEmpty()) {
-                JSONObject jsonObject = new JSONObject(requestBody);
-                for (String key : jsonObject.keySet()) {
-                    Object value = jsonObject.get(key);
-                    if (value instanceof String) {
-                        paramsFromRequestBody.put(key.toUpperCase(), (String) value);
-                    } else {
-                        LogWriter.append(WARNING, "Value \"" + value + "\" is not an instance of String.");
-                    }
+        String requestBody = inputRequestBody(httpExchange.getRequestBody(), UTF_8);
+        if (!requestBody.isEmpty()) {
+            JSONObject jsonObject = new JSONObject(requestBody);
+            for (String key : jsonObject.keySet()) {
+                Object value = jsonObject.get(key);
+                if (value instanceof String) {
+                    paramsFromRequestBody.put(key.toUpperCase(), (String) value);
+                } else {
+                    LogWriter.append(WARNING, "Value \"" + value + "\" is not an instance of String.");
                 }
             }
-        } catch (JSONException jsonException) {
-            LogWriter.append(WARNING, jsonException.getClass().getName() + ": " + jsonException.getMessage());
         }
 
         return paramsFromURI.isEmpty() ? paramsFromRequestBody : paramsFromURI;
