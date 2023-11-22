@@ -18,6 +18,18 @@
 - [Usage](#usage)
     - [How to run it?](#how-to-run-it)
     - [How to send requests to it?](#how-to-send-requests-to-it)
+        - [/registration](#registration)
+            - [GET](#get)
+            - [HEAD](#head)
+            - [POST](#post)
+        - [/coordinates](#coordinates)
+            - [GET](#get-1)
+            - [HEAD](#head-1)
+            - [POST](#post-1)
+        - [/comment](#comment)
+            - [GET](#get-2)
+            - [HEAD](#head-2)
+            - [POST](#post-2)
     - [How to modify its configuration?](#how-to-modify-its-configuration)
 - [Internal](#internal)
     - [HTTP/HTTPS](#httphttps)
@@ -26,7 +38,7 @@
         - [Entity](#entity)
             - [User](#user)
             - [Coordinate](#coordinate)
-            - [Comment](#comment)
+            - [Comment](#comment-1)
         - [Relationship](#relationship)
             - [\<user\> 1 - 0...N \<coordinate\>](#user-1---0n-coordinate)
             - [\<coordinate\> 1 - 0...N \<comment\>](#coordinate-1---0n-comment)
@@ -111,6 +123,46 @@ The first run:
 </p>
 
 #### How to send requests to it?
+
+##### /registration
+
+###### GET
+
+...
+
+###### HEAD
+
+...
+
+###### POST
+
+...
+
+##### /coordinates
+
+###### GET
+
+...
+
+###### HEAD
+
+...
+
+###### POST
+
+...
+
+##### /comment
+
+###### GET
+
+...
+
+###### HEAD
+
+...
+
+###### POST
 
 ...
 
