@@ -151,7 +151,7 @@ Send **GET** requests to `/registration` and set parameters according to the spe
 Parameter specification table for querying **user** data (fields with `*` are required):
 
 |     query      | other param(s)  | description               |
-|:--------------:|:---------------:|---------------------------|
+|:--------------:|:---------------:|:--------------------------|
 |    username    |    username*    | select by username        |
 | hashedpassword | hashedpassword* | select by hashed password |
 |     email      |     email*      | select by email           |
@@ -169,12 +169,12 @@ Send **POST** requests to `/registration` and set parameters according to the sp
 
 Parameter specification table for inserting **user** data (fields with `*` are required):
 
-|   field   | description |
-|:---------:|-------------|
-| username* |             |
-| password* |             |
-|   email   |             |
-|   phone   |             |
+|   field   | description              |
+|:---------:|:-------------------------|
+| username* | the user's username      |
+| password* | the user's password      |
+|   email   | the user's email address |
+|   phone   | the user's phone number  |
 
 ##### /coordinates
 
@@ -185,7 +185,7 @@ Send **GET** requests to `/coordinates` and set parameters according to the spec
 Parameter specification table for querying **coordinate** data (fields with `*` are required):
 
 |  query   |                        other param(s)                         | description                                                                                                                                                                  |
-|:--------:|:-------------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|:--------:|:-------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |    id    |                              id*                              | select by coordinate id                                                                                                                                                      |
 | location | downlongitude<br/>uplongitude<br/>downlatitude<br/>uplatitude | select by longitude range and latitude range<br/>---<br/>default downlongitude: -180<br/>default uplongitude: +180<br/>default downlatitude: -90<br/>default uplatitude: +90 |
 |   sent   |                      downsent<br/>upsent                      | select by sent datetime range<br/>---<br/>default downsent: 0001-01-01T00:00:00.000Z<br/>default upsent: 9999-12-31T23:59:59.999Z                                            |
@@ -203,14 +203,14 @@ Send **POST** requests to `/coordinates` and set parameters according to the spe
 
 Parameter specification table for inserting **coordinate** data (fields with `*` are required):
 
-|    field    | description |
-|:-----------:|-------------|
-|  username*  |             |
-| longitude*  |             |
-|  latitude*  |             |
-|    sent*    |             |
-| dangertype* |             |
-| description |             |
+|    field    | description                                           |
+|:-----------:|:------------------------------------------------------|
+|  username*  | the sender's username                                 |
+| longitude*  | the longitude of the coordinate                       |
+|  latitude*  | the latitude of the coordinate                        |
+|    sent*    | the sent datetime (yyyy-MM-dd'T'HH:mm:ss.SSSX)        |
+| dangertype* | the type of the danger (DEER, REINDEER, MOOSE, OTHER) |
+| description | the description of the record                         |
 
 ##### /comment
 
@@ -221,7 +221,7 @@ Send **GET** requests to `/comment` and set parameters according to the specific
 Parameter specification table for querying **comment** data (fields with `*` are required):
 
 |   query   |   other param(s)    | description                                                                                                                       |
-|:---------:|:-------------------:|-----------------------------------------------------------------------------------------------------------------------------------|
+|:---------:|:-------------------:|:----------------------------------------------------------------------------------------------------------------------------------|
 | commentid |     commentid*      | select by comment id                                                                                                              |
 |   sent    | downsent<br/>upsent | select by sent datetime range<br/>---<br/>default downsent: 0001-01-01T00:00:00.000Z<br/>default upsent: 9999-12-31T23:59:59.999Z |
 |    id     |         id*         | select by coordinate id                                                                                                           |
@@ -238,11 +238,11 @@ Send **POST** requests to `/comment` and set parameters according to the specifi
 
 Parameter specification table for querying **comment** data (fields with `*` are required):
 
-|  field   | description |
-|:--------:|-------------|
-|   id*    |             |
-| comment* |             |
-|  sent*   |             |
+|  field   | description                                    |
+|:--------:|:-----------------------------------------------|
+|   id*    | the coordinate's id                            |
+| comment* | the content of the comment                     |
+|  sent*   | the sent datetime (yyyy-MM-dd'T'HH:mm:ss.SSSX) |
 
 #### How to modify its configuration?
 
@@ -449,7 +449,7 @@ Exit status:
 
 ### Statistic
 
-Until 2023-11-22 19:13 (UTC +08:00):
+Until 2023-11-22 19:30 (UTC+08:00):
 
-- 563 commits
-- ? lines of code
+- 597 commits
+- 1937 lines of code
