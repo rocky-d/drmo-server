@@ -133,7 +133,7 @@ Recommended tools:
 
 ###### GET
 
-Send **GET** requests to `/registration` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **user** data. (All terminal values in the response JSON data are **String** type.)
+Send **GET** requests to `/registration` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **user** data. (All terminal/leaf values in the response JSON data are **String** type.)
 
 Parameter specification table for querying **user** data (fields with `*` are required):
 
@@ -158,7 +158,7 @@ Parameter specification table for querying **user** data (fields with `*` are re
 
 ###### GET
 
-Send **GET** requests to `/coordinates` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data. (All terminal values in the response JSON data are **String** type.)
+Send **GET** requests to `/coordinates` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data. (All terminal/leaf values in the response JSON data are **String** type.)
 
 Parameter specification table for querying **coordinate** data (fields with `*` are required):
 
@@ -183,7 +183,7 @@ Parameter specification table for querying **coordinate** data (fields with `*` 
 
 ###### GET
 
-Send **GET** requests to `/comment` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **comment** data. (All terminal values in the response JSON data are **String** type.)
+Send **GET** requests to `/comment` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **comment** data. (All terminal/leaf values in the response JSON data are **String** type.)
 
 Parameter specification table for querying **comment** data (fields with `*` are required):
 
