@@ -88,6 +88,8 @@ This is only the information of my own development environment:
 
 #### How to run it?
 
+Steps:
+
 - Build the project with **Maven**.
 - Run the main method in the `ServerLauncher` class to start the server.
 - Follow the printed instructions if it's **the first run**.
@@ -99,13 +101,13 @@ This is only the information of my own development environment:
 Normal:
 
 <p align="center">
-    <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="100%" height="100%"/>
+  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="100%" height="100%"/>
 </p>
 
 The first run:
 
 <p align="center">
-    <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="100%" height="100%"/>
+  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="100%" height="100%"/>
 </p>
 
 #### How to send requests to it?
@@ -195,7 +197,7 @@ Default configuration with annotations for explanation:
 ERD (Entity-Relationship Diagram):
 
 <p align="center">
-    <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/>
+  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="65%" height="65%"/>
 </p>
 
 ##### Entity
