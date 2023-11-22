@@ -133,11 +133,17 @@ Request headers:
 
 - `Content-Type`: `application/json; charset=utf-8`
 
+Notes (a few things you need to know):
+
+- All **terminal/leaf values** in the JSON data of the response body from the server are **String** type.
+- dangertype...
+- 
+
 ##### /registration
 
 ###### GET
 
-Send **GET** requests to `/registration` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **user** data. (All terminal/leaf values in the response JSON data are **String** type.)
+Send **GET** requests to `/registration` and set parameters according to the specification table below in whether the request URI or the request body (choosing the parameters in request URI first if both options are available) to query **user** data.
 
 Parameter specification table for querying **user** data (fields with `*` are required):
 
@@ -156,7 +162,7 @@ Parameter specification table for querying **user** data (fields with `*` are re
 
 ###### POST
 
-Send **POST** requests to `/registration` and set parameters according to the specification table below in request body to insert **user** data.
+Send **POST** requests to `/registration` and set parameters according to the specification table below in the request body to insert **user** data.
 
 |    field    | description |
 |:-----------:|-------------|
@@ -171,7 +177,7 @@ Send **POST** requests to `/registration` and set parameters according to the sp
 
 ###### GET
 
-Send **GET** requests to `/coordinates` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data. (All terminal/leaf values in the response JSON data are **String** type.)
+Send **GET** requests to `/coordinates` and set parameters according to the specification table below in whether the request URI or the request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data.
 
 Parameter specification table for querying **coordinate** data (fields with `*` are required):
 
@@ -196,7 +202,7 @@ Parameter specification table for querying **coordinate** data (fields with `*` 
 
 ###### GET
 
-Send **GET** requests to `/comment` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **comment** data. (All terminal/leaf values in the response JSON data are **String** type.)
+Send **GET** requests to `/comment` and set parameters according to the specification table below in whether the request URI or the request body (choosing the parameters in request URI first if both options are available) to query **comment** data.
 
 Parameter specification table for querying **comment** data (fields with `*` are required):
 
