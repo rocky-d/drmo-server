@@ -46,7 +46,7 @@ public final class ServerLauncher {
     private static Path keystoreFile;
     private static char[] keystorePassword;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("Hello world!");
         System.out.println("---------");
 
@@ -82,11 +82,16 @@ public final class ServerLauncher {
                 System.out.print("(Yes/No) > ");
                 input = scanner.nextLine();
                 if ("Y".equalsIgnoreCase(input) || "YES".equalsIgnoreCase(input)) {
-                    overrideConfig();
-                    System.out.println("Config has been overridden.");
-                    System.out.println("Please check and modify (if you need to) the config file");
-                    System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
-                    System.out.println("And then rerun the program.");
+                    try {
+                        overrideConfig();
+                        System.out.println("Config has been overridden.");
+                        System.out.println("Please check and modify (if you need to) the config file");
+                        System.out.println("\"" + CONFIG_FILE.toAbsolutePath() + "\".");
+                        System.out.println("And then rerun the program.");
+                    } catch (IOException ioException) {
+                        System.err.println("Override failed.");
+                        System.err.println(ioException.getClass().getName() + ": " + ioException.getMessage());
+                    }
                     break;
                 } else if ("N".equalsIgnoreCase(input) || "NO".equalsIgnoreCase(input)) {
                     System.out.println("Please check the problem.");
