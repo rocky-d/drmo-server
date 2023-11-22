@@ -124,11 +124,23 @@ The first run:
 
 #### How to send requests to it?
 
+Recommended tools:
+
+- curl: *[link](https://curl.se/)*
+- Postman: *[link](https://www.postman.com/)*
+
 ##### /registration
 
 ###### GET
 
-...
+|     query      |  other params   |
+|:--------------:|:---------------:|
+|    username    |    username*    |
+| hashedpassword | hashedpassword* |
+|     email      |     email*      |
+|     phone      |     phone*      |
+|      all       |    \<NONE\>     |
+|    \<NONE\>    |    \<NONE\>     |
 
 ###### HEAD
 
@@ -142,7 +154,14 @@ The first run:
 
 ###### GET
 
-...
+|  query   |                   other params                    |
+|:--------:|:-------------------------------------------------:|
+|    id    |                        id*                        |
+| location | downlongitude uplongitude downlatitude uplatitude |
+|   sent   |                  downsent upsent                  |
+|   user   |                     username*                     |
+|   all    |                     \<NONE\>                      |
+| \<NONE\> |                     \<NONE\>                      |
 
 ###### HEAD
 
@@ -156,7 +175,13 @@ The first run:
 
 ###### GET
 
-...
+|   query   |  other params   |
+|:---------:|:---------------:|
+| commentid |   commentid*    |
+|   sent    | downsent upsent |
+|    id     |       id*       |
+|    all    |    \<NONE\>     |
+| \<NONE\>  |    \<NONE\>     |
 
 ###### HEAD
 
