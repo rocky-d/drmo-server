@@ -206,8 +206,8 @@ Parameter specification table for inserting **coordinate** data (fields with `*`
 |    field    | description                                           |
 |:-----------:|:------------------------------------------------------|
 |  username*  | the sender's username                                 |
-| longitude*  | the longitude of the coordinate                       |
-|  latitude*  | the latitude of the coordinate                        |
+| longitude*  | the longitude value of the coordinate                 |
+|  latitude*  | the latitude value of the coordinate                  |
 |    sent*    | the sent datetime (yyyy-MM-dd'T'HH:mm:ss.SSSX)        |
 | dangertype* | the type of the danger (DEER, REINDEER, MOOSE, OTHER) |
 | description | the description of the record                         |
