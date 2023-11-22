@@ -169,12 +169,12 @@ Send **POST** requests to `/registration` and set parameters according to the sp
 
 Parameter specification table for inserting **user** data (fields with `*` are required):
 
-|   field   | description              |
-|:---------:|:-------------------------|
-| username* | the user's username      |
-| password* | the user's password      |
-|   email   | the user's email address |
-|   phone   | the user's phone number  |
+|   field   | description                   |
+|:---------:|:------------------------------|
+| username* | the username of the user      |
+| password* | the password of the user      |
+|   email   | the email address of the user |
+|   phone   | the phone number of the user  |
 
 ##### /coordinates
 
