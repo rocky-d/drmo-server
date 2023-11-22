@@ -133,6 +133,10 @@ Recommended tools:
 
 ###### GET
 
+Send a **GET** request to `/registration` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **user** data.
+
+Parameter specification table for querying **user** data:
+
 |     query      | other param(s)  | description               |
 |:--------------:|:---------------:|---------------------------|
 |    username    |    username*    | select by username        |
@@ -154,6 +158,10 @@ Recommended tools:
 
 ###### GET
 
+Send a **GET** request to `/coordinates` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data.
+
+Parameter specification table for querying **coordinate** data:
+
 |  query   |                        other param(s)                         | description                                                                                                                                                                  |
 |:--------:|:-------------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |    id    |                              id*                              | select by coordinate id                                                                                                                                                      |
@@ -174,6 +182,10 @@ Recommended tools:
 ##### /comment
 
 ###### GET
+
+Send a **GET** request to `/comment` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **comment** data.
+
+Parameter specification table for querying **comment** data:
 
 |   query   |   other param(s)    | description                                                                                                                       |
 |:---------:|:-------------------:|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -365,21 +377,21 @@ CREATE TABLE IF NOT EXISTS comment (
 
 ###### \<user\> 1 - 0...N \<coordinate\>
 
-- **one** user ***posts*** **zero to many** coordinate(s)
-- **one** coordinate ***is posted by*** **one** user
+- ***one*** `user` posts ***zero to many*** `coordinate`(s)
+- ***one*** `coordinate` is posted by ***one*** `user`
 
 ###### \<coordinate\> 1 - 0...N \<comment\>
 
-- **one** coordinate ***has*** **zero to many** comment(s)
-- **one** comment ***is commented on*** **one** coordinate
+- ***one*** `coordinate` has ***zero to many*** `comment`(s)
+- ***one*** `comment` is commented on ***one*** `coordinate`
 
 #### LOG
 
 Log entry types:
 
-- The *green-colored* **INFO** type indicating the normal actions.
-- The *yellow-colored* **WARNING** type indicating the improper actions causing not serious consequences.
-- The *red-colored* **ERROR** type indicating the exceptions that may affect the server's operations.
+- The ***green-colored*** `INFO` type indicating the normal actions.
+- The ***yellow-colored*** `WARNING` type indicating the improper actions causing not serious consequences.
+- The ***red-colored*** `ERROR` type indicating the exceptions that may affect the server's operations.
 
 ------
 
