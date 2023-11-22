@@ -129,6 +129,10 @@ Recommended tools:
 - curl: *[link](https://curl.se/)*
 - Postman: *[link](https://www.postman.com/)*
 
+Request headers:
+
+- `Content-Type`: `application/json; charset=utf-8`
+
 ##### /registration
 
 ###### GET
@@ -152,7 +156,16 @@ Parameter specification table for querying **user** data (fields with `*` are re
 
 ###### POST
 
-...
+Send **POST** requests to `/registration` and set parameters according to the specification table below in request body to insert **user** data.
+
+|    field    | description |
+|:-----------:|-------------|
+|  username*  |             |
+| longitude*  |             |
+|  latitude*  |             |
+|    sent*    |             |
+| dangertype* |             |
+| description |             |
 
 ##### /coordinates
 
