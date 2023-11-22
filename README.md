@@ -133,7 +133,7 @@ Recommended tools:
 
 ###### GET
 
-Send a **GET** request to `/registration` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **user** data.
+Send **GET** requests to `/registration` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **user** data.
 
 Parameter specification table for querying **user** data (fields with `*` are required):
 
@@ -148,7 +148,7 @@ Parameter specification table for querying **user** data (fields with `*` are re
 
 ###### HEAD
 
-...
+**HEAD** requests can be handled in `/registration`.
 
 ###### POST
 
@@ -158,7 +158,7 @@ Parameter specification table for querying **user** data (fields with `*` are re
 
 ###### GET
 
-Send a **GET** request to `/coordinates` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data.
+Send **GET** requests to `/coordinates` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data.
 
 Parameter specification table for querying **coordinate** data (fields with `*` are required):
 
@@ -173,7 +173,7 @@ Parameter specification table for querying **coordinate** data (fields with `*` 
 
 ###### HEAD
 
-...
+**HEAD** requests can be handled in `/coordinates`.
 
 ###### POST
 
@@ -183,7 +183,7 @@ Parameter specification table for querying **coordinate** data (fields with `*` 
 
 ###### GET
 
-Send a **GET** request to `/comment` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **comment** data.
+Send **GET** requests to `/comment` and set parameters according to the specification table below in whether request URI or request body (choosing the parameters in request URI first if both options are available) to query **comment** data.
 
 Parameter specification table for querying **comment** data (fields with `*` are required):
 
@@ -197,7 +197,7 @@ Parameter specification table for querying **comment** data (fields with `*` are
 
 ###### HEAD
 
-...
+**HEAD** requests can be handled in `/comment`.
 
 ###### POST
 
