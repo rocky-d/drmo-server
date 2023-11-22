@@ -137,13 +137,15 @@ Notes (a few things you need to know):
 
 - All **terminal/leaf values** in the JSON data of the response body from the server are **String** type.
 - dangertype...
-- 
+- password...
+- double...
+- return JSONarray or nocontent
 
 ##### /registration
 
 ###### GET
 
-Send **GET** requests to `/registration` and set parameters according to the specification table below in whether the request URI or the request body (choosing the parameters in request URI first if both options are available) to query **user** data.
+Send **GET** requests to `/registration` and set parameters according to the specification table below in whether the request URI or the JSON-formatted request body (choosing the parameters in request URI first if both options are available) to query **user** data.
 
 Parameter specification table for querying **user** data (fields with `*` are required):
 
@@ -162,22 +164,22 @@ Parameter specification table for querying **user** data (fields with `*` are re
 
 ###### POST
 
-Send **POST** requests to `/registration` and set parameters according to the specification table below in the request body to insert **user** data.
+Send **POST** requests to `/registration` and set parameters according to the specification table below in the JSON-formatted request body to insert **user** data.
 
-|    field    | description |
-|:-----------:|-------------|
-|  username*  |             |
-| longitude*  |             |
-|  latitude*  |             |
-|    sent*    |             |
-| dangertype* |             |
-| description |             |
+Parameter specification table for inserting **user** data (fields with `*` are required):
+
+|   field   | description |
+|:---------:|-------------|
+| username* |             |
+| password* |             |
+|   email   |             |
+|   phone   |             |
 
 ##### /coordinates
 
 ###### GET
 
-Send **GET** requests to `/coordinates` and set parameters according to the specification table below in whether the request URI or the request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data.
+Send **GET** requests to `/coordinates` and set parameters according to the specification table below in whether the request URI or the JSON-formatted request body (choosing the parameters in request URI first if both options are available) to query **coordinate** data.
 
 Parameter specification table for querying **coordinate** data (fields with `*` are required):
 
@@ -196,13 +198,24 @@ Parameter specification table for querying **coordinate** data (fields with `*` 
 
 ###### POST
 
-...
+Send **POST** requests to `/coordinates` and set parameters according to the specification table below in the JSON-formatted request body to insert **coordinate** data.
+
+Parameter specification table for inserting **coordinate** data (fields with `*` are required):
+
+|    field    | description |
+|:-----------:|-------------|
+|  username*  |             |
+| longitude*  |             |
+|  latitude*  |             |
+|    sent*    |             |
+| dangertype* |             |
+| description |             |
 
 ##### /comment
 
 ###### GET
 
-Send **GET** requests to `/comment` and set parameters according to the specification table below in whether the request URI or the request body (choosing the parameters in request URI first if both options are available) to query **comment** data.
+Send **GET** requests to `/comment` and set parameters according to the specification table below in whether the request URI or the JSON-formatted request body (choosing the parameters in request URI first if both options are available) to query **comment** data.
 
 Parameter specification table for querying **comment** data (fields with `*` are required):
 
@@ -220,7 +233,15 @@ Parameter specification table for querying **comment** data (fields with `*` are
 
 ###### POST
 
-...
+Send **POST** requests to `/comment` and set parameters according to the specification table below in the JSON-formatted request body to insert **comment** data.
+
+Parameter specification table for querying **comment** data (fields with `*` are required):
+
+|  field   | description |
+|:--------:|-------------|
+|   id*    |             |
+| comment* |             |
+|  sent*   |             |
 
 #### How to modify its configuration?
 
