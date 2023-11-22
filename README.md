@@ -138,7 +138,7 @@ Notes (a few important details you need to know):
 - The **response body** can be ***data in JSON array format***, ***plain text***, or ***empty***.
 - All **characters** in the response body are `UTF-8` encoded.
 - All **terminal/leaf values** in the JSON data of the response body from the server are `String` type.
-- All **password values** are ***hashed ciphertexts*** in the server and the database. The encryption process is ***irreversible***.
+- All **password values** are ***hashed ciphertexts*** in both the server and database. The encryption process is ***irreversible***.
 - The **longitude and latitude values** queried after posting to the server may have very teeny ***errors (under ±1e-15 = ±1×10⁻¹⁵)*** due to the characteristics of `double` type.
 - All **dangertype values** queried after posting to the server are ***all-letters-capitalized***.
 
