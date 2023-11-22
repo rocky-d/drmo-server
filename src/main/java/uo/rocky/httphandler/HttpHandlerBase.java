@@ -84,15 +84,13 @@ public abstract class HttpHandlerBase implements HttpHandler {
 
         Map<String, String> paramsFromRequestBody = new HashMap<>();
         String requestBody = inputRequestBody(httpExchange.getRequestBody(), UTF_8);
-        if (!requestBody.isEmpty()) {
-            JSONObject jsonObject = new JSONObject(requestBody);
-            for (String key : jsonObject.keySet()) {
-                Object value = jsonObject.get(key);
-                if (value instanceof String) {
-                    paramsFromRequestBody.put(key.toUpperCase(), (String) value);
-                } else {
-                    LogWriter.append(WARNING, "Value \"" + value + "\" is not an instance of String.");
-                }
+        JSONObject jsonObject = requestBody.isEmpty() ? new JSONObject() : new JSONObject(requestBody);
+        for (String key : jsonObject.keySet()) {
+            Object value = jsonObject.get(key);
+            if (value instanceof String) {
+                paramsFromRequestBody.put(key.toUpperCase(), (String) value);
+            } else {
+                LogWriter.append(WARNING, "Value \"" + value + "\" is not an instance of String.");
             }
         }
 
