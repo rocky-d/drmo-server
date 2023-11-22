@@ -2,6 +2,8 @@ package uo.rocky.httphandler;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.json.JSONException;
+import org.json.JSONObject;
 import uo.rocky.LogWriter;
 
 import java.io.*;
@@ -69,18 +71,29 @@ public abstract class HttpHandlerBase implements HttpHandler {
         outputResponseBody(httpExchange.getResponseBody(), responseBodyBytes);
     }
 
-    public final Map<String, String> parseQueryParameters(HttpExchange httpExchange) {  // TODO: handle request body
-        Map<String, String> queryParameters = new HashMap<>();
+    public final Map<String, String> parseQueryParameters(HttpExchange httpExchange) {
+        Map<String, String> queryParamsFromURI = new HashMap<>();
         String uri = httpExchange.getRequestURI().toString();
         for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
-            String[] tempStrings = param.split("=", 2);
-            if (2 == tempStrings.length) {
-                queryParameters.put(tempStrings[0].toUpperCase(), tempStrings[1]);
+            String[] keyValue = param.split("=", 2);
+            if (2 == keyValue.length) {
+                queryParamsFromURI.put(keyValue[0].toUpperCase(), keyValue[1]);
             } else {
                 LogWriter.append(WARNING, "Param \"" + param + "\" is not two strings with one equal sign in between.");
             }
         }
-        return queryParameters;
+
+        Map<String, String> queryParamsFromRequestBody = new HashMap<>();
+        try {
+            JSONObject jsonObject = new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8));
+            for (String key : jsonObject.keySet()) {
+                queryParamsFromRequestBody.put(key.toUpperCase(), jsonObject.getString(key));
+            }
+        } catch (JSONException jsonException) {
+            LogWriter.append(WARNING, jsonException.getClass().getName() + ": " + jsonException.getMessage());
+        }
+
+        return queryParamsFromURI.isEmpty() ? queryParamsFromRequestBody : queryParamsFromURI;
     }
 
     public final String inputRequestBody(InputStream requestBody, Charset charset) {
