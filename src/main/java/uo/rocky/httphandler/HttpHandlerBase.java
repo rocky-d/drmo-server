@@ -77,7 +77,7 @@ public abstract class HttpHandlerBase implements HttpHandler {
         for (String param : -1 == uri.indexOf('?') ? new String[]{} : uri.substring(uri.indexOf('?') + 1).split("&")) {
             String[] keyValue = param.split("=", 2);
             if (2 == keyValue.length) {
-                queryParamsFromURI.put(keyValue[0].toUpperCase(), keyValue[1]);
+                queryParamsFromURI.put(keyValue[0], keyValue[1]);
             } else {
                 LogWriter.append(WARNING, "Param \"" + param + "\" is not two strings with one equal sign in between.");
             }
@@ -85,9 +85,17 @@ public abstract class HttpHandlerBase implements HttpHandler {
 
         Map<String, String> queryParamsFromRequestBody = new HashMap<>();
         try {
-            JSONObject jsonObject = new JSONObject(inputRequestBody(httpExchange.getRequestBody(), UTF_8));
-            for (String key : jsonObject.keySet()) {
-                queryParamsFromRequestBody.put(key.toUpperCase(), jsonObject.getString(key));
+            String requestBody = inputRequestBody(httpExchange.getRequestBody(), UTF_8);
+            if (!requestBody.isEmpty()) {
+                JSONObject jsonObject = new JSONObject(requestBody);
+                for (String key : jsonObject.keySet()) {
+                    Object value = jsonObject.get(key);
+                    if (value instanceof String) {
+                        queryParamsFromRequestBody.put(key, (String) value);
+                    } else {
+                        LogWriter.append(WARNING, "Value \"" + value + "\" is not an instance of String.");
+                    }
+                }
             }
         } catch (JSONException jsonException) {
             LogWriter.append(WARNING, jsonException.getClass().getName() + ": " + jsonException.getMessage());
