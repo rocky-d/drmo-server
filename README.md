@@ -133,7 +133,7 @@ Notes (a few important details you need to know):
 - The **longitude and latitude values** queried after posting to the server may have very teeny ***errors (under ±1e-15 = ±1×10⁻¹⁵)*** due to the characteristics of `double` type.
 - All **dangertype values** queried after posting to the server are ***all-letters-capitalized***.
 
-An example **curl** command to query coordinate data since 2023 by setting parameters in the request URI:
+An example **curl** command to query coordinate data since 2023 by setting parameters in the request URI (HTTP mode):
 
 ```shell
 curl -X GET "http://localhost:8001/coordinates?query=sent&downsent=2023-01-01T00:00:00.000Z"
