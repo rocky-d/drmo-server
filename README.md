@@ -42,7 +42,7 @@
 
 In Finland, encounters with wild deer are commonplace, each species carrying its own allure and significance. **drmo-server** acts as a unifying hub, fostering community collaboration to map out these encounters, offering an avenue to record observations, and creating a comprehensive repository of wildlife coordinates. Residents, enthusiasts, and conservationists alike rely on this service to document and access vital information about these awe-inspiring creatures, contributing to both conservation efforts and public awareness.
 
-Driven by a commitment to environmental stewardship and a shared passion for wildlife preservation, **drmo-server** stands as a testament to the Finnish spirit of coexistence with nature. Its functionalities empower individuals to participate actively in safeguarding and appreciating the country's diverse deer population while fostering a sense of community engagement in the realms of conservation and wildlife observation.
+Driven by a commitment to environmental stewardship and a shared passion for wildlife preservation, **drmo-server** stands as a testament to the Finnish spirit of coexistence with nature. Its functionalities empower individuals to participate actively in safeguarding and appreciating the country's diverse deer population while fostering a sense of community engagement in the realms of conservation and wildlife observation. More importantly, it helps protect people from the harm of wild animals.
 
 #### Why is it called "drmo-server"?
 
