@@ -342,19 +342,19 @@ src
 UML of `uo.rocky` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190001rocky.png" width="100%" height="100%"/>
+  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190001rocky.png" width="50%" height="50%"/>
 </p>
 
 UML of `uo.rocky.httphandler` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190002httphandler.png" width="100%" height="100%"/>
+  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190002httphandler.png" width="75%" height="75%"/>
 </p>
 
 UML of `uo.rocky.entity` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190003entity.png" width="100%" height="100%"/>
+  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123191800entity.png" width="100%" height="100%"/>
 </p>
 
 #### HTTP/HTTPS
