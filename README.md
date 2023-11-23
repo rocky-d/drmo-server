@@ -120,10 +120,6 @@ Recommended tools:
 - curl: *[link](https://curl.se/)*
 - Postman: *[link](https://www.postman.com/)*
 
-Request headers (if it has a request body):
-
-- `Content-Type`: `application/json; charset=utf-8`
-
 Notes (a few important details you need to know):
 
 - The **response body** can be ***data in JSON array format***, ***plain text***, or ***empty***.
@@ -132,6 +128,10 @@ Notes (a few important details you need to know):
 - All **password values** are ***hashed ciphertexts*** in both the server and database. The encryption process is ***irreversible***.
 - The **longitude and latitude values** queried after posting to the server may have very teeny ***errors (under ±1e-15 = ±1×10⁻¹⁵)*** due to the characteristics of `double` type.
 - All **dangertype values** queried after posting to the server are ***all-letters-capitalized***.
+
+Request headers (if it has a request body):
+
+- `Content-Type`: `application/json; charset=utf-8`
 
 An example **curl** command to query coordinate data since 2023 by setting parameters in the request URI (HTTP mode):
 
