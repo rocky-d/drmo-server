@@ -142,7 +142,7 @@ Send **GET** requests to `/registration` and set parameters according to the spe
 Parameter specification table for querying **user** data (fields with `*` are required):
 
 |     query      | other param(s)  | description               |
-|:--------------:|:---------------:|:--------------------------|
+|:--------------:|:---------------:|---------------------------|
 |    username    |    username*    | select by username        |
 | hashedpassword | hashedpassword* | select by hashed password |
 |     email      |     email*      | select by email           |
