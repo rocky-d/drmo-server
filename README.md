@@ -120,7 +120,7 @@ Recommended tools:
 - curl: *[link](https://curl.se/)*
 - Postman: *[link](https://www.postman.com/)*
 
-Request headers:
+Request headers (if it has a request body):
 
 - `Content-Type`: `application/json; charset=utf-8`
 
@@ -467,4 +467,4 @@ Exit status:
 Until `2023-11-22 19:30 (UTC+08:00)`:
 
 - 597 commits
-- 1937 lines of code
+- 1,937 lines of code
