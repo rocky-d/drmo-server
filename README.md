@@ -136,7 +136,7 @@ Notes (a few important details you need to know):
 An example **curl** command to query coordinate data since 2023 by setting parameters in the request URI (HTTP mode):
 
 ```shell
-curl -X GET "http://localhost:8001/coordinates?query=sent&downsent=2023-01-01T00:00:00.000Z"
+curl.exe -X GET "http://localhost:8001/coordinates?query=sent&downsent=2023-01-01T00:00:00.000Z"
 ```
 
 ##### /registration
