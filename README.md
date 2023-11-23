@@ -342,13 +342,13 @@ src
 UML of `uo.rocky` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190001rocky.png" width="50%" height="50%"/>
+  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190001rocky.png" width="40%" height="40%"/>
 </p>
 
 UML of `uo.rocky.httphandler` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190002httphandler.png" width="75%" height="75%"/>
+  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190002httphandler.png" width="70%" height="70%"/>
 </p>
 
 UML of `uo.rocky.entity` package:
