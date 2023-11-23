@@ -466,5 +466,5 @@ Exit status:
 
 Until `2023-11-22 19:30 (UTC+08:00)`:
 
-- 597 commits
-- 1,937 lines of code
+- **597** commits
+- **1,937** lines of code
