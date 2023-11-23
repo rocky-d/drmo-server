@@ -38,7 +38,7 @@
 
 #### What is it?
 
-**drmo-server** serves as a pivotal tool tailored for the Finnish locals navigating their unique encounters with various deer species. Situated in the heart of Finland's wildlife-rich landscapes, this service is designed as a communal platform enabling the sharing and discovery of coordinates pinpointing sightings of diverse wild deer species. Whether it's the elusive reindeer, majestic moose, or other indigenous deer types, this server streamlines the tracking and reporting of these animals' locations.
+`drmo-server` serves as a pivotal tool tailored for the Finnish locals navigating their unique encounters with various deer species. Situated in the heart of Finland's wildlife-rich landscapes, this service is designed as a communal platform enabling the sharing and discovery of coordinates pinpointing sightings of diverse wild deer species. Whether it's the elusive reindeer, majestic moose, or other indigenous deer types, this server streamlines the tracking and reporting of these animals' locations.
 
 In Finland, encounters with wild deer are commonplace, each species carrying its own allure and significance. **drmo-server** acts as a unifying hub, fostering community collaboration to map out these encounters, offering an avenue to record observations, and creating a comprehensive repository of wildlife coordinates. Residents, enthusiasts, and conservationists alike rely on this service to document and access vital information about these awe-inspiring creatures, contributing to both conservation efforts and public awareness.
 
@@ -132,6 +132,12 @@ Notes (a few important details you need to know):
 - All **password values** are ***hashed ciphertexts*** in both the server and database. The encryption process is ***irreversible***.
 - The **longitude and latitude values** queried after posting to the server may have very teeny ***errors (under ±1e-15 = ±1×10⁻¹⁵)*** due to the characteristics of `double` type.
 - All **dangertype values** queried after posting to the server are ***all-letters-capitalized***.
+
+An example **curl** command to query coordinate data since 2023 by setting parameters in the request URI:
+
+```shell
+curl -X GET "http://localhost:8001/coordinates?query=sent&downsent=2023-01-01T00:00:00.000Z"
+```
 
 ##### /registration
 
