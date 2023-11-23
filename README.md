@@ -339,6 +339,24 @@ src
     └─resources
 ```
 
+UML of `uo.rocky` package:
+
+<p align="center">
+  <img alt="diagram" src="" width="100%" height="100%"/>
+</p>
+
+UML of `uo.rocky.httphandler` package:
+
+<p align="center">
+  <img alt="diagram" src="" width="100%" height="100%"/>
+</p>
+
+UML of `uo.rocky.entity` package:
+
+<p align="center">
+  <img alt="diagram" src="" width="100%" height="100%"/>
+</p>
+
 #### HTTP/HTTPS
 
 `drmo-server` can operate in both **HTTP** and **HTTPS** modes, offering flexibility in communication protocols. **HTTP** is suitable for basic communication, while **HTTPS** provides secure encrypted connections.
@@ -351,7 +369,7 @@ src
 
 **SQLite** is the RDBMS (Relational Database Management System) to store the data of users, coordinates, and comments for the server.
 
-ERD (Entity-Relationship Diagram):
+ERD of the relational data model:
 
 <p align="center">
   <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="60%" height="60%"/>
@@ -361,7 +379,7 @@ ERD (Entity-Relationship Diagram):
 
 ###### User
 
-DDL of the **user** table:
+DDL of `user` table:
 
 ```sql
 CREATE TABLE IF NOT EXISTS user (
@@ -374,7 +392,7 @@ CREATE TABLE IF NOT EXISTS user (
 
 ###### Coordinate
 
-DDL of the **coordinate** table:
+DDL of `coordinate` table:
 
 ```sql
 CREATE TABLE IF NOT EXISTS coordinate (
@@ -392,7 +410,7 @@ CREATE TABLE IF NOT EXISTS coordinate (
 
 ###### Comment
 
-DDL of the **comment** table:
+DDL of `comment` table:
 
 ```sql
 CREATE TABLE IF NOT EXISTS comment (
