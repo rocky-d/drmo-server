@@ -4,7 +4,7 @@
 
 #### Developed by `Rocky Haotian Du` (GitHub: *[rocky-d](https://github.com/rocky-d)*)
 
-#### Last modified date: `2023-11-23`
+#### Last modified date: `2023-11-24`
 
 ------
 
@@ -104,13 +104,13 @@ Steps:
 Normal:
 
 <p align="center">
-  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="90%" height="90%"/>
+  <img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231119221737.png" width="90%" height="90%"/>
 </p>
 
 The first run:
 
 <p align="center">
-  <img alt="screenshot" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="90%" height="90%"/>
+  <img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/newnew20231119221641.png" width="90%" height="90%"/>
 </p>
 
 #### How to send requests to it?
@@ -348,19 +348,19 @@ src
 UML of `uo.rocky` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190001rocky.png" width="40%" height="40%"/>
+  <img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190001rocky.png" width="40%" height="40%"/>
 </p>
 
 UML of `uo.rocky.httphandler` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190002httphandler.png" width="70%" height="70%"/>
+  <img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123190002httphandler.png" width="70%" height="70%"/>
 </p>
 
 UML of `uo.rocky.entity` package:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123191800entity.png" width="100%" height="100%"/>
+  <img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231123191800entity.png" width="100%" height="100%"/>
 </p>
 
 #### HTTP/HTTPS
@@ -378,7 +378,7 @@ UML of `uo.rocky.entity` package:
 ERD of the relational data model:
 
 <p align="center">
-  <img alt="diagram" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="60%" height="60%"/>
+  <img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/202311201859.png" width="60%" height="60%"/>
 </p>
 
 ##### Entity
