@@ -48,7 +48,7 @@ Driven by a commitment to environmental stewardship and a shared passion for wil
 
 The word **"drmo"** in the project name is actually the abbreviation of the four supported danger types — **DEER**, **REINDEER**, **MOOSE**, and **OTHER**. And it's also an **HTTP/HTTPS server**. That's why it is called **"drmo-server"**. 🎄🎄🎄🦌🦌🦌🌐🌐🌐
 
-You can speak "Dre-Mo-Server" or simply "D-R-M-O-Server" to call it.
+You can speak **"Dre-Mo-Server"** or simply **"D-R-M-O-Server"** to call it.
 
 #### What are its functionalities?
 
