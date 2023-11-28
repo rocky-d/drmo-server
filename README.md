@@ -73,7 +73,7 @@ You can speak **"Dre-Mo-Server"** or simply **"D-R-M-O-Server"** to call it.
 - Clean and Well Commented Code
 - Well Maintainability
 - Multilevel Log Entry
-- Colorful Log Printing
+- Colored Log Printing
 
 ------
 
