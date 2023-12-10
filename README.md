@@ -103,11 +103,11 @@ Steps:
 
 Normal:
 
-<p align="center"><img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231210152412.png" width="50%" height="50%"/></p>
+<p align="left"><img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231210152412.png" width="60%" height="60%"/></p>
 
 The first run:
 
-<p align="center"><img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231210151425.png" width="50%" height="50%"/></p>
+<p align="left"><img alt="[picture]" src="https://cdn.jsdelivr.net/gh/rocky-d/picgo-img@master/img/20231210151425.png" width="60%" height="60%"/></p>
 
 #### How to send requests to it?
 
