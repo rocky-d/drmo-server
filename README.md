@@ -149,8 +149,8 @@ Parameter specification table for querying **user** data (fields with `*` are re
 | hashedpassword | hashedpassword* | select by hashed password |
 |     email      |     email*      | select by email           |
 |     phone      |     phone*      | select by phone           |
-|      all       |    \<NONE\>     | select all                |
-|    \<NONE\>    |    \<NONE\>     | select all                |
+|      all       |    \<none\>     | select all                |
+|    \<none\>    |    \<none\>     | select all                |
 
 ###### HEAD
 
@@ -183,8 +183,8 @@ Parameter specification table for querying **coordinate** data (fields with `*` 
 | location | downlongitude<br/>uplongitude<br/>downlatitude<br/>uplatitude | select by longitude range and latitude range<br/>---<br/>default downlongitude: -180<br/>default uplongitude: +180<br/>default downlatitude: -90<br/>default uplatitude: +90 |
 |   sent   |                      downsent<br/>upsent                      | select by sent datetime range<br/>---<br/>default downsent: 0001-01-01T00:00:00.000Z<br/>default upsent: 9999-12-31T23:59:59.999Z                                            |
 |   user   |                           username*                           | select by username                                                                                                                                                           |
-|   all    |                           \<NONE\>                            | select all                                                                                                                                                                   |
-| \<NONE\> |                           \<NONE\>                            | select all                                                                                                                                                                   |
+|   all    |                           \<none\>                            | select all                                                                                                                                                                   |
+| \<none\> |                           \<none\>                            | select all                                                                                                                                                                   |
 
 ###### HEAD
 
@@ -218,8 +218,8 @@ Parameter specification table for querying **comment** data (fields with `*` are
 | commentid |     commentid*      | select by comment id                                                                                                              |
 |   sent    | downsent<br/>upsent | select by sent datetime range<br/>---<br/>default downsent: 0001-01-01T00:00:00.000Z<br/>default upsent: 9999-12-31T23:59:59.999Z |
 |    id     |         id*         | select by coordinate id                                                                                                           |
-|    all    |      \<NONE\>       | select all                                                                                                                        |
-| \<NONE\>  |      \<NONE\>       | select all                                                                                                                        |
+|    all    |      \<none\>       | select all                                                                                                                        |
+| \<none\>  |      \<none\>       | select all                                                                                                                        |
 
 ###### HEAD
 
