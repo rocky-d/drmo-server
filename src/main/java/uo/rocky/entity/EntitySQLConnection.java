@@ -21,7 +21,7 @@ import static uo.rocky.entity.EntityRelatesToSQL.LOCALDATETIME_FORMATTER_SPACE;
  */
 public final class EntitySQLConnection {
 
-    private static final String NO_QUERT_PARAM = "ALL";
+    private static final String QUERY_ALL = "ALL";
 
     private static Connection connection = null;
 
@@ -81,7 +81,7 @@ public final class EntitySQLConnection {
 
     static synchronized List<User> selectUsers(Map<String, String> params) throws SQLException, QueryParamException {
         String sql;
-        switch (params.getOrDefault("QUERY", NO_QUERT_PARAM).toUpperCase()) {
+        switch (params.getOrDefault("QUERY", QUERY_ALL).toUpperCase()) {
             case "USERNAME":
                 sql = "SELECT * FROM user WHERE USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
                 break;
@@ -94,11 +94,11 @@ public final class EntitySQLConnection {
             case "PHONE":
                 sql = "SELECT * FROM user WHERE USR_PHONE = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("PHONE")) + ";";
                 break;
-            case NO_QUERT_PARAM:
+            case QUERY_ALL:
                 sql = "SELECT * FROM user;";
                 break;
             default:
-                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"USERNAME\", \"HASHEDPASSWORD\", \"EMAIL\", \"PHONE\", or \"" + NO_QUERT_PARAM + "\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
+                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"USERNAME\", \"HASHEDPASSWORD\", \"EMAIL\", \"PHONE\", or \"" + QUERY_ALL + "\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
         }
 
         List<User> results = new ArrayList<>();
@@ -116,7 +116,7 @@ public final class EntitySQLConnection {
 
     static synchronized List<Coordinate> selectCoordinates(Map<String, String> params) throws SQLException, QueryParamException {
         String sql;
-        switch (params.getOrDefault("QUERY", NO_QUERT_PARAM).toUpperCase()) {
+        switch (params.getOrDefault("QUERY", QUERY_ALL).toUpperCase()) {
             case "ID":
                 sql = "SELECT * FROM coordinate WHERE CDT_ID = " + params.get("ID") + ";";
                 break;
@@ -129,11 +129,11 @@ public final class EntitySQLConnection {
             case "USER":
                 sql = "SELECT * FROM coordinate WHERE CDT_USR_NAME = " + EntityRelatesToSQL.escapeSingleQuotes(params.get("USERNAME")) + ";";
                 break;
-            case NO_QUERT_PARAM:
+            case QUERY_ALL:
                 sql = "SELECT * FROM coordinate;";
                 break;
             default:
-                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"ID\", \"LOCATION\", \"SENT\", \"USER\", or \"" + NO_QUERT_PARAM + "\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
+                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"ID\", \"LOCATION\", \"SENT\", \"USER\", or \"" + QUERY_ALL + "\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
         }
 
         List<Coordinate> results = new ArrayList<>();
@@ -151,7 +151,7 @@ public final class EntitySQLConnection {
 
     static synchronized List<Comment> selectComments(Map<String, String> params) throws SQLException, QueryParamException {
         String sql;
-        switch (params.getOrDefault("QUERY", NO_QUERT_PARAM).toUpperCase()) {
+        switch (params.getOrDefault("QUERY", QUERY_ALL).toUpperCase()) {
             case "COMMENTID":
                 sql = "SELECT * FROM comment WHERE CMT_ID = " + params.get("COMMENTID") + ";";
                 break;
@@ -161,11 +161,11 @@ public final class EntitySQLConnection {
             case "ID":
                 sql = "SELECT * FROM comment WHERE CMT_CDT_ID = " + params.get("ID") + ";";
                 break;
-            case NO_QUERT_PARAM:
+            case QUERY_ALL:
                 sql = "SELECT * FROM comment;";
                 break;
             default:
-                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"COMMENTID\", \"SENT\", \"ID\", or \"" + NO_QUERT_PARAM + "\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
+                throw new QueryParamException("Invalid query parameter \"" + params.get("QUERY") + "\" (only \"COMMENTID\", \"SENT\", \"ID\", or \"" + QUERY_ALL + "\" cAsE-InSeNsItIvElY supported as a valid query parameter)");
         }
 
         List<Comment> results = new ArrayList<>();
